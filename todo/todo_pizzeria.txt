@@ -1,0 +1,49 @@
+# Założenia dot. budowy Systemu Zdalnej Realizacji Zamówień dla "Kuźnia Cafe & Pizza"
+
+
+Interfejs witryny
+-----------------------------------------
+- Menu wyboru: Zamów/Zaloguj, Menu, Promocje, Informacje
+- Losowe wyświetlanie reklamowanych potraw i promocji
+- Ikonki i reklamy współpracujących firm (Coca-Cola, Tyskie, Facebook, itp)
+- Na dole strony standardowe linki - Pomoc, Kontakt itp
+
+Zamawianie On-Line (procedura, założenia)
+------------------------------------------
+- Złożenie zamówienia wymaga utworzenia konta / zalogowania
+- Zatwierdzone zamówienie pojawia się w historii zamówień (konto administrator/kuźnia)
+- Pojawienie się zamówienia na generuje automatycznie fakturę, która natychmiast
+  wędruje do druku (odbiera kuchnia) oraz na e-mail/konto zamawiającego
+  (pytanie - czy najpierw akceptować każde zamówienie czy nie trzeba)
+
+Konto 'Klient'
+------------------------------------------
+- edytuj dane osobowe
+- wyświetl historię zamówień (+ "lubię to" przy każdej pozycji)
+- wyświetl aktualne promocje
+- zamów
+  |- dodaj do koszyka wybrane produkty itd (standardowa procedura)
+  |- jeżeli zamówienie spełnia warunki danej promocji, oblicz i połącz automatycznie
+  |- zrealizuj (podsumowanie + faktura pro forma)
+
+Konto 'Kuźnia'
+------------------------------------------
+- wprowadź nowe zamówienie (odebrane przez telefon/przy barze)
+  |- wybierz potrawy + napoje
+     |- edytuj skład potraw (zamówienie indywidualne)
+  |- na miejscu/wynos/dostawa?
+     |- jeżeli dostawa to adres, imię i nazwisko
+        |- jeżeli zamówienie nie przekracza zadanej sumy oblicz koszt dostawy
+- edytuj ostatnie zamówienia
+- wystaw fakturę
+- wyświetl listę zamówień z dnia dzisiejszego (oczekujące/zrealizowane)
+  |- do zamówień oczekujących: wprowadzanie czasu dostarczenia
+
+Konto 'Administrator'
+------------------------------------------
+- edytuj menu
+- zarządzaj kontami klientów
+- utwórz mail grupowy (np. z promocją)
+- wyświetl historię zamówień
+- generuj fakturę dla dowolnego zamówienia
+- wyświetl statystyki (?)
