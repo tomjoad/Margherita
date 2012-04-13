@@ -3,3 +3,9 @@
 
 Gowno kalisz ;)<br />
 test
+
+<br />
+<% Product.all.each do |product| %>
+  <%= product.name %> | <%= product.price_in_dolars %><br />
+
+<% end %>
