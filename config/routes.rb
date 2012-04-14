@@ -5,6 +5,8 @@ Margherita::Application.routes.draw do
 
   get "home/about"
 
+  resources :products
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
