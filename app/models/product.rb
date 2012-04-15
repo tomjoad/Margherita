@@ -1,10 +1,8 @@
 class Product < ActiveRecord::Base
 
+  belongs_to :category
+
   validates :name, :presence => true
   validates :price, :presence => true
-
-  def price_in_dolars
-   read_attribute(:price) + 12.0
-  end
 
 end

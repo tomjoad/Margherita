@@ -1,0 +1,15 @@
+<h1><%= @category.name %></h1>
+
+<table>
+<% @products.each do |product| %>
+  <tr>
+    <td><%= product.name %></td>
+    <td><%= product.price %></td>
+    <td><%= link_to 'Edit', edit_category_product_path(@category, product) %></td>
+  </tr>
+<% end %>
+</table>
+<br />
+
+<%= link_to 'New product', new_category_product_path(@category) %><br /><br />
+<%= link_to 'Back', categories_path %>

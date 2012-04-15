@@ -1,20 +1,22 @@
 class ProductsController < ApplicationController
 
   def index
-    @products = Product.all
+    @categories = Category.all
   end
 
   def new
-    @product = Product.new
+    @category = Category.find(params[:category_id])
+    @product = @category.products.new
   end
 
   def create
-    @product = Product.new(params[:product])
+    @category = Category.find(params[:category_id])
+    @product = @category.products.new(params[:product])
 
     if @product.save
-      redirect_to @product, notice: 'Product was succesfully created.'
+      redirect_to @category
     else
-      render action: "new"
+      render :action => "new"
     end
   end
 
@@ -23,16 +25,18 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find(params[:id])
+    @category = Category.find(params[:category_id])
+    @product = @category.products.find(params[:id])
   end
 
   def update
-    @product = Product.find(params[:id])
+    @category = Category.find(params[:category_id])
+    @product = @category.products.find(params[:id])
 
     if @product.update_attributes(params[:product])
-      redirect_to @product, notice: 'Product was succesfully updated'
+      redirect_to @category
     else
-      render action: "edit"
+      render :action => "edit"
     end
   end
 

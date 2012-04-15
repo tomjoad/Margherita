@@ -1,5 +1,5 @@
-<h1>Add new product</h1>
+<h1>Add new product to <%= @category.name %></h1>
 
 <%= render 'form' %>
 <br />
-<%= link_to 'Back', products_path %>
+<%= link_to 'Back', @category %>
