@@ -1,20 +1,21 @@
 class ProductsController < ApplicationController
 
   def index
-    @categories = Category.all
+    @parent = parent
+    @products = collection
   end
 
   def new
-    @category = Category.find(params[:category_id])
+    # @category = Category.find(params[:category_id])
     @product = @category.products.new
   end
 
   def create
-    @category = Category.find(params[:category_id])
-    @product = @category.products.new(params[:product])
+    # @category = Category.find(params[:category_id])
+    @product = Product.new(params[:product])
 
     if @product.save
-      redirect_to @category
+      redirect_to products_path
     else
       render :action => "new"
     end
@@ -25,13 +26,13 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @category = Category.find(params[:category_id])
-    @product = @category.products.find(params[:id])
+    # @category = Category.find(params[:category_id])
+    @product = Products.find(params[:id])
   end
 
   def update
-    @category = Category.find(params[:category_id])
-    @product = @category.products.find(params[:id])
+    # @category = Category.find(params[:category_id])
+    @product = Product.find(params[:id])
 
     if @product.update_attributes(params[:product])
       redirect_to @category
@@ -45,6 +46,16 @@ class ProductsController < ApplicationController
     @product.destroy
 
     redirect_to products_url
+  end
+
+  protected
+
+  def parent
+    return Category.find(params[:category_id]) if params.key?(:category_id)
+  end
+
+  def collection
+    (parent.try(:products) || Product).scoped
   end
 
 end

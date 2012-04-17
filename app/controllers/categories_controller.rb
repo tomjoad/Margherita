@@ -18,17 +18,12 @@ class CategoriesController < ApplicationController
     end
   end
 
-  def add_to_category
-  end
-
   def show
     @category = Category.find(params[:id])
-    @products = @category.products
   end
 
   def edit
     @category = Category.find(params[:id])
-    @products = @category.products
   end
 
   def update
@@ -37,7 +32,6 @@ class CategoriesController < ApplicationController
   def destroy
     @category = Category.find(params[:id])
     @category.destroy
-
     redirect_to categories_url
   end
 

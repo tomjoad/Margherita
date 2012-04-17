@@ -5,6 +5,8 @@ Margherita::Application.routes.draw do
 
   get "home/about"
 
+  resources :products, :only => [:index, :show]
+
   resources :categories do
     resources :products
   end
