@@ -11,6 +11,7 @@ end
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'rails-footnotes', '>= 3.7.5.rc4'
 end
 
 gem 'rake', '0.9.2.2'
