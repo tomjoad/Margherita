@@ -5,10 +5,10 @@ Margherita::Application.routes.draw do
 
   get "home/about"
 
-  resources :products, :only => [:index, :show]
+  resources :products
 
   resources :categories do
-    resources :products
+    resources :products, :only => [:index, :show]
   end
 
   # The priority is based upon order of creation:
