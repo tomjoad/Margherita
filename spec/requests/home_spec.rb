@@ -27,7 +27,7 @@ describe "Home" do
   end
 
   describe "About page" do
-    it "should have content 'About'" do
+      it "should have content 'About'" do
       visit '/home/about'
       page.should have_selector('h1', :text => 'About')
     end

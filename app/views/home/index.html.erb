@@ -1,4 +1,9 @@
 <% provide(:title, 'Home')%>
-<h1>Margherita</h1>
-<p><%= link_to 'Categories', categories_path %></p><br />
-<p><%= link_to 'Products', products_path %>
+<div class="center hero-unit">
+  <h1>Margherita</h1>
+
+  <h2>This is h2 tag</h2>
+  <%= link_to 'Categories', categories_path, class: "btn btn-large btn-primary" %>
+  <%= link_to 'Products', products_path, class: "btn btn-large btn-primary" %>
+  <%= link_to 'Users', "#", class: "btn btn-large btn-primary" %>
+</div>
