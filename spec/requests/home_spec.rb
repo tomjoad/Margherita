@@ -3,38 +3,24 @@ require 'spec_helper'
 describe "Home" do
 
   let(:base_title) { "Margherita" }
+  subject { page }
 
   describe "Home Page" do
-    it "should have the h1 'Margherita'" do
-      visit '/'
-      page.should have_selector('h1', :text => "#{base_title}")
-    end
-    it "should have the title 'Margherita'" do
-      visit '/'
-      page.should have_selector('title', :text => "#{base_title} | Home")
-    end
+    before { visit root_path }
+    it { should have_selector('h1', :text => "#{base_title}") }
+    it { should have_selector('title', :text => full_title("Home")) }
   end
 
   describe "Help page" do
-    it "should have h1 'Help'" do
-      visit '/home/help'
-      page.should have_selector('h1', :text => 'Help')
-    end
-    it "should have title 'Help'" do
-      visit '/home/help'
-      page.should have_selector('title', :text => "#{base_title} | Help")
-    end
+    before { visit home_help_path }
+    it { should have_selector('h1', :text => 'Help') }
+    it { should have_selector('title', :text => full_title("Help")) }
   end
 
   describe "About page" do
-      it "should have content 'About'" do
-      visit '/home/about'
-      page.should have_selector('h1', :text => 'About')
-    end
-    it "should have title 'About'" do
-      visit '/home/about'
-      page.should have_selector('title', :text => "#{base_title} | About")
-    end
+    before { visit home_about_path }
+    it { should have_selector('h1', :text => 'About') }
+    it { should have_selector('title', :text => full_title("About")) }
   end
 
 end
