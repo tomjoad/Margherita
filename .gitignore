@@ -18,4 +18,9 @@
 \#*
 .\#*
 
+# Ignore images
+*.png
+*.jpg
+*.JPG
+
 /pg
