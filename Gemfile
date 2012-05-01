@@ -5,6 +5,7 @@ gem 'rake', '0.9.2.2'
 gem 'bootstrap-sass', '2.0.0'
 gem 'jquery-rails'
 gem 'therubyracer'
+gem 'bcrypt-ruby', '3.0.1'
 
 group :production do
   gem 'pg'
