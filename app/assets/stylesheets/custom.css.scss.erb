@@ -7,13 +7,43 @@ html {
 }
 
 body {
-   background: url(<%=asset_path "bg-home.JPG"%>) no-repeat scroll center 40px white;
-   padding-top: 60px;
+   background-color: #e8e8e8;
+   /* background: url(<%=asset_path "background.jpg"%>) no-repeat scroll center 40px #990101; */
+   padding: 0
 }
 
-.hero-unit {
-   background-color: rgba(242,242,242,0);
-   padding: 300px 620px 100px 0;
+.nav {
+   float: right
+}
+
+
+.content {
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    margin-bottom: 0;
+    overflow: hidden;
+}
+
+.content-inner {
+
+   /* background: url(<%=asset_path "bg-fire.jpg"%>) no-repeat scroll 0 0 #000000; */
+   padding: 120px 10px;
+}
+
+.content-icons img {
+   margin: 10px 10px 10px 10px;
+   height: 180px;
+}
+
+.icon-big {
+   padding: 10px 10px 10px 10px;
+   height: 200px;
+}
+
+.row-features {
+
 }
 
 section {
@@ -62,26 +92,42 @@ p {
 
 /* header */
 
+.navbar {
+  margin-bottom: 0px;
+}
+
+.navbar-inner {
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.25), 0 -1px 0 rgba(0, 0, 0, 0.1) inset;
+}
+
 #logo {
   float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: #fff;
+  margin: 15px 10px 15px 0;
+  font-size: 2.5em;
+  color: #000;
   text-transform: uppercase;
   letter-spacing: -1px;
-  padding-top: 9px;
+  padding-left: 5px;
   font-weight: bold;
   line-height: 1;
   &:hover {
-     color: #fff;
+     color: #990101;
      text-decoration: none;
   }
 }
 
+.bottom-register {
+  background: url(<%=asset_path "footer-bg.png"%>) repeat scroll 0 0 transparent;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+  padding: 8px;
+  text-align: center;
+}
+
 footer {
-  margin-top: 45px;
+  margin-top: 0;
   padding-top: 5px;
-  border-top: 1px solid #eaeaea;
+  padding-bottom: 5px;
+  /* border-top: 1px solid #eaeaea; */
   color: #999;
   a {
    color: #555;

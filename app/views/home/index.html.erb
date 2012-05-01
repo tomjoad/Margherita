@@ -1,11 +1,21 @@
-<div class="hero-unit">
+  <div class="content-inner">
+    <div class="center content-icons">
+      <%=link_to image_tag("icon-menu.png", :border=>0), products_path%>
+      <img src="<%=asset_path "icon-unkn.png"%>"
+      </img>
+    </div>
+  </div>
+  <div class="bottom-register">
+    <span>
+      Tutaj można się zesrać lub dać guzik:
+    </span>
+    <a class="btn btn-primary">Rejestruj</a>
+  </div>
 
-</div>
-
-<div class="center row-features">
-   <%= link_to 'Categories', categories_path, class: "btn btn-large btn-primary" %>
-  <%= link_to 'Products', products_path, class: "btn btn-large btn-primary" %>
-  <%= link_to 'Users', "#", class: "btn btn-large btn-primary" %>
-  <%= link_to 'Sign up', signup_path, class: "btn btn-large btn-primary" %>
+<!-- <div class="center row-features"> -->
+<!--    <%= link_to 'Categories', categories_path, class: "btn btn-large btn-primary" %> -->
+<!--   <%= link_to 'Products', products_path, class: "btn btn-large btn-primary" %> -->
+<!--   <%= link_to 'Users', "#", class: "btn btn-large btn-primary" %> -->
+<!--   <%= link_to 'Sign up', signup_path, class: "btn btn-large btn-primary" %> -->
 
 </div>
