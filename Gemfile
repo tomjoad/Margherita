@@ -6,6 +6,7 @@ gem 'bootstrap-sass', '2.0.0'
 gem 'jquery-rails'
 gem 'therubyracer'
 gem 'bcrypt-ruby', '3.0.1'
+gem 'twitter-bootstrap-rails'
 
 group :production do
   gem 'pg'
