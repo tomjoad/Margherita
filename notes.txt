@@ -1,0 +1,11 @@
+Margherita
+
+Kategorie:
+        1. Pizza
+        2. Spaghetti
+        3. Naleśniki
+        4. Fast Food
+        5. Tradycyjne
+        6. Sałatki
+        7. Dodatki
+        8. Napoje
