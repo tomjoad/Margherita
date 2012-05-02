@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
   def index
     @parent = parent
     @products = collection
+    @categories = Category.all
   end
 
   def new
