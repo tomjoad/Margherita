@@ -1,7 +1,7 @@
 <div id="talltabs-maroon">
   <ul>
     <% @categories.each do |category| %>
-      <li class="<%=category.name == @category.name ? "active" : ""%>">
+      <li class="<%=category == @parent ? "active" : ""%>">
         <%=link_to category.name.upcase, category_products_path(category)%>
       </li>
     <% end %>
