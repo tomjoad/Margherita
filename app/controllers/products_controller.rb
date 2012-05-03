@@ -1,9 +1,15 @@
 class ProductsController < ApplicationController
 
+  before_filter :get_category
+
+  def get_category
+    @categories = Category.all
+    @category = Category.find(params[:category_id])
+  end
+
   def index
     @parent = parent
     @products = collection
-    @categories = Category.all
   end
 
   def new

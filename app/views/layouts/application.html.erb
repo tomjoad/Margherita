@@ -8,28 +8,11 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
+    <%= render 'layouts/header' %>
     <div class="container">
-      <%= render 'layouts/header' %>
-      <div class="content">
-        <% if @categories == nil %>
-          <div id="talltabs-maroon">
-            <ul>
-              <li><%=link_to "MENU", products_path%></li>
-            </ul>
-          </div>
-        <% else %>
-          <div id="talltabs-maroon">
-            <ul>
-              <% @categories.each do |category| %>
-                <li>
-                  <%=link_to category.name.upcase, category_products_path(category)%>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-        <%= yield %>
-      </div>
+        <div class="content">
+          <%= yield %>
+        </div>
     <%= render 'layouts/footer' %>
     </div>
   </body>
