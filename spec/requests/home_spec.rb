@@ -37,10 +37,10 @@ describe "Home" do
     visit root_url
     # click_link "Home"
     # page.should have_selector "h1", text: "Margherita"
-    click_link "About"
-    page.should have_selector "h1", text: "About"
-    click_link "Help"
-    page.should have_selector "h1", text: "Help"
+    # click_link "About"
+    # page.should have_selector "h1", text: "About"
+    # click_link "Help"
+    # page.should have_selector "h1", text: "Help"
     # need more tests
   end
 
