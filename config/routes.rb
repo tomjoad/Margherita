@@ -1,6 +1,13 @@
 Margherita::Application.routes.draw do
   root :to => "home#index"
 
+  resources :products
+  resources :users
+
+  resources :categories do
+    resources :products, :only => [:index, :show]
+  end
+
   get "users/new"
   match "/signup", to: "users#new"
 
@@ -8,11 +15,6 @@ Margherita::Application.routes.draw do
   get "home/help"
   get "home/about"
 
-  resources :products
-
-  resources :categories do
-    resources :products, :only => [:index, :show]
-  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
