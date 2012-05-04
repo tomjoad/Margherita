@@ -2,15 +2,17 @@
 
 <ul class="thumbnails">
 <% @products.each do |product| %>
-  <li class="span2">
-    <div class="thumbnail">
+  <li class="span3">
+    <a href="#">
+      <div class="thumbnail">
       <img alt="" src="<%=asset_path "pizza.jpg"%>">
-      <div class="center caption">
-        <h5><%= product.name.upcase%></h5>
-        <p><%= product.description %></p>
-        <p><a class="btn btn-primary">ZAMÓW</a></p>
+      <div class="caption">
+        <h4 id="name"><%= product.name.upcase%></h4>
+        <p id="description"><%= product.description %></p>
+        <!-- <p id="button_buy"><a class="btn btn-primary">ZAMÓW TERAZ</a></p> -->
       </div>
     </div>
+</a>
   </li>
 <% end %>
 </ul>
