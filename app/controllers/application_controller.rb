@@ -3,8 +3,7 @@ class ApplicationController < ActionController::Base
   before_filter :get_categories
 
   def get_categories
-    @categories = Category.all
-    @category_active = ""
+    @categories = Category.all.sort_by {|c| c.name}
   end
 
 end

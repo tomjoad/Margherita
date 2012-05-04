@@ -1,20 +1,30 @@
 <%= form_for @product, :html => { :class => 'form-horizontal' } do |f| %>
+
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :name, :class => 'text_field' %>
     </div>
   </div>
+
   <div class="control-group">
     <%= f.label :price, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :price, :class => 'text_field' %>
     </div>
   </div>
+
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :description, :rows => 5, :resize => false %>
+    </div>
+  </div>
+
   <div class="control-group">
     <%= f.label :category_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :category_id, :class => 'number_field' %>
+      <%= collection_select(:product, :category_id, @categories, :id, :name) %>
     </div>
   </div>
 
@@ -23,4 +33,6 @@
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 products_path, :class => 'btn' %>
   </div>
+
 <% end %>
+

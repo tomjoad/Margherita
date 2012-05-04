@@ -1,117 +1,12 @@
-<div id="talltabs-maroon">
-  <ul>
-    <% @categories.each do |category| %>
-      <li>
-        <%=link_to category.name.upcase, category_products_path(category)%>
-      </li>
-    <% end %>
-  </ul>
-</div>
+<%= render 'categories/tabs' %>
 
 <div class="content-inner">
-  <!-- <div class="center content-icons"> -->
-  <!--   <%=link_to image_tag("icon-menu-shdw.png", :border=>0), products_path%> -->
-  <!-- </div> -->
-<div id="slider_wrapper">
-        <div id="slider">
-
-                <div id="slides_info">
-                        <div class="slide_info one">
-                                <h2>Title Three</h2>
-                                <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor,
-                                        nisi elit consequat ipsum, nec sagittis sem nibh
-                                        id elit. Duis sed odio sit amet nibh vulputate
-                                        cursus a sit amet mauris. Morbi accumsan ipsum
-                                        velit.
-                                </p>
-                                <p>
-                                        Duis sed odio sit amet nibh vulputate
-                                        cursus a sit amet mauris. Morbi accumsan ipsum
-                                        velit.
-                                </p>
-                                <a class="button" href="#">Call To Action Buttons</a>
-                                <a class="button" href="#">OH MY!</a>
-                        </div>
-                        <div class="slide_info two">
-                                <h2>Title Four</h2>
-                                <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor,
-                                        nisi elit consequat ipsum, nec sagittis sem nibh
-                                        id elit. Duis sed odio sit amet nibh vulputate
-                                        cursus a sit amet mauris. Morbi accumsan ipsum
-                                        velit.
-                                </p>
-                                <p>
-                                        Duis sed odio sit amet nibh vulputate
-                                        cursus a sit amet mauris. Morbi accumsan ipsum
-                                        velit.
-                                </p>
-                                <a class="button" href="#">Holy SHIT!</a>
-                                <a class="button" href="#">It's so COOL!</a>
-                        </div>
-                        <div class="slide_info three">
-                                <h2>Title One</h2>
-                                <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor,
-                                        nisi elit consequat ipsum, nec sagittis sem nibh
-                                        id elit. Duis sed odio sit amet nibh vulputate
-                                        cursus a sit amet mauris. Morbi accumsan ipsum
-                                        velit.
-                                </p>
-                                <p>
-                                        Duis sed odio sit amet nibh vulputate
-                                        cursus a sit amet mauris. Morbi accumsan ipsum
-                                        velit.
-                                </p>
-                                <a class="button" href="#">Isn't this AWESOME?</a>
-                                <a class="button" href="#">Yes it is!</a>
-                        </div>
-                        <div class="slide_info four">
-                                <h2>Title Two</h2>
-                                <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor,
-                                        nisi elit consequat ipsum, nec sagittis sem nibh
-                                        id elit. Duis sed odio sit amet nibh vulputate
-                                        cursus a sit amet mauris. Morbi accumsan ipsum
-                                        velit.
-                                </p>
-                                <p>
-                                        Duis sed odio sit amet nibh vulputate
-                                        cursus a sit amet mauris. Morbi accumsan ipsum
-                                        velit.
-                                </p>
-                                <a class="button" href="#">Well, then grab it NOW!</a>
-                                <a class="button" href="#">Okay!</a>
-                        </div>
-                </div>
-
-                <div id="slides_image">
-                        <div class="slide one">
-                                <img src="http://cssdeck.com/uploads/media/items/4/41tAxTu.png" />
-                        </div>
-                        <div class="slide two">
-                                <img src="http://cssdeck.com/uploads/media/items/1/1hjGftu.png" />
-                        </div>
-                        <div class="slide three">
-                                <img src="http://cssdeck.com/uploads/media/items/4/4OIJyak.png" />
-                        </div>
-                        <div class="slide four">
-                                <img src="http://cssdeck.com/uploads/media/items/6/68BYSto.png" />
-                        </div>
-                </div>
-        </div>
+  <%= render 'home/slider' %>
 </div>
 
-
-</div>
 <div class="bottom-register">
   <span>
     Jesteś już zarejestrowany? Dodatkowe promocje czekają na ciebie! &nbsp
   </span>
   <a class="btn btn-success">Rejestracja</a>
-</div>
-
-<!-- <div class="center row-features"> -->
-<!--    <%= link_to 'Categories', categories_path, class: "btn btn-large btn-primary" %> -->
-<!--   <%= link_to 'Products', products_path, class: "btn btn-large btn-primary" %> -->
-<!--   <%= link_to 'Users', "#", class: "btn btn-large btn-primary" %> -->
-<!--   <%= link_to 'Sign up', signup_path, class: "btn btn-large btn-primary" %> -->
-
 </div>
