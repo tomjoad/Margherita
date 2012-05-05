@@ -21,6 +21,7 @@ describe User do
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:authenticate) }
+  it { should reposnd_to(:remember_token) }
 
   it { should be_valid }
 
@@ -37,6 +38,11 @@ describe User do
   describe "when user name is to long" do
     before { @user.name = "b" * 31 }
     it { should_not be_valid }
+  end
+
+  describt "remember token" do
+    before { @user.save }
+    its(:remember_token) { should_not be_blank }
   end
 
   describe "when email format is invalid" do
