@@ -11,12 +11,16 @@
 </p>
 <p>
   <strong><%= model_class.human_attribute_name(:category_id) %>:</strong><br>
-  <%= @product.category_id %>
+  <%= @product.category.name %>
+</p>
+<p>
+  <strong><%= model_class.human_attribute_name(:description) %>:</strong><br>
+  <%= @product.description %>
 </p>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              products_path, :class => 'btn'  %>
+              category_products_path(@product.category), :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_product_path(@product), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

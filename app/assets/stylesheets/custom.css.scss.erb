@@ -36,6 +36,7 @@ width: 940px;
 }
 
 .content {
+    background-image: -moz-linear-gradient(center top , #f0f0f0, #dddddd);
     background-color: #f0f0f0;
     border: 1px solid rgba(0, 0, 0, 0.25);
     borter-top: 0px;
@@ -63,7 +64,7 @@ section {
 }
 
 textarea {
-   resize: vertical;
+   resize: none;
 }
 
 
@@ -297,6 +298,9 @@ footer {
     margin: 0 1px 0 0;
     padding: 30px 10px 6px;
     text-decoration: none;
+    -moz-transition: all 0.08s linear 0s;
+    -webkit-transition: all 0.08s linear 0s;
+    transition: all 0.08s linear 0s;
 }
 #talltabs-maroon ul li a:hover {
     padding: 35px 10px 6px;
@@ -304,7 +308,6 @@ footer {
 #talltabs-maroon ul li.active a, #talltabs-maroon ul li.active a:hover {
     padding: 40px 10px 6px;
 }
-
 
 
 /* IMAGE SLIDER */
