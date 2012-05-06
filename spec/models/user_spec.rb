@@ -40,7 +40,7 @@ describe User do
     it { should_not be_valid }
   end
 
-  describt "remember token" do
+  describe "remember token" do
     before { @user.save }
     its(:remember_token) { should_not be_blank }
   end
