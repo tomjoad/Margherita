@@ -78,8 +78,8 @@ textarea {
 /* typography */
 
 .thumbnails {
-   margin: 20px;
-   padding: 40px 46px 20px 46px;
+   margin: 0 20px;
+   padding: 20px 46px;
 }
 
 .thumbnails .span3 {
@@ -100,28 +100,44 @@ textarea {
    -moz-transition: all 0.1s linear 0s;
    -webkit-transition: all 0.1s linear 0s;
    transition: all 0.1s linear 0s;
+   padding: 0;
+   border: 1px solid #dddddd;
+   box-shadow: 0 0px 5px rgba(0, 0, 0, 0.65);
+   .image {
+      position: relative;
+      float: left;
+      text-align: center;
+      border: 0px solid #dddddd;
+      img {
+         width: 178px;
+         height: 130px;
+         border-radius: 4px 4px 0 0;
+      }
+      &:hover {
+         #product-name {
+         background-color: rgba(24,121,229,0.85);
+         }
+      }
 
-   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
-   img {
-      width: 168px;
-      height: 130px;
-      border: 1px solid #dddddd;
    }
-   .caption {
-      padding: 5px 5px 5px 5px;
-   }
-   #name {
+   #product-name {
+      position: absolute;
+      left: 0;
+      width: 160px;
       color: white;
-      background-color: #353535;
+      background-color: rgba(0,0,0,0.45);
+      border-radius: 10px;
       font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: bold;
       text-align: center;
-      line-height: 18px;
-      margin: 0 -9px 7px -9px;
-      padding-top: 2px;
-      border-bottom: 1px solid #dddddd;
-      border-top: 1px solid #dddddd;
+      text-transform: uppercase;
+/*      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.55); */
+      line-height: 17px;
+      top: 105px;
+      padding: 2px 0;
+      margin: 0 9px;
+      border-top: 0px solid #dddddd;
    }
    #description {
       font-size: 12px;
@@ -129,13 +145,18 @@ textarea {
       line-height: 110%;
       margin: 0;
    }
-   #button_buy {
-      font-weight: bold;
-      text-align: center;
-      margin: 7px 0 0 0;
+   .btn {
+      align: center;
+      margin: 0;
+      padding: 0;
+      align: center;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      width: 100%;
+      padding: 1px;
    }
    &:hover {
-      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.35)
+    /*  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.65); */
    }
 }
 
@@ -232,15 +253,21 @@ footer {
 }
 
 /* CATEGORIES MENU */
+#talltabs-container {
+    margin: -15px 0 0 0;
+    padding: 0;
+    height: 65px;
+}
 
 #talltabs-maroon {
     border-top: 0px solid #CD324F;
     clear: left;
     float: left;
     font-weight: bold;
+    text-transform: uppercase;
     color: white;
     overflow: hidden;
-    margin: -15px 0 0 0;
+    margin: 0;
     padding: 0;
     width: 100%;
 }

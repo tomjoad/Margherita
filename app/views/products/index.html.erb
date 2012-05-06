@@ -3,16 +3,21 @@
 <ul class="thumbnails">
 <% @products.each do |product| %>
   <li class="span3">
-    <a href="#">
-      <div class="thumbnail">
-      <img alt="" src="<%=asset_path "pizza.jpg"%>">
-      <div class="caption">
-        <h4 id="name"><%= product.name.upcase%></h4>
-        <p id="description"><%= product.description %></p>
-        <!-- <p id="button_buy"><a class="btn btn-primary">ZAMÓW TERAZ</a></p> -->
+    <div class="thumbnail">
+      <a href="<%= product_path(product) %>">
+        <div class="image">
+          <img alt="<%= product.name %>" src="<%=asset_path "pizza.jpg"%>" />
+        <div id="product-name">
+          <%= product.name%>
+        </div>
+      </a>
       </div>
+        <!-- <div class="caption"> -->
+        <!-- <p id="description"><%= product.description %></p> -->
+        <!-- <p id="button_buy"><a class="btn btn-primary">ZAMÓW TERAZ</a></p> -->
+        <!-- </div> -->
+        <button class="btn btn-success">Zamów</button>
     </div>
-</a>
   </li>
 <% end %>
 </ul>
