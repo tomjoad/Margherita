@@ -1,7 +1,18 @@
 Margherita::Application.routes.draw do
   root :to => "home#index"
 
-  resources :products
+  resource :carts, only: [:new] do
+    member do
+      get "add_to"
+    end
+  end
+
+  resources :products do
+    member do
+      get "add_to_cart"
+    end
+  end
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
 
