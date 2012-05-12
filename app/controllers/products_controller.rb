@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  include CartHelper
 
   def index
     @parent = parent
@@ -29,7 +30,6 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-
     if @product.update_attributes(params[:product])
       redirect_to @product
     else
@@ -42,6 +42,14 @@ class ProductsController < ApplicationController
     @product.destroy
 
     redirect_to products_url
+  end
+
+  def add_to_cart
+    @product = Product.find(params[:id])
+    @cart = find_cart
+    @cart.add_item(@product.name)
+    session[:cart] = @cart.items
+    redirect_to category_products_path(@product.category)
   end
 
   protected

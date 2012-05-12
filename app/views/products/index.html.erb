@@ -16,7 +16,8 @@
         <!-- <p id="description"><%= product.description %></p> -->
         <!-- <p id="button_buy"><a class="btn btn-primary">ZAMÓW TERAZ</a></p> -->
         <!-- </div> -->
-        <button class="btn btn-success">Zamów</button>
+        <!-- <button class="btn btn-success">Zamów</button> -->
+        <%= link_to "Zamów", add_to_cart_product_path(product) %>
     </div>
   </li>
 <% end %>
