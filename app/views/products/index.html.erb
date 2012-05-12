@@ -17,7 +17,7 @@
         <!-- <p id="button_buy"><a class="btn btn-primary">ZAMÓW TERAZ</a></p> -->
         <!-- </div> -->
         <!-- <button class="btn btn-success">Zamów</button> -->
-        <%= button_to "Dodaj", add_to_cart_product_path(product), :class => "btn btn-success" %>
+        <%= button_to "Dodaj", add_to_cart_product_path(product), :class => "btn btn-success", :method => "get" %>
     </div>
   </li>
 <% end %>
