@@ -1,6 +1,6 @@
 class Cart
 
-  attr_accessor :items
+  attr_accessor :items, :price
 
   def initialize(items)
     # raise ArgumentError, "value should be hash of items" unless items.class == Hash
@@ -11,6 +11,7 @@ class Cart
     else
       @items = items
     end
+    @price = cart_total_price
   end
 
   def add_item(product_name)
@@ -36,4 +37,11 @@ class Cart
     def check_zero_values
       @items.delete_if { |key, value| value <= 0 }
     end
+
+    def cart_total_price
+      x = 0
+      LineItem.all(@items).each { |element| x += element.total_price }
+      x
+    end
+
 end
