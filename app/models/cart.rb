@@ -1,6 +1,7 @@
 class Cart
 
-  attr_accessor :items, :total_price
+  attr_accessor :items
+  # , :total_price
 
   def initialize(items)
     # raise ArgumentError, "value should be hash of items" unless items.class == Hash
@@ -9,12 +10,31 @@ class Cart
     # second attempt: Session could look like this also:
     # [1, 2, 1, 1, 32, 2, 2] Array consists of products id`s which can duplicate.
     # logic in model will shape it.
-    # if items.nil?
-    #   @items = [ ]
-    # else
-    @items = items
-    # end
+    if items.nil?
+      @items = [ ]
+    else
+      @items = items
+    end
     # @price = cart_total_price
+  end
+
+  def update_line_item(operation, product_id)
+    if operation == "add"
+      @items << product_id
+    elsif operation == "subtract"
+      if @items.include?(product_id)
+        @items.delete_at(@items.find_index(product_id))
+        # what to do if items don`t include item i want to subtracti
+      end
+    else
+      # do more
+    end
+  end
+
+  def price
+    x = 0
+    LineItem.all(@items).each { |element| x += element.total_price }
+    x
   end
 
   # def add_item(product_name)
@@ -41,10 +61,5 @@ class Cart
     #   @items.delete_if { |key, value| value <= 0 }
     # end
 
-    # def cart_total_price
-    #   x = 0
-    #   LineItem.all(@items).each { |element| x += element.total_price }
-    #   x
-    # end
 
 end

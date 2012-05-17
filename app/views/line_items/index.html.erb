@@ -1,0 +1,20 @@
+<!-- index of line items -->
+<!-- params: <%#= params %><br /> -->
+<!-- session[:cart]: <%#= session[:cart] %> -->
+
+<%#= link_to "add 1 product", :controller => "line_items", :action => "update", :id => 1, :operation => "add" %>
+<%#= link_to "subtract 1 product", :controller => "line_items", :action => "update", :id => 1, :operation => "subtract" %>
+
+Your Order:<br />
+<% @line_items.each do |line_item| %>
+  <%= line_item.product.name %> |
+  <%= line_item.quantity %> |
+  <%= line_item.total_price%> |
+  <%= link_to "add", :controller => "line_items", :action => "update", :id => line_item.product.id, :operation => "add" %> |
+  <%= link_to "subtract", :controller => "line_items", :action => "update", :id => line_item.product.id, :operation => "subtract" %> |
+  <%= link_to "delete", :controller => "line_items", :action => "destroy", :id => line_item.product.id %><br />
+<% end %>
+<br />
+Order total price: <%= @cart.price %>
+
+<%= link_to 'Order Now!' %> | <%= link_to 'Delete All' %> | <%= link_to 'Back to Menu' %>

@@ -8,7 +8,7 @@
            <li><%= link_to "Home", root_url %></li>
            <li><%= link_to "About", home_about_path %></li>
            <li><%= link_to "Help", home_help_path %></li>
-           <!-- <li><%#= link_to "Cart", new_carts_path %></li> -->
+           <li><%= link_to "Order", line_items_path %></li>
           <% if signed_in? %>
             <li><%= link_to 'Users', '#' %></li>
             <li id="fat-menu" class="dropdown">

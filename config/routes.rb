@@ -3,18 +3,18 @@ Margherita::Application.routes.draw do
 
   # should be resources, links and actions need to be rapaired
 
-  # resource :carts, only: [:new, :destroy] do
+  resource :cart, only: [:new, :destroy]
   #   member do
   #     get "add_to"
   #   end
   # end
 
-  resources :line_items, only: [:index, :destroy]
+  resources :line_items, only: [:index]
 
   resources :products
-    # member do
-    #   get "add_to_cart"
-    # end
+  #    member do
+  #     get "add_to_cart"
+  #   end
   # end
 
   resources :users
@@ -27,8 +27,9 @@ Margherita::Application.routes.draw do
   match "/signup", to: "users#new"
   match "/signin", to: "sessions#new"
   match "/signout", to: "sessions#destroy", via: :delete
-  match "line_items/:id/subtract", to: "line_items#update"
-  match "line_items/:id/add", to: "line_items#update"
+  # match ":controller/:action/:id/:subtract"
+  match "line_item/:id" => 'line_items#update'
+  match "line_items/:id" => 'line_items#destroy'
 
   # match "/destroy_cart", to: "carts#destroy", via: :delete
   # match "/line_items/:id/destroy", to: "line_items#destroy"
