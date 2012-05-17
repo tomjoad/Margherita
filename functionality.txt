@@ -10,15 +10,19 @@ MARGHERITA BASIC NAVIGATION MAP V.0.0
 HOME
 
 MENU
-  # general #
-    + Add Product [admin]
+  # general:
+    + Add Product [signed in as admin]
+      # page fields:
+      |Category (drop-down)
+      |Name (text)
+      |Description (text)
+      |Price (number)
     + Add Category [admin]
-  # for each product #
+  # for each product:
       - Order Now
-      + Show Description
       + Edit [admin]
       - Delete [admin]
-  # for each category #
+  # for each category:
       + Edit [admin]
       - Delete [admin]
 
@@ -37,11 +41,9 @@ ACCOUNT [signed in]
   - Sign Out
 
 USERS [signed in as admin]
-  # general #
-    + Add User
   # for each user #
-      + Edit
-      - Delete
+    + Edit
+    - Delete
 
 ORDERS [signed in as admin]
   # general #
