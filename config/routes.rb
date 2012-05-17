@@ -3,19 +3,19 @@ Margherita::Application.routes.draw do
 
   # should be resources, links and actions need to be rapaired
 
-  resource :carts, only: [:new, :destroy] do
-    member do
-      get "add_to"
-    end
-  end
+  # resource :carts, only: [:new, :destroy] do
+  #   member do
+  #     get "add_to"
+  #   end
+  # end
 
-  resources :line_items, only: [:new]
+  resources :line_items, only: [:index, :destroy]
 
-  resources :products do
-    member do
-      get "add_to_cart"
-    end
-  end
+  resources :products
+    # member do
+    #   get "add_to_cart"
+    # end
+  # end
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
@@ -27,10 +27,13 @@ Margherita::Application.routes.draw do
   match "/signup", to: "users#new"
   match "/signin", to: "sessions#new"
   match "/signout", to: "sessions#destroy", via: :delete
-  match "/destroy_cart", to: "carts#destroy", via: :delete
-  match "/line_items/:id/destroy", to: "line_items#destroy"
-  match "/line_items/:id/add", to: "line_items#add"
-  match "/line_items/:id/subtract", to: "line_items#subtract"
+  match "line_items/:id/subtract", to: "line_items#update"
+  match "line_items/:id/add", to: "line_items#update"
+
+  # match "/destroy_cart", to: "carts#destroy", via: :delete
+  # match "/line_items/:id/destroy", to: "line_items#destroy"
+  # match "/line_items/:id/add", to: "line_items#add"
+  # match "/line_items/:id/subtract", to: "line_items#subtract"
 
   get "home/index"
   get "home/help"

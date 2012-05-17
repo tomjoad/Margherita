@@ -2,8 +2,8 @@ class LineItem
 
   attr_accessor :total_price, :product, :quantity
 
-  def initialize(product_name, quantity)
-    @product = Product.find_by_name(product_name)
+  def initialize(product_id, quantity)
+    @product = Product.find_by_id(product_id)
     @quantity = quantity
     @total_price = count_total_price
   end
@@ -12,15 +12,15 @@ class LineItem
     @product.price * @quantity
   end
 
-  def self.all(hash)
-    if hash.nil?
+  def self.all(session_cart)
+    if session_cart.nil?
       return [ ]
     else
-      array_of_lineitems = [ ]
-      hash.each do |key, value|
-        array_of_lineitems << LineItem.new(key, value)
+      main = [ ]
+      session_cart.uniq.each do |element|
+        main << LineItem.new(Product.find_by_id(element), session_cart.count(element))
       end
-      array_of_lineitems
+      main
     end
   end
 

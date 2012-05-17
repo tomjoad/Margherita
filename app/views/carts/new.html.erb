@@ -1,13 +1,13 @@
-<%= @cart.items %><br />
-nazwa ilosc cena <br />
-<% @line_items.each do |line_item| %>
-  <%= line_item.product.name %>
-  <%= line_item.quantity %>
-  <%= line_item.total_price %>
-  <%= link_to "add", :controller => "line_items", :action => "add", :id => line_item.product.id  %>
-  <%= link_to "subtract", :controller => "line_items", :action => "subtract", :id => line_item.product.id %>
-  <%= link_to "delete", :controller => "line_items", :action => "destroy", :id => line_item.product.id %>
-  <br />
-<% end %>
-Total price: <%= @cart.price %><br />
-<%= link_to "remove_all", destroy_cart_path, method: "delete" %>
+<!-- <%= @cart.items %><br /> -->
+<!-- nazwa ilosc cena <br /> -->
+<!-- <% @line_items.each do |line_item| %> -->
+<!--   <%= line_item.product.name %> -->
+<!--   <%= line_item.quantity %> -->
+<!--   <%= line_item.total_price %> -->
+<!--   <%= link_to "add", :controller => "line_items", :action => "add", :id => line_item.product.id  %> -->
+<!--   <%= link_to "subtract", :controller => "line_items", :action => "subtract", :id => line_item.product.id %> -->
+<!--   <%= link_to "delete", :controller => "line_items", :action => "destroy", :id => line_item.product.id %> -->
+<!--   <br /> -->
+<!-- <% end %> -->
+<!-- Total price: <%= @cart.price %><br /> -->
+<!-- <%= link_to "remove_all", destroy_cart_path, method: "delete" %> -->
