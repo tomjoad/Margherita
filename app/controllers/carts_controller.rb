@@ -3,7 +3,7 @@ class CartsController < ApplicationController
 
   def new
     @cart = find_cart
-    # @line_items = LineItem.all(session[:cart])
+    @line_items = LineItem.all(session[:cart])
   end
 
   # def add_to

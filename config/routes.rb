@@ -17,6 +17,7 @@ Margherita::Application.routes.draw do
   #   end
   # end
 
+  resources :orders, only: [:new, :create]
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
 

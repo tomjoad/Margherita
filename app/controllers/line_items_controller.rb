@@ -17,7 +17,7 @@ class LineItemsController < ApplicationController
     @cart = find_cart
     @cart.update_line_item(params[:operation], params[:id])
     session[:cart] = @cart.items
-    redirect_to line_items_path
+    redirect_to new_cart_path
   end
 
   # def add
@@ -32,7 +32,7 @@ class LineItemsController < ApplicationController
     @cart = find_cart
     @cart.items.delete(params[:id])
     session[:cart] = @cart.items
-    redirect_to line_items_path
+    redirect_to new_cart_path
   end
 
   private
