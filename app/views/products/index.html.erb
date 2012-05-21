@@ -17,7 +17,7 @@
         <!-- <p id="button_buy"><a class="btn btn-primary">ZAMÓW TERAZ</a></p> -->
         <!-- </div> -->
         <!-- <button class="btn btn-success">Zamów</button> -->
-        <%= button_to "Dodaj", nil, :class => "btn btn-success", :method => "get" %>
+        <%= button_to "Dodaj", :controller => "line_items", :action => "update", :id => product, :operation => "add", :class => "btn btn-success", :method => "get" %>
     </div>
   </li>
 <% end %>
