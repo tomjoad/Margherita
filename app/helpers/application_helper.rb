@@ -7,4 +7,9 @@ module ApplicationHelper
       "#{Margherita} | #{page_title}"
     end
   end
+
+  def there_is_something_in_cart?
+    !session[:cart].try(:empty?).nil? && !session[:cart].try(:empty?)
+  end
+
 end
