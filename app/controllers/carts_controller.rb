@@ -13,9 +13,12 @@ class CartsController < ApplicationController
   #   redirect_to cart_new_path
   # end
 
+  # i`m not sure about it,
+  # should it be DELETE or simple GET or what.
+
   def destroy
     session[:cart] = nil
-    redirect_to new_carts_path
+    redirect_to line_items_path
   end
 
 end
