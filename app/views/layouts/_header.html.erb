@@ -8,9 +8,12 @@
            <li><%= link_to "Home", root_url %></li>
            <li><%= link_to "About", home_about_path %></li>
            <li><%= link_to "Help", home_help_path %></li>
-          <% if there_is_something_in_cart? %>
+          <%# if there_is_something_in_cart? %>
            <li><%= link_to "Cart", new_cart_path %></li>
-          <% end %>
+               <% if session[:cart].try(:count) %>
+                 <li><%= session[:cart].count %></li>
+               <% end %>
+          <%# end %>
           <% if signed_in? %>
             <li><%= link_to 'Users', '#' %></li>
             <li id="fat-menu" class="dropdown">
@@ -34,3 +37,4 @@
     </div>
   </div>
 </header>
+

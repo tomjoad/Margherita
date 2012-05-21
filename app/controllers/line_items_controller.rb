@@ -16,8 +16,13 @@ class LineItemsController < ApplicationController
   def update
     @cart = find_cart
     @cart.update_line_item(params[:operation], params[:id])
+    @product = Product.find(params[:id])
     session[:cart] = @cart.items
-    redirect_to new_cart_path
+    if params[:menu]
+      redirect_to category_products_path(@product.category)
+    else
+      redirect_to new_cart_path
+    end
   end
 
   # def add

@@ -1,13 +1,18 @@
 <!-- cart content -->
-
 Your Order:<br />
-<% @line_items.each do |line_item| %>
-  <%= line_item.product.name %> |
-  <%= line_item.quantity %> |
-  <%= line_item.total_price%> |
-  <%= link_to "add", :controller => "line_items", :action => "update", :id => line_item.product.id, :operation => "add" %> |
-  <%= link_to "subtract", :controller => "line_items", :action => "update", :id => line_item.product.id, :operation => "subtract" %> |
-  <%= link_to "delete", :controller => "line_items", :action => "destroy", :id => line_item.product.id %><br />
+
+<% if there_is_something_in_cart? %>
+  <% @line_items.each do |line_item| %>
+    <%= line_item.product.name %> |
+    <%= line_item.quantity %> |
+    <%= line_item.total_price%> |
+    <%= link_to "add", :controller => "line_items", :action => "update", :id => line_item.product.id, :operation => "add" %> |
+    <%= link_to "subtract", :controller => "line_items", :action => "update", :id => line_item.product.id, :operation => "subtract" %> |
+    <%= link_to "delete", :controller => "line_items", :action => "destroy", :id => line_item.product.id %><br />
+  <% end %>
+<% else %>
+  Your cart is empty!
 <% end %>
 <br />
+
 Order total price: <%= @cart.price %>
