@@ -24,7 +24,7 @@ class Cart
     elsif operation == "subtract"
       if @items.include?(product_id)
         @items.delete_at(@items.find_index(product_id))
-        # what to do if items don`t include item i want to subtracti
+        # what to do if items don`t include item i want to subtract
       end
     else
       # do more
@@ -37,21 +37,7 @@ class Cart
     x
   end
 
-  # def add_item(product_name)
-  #   if @items.keys.include? product_name
-  #     @items[product_name] += 1
-  #   else
-  #     @items[product_name] = 1
-  #   end
-  # end
-
-  # def delete_item(product_name)
-  #   check_item_existence(product_name)
-  #   @items[product_name] -= 1
-  #   check_zero_values
-  # end
-
-  private
+  # private
 
     # def check_item_existence(name)
     #   raise ArgumentError, "there are no such thing as #{name} in cart" unless @items.keys.include? name

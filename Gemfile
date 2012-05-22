@@ -7,6 +7,7 @@ gem 'jquery-rails'
 gem 'therubyracer'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'twitter-bootstrap-rails'
+gem 'state_machine'
 
 group :production do
   gem 'pg'
