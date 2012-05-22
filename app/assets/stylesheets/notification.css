@@ -1,0 +1,7 @@
+.notification {
+    color: white;
+    font-size: 9px;
+    font-weight: bold;
+    margin: -6px 0 0 0px;
+    position:absolute;
+}

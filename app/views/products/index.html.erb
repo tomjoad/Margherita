@@ -4,27 +4,27 @@
 <% @products.each do |product| %>
   <li class="span3">
     <div class="thumbnail">
-      <a href="<%= product_path(product) %>">
+      <%= link_to :controller => "line_items", :action => "update", :id => product, :operation => "add", :menu => true, :class => "btn btn-success", :method => "get" do %>
         <div class="image">
           <img alt="<%= product.name %>" src="<%= asset_path "pizza.jpg" %>" />
-        <div id="product-name">
-          <%= product.name %>
+          <div id="product-name">
+            order
+          </div>
         </div>
-      </a>
+      <% end %>
+      <div class="caption">
+        <h4 style="color:#296cb7"><%= product.name %></h4>
+        <p><%= product.description %></p>
       </div>
-        <!-- <div class="caption"> -->
-        <!-- <p id="description"><%= product.description %></p> -->
-        <!-- <p id="button_buy"><a class="btn btn-primary">ZAMÓW TERAZ</a></p> -->
-        <!-- </div> -->
-        <!-- <button class="btn btn-success">Zamów</button> -->
-        <%= button_to "Dodaj", :controller => "line_items", :action => "update", :id => product, :operation => "add", :menu => true, :class => "btn btn-success", :method => "get" %>
-    </div>
+   </div>
   </li>
 <% end %>
   <li class="span3">
     <div class="thumbnail">
-      <a href="<%= new_product_path %>">
+      <div class="image">
+        <a href="<%= new_product_path %>">
           <img style="border-radius:4px" alt="New product" src="<%=asset_path "icon_add.png" %>" />
-      </a>
+        </a>
+      </div>
   </li>
 </ul>
