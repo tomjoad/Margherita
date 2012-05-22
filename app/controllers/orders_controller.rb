@@ -8,6 +8,9 @@ class OrdersController < ApplicationController
   end
 
   def create
+    @order = Order.new(params[:order])
+    flash[:notice] = "Your order is pending" if @order.save
+    redirect_to root_url
   end
 
 end
