@@ -3,13 +3,13 @@ class Order < ActiveRecord::Base
 
   STATES = %[ pending in_delivery finished cancelled ]
 
-  validates :address, :presence => true
-  validates :cart, :presence => true
-  validates :state, :presence => true
-  validates :total_price, :presence => true
-  validates :user, :presence => true
+  # validates :address, :presence => true
+   validates :cart, :presence => true
+   validates :state, :presence => true
+   validates :total_price, :presence => true
+   validates :user, :presence => true
 
-  attr_accessible :address, :cart, :state, :total_price, :user_id
+  attr_accessible :address, :cart, :state, :total_price, :user_id, :name, :last_name, :city, :zip_code, :street, :phone, :home_number
 
 
   state_machine :state, :initial => :pending do
