@@ -7,13 +7,18 @@
         <ul class="nav pull-right">
            <li>
              <%= link_to new_cart_path do %>
-               Cart
-               <i class="icon-shopping-cart icon-large" style="margin-left:-4px"></i>
-               <span class="notification">
-                 <% if session[:cart].try(:count) %>
+               <% if session[:cart].try(:count) %>
+                 <% if session[:cart].count == 1 %>
+                   You have 1 item
+                 <% else %>
+                   You have
                    <%= session[:cart].count %>
+                   items
                  <% end %>
-               </span>
+               <% else %>
+                 Empty!
+               <% end %>
+               <i class="icon-shopping-cart icon-large" style="margin-left:-4px"></i>
              <% end %>
            </li>
            <li><%= link_to "Home", root_url %></li>

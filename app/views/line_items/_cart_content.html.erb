@@ -1,18 +1,61 @@
 <!-- cart content -->
-Your Order:<br />
+
 
 <% if there_is_something_in_cart? %>
-  <% @line_items.each do |line_item| %>
-    <%= line_item.product.name %> |
-    <%= line_item.quantity %> |
-    <%= line_item.total_price%> |
-    <%= link_to "add", :controller => "line_items", :action => "update", :id => line_item.product.id, :operation => "add" %> |
-    <%= link_to "subtract", :controller => "line_items", :action => "update", :id => line_item.product.id, :operation => "subtract" %> |
-    <%= link_to "delete", :controller => "line_items", :action => "destroy", :id => line_item.product.id %><br />
-  <% end %>
-<% else %>
-  Your cart is empty!
-<% end %>
-<br />
+<h2 class="center">Your Cart:</h2>
+<div id="shadowed">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @line_items.each do |line_item| %>
+        <tr>
+          <td style="text-align:left">
+            <%= line_item.product.name %>&nbsp
+            <%= link_to :controller => "line_items", :action => "destroy", :id => line_item.product.id do %>
+              <i class="icon-remove-sign"></i>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to :controller => "line_items", :action => "update", :id => line_item.product.id, :operation => "subtract" do %>
+              <i class="icon-minus-sign"></i>
+            <% end %>
 
-Order total price: <%= @cart.price %>
+            <%= line_item.quantity %>
+
+            <%= link_to :controller => "line_items", :action => "update", :id => line_item.product.id, :operation => "add" do %>
+              <i class="icon-plus-sign"></i>
+            <% end %>
+          </td>
+          <td><%= "%.2f zł" % line_item.total_price%></td>
+       </tr>
+    <% end %>
+       <tr>
+         <td colspan="2" style="text-align:right">Total Price:</td>
+         <td><%= "%.2f zł" % @cart.price %></td>
+       </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="center">
+  <p>
+    <%= link_to new_order_path do %>
+      <button class="btn btn-success btn-large" style="width:200px">Order Now!</button>
+    <% end %>
+  </p>
+  <p>
+    <%= link_to cart_path, :method => :delete do %>
+      <button class="btn btn-danger btn-small" style="width:130px">Delete All</button>
+    <% end %>
+  </p>
+</div>
+
+<% else %>
+  <h2 class="center">Your cart is empty!</h2>
+<% end %>
