@@ -7,36 +7,42 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Product</th>
+        <th>#</th>
+        <th style="text-align:left">Product</th>
         <th>Quantity</th>
         <th>Price</th>
       </tr>
     </thead>
     <tbody>
+      <% i = 1 %>
       <% @line_items.each do |line_item| %>
         <tr>
+          <td>
+            <%= i %>.
+          </td>
           <td style="text-align:left">
             <%= line_item.product.name %>&nbsp
             <%= link_to :controller => "line_items", :action => "destroy", :id => line_item.product.id do %>
-              <i class="icon-remove-sign"></i>
+              <i id="remove" class="icon-remove-sign"></i>
             <% end %>
           </td>
           <td>
             <%= link_to :controller => "line_items", :action => "update", :id => line_item.product.id, :operation => "subtract" do %>
-              <i class="icon-minus-sign"></i>
+              <i id="minus" class="icon-minus-sign"></i>
             <% end %>
 
             <%= line_item.quantity %>
 
             <%= link_to :controller => "line_items", :action => "update", :id => line_item.product.id, :operation => "add" do %>
-              <i class="icon-plus-sign"></i>
+              <i id="plus" class="icon-plus-sign"></i>
             <% end %>
           </td>
           <td><%= "%.2f zł" % line_item.total_price%></td>
        </tr>
+    <% i += 1 %>
     <% end %>
-       <tr>
-         <td colspan="2" style="text-align:right">Total Price:</td>
+       <tr style="font-weight:bold">
+         <td colspan="3" style="text-align:right">Total Price:</td>
          <td><%= "%.2f zł" % @cart.price %></td>
        </tr>
     </tbody>
@@ -51,7 +57,7 @@
   </p>
   <p>
     <%= link_to cart_path, :method => :delete do %>
-      <button class="btn btn-danger btn-small" style="width:130px">Delete All</button>
+      <button class="btn btn-danger" style="width:130px">Delete All</button>
     <% end %>
   </p>
 </div>
