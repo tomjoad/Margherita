@@ -1,9 +1,8 @@
 <!-- cart content -->
 
-
+<div class="box effect8">
+<h1 id="list-header">Your Cart</h1>
 <% if there_is_something_in_cart? %>
-<h2 class="center">Your Cart:</h2>
-<div id="shadowed">
   <table class="table">
     <thead>
       <tr>
@@ -47,21 +46,21 @@
        </tr>
     </tbody>
   </table>
-</div>
-
 <div class="center">
   <p>
     <%= link_to new_order_path do %>
-      <button class="btn btn-success btn-large" style="width:200px">Order Now!</button>
+      <button id="btn-order" class="btn btn-success btn-large" style="width:200px">Order Now!</button>
     <% end %>
   </p>
   <p>
     <%= link_to cart_path, :method => :delete do %>
-      <button class="btn btn-danger" style="width:130px">Delete All</button>
+      <button id="btn-remove" class="btn btn-danger"><i class="icon-remove-sign"></i></button>
     <% end %>
   </p>
+<% else %>
+  <h2 class="center">is empty!</h2>
+<% end %>
+
+</div>
 </div>
 
-<% else %>
-  <h2 class="center">Your cart is empty!</h2>
-<% end %>

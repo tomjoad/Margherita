@@ -7,16 +7,16 @@
       <%= link_to :controller => "line_items", :action => "update", :id => product, :operation => "add", :menu => true, :class => "btn btn-success", :method => "get" do %>
         <div class="image">
           <img alt="<%= product.name %>" src="<%= asset_path "pizza.jpg" %>" />
-          <div id="product-name">
+          <div id="btn-order">
             order
           </div>
         </div>
       <% end %>
       <div class="caption">
-        <h4 style="color:#296cb7"><%= product.name %></h4>
-        <p><%= product.description %></p>
+        <h4><%= product.name %></h4>
+        <p style="border-top:1px solid #d1d1d1"><%= product.description %></p>
       </div>
-   </div>
+  </div>
   </li>
 <% end %>
   <li class="span3">

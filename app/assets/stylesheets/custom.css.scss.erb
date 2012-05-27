@@ -40,8 +40,9 @@ width: 940px;
 }
 
 .content {
-    background-image: -moz-linear-gradient(center top , #f0f0f0, #dddddd);
-    background-color: white;
+    /* background-image: -moz-linear-gradient(center top , #f0f0f0, #dddddd); */
+    /* background-color: white; */
+    background: url('http://www.cssdeck.com/uploads/media/items/0/0Rs78ic.gif');
     border: 1px solid rgba(0, 0, 0, 0.25);
     borter-top: 0px;
     border-radius: 0px 0px 6px 6px;
@@ -52,7 +53,6 @@ width: 940px;
 }
 
 .content-inner {
-
    /* background: url(<%=asset_path "bg-fire.jpg"%>) no-repeat scroll 0 0 #000000; */
    padding: 70px auto;
 }
@@ -81,90 +81,6 @@ textarea {
 }
 
 /* typography */
-
-.thumbnails {
-   margin: 0 20px;
-   padding: 20px 46px;
-}
-
-.thumbnails .span3 {
-   width: 180px;
-}
-
-.thumbnails > li {
-   margin: 7px;
-}
-.thumbnails a {
-   color: #000;
-   &:hover {
-     text-decoration: none;
-   }
-}
-.thumbnail {
-
-   -moz-transition: all 0.1s linear 0s;
-   -webkit-transition: all 0.1s linear 0s;
-   transition: all 0.1s linear 0s;
-   padding: 0;
-   border: 0px solid #dddddd;
-   border-radius: 0;
-   box-shadow: 0 0px 0px rgba(0, 0, 0, 0.075);
-   height: 300px;
-
-   .image {
-      position: relative;
-      float: left;
-      text-align: center;
-      border: 0px solid #dddddd;
-      img {
-         width: 178px;
-         height: 150px;
-         border-radius: 4px;
-         box-shadow: 0 0px 5px rgba(0, 0, 0, 0.65);
-      }
-      &:hover {
-         #product-name {
-         background-color: rgba(24,121,229,0.85);
-         }
-      }
-
-   }
-   #product-name {
-      position: absolute;
-      left: 0;
-      width: 130px;
-      color: white;
-      background-color: rgba(0,0,0,0.45);
-      border-radius: 10px;
-      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-      font-size: 13px;
-      font-weight: bold;
-      text-align: center;
-      text-transform: uppercase;
-/*      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.55); */
-      line-height: 17px;
-      bottom: 8px;
-      padding: 2px 5px;
-      margin: 0 19px;
-      border-top: 0px solid #dddddd;
-   }
-   .caption {
-     padding: 158px 9px 9px 9px;
-   }
-   .btn {
-      align: center;
-      margin: 0;
-      padding: 0;
-      align: center;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-      width: 100%;
-      padding: 1px;
-   }
-   &:hover {
-    /*  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.65); */
-   }
-}
 
 h1 {
    font-size: 3em;
@@ -863,45 +779,3 @@ footer {
 
 /* END OF IMAGE SLIDER */
 
-/* DIFFERENT SHADOW EFFECT */
-
-.box {
-  width:70%;
-  weight:200px;
-  background:#FFF;
-  margin:40px auto;
-}
-.effect2
-{
-  position: relative;
-}
-.effect2:before, .effect2:after
-{
-  z-index: -1;
-  position: absolute;
-  content: "";
-  bottom: 15px;
-  left: 10px;
-  width: 50%;
-  top: 80%;
-  max-width:300px;
-  background: #777;
-  -webkit-box-shadow: 0 15px 10px #777;
-  -moz-box-shadow: 0 15px 10px #777;
-  box-shadow: 0 15px 10px #777;
-  -webkit-transform: rotate(-3deg);
-  -moz-transform: rotate(-3deg);
-  -o-transform: rotate(-3deg);
-  -ms-transform: rotate(-3deg);
-  transform: rotate(-3deg);
-}
-.effect2:after
-{
-  -webkit-transform: rotate(3deg);
-  -moz-transform: rotate(3deg);
-  -o-transform: rotate(3deg);
-  -ms-transform: rotate(3deg);
-  transform: rotate(3deg);
-  right: 10px;
-  left: auto;
-}
