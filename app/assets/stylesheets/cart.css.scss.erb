@@ -8,7 +8,8 @@
     /* -webkit-box-shadow: 2px 2px 6px #333333; */
     /* -moz-box-shadow: 2px 2px 6px #333333; */
     /* box-shadow: 0 0 6px #333333; */
-    background: white;
+    background: url('<%= asset_path "cart-bg-leaves.png" %>');
+    border-radius: 5px;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
@@ -25,9 +26,9 @@
 .effect8
 {
     position:relative;
-    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-       -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-            box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+       -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            box-shadow:0 1px 4px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 .effect7:before, .effect7:after
 {
@@ -96,6 +97,8 @@
 
 .table {
     font-size: 16px;
+    background: rgba(255,255,255,0.85);
+    border-radius: 6px;
 }
 
 .table thead th {
@@ -110,8 +113,9 @@
 /* TEXT */
 
 #list-header {
+    color: white;
     text-align: center;
-    text-shadow: 0px 0px 2px rgba(0,0,0,0.2);
+    text-shadow: 0px 0px 10px rgba(0,0,0,0.6);
     font-weight: normal;
     margin-top: 15px;
     margin-bottom: 20px;
@@ -122,6 +126,7 @@
 #btn-order {
     font-weight: bold;
     font-size: 20px;
+    box-shadow: 0 0 7px black;
 }
 
 #btn-remove {
@@ -130,4 +135,7 @@
     right: 10px;
     left: auto;
     bottom: auto;
+    box-shadow: 0 0 7px black;
+    border-radius: 10px;
+    font-size: 14px;
 }
