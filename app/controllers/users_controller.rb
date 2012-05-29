@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_filter :signed_in_user, only: [:edit, :update]
+  before_filter :correct_user, only: [:edit, :update, :show]
+
   include SessionsHelper
 
   def new
@@ -6,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def show
@@ -14,12 +17,13 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:notice] = "You have changed your user info!"
       sign_in @user
-      redirect_to root_url
+      redirect_to @user
     else
-      render :action => "edit"
+      render "edit"
     end
   end
 
@@ -32,5 +36,19 @@ class UsersController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  private
+
+  def signed_in_user
+    unless signed_in?
+      store_location
+      redirect_to signin_path, notice: "Pleas sign in."
+    end
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to root_url, notice: "Wrong user" unless current_user?(@user)
   end
 end
