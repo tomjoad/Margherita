@@ -1,7 +1,6 @@
 class Cart
 
   attr_accessor :items
-  # , :total_price
 
   def initialize(items)
     # raise ArgumentError, "value should be hash of items" unless items.class == Hash
