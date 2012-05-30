@@ -18,6 +18,12 @@ class Order < ActiveRecord::Base
 
   serialize :cart
 
+  scope :pending, where(:state => 'pending')
+  scope :pending, where(:state => 'finished')
+  scope :pending, where(:state => 'in_delivery')
+  scope :pending, where(:state => 'delivered')
+  scope :pending, where(:state => 'cancelled')
+
   state_machine :state, :initial => :pending do
 
     event :cancel do

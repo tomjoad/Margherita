@@ -18,6 +18,7 @@ Margherita::Application.routes.draw do
     resources :products
     resources :users
     resources :orders
+    resources :categories
   end
 
   match "/signup", to: "users#new"

@@ -8,6 +8,7 @@ gem 'therubyracer'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'twitter-bootstrap-rails'
 gem 'state_machine'
+gem 'will_paginate', '3.0.3'
 
 group :production do
   gem 'pg'

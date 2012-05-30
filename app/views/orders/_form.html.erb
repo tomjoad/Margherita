@@ -1,6 +1,22 @@
 <%= render 'line_items/cart_content' %>
 
+
 <%= form_for @order do |f| %>
+
+<!-- shoul be in partial: -->
+<% if @order.errors.any? %>
+  <div id="error_explanation">
+    <div id="alert alert-error">
+      The form contains <%= pluralize( @order.errors.count, "error")%>
+    </div>
+    <ul>
+    <% @order.errors.full_messages.each do |msg| %>
+      <li>* <%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
   Address Info:
 
   <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -27,5 +43,5 @@
   <%= f.label :phone %>
   <%= f.text_field :phone, value: @user.phone %><br />
 
- <%= f.submit%>
-<% end%>
+ <%= f.submit %>
+<% end %>
