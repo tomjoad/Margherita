@@ -5,6 +5,14 @@ class OrdersController < ApplicationController
   include CartHelper
   include SessionsHelper
 
+  def index
+    if params[:history]
+      @orders = current_user.orders.for_user_history
+    else
+      @orders = current_user.orders.for_user_account
+    end
+  end
+
   def new
     @cart = find_cart
     @line_items = LineItem.all(session[:cart])

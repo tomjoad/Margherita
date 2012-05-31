@@ -29,10 +29,10 @@
   <%= f.text_field :last_name, value: @user.last_name %><br />
 
   <%= f.label :city %>
-  <%= f.text_field :city, value: @user.city %><br />
+  <%= f.select :city, User::CITIES, selected: @user.city %><br />
 
   <%= f.label :zip_code %>
-  <%= f.text_field :zip_code, value: @user.zip_code %><br />
+  <%= f.select :zip_code, User::ZIP_CODES, selected: @user.zip_code %><br />
 
   <%= f.label :street %>
   <%= f.text_field :street, value: @user.street %><br />
@@ -42,6 +42,9 @@
 
   <%= f.label :phone %>
   <%= f.text_field :phone, value: @user.phone %><br />
+
+  <%= f.label :distance %>
+  <%= f.select :distance, User::DISTANCES, selected: @user.distance %><br />
 
  <%= f.submit %>
 <% end %>

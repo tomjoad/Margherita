@@ -1,0 +1,12 @@
+<!-- user order index -->
+<% @orders.each do |order| %>
+  <b>Date</b>
+  <%= order.created_at %>
+  <b>Price</b>
+  <%= order.total_price %>
+  <b>State</b>
+  <%= order.state %>
+<br />
+<% end %>
+
+<%= link_to "In progress", orders_path %> | <%= link_to "History", :controller => "orders", :action => "index", :history => true %>

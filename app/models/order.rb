@@ -13,18 +13,25 @@ class Order < ActiveRecord::Base
   validates :street, :presence => true
   validates :phone, :presence => true
   validates :home_number, :presence => true
+  validates :distance, :presence => true
 
-  attr_accessible :state, :total_price, :user_id, :name, :last_name, :city, :zip_code, :street, :phone, :home_number
+  attr_accessible :state, :total_price, :user_id, :name, :last_name, :city, :zip_code, :street, :phone, :home_number, :distance
 
   serialize :cart
 
-  scope :pending, where(:state => 'pending')
-  scope :pending, where(:state => 'finished')
-  scope :pending, where(:state => 'in_delivery')
-  scope :pending, where(:state => 'delivered')
-  scope :pending, where(:state => 'cancelled')
+  scope :for_user_account, where(:state => [:in_delivery, :pending])
+  scope :for_user_history, where(:state => [:finished, :cancelled])
+
+  scope :finished, where(:state => 'finished')
+  scope :in_deliver, where(:state => 'in_delivery')
+  scope :delivered, where(:state => 'delivered')
+  scope :cancelled, where(:state => 'cancelled')
 
   state_machine :state, :initial => :pending do
+
+    event :accept do
+      transition :pending => :in_delivery
+    end
 
     event :cancel do
       transition any => :cancelled
