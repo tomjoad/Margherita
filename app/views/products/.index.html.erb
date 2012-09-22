@@ -1,0 +1,33 @@
+<div class="content">
+  <ul class="thumbnails">
+    <% @products.each do |product| %>
+      <li class="span3">
+        <div class="thumbnail">
+          <%= link_to :controller => "line_items", :action => "update", :id => product, :operation => "add", :menu => true, :class => "btn btn-success", :method => "get" do %>
+          <div class="image">
+            <img alt="<%= product.name %>" src="<%= asset_path "kebab.jpg" %>" />
+            <div id="btn-order">
+              order
+            </div>
+          </div>
+    <% end %>
+    <div class="caption">
+      <h4><%= product.name %></h4>
+      <p style="border-top:1px solid #d1d1d1"><%= product.description %></p>
+    </div>
+    </div>
+</li>
+<% end %>
+<li class="span3">
+  <div class="thumbnail">
+    <div class="image">
+      <a href="<%= new_product_path %>">
+        <img style="border-radius:4px" alt="New product" src="<%=asset_path "icon_add.png" %>" />
+      </a>
+    </div>
+</li>
+</ul>
+</div>
+<div class="aside">
+  FUTURE SHIT
+</div>
