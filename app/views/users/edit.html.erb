@@ -1,10 +1,32 @@
 <!-- edit user view -->
 <%= form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= render 'shared/error_messages' %>
+
+  <div class="control-group">
+    <%= f.label :email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email, :class => 'text_field' %>
+    </div>
+  </div>
 
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :name, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :password, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :password_confrimation, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password_confirmation, :class => 'text_field' %>
     </div>
   </div>
 
@@ -18,16 +40,24 @@
   <div class="control-group">
     <%= f.label :zip_code, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :zip_code %>
+      <%= f.select(:zip_code, User::ZIP_CODES) %>
     </div>
   </div>
 
   <div class="control-group">
     <%= f.label :city, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :city %>
+      <%= f.select :city, User::CITIES %>
     </div>
   </div>
+
+  <div class="control-group">
+    <%= f.label :distance, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select(:distance, User::DISTANCES) %>
+    </div>
+  </div>
+
   <div class="control-group">
     <%= f.label :home_number, :class => 'control-label' %>
     <div class="controls">
@@ -50,7 +80,7 @@
   </div>
 
   <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= f.submit "Save changes", :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 products_path, :class => 'btn' %>
   </div>

@@ -8,4 +8,18 @@ class ApplicationController < ActionController::Base
     @categories = Category.all.sort_by {|c| c.name}
   end
 
+  private
+
+  def user_is_admin
+    current_user.admin?
+  end
+
+  def user_is_seller
+    current_user.seller?
+  end
+
+  def user_is_customer
+    current_user.customer?
+  end
+
 end

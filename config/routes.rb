@@ -4,25 +4,21 @@ Margherita::Application.routes.draw do
   # should be resources, links and actions need to be rapaired
 
   resource :cart, only: [:new, :destroy]
-  #   member do
-  #     get "add_to"
-  #   end
-  # end
-
   resources :line_items, only: [:index]
-
   resources :products
-  #    member do
-  #     get "add_to_cart"
-  #   end
-  # end
-
-  resources :orders, only: [:new, :create]
+  resources :orders, only: [:index, :new, :create]
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :categories do
     resources :products, :only => [:index, :show]
+  end
+
+  namespace :admin do
+    resources :products
+    resources :users
+    resources :orders
+    resources :categories
   end
 
   match "/signup", to: "users#new"

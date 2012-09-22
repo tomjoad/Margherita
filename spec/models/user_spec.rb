@@ -21,24 +21,24 @@ describe User do
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:authenticate) }
-  it { should reposnd_to(:remember_token) }
+  it { should respond_to(:remember_token) }
 
   it { should be_valid }
 
-  describe "when name isn`t present" do
-    before { @user.name = " " }
-    it { should_not be_valid }
-  end
+  # describe "when name isn`t present" do
+  #   before { @user.name = " " }
+  #   it { should_not be_valid }
+  # end
 
   describe "when email isn`t present" do
     before { @user.email = " " }
     it { should_not be_valid }
   end
 
-  describe "when user name is to long" do
-    before { @user.name = "b" * 31 }
-    it { should_not be_valid }
-  end
+  # describe "when user name is to long" do
+  #   before { @user.name = "b" * 31 }
+  #   it { should_not be_valid }
+  # end
 
   describe "remember token" do
     before { @user.save }
