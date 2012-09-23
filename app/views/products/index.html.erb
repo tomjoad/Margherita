@@ -3,10 +3,14 @@
     <% @products.each do |product| %>
       <li class="span3a">
         <div class="thumbnail">
-          <img alt="" src="http://placehold.it/260x180">
-          <div class="caption center">
-            <h4> <%= product.name %> </h4>
-            <a class="btn btn-primary">Zamów</a>
+          <img alt="" src="<%= asset_path "kebab.jpg" %>">
+          <div class="caption">
+            <span class="category"><%= product.category.name %></span>
+            <span class="title"> <%= product.name %> </span>
+            <span class="price"> <%= '%.2f' % product.price %>zł</span>
+            <a  class="btn" rel="Dodaj">
+              <i class="icon-shopping-cart"></i> Dodaj
+            </a>
           </div>
         </div>
       </li>
@@ -15,5 +19,14 @@
 </div>
 
 <div class="aside">
-<h2 class="center">FUTURE SHIT</h2>
+<ul class="food-rank">
+  <li class="title">
+    <h4>najczęściej wybierane</h4>
+  </li>
+  <li class="bg-white">1. Andzia</li>
+  <li>2. Makoszowy</li>
+  <li class="bg-white">3. Budryk</li>
+  <li>4. Jurek</li>
+  <li class="bg-white">5. Oreo</li>
+  <li>6. Jana Pawła</li>
 </div>
