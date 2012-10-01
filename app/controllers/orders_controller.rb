@@ -16,24 +16,28 @@ class OrdersController < ApplicationController
   def new
     @cart = find_cart
     @line_items = LineItem.all(session[:cart])
-    @order = Order.new
+    # if params[:order]
+    #   @order = Order.new(params[:order])
+    # else
+      @order = Order.new
+    # end
     @user = current_user
   end
 
   def create
-    @order = Order.new(params[:order])
-    @order.cart = session[:cart]
-    flash[:notice] = "Your order is pedning" if @order.save
-    redirect_to root_url
-
-    # errros should display
-
-    # if @order.save
-    #   flash[:notice] = "Your order is pending"
-    #   redirect_to root_url
-    # else
-    #   respond_with(@order, :location => new_order_path)
-    # end
+    if params[:recal]
+      flash[:notice] = "gowno"
+    else
+      @order = Order.new(params[:order])
+      @order.cart = session[:cart]
+      flash[:notice] = "Your order is pedning" if @order.save
+      redirect_to root_url
+    end
   end
 
+  # def recalculate
+  #   @order = Order.new(params[:order])
+  #   @order.calculate_delivery_cost
+  #   redirect_to new_order_path(@order)
+  # end
 end

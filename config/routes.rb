@@ -6,7 +6,13 @@ Margherita::Application.routes.draw do
   resource :cart, only: [:new, :destroy]
   resources :line_items, only: [:index]
   resources :products
-  resources :orders, only: [:index, :new, :create]
+
+  resources :orders, only: [:index, :new, :create] # do
+    # collection do
+    #   get "recalculate"
+    # end
+  # end
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
 
