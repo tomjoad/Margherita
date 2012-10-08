@@ -22,6 +22,7 @@
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <%= f.hidden_field :total_price, :value => @cart.price %>
 
+
   <%= f.label :name %>
   <%= f.text_field :name, value: @user.name %><br />
 
@@ -46,5 +47,8 @@
   <%= f.label :distance %>
   <%= f.select :distance, User::DISTANCES, selected: @user.distance %><br />
 
- <%= f.submit %>
+ <%= f.submit "Checkout" %>
+
+
+
 <% end %>
