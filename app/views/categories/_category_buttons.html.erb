@@ -1,8 +1,39 @@
-<div class="btn-group center">
-  <% @categories.each do |category| %>
-    <a href="<%= category_products_path(category) %>"
-       class="btn btn-large <%= category == @parent ? "active" : "" %>">
-      <%= category.name %>
-    </a>
-  <% end %>
+<div class="btn-group">
+  <a href="#" class="btn btn-large btn-dropdown-toggle" data-toggle="dropdown">
+    Menu
+  </a>
+  <ul class="dropdown-menu">
+    <% @categories.each do |category| %>
+      <li><a href="<%= category_products_path(category) %>"><%= category.name %></a></li>
+    <% end %>
+  </ul>
+
+  <a href="#" class="btn btn-large">
+    Catering
+  </a>
+  <a href="#" class="btn btn-large">
+    Wynajem
+  </a>
 </div>
+
+<!-- <div class="btn-group center"> -->
+<!--   <% @categories.each do |category| %> -->
+<!--     <a href="<%= category_products_path(category) %>" -->
+<!--        class="btn btn-large <%= category == @parent ? "active" : "" %>"> -->
+<!--       <%= category.name %> -->
+<!--     </a> -->
+<!--   <% end %> -->
+<!-- </div> -->
+<!-- </br> -->
+
+<!-- <div class="btn-group"> -->
+<!--   <button class="btn btn-large btn-dropdown-toggle" data-toggle="dropdown"> -->
+<!--     Menu -->
+<!--     <span class="caret"> </span> -->
+<!--   </button> -->
+<!--   <ul class="dropdown-menu"> -->
+<!--     <% @categories.each do |category| %> -->
+<!--       <li><a href="<%= category_products_path(category) %>"><%= category.name %></a></li> -->
+<!--     <% end %> -->
+<!--   </ul> -->
+<!-- </div> -->
