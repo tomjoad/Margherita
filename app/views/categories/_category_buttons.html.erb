@@ -1,20 +1,42 @@
-<div class="btn-group">
-  <a href="#" class="btn btn-large btn-dropdown-toggle" data-toggle="dropdown">
-    Menu
-  </a>
-  <ul class="dropdown-menu">
-    <% @categories.each do |category| %>
-      <li><a href="<%= category_products_path(category) %>"><%= category.name %></a></li>
-    <% end %>
-  </ul>
+<ul class="nav nav-pills">
+  <li class="active">
+    <a href="#" style="font-size:large">Menu</a>
+  </li>
+  <li class="">
+    <a href="#">Catering</a>
+  </li>
+  <li class="">
+    <a href="#">Wynajem</a>
+  </li>
+</ul>
 
-  <a href="#" class="btn btn-large">
-    Catering
-  </a>
-  <a href="#" class="btn btn-large">
-    Wynajem
-  </a>
-</div>
+<ul class="nav nav-tabs">
+  <% @categories.each do |category| %>
+    <li class="<%= category == @parent ? "active" : "" %>">
+      <a href="<%= category_products_path(category) %>">
+      <%= category.name %>
+      </a>
+    </li>
+  <% end %>
+</ul>
+
+<!-- <div class="btn-group"> -->
+<!--   <a href="#" class="btn btn-large btn-dropdown-toggle" data-toggle="dropdown"> -->
+<!--     Menu -->
+<!--   </a> -->
+<!--   <ul class="dropdown-menu"> -->
+<!--     <% @categories.each do |category| %> -->
+<!--       <li><a href="<%= category_products_path(category) %>"><%= category.name %></a></li> -->
+<!--     <% end %> -->
+<!--   </ul> -->
+
+<!--   <a href="#" class="btn btn-large"> -->
+<!--     Catering -->
+<!--   </a> -->
+<!--   <a href="#" class="btn btn-large"> -->
+<!--     Wynajem -->
+<!--   </a> -->
+<!-- </div> -->
 
 <!-- <div class="btn-group center"> -->
 <!--   <% @categories.each do |category| %> -->

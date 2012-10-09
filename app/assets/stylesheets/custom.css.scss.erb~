@@ -1,0 +1,13 @@
+/* Basic layout stylesheet */
+
+@import "twitter/bootstrap/bootstrap";
+
+body {
+    padding: 0;
+    background: #efefef;
+}
+
+.container {
+    width: 1170px;
+}
+
