@@ -20,28 +20,31 @@
            <!--     <i class="icon-shopping-cart icon-large" style="margin-left:-4px"></i> -->
            <!--   <% end %> -->
            <!-- </li> -->
+
            <li><%= link_to "Home", root_url %></li>
            <li><%= link_to "About", home_about_path %></li>
            <li><%= link_to "Help", home_help_path %></li>
-          <!-- <% if signed_in? %> -->
-          <!--   <li><%= link_to 'Users', '#' %></li> -->
-          <!--   <li id="fat-menu" class="dropdown"> -->
-          <!--     <a href="#" class="dropdown-toggle" data-toggle="dropdown"> -->
-          <!--       Account <b class="caret"></b> -->
-          <!--     </a> -->
-          <!--     <ul class="dropdown-menu"> -->
-          <!--       <li><%= link_to "Your Orders", orders_path %></li> -->
-          <!--       <li><%= link_to "Settings", edit_user_path(current_user) %></li> -->
-          <!--       <li class="divider"></li> -->
-          <!--       <li> -->
-          <!--         <%= link_to "Sign out", signout_path, method: "delete" %> -->
-          <!--       </li> -->
-          <!--     </ul> -->
-          <!--   </li> -->
-          <!-- <% else %> -->
-          <!--  <li><%= link_to "Sign in", signin_path %></li> -->
-          <!-- <% end %> -->
+
+        <!--   <% if signed_in? %> -->
+        <!--     <li><%= link_to 'Users', '#' %></li> -->
+        <!--     <li id="fat-menu" class="dropdown"> -->
+        <!--       <a href="#" class="dropdown-toggle" data-toggle="dropdown"> -->
+        <!--         Account <b class="caret"></b> -->
+        <!--       </a> -->
+        <!--       <ul class="dropdown-menu"> -->
+        <!--         <li><%= link_to "Your Orders", orders_path %></li> -->
+        <!--         <li><%= link_to "Settings", edit_user_path(current_user) %></li> -->
+        <!--         <li class="divider"></li> -->
+        <!--         <li> -->
+        <!--           <%= link_to "Sign out", signout_path, method: 'delete' %> -->
+        <!--         </li> -->
+        <!--       </ul> -->
+        <!--     </li> -->
+        <!--   <% else %> -->
+        <!--    <li><%= link_to "Sign in", signin_path %></li> -->
+        <!--   <% end %> -->
         </ul>
+
         <form class="navbar-form pull-right">
           <%= render 'sessions/sign_in_from_navbar' %>
         </form>
@@ -49,3 +52,4 @@
     </div>
   </div>
 </div>
+

@@ -16,11 +16,7 @@ class OrdersController < ApplicationController
   def new
     @cart = find_cart
     @line_items = LineItem.all(session[:cart])
-    # if params[:order]
-    #   @order = Order.new(params[:order])
-    # else
-      @order = Order.new
-    # end
+    @order = Order.new
     @user = current_user
   end
 
