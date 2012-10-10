@@ -1,9 +1,7 @@
-<!-- header -->
-<header class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
       <a class="brand" href="<%= root_url %>">Margherita</a>
-      <!-- <a id="logo" href="<%= root_url %>">MARGHERITA / KUŹNIA Cafe & Pizza</a> -->
       <div class="nav-collapse collapse">
         <ul class="nav">
            <!-- <li> -->
@@ -45,12 +43,9 @@
           <!-- <% end %> -->
         </ul>
         <form class="navbar-form pull-right">
-          <input class="span2" type="text" placeholder="Email">
-          <input class="span2" type="password" placeholder="Password">
-          <button class="btn" type="submit">Sign in</button>
+          <%= render 'sessions/sign_in_from_navbar' %>
         </form>
       </div>
     </div>
   </div>
-</header>
-
+</div>
