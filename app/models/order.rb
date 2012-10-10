@@ -2,11 +2,14 @@ class Order < ActiveRecord::Base
   belongs_to :user
 
   STATES = %[ pending in_delivery finished cancelled ]
+  SHORT_DISTANCE = "0-6"
+  LONG_DISTANCE = "6-8"
+  PRICE_LIMIT_SWITCH = 23.0
+  LOWER_DELIVERY_COST = 5.0
+  HIGHER_DELIVERY_COST = 10.0
 
-  # validates :address, :presence => true
   validates :cart, :presence => true
   validates :state, :presence => true
-  # validates :total_price, :presence => true
   validates :user, :presence => true
   validates :last_name, :presence => true
   validates :city, :presence => true
@@ -16,6 +19,8 @@ class Order < ActiveRecord::Base
   validates :distance, :presence => true
   # validates :products_price, :presence => true
   # validates :delivery_cost, :presence => true
+  # validates :total_price, :presence => true
+  # validates :address, :presence => true
 
   attr_accessible :state, :total_price, :user_id, :name, :last_name, :city, :zip_code, :street, :phone, :home_number, :distance
 
@@ -56,16 +61,18 @@ class Order < ActiveRecord::Base
     self.distance
   end
 
+  # values have to be chanched into constants definitions
+
   def calculate_delivery_cost
-    if self.distance == "0-6"
-      if self.products_price <= 23.0
-        self.delivery_cost = 5.0
+    if self.distance == SHORT_DISTANCE
+      if self.products_price <= PRICE_LIMIT_SWITCH
+        self.delivery_cost = LOWER_DELIVERY_COST
       end
-    elsif self.distance == "6-8"
-      if self.products_price <= 23.0
-        self.delivery_cost = 10.0
+    elsif self.distance == LONG_DISTANCE
+      if self.products_price <= PRICE_LIMIT_SWITCH
+        self.delivery_cost = HOGHER_DELIVERY_COST
       else
-        self.delivery_cost = 5.0
+        self.delivery_cost = LOWER_DELIVERY_COST
       end
     else
     end

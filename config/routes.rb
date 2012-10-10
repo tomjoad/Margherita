@@ -29,7 +29,7 @@ Margherita::Application.routes.draw do
 
   match "/signup", to: "users#new"
   match "/signin", to: "sessions#new"
-  match "/signout", to: "sessions#destroy", via: :delete
+  match '/signout', to: 'sessions#destroy', via: :delete
   # match ":controller/:action/:id/:subtract"
   match "line_item/:id" => 'line_items#update'
   match "line_items/:id" => 'line_items#destroy'
