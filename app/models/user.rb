@@ -14,7 +14,11 @@ class User < ActiveRecord::Base
   ZIP_CODES = %w[01-123 02-123 02-123]
   DISTANCES = %w[0-6 6-8]
 
-  validates :email, presence: true, format: { with: EMAIL_REGEXP }, uniqueness: { case_sensitive: false }
+  validates :email,
+  presence: true,
+  format: { with: EMAIL_REGEXP },
+  uniqueness: { case_sensitive: false }
+
   validates :password, length: { minimum: 6 }
   validates :password_confirmation, presence: true
   # validates :role, presence: true

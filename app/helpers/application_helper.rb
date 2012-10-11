@@ -7,6 +7,4 @@ module ApplicationHelper
       "#{Margherita} | #{page_title}"
     end
   end
-
-
 end
