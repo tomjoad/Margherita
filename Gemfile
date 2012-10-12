@@ -9,11 +9,9 @@ gem 'jquery-rails'
 gem 'therubyracer'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'twitter-bootstrap-rails'
-gem 'rails_bootstrap_navbar'
 gem 'state_machine'
 gem 'will_paginate', '3.0.3'
 gem 'paperclip', '~> 3.0'
-gem 'devise'
 
 group :production do
   gem 'pg'
