@@ -1,0 +1,24 @@
+<!-- <ul class="nav nav-pills"> -->
+<!--   <% @categories.each do |category| %> -->
+<!--     <li class="<%= category == @parent ? "active" : "" %>"> -->
+<!--       <a href="<%= category_products_path(category) %>"> -->
+<!--       <%= category.name %> -->
+<!--       </a> -->
+<!--     </li> -->
+<!--   <% end %> -->
+<!-- </ul> -->
+
+
+
+<li class="dropdown">
+  <a data-toggle="dropdown" class="dropdown-toggle" href="#">Menu <b class="caret"></b></a>
+  <ul class="dropdown-menu">
+    <% @categories.each do |category| %>
+      <li><a href="<%= category_products_path(category) %>"><%= category.name %></a></li>
+    <% end %>
+
+    <!-- <li class="divider"></li> -->
+    <!-- <li class="nav-header">Nav header</li> -->
+
+  </ul>
+</li>
