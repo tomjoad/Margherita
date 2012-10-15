@@ -8,7 +8,7 @@ class Admin::UsersController < ApplicationController
   private
 
   def user_should_be_admin
-    unless user_is_admin
+    unless current_user.role.admin?
       redirect_to root_url, notice: "No permission."
     end
   end

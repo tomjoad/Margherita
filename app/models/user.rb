@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password, :password_confirmation, :phone, :street, :home_number, :city, :zip_code, :last_name, :distance
+  attr_accessible :email, :name, :password, :password_confirmation, :phone, :street, :home_number, :city, :zip_code, :last_name, :distance, :role
   has_secure_password
   has_many :orders
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
-  before_save :user_is_customer
+  before_save :set_role
 
   ROLES = %w[admin seller customer]
   EMAIL_REGEXP = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -28,11 +28,22 @@ class User < ActiveRecord::Base
   end
 
   private
-    def user_is_customer
+
+  # User that signed first is an admin
+
+  def set_role
+    if User.count == 0
+      self.role = "admin"
+    else
       self.role = "customer"
     end
+  end
 
-    def create_remember_token
-      self.remember_token = SecureRandom.urlsafe_base64
-    end
+  # def user_is_admin
+  #   self.role = "admin"
+  # end
+
+  def create_remember_token
+    self.remember_token = SecureRandom.urlsafe_base64
+  end
 end
