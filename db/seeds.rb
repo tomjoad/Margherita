@@ -18,11 +18,11 @@ CATEGORIES = [
   { name: "Naleśniki" },
   { name: "Dodatki"},
   { name: "Zupy" },
-  { name: "Obiady" } ]
+  { name: "Dania obiadowe" } ]
 
 DANIA_OBIADOWE = [
   { name: "Rolada Wołowa", description: "z kluskami śląskimi, czerwoną kapustą i sosem.", price: 20.00 },
-  { name: "File z Kurczaka", description: "z frytkami i zestawem surówek", price: 12.00 },
+  { name: "Filet z Kurczaka", description: "z frytkami i zestawem surówek", price: 12.00 },
   { name: "Schabowy po Wiedeńsku", description: "z frytkami i zestawem surówek", price: 14.00 },
   { name: "Schabowy po Hawajsku", description: "", price: 16.00 },
   { name: "Golonko Zapiekane", description: "z kapustą zasmażaną i pieczywem", price: 25.00 },

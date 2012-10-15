@@ -4,7 +4,6 @@
       <a class="brand" href="<%= root_url %>">Margherita</a>
       <div class="nav-collapse collapse">
         <ul class="nav">
-
            <li><%= link_to "Home", root_url %></li>
            <li><%= link_to "About", home_about_path %></li>
            <li><%= link_to "Help", home_help_path %></li>
@@ -21,7 +20,7 @@
                <% end %>
              <% end %>
            </li>
-           <li>You are: <%= display_user_role %></li>
+           <li><a>You are: <%= display_user_role %></a></li>
         </ul>
         <!-- <li><%= link_to 'Users', '#' %></li> -->
         <% if current_user %>

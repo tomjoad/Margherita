@@ -28,13 +28,18 @@
           </p>
       </div>
 
-      <div class="navbar" style="margin-top:-70px">
+      <div class="navbar">
         <div class="navbar-inner">
           <a href="#" class="brand">Kuźnia Cafe & Pizza</a>
           <ul class="nav">
             <%= render 'categories/dropdown' %>
-            <li><a href="#">Catering</a></li>
-            <li><a href="#">Wynajem</a></li>
+            <li class="dropdown">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">Services <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Wynajem lokalu</a></li>
+                <li><a href="#">Catering</a></li>
+              </ul>
+            </li>
           </ul>
           <ul class="nav pull-right">
             <li style="margin-right:-20px">
@@ -50,6 +55,7 @@
                 <% end %>
               <% end %>
             </li>
+          </ul>
         </div>
       </div>
 
