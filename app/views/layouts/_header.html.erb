@@ -21,8 +21,29 @@
                <% end %>
              <% end %>
            </li>
+
+           <% if current_user %>
+          <% if current_user.role.admin? %>
+
+            <ul class="nav pull-right">
+            <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Admin Menu<b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Users", admin_users_path %></li>
+                <li><%= link_to "Categories", admin_categories_path %></li>
+                <li><%= link_to "Orders", admin_orders_path %></li>
+                <li><%= link_to "Products", admin_products_path %></li>
+              </ul>
+            </li>
+          </ul>
+
+          <% end %>
+           <% end %>
+
            <li>You are: <%= display_user_role %></li>
-        </ul>
+       </ul>
         <!-- <li><%= link_to 'Users', '#' %></li> -->
         <% if current_user %>
           <ul class="nav pull-right">
@@ -33,6 +54,7 @@
               <ul class="dropdown-menu">
                 <li><%= link_to "Your Orders", orders_path %></li>
                 <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+
                 <li class="divider"></li>
                 <li><%= button_to "Sign out", signout_path, method: "delete" %></li>
               </ul>
