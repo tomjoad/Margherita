@@ -1,50 +1,58 @@
 <%= render 'line_items/cart_content' %>
 
+<div class="aside">
+  <div class="well">
+    <%= form_for @order do |f| %>
 
-<%= form_for @order do |f| %>
+      <!-- shoul be in partial: -->
+      <% if @order.errors.any? %>
+        <div id="error_explanation">
+          <div id="alert alert-error">
+            The form contains <%= pluralize( @order.errors.count, "error")%>
+          </div>
+          <ul>
+            <% @order.errors.full_messages.each do |msg| %>
+              <li>* <%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-<!-- shoul be in partial: -->
-<% if @order.errors.any? %>
-  <div id="error_explanation">
-    <div id="alert alert-error">
-      The form contains <%= pluralize( @order.errors.count, "error")%>
-    </div>
-    <ul>
-    <% @order.errors.full_messages.each do |msg| %>
-      <li>* <%= msg %></li>
-    <% end %>
-    </ul>
+
+      <h2 class="center" style="text-transform: uppercase">Shipping details</h2>
+
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :total_price, :value => @cart.price %>
+
+
+      <%= f.label :name %>
+      <%= f.text_field :name, value: @user.name, class: 'input-medium' %>
+
+
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, value: @user.last_name, class: 'input-medium' %>
+
+      <%= f.label :city %>
+      <%= f.select :city, User::CITIES, {selected: @user.city}, {class: 'input-medium'} %>
+
+
+      <%= f.label :zip_code %>
+      <%= f.select :zip_code, User::ZIP_CODES, {selected: @user.zip_code}, {class: 'input-small'} %>
+
+      <%= f.label :street %>
+      <%= f.text_field :street, value: @user.street, class: 'input-medium' %>
+
+      <%= f.label :home_number %>
+      <%= f.text_field :home_number, value: @user.home_number, class: 'input-small' %>
+
+      <%= f.label :phone %>
+      <%= f.text_field :phone, value: @user.phone, class: 'input-medium' %>
+
+      <%= f.label :distance %>
+      <%= f.select :distance, User::DISTANCES, {selected: @user.distance}, {class: 'input-small'} %>
+
   </div>
-<% end %>
+  <button class="btn btn-large btn-block btn-primary" type="submit">Create Order</button>
+</div>
 
-  Address Info:
-
-  <%= f.hidden_field :user_id, :value => current_user.id %>
-  <%= f.hidden_field :total_price, :value => @cart.price %>
-
-  <%= f.label :name %>
-  <%= f.text_field :name, value: @user.name %><br />
-
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name, value: @user.last_name %><br />
-
-  <%= f.label :city %>
-  <%= f.select :city, User::CITIES, selected: @user.city %><br />
-
-  <%= f.label :zip_code %>
-  <%= f.select :zip_code, User::ZIP_CODES, selected: @user.zip_code %><br />
-
-  <%= f.label :street %>
-  <%= f.text_field :street, value: @user.street %><br />
-
-  <%= f.label :home_number %>
-  <%= f.text_field :home_number, value: @user.home_number %><br />
-
-  <%= f.label :phone %>
-  <%= f.text_field :phone, value: @user.phone %><br />
-
-  <%= f.label :distance %>
-  <%= f.select :distance, User::DISTANCES, selected: @user.distance %><br />
-
- <%= f.submit %>
 <% end %>

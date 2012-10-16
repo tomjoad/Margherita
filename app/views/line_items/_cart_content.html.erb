@@ -1,66 +1,68 @@
 <!-- cart content -->
-
-<% if there_is_something_in_cart? %>
-  <h2 style="color:#555555">Your cart</h2>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th style="text-align:left">Product</th>
-        <th>Quantity</th>
-        <th>Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% i = 1 %>
-      <% @line_items.each do |line_item| %>
-        <tr>
-          <td>
-            <%= i %>
-          </td>
-          <td style="text-align:left">
-            <%= line_item.product.name %>&nbsp
-            <%= link_to :controller => "line_items", :action => "destroy", :id => line_item.product.id do %>
-              <i id="remove" class="icon-remove-sign"></i>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to :controller => "line_items", :action => "update", :id => line_item.product.id, :operation => "subtract" do %>
-              <i id="minus" class="icon-minus-sign"></i>
-            <% end %>
-
-            <%= line_item.quantity %>
-
-            <%= link_to :controller => "line_items", :action => "update", :id => line_item.product.id, :operation => "add" do %>
-              <i id="plus" class="icon-plus-sign"></i>
-            <% end %>
-          </td>
-          <td><%= "%.2f zł" % line_item.total_price%></td>
-       </tr>
-    <% i += 1 %>
+<div class="content">
+  <div class="well">
+    <% if there_is_something_in_cart? %>
+      <h2 class="center" style="text-transform: uppercase">Your cart</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th style="text-align:left">Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% i = 1 %>
+          <% @line_items.each do |line_item| %>
+            <tr>
+              <td>
+                <%= i %>
+              </td>
+              <td style="text-align:left">
+                <%= line_item.product.name %>&nbsp
+                <%= link_to :controller => "line_items", :action => "destroy", :id => line_item.product.id do %>
+                  <i id="remove" class="icon-remove-sign"></i>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to :controller => "line_items", :action => "update", :id => line_item.product.id, :operation => "subtract" do %>
+                <i id="minus" class="icon-minus-sign"></i>
+          <% end %>
+          <%= line_item.quantity %>
+          <%= link_to :controller => "line_items", :action => "update", :id => line_item.product.id, :operation => "add" do %>
+          <i id="plus" class="icon-plus-sign"></i>
     <% end %>
-       <tr style="font-weight:bold">
-         <td colspan="3" style="text-align:right">Total Price:</td>
-         <td><%= "%.2f zł" % @cart.price %></td>
-       </tr>
-    </tbody>
-  </table>
-<div class="center">
-  <p>
-    <%= link_to new_order_path do %>
-      <button id="btn-order"
-              class="btn btn-success btn-large"
-              style="width:200px">Checkout!</button>
-    <% end %>
-  </p>
-  <p>
-    <%= link_to cart_path, :method => :delete do %>
-      <button id="btn-remove" class="btn btn-danger">
-        <i class="icon-remove-sign"></i>
-      </button>
-    <% end %>
-  </p>
+</td>
+<td><%= "%.2f zł" % line_item.total_price%></td>
+</tr>
+<% i += 1 %>
+<% end %>
+<tr style="font-weight:bold">
+  <td colspan="3" style="text-align:right">Total Price:</td>
+  <td><%= "%.2f zł" % @cart.price %></td>
+</tr>
+</tbody>
+</table>
+<% if current_page?(new_cart_path) %>
+<p>
+  <%= link_to new_order_path do %>
+    <button class="btn btn-large btn-block btn-success" type="button">
+      Checkout!
+    </button>
+  <% end %>
+</p>
+<% end %>
+<p>
+  <!-- <%= link_to cart_path, :method => :delete do %> -->
+  <!--   <button class="btn btn-small btn-block btn-danger" type="button"> -->
+  <!--     <i class="icon-remove-sign"></i> -->
+  <!--   </button> -->
+  <!-- <% end %> -->
+</p>
 <% else %>
-  <h2 style="color:#555555"> Your cart is empty!</h2>
+  <h2 class="center">Your cart is empty!</h2>
 <% end %>
 </div>
+</div>
+
