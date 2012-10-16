@@ -1,0 +1,7 @@
+ID: <%= @user.id %><br />
+Email: <%= @user.email %><br />
+Name: <%= @user.name %><br />
+Surname: <%= @user.last_name %><br />
+Role: <%= @user.role %><br /><br />
+
+<%= link_to 'Edit User', edit_admin_user_path(@user) %>

@@ -1,1 +1,5 @@
-admin users index
+<% @users.each do |user| %>
+  <%= user.id %> |
+  <%= link_to user.email, admin_user_path(user) %> |
+  <%= user.role %> <br />
+<% end %>
