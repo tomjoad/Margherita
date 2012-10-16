@@ -113,7 +113,7 @@ SOSY = [
 Category.create(CATEGORIES)
 
 Product.create(DANIA_OBIADOWE) do |product|
-  product.category = Category.find_by_name("Obiady")
+  product.category = Category.find_by_name("Dania obiadowe")
 end
 
 Product.create(ZUPY) do |product|

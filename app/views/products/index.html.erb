@@ -1,5 +1,5 @@
 <div class="content">
-  <h2><%= @parent.name %></h2>
+  <%= render 'categories/pills' %>
   <ul class="thumbnails">
     <% @products.each do |product| %>
       <li class="span3a">
@@ -19,15 +19,18 @@
   </ul>
 </div>
 
+
 <div class="aside">
-<ul class="food-rank">
-  <li class="title">
-    <h4>najczęściej wybierane</h4>
-  </li>
-  <li class="bg-white">1. Andzia</li>
-  <li>2. Makoszowy</li>
-  <li class="bg-white">3. Budryk</li>
-  <li>4. Jurek</li>
-  <li class="bg-white">5. Oreo</li>
-  <li>6. Jana Pawła</li>
+
+  <ul class="food-rank">
+    <li class="title">
+      <h4>najczęściej wybierane</h4>
+    </li>
+    <li class="bg-white">1. Andzia</li>
+    <li>2. Makoszowy</li>
+    <li class="bg-white">3. Budryk</li>
+    <li>4. Jurek</li>
+    <li class="bg-white">5. Oreo</li>
+    <li>6. Jana Pawła</li>
+
 </div>

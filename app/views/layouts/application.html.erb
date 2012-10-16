@@ -16,49 +16,17 @@
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
-      <div class="hero-unit" style="background-color:white">
-          <h1>Witamy w Kuźni!</h1>
-          <p>
-            This is a template for a simple marketing or informational website.
-            It includes a large callout called the hero unit and three supporting pieces of content.
-            Use it as a starting point to create something more unique.
-          </p>
-          <p>
-            <a href="#" class="btn btn-primary btn-large">Spróboj teraz »</a>
-          </p>
+      <div class="hero-unit">
+        <h1>Witamy w Kuźni!</h1>
+        <p>
+          This is a template for a simple marketing or informational website.
+          It includes a large callout called the hero unit and three supporting pieces of content.
+          Use it as a starting point to create something more unique.
+        </p>
+        <p>
+          <a href="#" class="btn btn-primary btn-large">Spróboj teraz »</a>
+        </p>
       </div>
-
-      <div class="navbar">
-        <div class="navbar-inner">
-          <a href="#" class="brand">Kuźnia Cafe & Pizza</a>
-          <ul class="nav">
-            <%= render 'categories/dropdown' %>
-            <li class="dropdown">
-              <a data-toggle="dropdown" class="dropdown-toggle" href="#">Services <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Wynajem lokalu</a></li>
-                <li><a href="#">Catering</a></li>
-              </ul>
-            </li>
-          </ul>
-          <ul class="nav pull-right">
-            <li style="margin-right:-20px">
-              <%= link_to new_cart_path do %>
-                <% if session[:cart].try(:count) %>
-                  <% if session[:cart].count == 1 %>
-                    Current order: 1 item
-                  <% else %>
-                    Current order: <%= session[:cart].count %> items
-                  <% end %>
-                <% else %>
-                  Total order: empty!
-                <% end %>
-              <% end %>
-            </li>
-          </ul>
-        </div>
-      </div>
-
       <div class="column-container">
         <%= yield %>
       </div>

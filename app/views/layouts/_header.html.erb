@@ -1,51 +1,50 @@
-<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="<%= root_url %>">Margherita</a>
+      <a class="brand" href="<%= root_url %>">Kuźnia Cafe & Pizza</a>
       <div class="nav-collapse collapse">
         <ul class="nav">
-           <li><%= link_to "Home", root_url %></li>
-           <li><%= link_to "About", home_about_path %></li>
-           <li><%= link_to "Help", home_help_path %></li>
-           <li>
-             <%= link_to new_cart_path do %>
-               <% if session[:cart].try(:count) %>
-                 <% if session[:cart].count == 1 %>
-                   Total order: 1 item
-                 <% else %>
-                   Total order: <%= session[:cart].count %> items
-                 <% end %>
-               <% else %>
-                 Total order: empty!
-               <% end %>
-             <% end %>
-           </li>
-
-           <% if current_user %>
-          <% if current_user.role.admin? %>
-
-            <ul class="nav pull-right">
-            <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Admin Menu<b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "Users", admin_users_path %></li>
-                <li><%= link_to "Categories", admin_categories_path %></li>
-                <li><%= link_to "Orders", admin_orders_path %></li>
-                <li><%= link_to "Products", admin_products_path %></li>
-              </ul>
-            </li>
-          </ul>
-
-          <% end %>
-           <% end %>
-
-           <li><a>You are: <%= display_user_role %></a></li>
-       </ul>
-        <!-- <li><%= link_to 'Users', '#' %></li> -->
+          <%= render 'categories/dropdown' %>
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+              Services<b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Reservations</a></li>
+              <li><a href="#">Catering</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </li>
+          <li class="<%= current_page?(home_about_path) ? "active" : "ss"%>">
+            <%= link_to "About", home_about_path %></li>
+          <li class="<%= current_page?(new_cart_path) ? "active" : "ss"%>" >
+            <%= link_to new_cart_path do %>
+              <% if session[:cart].try(:count) %>
+                <% if session[:cart].count >= 1 %>
+                  Cart <span class="badge badge-info"><%= session[:cart].count %></span>
+                <% else %>
+                  Cart empty
+                <% end %>
+              <% end %>
+            <% end %>
+          </li>
+        </ul>
         <% if current_user %>
           <ul class="nav pull-right">
+            <% if current_user.role.admin? %>
+              <li id="fat-menu" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Admin Menu <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Users", admin_users_path %></li>
+                  <li><%= link_to "Categories", admin_categories_path %></li>
+                  <li><%= link_to "Orders", admin_orders_path %></li>
+                  <li><%= link_to "Products", admin_products_path %></li>
+                </ul>
+              </li>
+            <% end %>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Account <b class="caret"></b>
@@ -53,7 +52,6 @@
               <ul class="dropdown-menu">
                 <li><%= link_to "Your Orders", orders_path %></li>
                 <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-
                 <li class="divider"></li>
                 <li><%= button_to "Sign out", signout_path, method: "delete" %></li>
               </ul>

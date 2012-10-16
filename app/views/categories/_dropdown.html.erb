@@ -11,7 +11,7 @@
 
 
 <li class="dropdown">
-  <a data-toggle="dropdown" class="dropdown-toggle" href="#">Menu <b class="caret"></b></a>
+  <a data-toggle="dropdown" class="dropdown-toggle" href="#">Food Menu <b class="caret"></b></a>
   <ul class="dropdown-menu">
     <% @categories.each do |category| %>
       <li><a href="<%= category_products_path(category) %>"><%= category.name %></a></li>
