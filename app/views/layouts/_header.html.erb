@@ -16,22 +16,20 @@
               <li><a href="#">Contact Us</a></li>
             </ul>
           </li>
-          <li class="<%= current_page?(home_about_path) ? "active" : "ss"%>">
+          <li class="<%= current_page?(home_about_path) ? "active" : ""%>">
             <%= link_to "About", home_about_path %></li>
-          <li class="<%= current_page?(new_cart_path) ? "active" : "ss"%>" >
+          <li class="<%= current_page?(new_cart_path) ? "active" : ""%>" >
             <%= link_to new_cart_path do %>
-              <% if session[:cart].try(:count) %>
-                <% if session[:cart].count >= 1 %>
+              <% if session[:cart].count >= 1 %>
                   Cart <span class="badge badge-info"><%= session[:cart].count %></span>
-                <% else %>
-                  Cart empty
-                <% end %>
+              <% else %>
+                Cart empty
               <% end %>
             <% end %>
           </li>
         </ul>
         <% if current_user %>
-          <ul class="nav pull-right">
+          <ul class="nav pull-right" style="margin-right: 0">
             <% if current_user.role.admin? %>
               <li id="fat-menu" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -45,18 +43,20 @@
                 </ul>
               </li>
             <% end %>
-            <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Account <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "Your Orders", orders_path %></li>
-                <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-                <li class="divider"></li>
-                <li><%= button_to "Sign out", signout_path, method: "delete" %></li>
-              </ul>
-            </li>
+              <li id="fat-menu" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Account <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Your Orders", orders_path %></li>
+                  <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+                </ul>
+              </li>
+              <li>
+                <%= button_to "Sign out", signout_path, method: "delete", class: "btn btn-danger" %>
+              </li>
           </ul>
+</ul>
         <% else %>
           <%= form_for(:session, :url => sessions_path, :html => {:class => "navbar-form pull-right"}) do |f| %>
             <%= f.text_field :email, :class => 'span2', :placeholder => 'Email'%>

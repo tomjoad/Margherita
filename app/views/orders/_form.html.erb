@@ -1,8 +1,5 @@
-<%= render 'line_items/cart_content' %>
-
-<div class="aside">
-  <div class="well">
-    <%= form_for @order do |f| %>
+<div class="content">
+    <%= form_for @order, html: {class: 'well form-inline', style: 'margin: auto; width:345px'} do |f| %>
 
       <!-- shoul be in partial: -->
       <% if @order.errors.any? %>
@@ -25,34 +22,45 @@
       <%= f.hidden_field :total_price, :value => @cart.price %>
 
 
-      <%= f.label :name %>
-      <%= f.text_field :name, value: @user.name, class: 'input-medium' %>
+        <p>
+          <h5>Name:</h5>
+          <%= f.text_field :name, value: @user.name, class: 'span2', placeholder: 'First name' %>
+          <%= f.text_field :last_name, value: @user.last_name, class: 'span2', placeholder: 'Last name' %>
+        </p>
+        <p>
+          <h5>Address:</h5>
+          <%= f.text_field :street, value: @user.street, class: 'span2', placeholder: 'Street' %>
+          <%= f.text_field :home_number, value: @user.home_number, class: 'span2', placeholder: 'House no.' %>
+        </p>
+        <p>
+          <%= f.select :city, User::CITIES, {selected: @user.city}, {class: 'span2'} %>
+          <%= f.select :zip_code, User::ZIP_CODES, {selected: @user.zip_code}, {class: 'span2'} %>
+        </p>
+        <p>
+          <h5>Phone no:</h5>
+          <%= f.text_field :phone, value: @user.phone, class: 'span2', placeholder: 'Phone no.' %>
+        </p>
+        <p>
+          <h5>Delivery distance:</h5>
+          <%= f.select :distance, User::DISTANCES, {selected: @user.distance}, {class: 'span2'} %>
+        </p>
 
-
-      <%= f.label :last_name %>
-      <%= f.text_field :last_name, value: @user.last_name, class: 'input-medium' %>
-
-      <%= f.label :city %>
-      <%= f.select :city, User::CITIES, {selected: @user.city}, {class: 'input-medium'} %>
-
-
-      <%= f.label :zip_code %>
-      <%= f.select :zip_code, User::ZIP_CODES, {selected: @user.zip_code}, {class: 'input-small'} %>
-
-      <%= f.label :street %>
-      <%= f.text_field :street, value: @user.street, class: 'input-medium' %>
-
-      <%= f.label :home_number %>
-      <%= f.text_field :home_number, value: @user.home_number, class: 'input-small' %>
-
-      <%= f.label :phone %>
-      <%= f.text_field :phone, value: @user.phone, class: 'input-medium' %>
-
-      <%= f.label :distance %>
-      <%= f.select :distance, User::DISTANCES, {selected: @user.distance}, {class: 'input-small'} %>
-
-  </div>
-  <button class="btn btn-large btn-block btn-primary" type="submit">Create Order</button>
-</div>
+        <button style="margin-top:20px"
+                class="btn btn-large btn-block btn-primary"
+                type="submit">
+          Create Order
+        </button>
 
 <% end %>
+
+<ul class="pager">
+  <li class="previous">
+      <%= link_to "&larr; Back to Cart".html_safe, new_cart_path %>
+  </li>
+  <li class="next">
+      <%= link_to "Summary &rarr;".html_safe, "#" %>
+  </li>
+</ul>
+
+</div>
+

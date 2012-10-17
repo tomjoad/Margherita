@@ -1,6 +1,6 @@
 <!-- cart content -->
 <div class="content">
-  <div class="well">
+  <div class="well" style="margin: auto; width: 450px;">
     <% if there_is_something_in_cart? %>
       <h2 class="center" style="text-transform: uppercase">Your cart</h2>
       <table class="table table-striped">
@@ -44,25 +44,59 @@
 </tr>
 </tbody>
 </table>
-<% if current_page?(new_cart_path) %>
-<p>
-  <%= link_to new_order_path do %>
-    <button class="btn btn-large btn-block btn-success" type="button">
-      Checkout!
-    </button>
-  <% end %>
-</p>
-<% end %>
-<p>
-  <!-- <%= link_to cart_path, :method => :delete do %> -->
-  <!--   <button class="btn btn-small btn-block btn-danger" type="button"> -->
-  <!--     <i class="icon-remove-sign"></i> -->
-  <!--   </button> -->
-  <!-- <% end %> -->
-</p>
+
 <% else %>
   <h2 class="center">Your cart is empty!</h2>
 <% end %>
+
+</div>
+<ul class="pager">
+  <li class="previous">
+    <%= link_to "&larr; Continue shopping".html_safe, products_path %>
+  </li>
+  <% if session[:cart].count == 0 %>
+    <li class="next disabled">
+      <%= link_to "Shipping info &rarr;".html_safe, "#" %>
+    </li>
+  <% else %>
+    <li class="next">
+      <% if signed_in? %>
+        <%= link_to "Shipping info &rarr;".html_safe, new_order_path %>
+      <% else %>
+        <a data-toggle="modal" href="#signInModal">Shipping info &rarr;</a>
+      <% end %>
+  <% end %>
+</li>
+</ul>
+
+
+
+<div id="signInModal"
+     class="modal hide fade in"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="myModalLabel"
+     aria-hidden="false"
+     style="display: none; width: 255px">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Sign in</h3>
+  </div>
+  <div class="modal-body">
+    <%= form_for(:session, url: sessions_path) do |f| %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+      <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal">Close</button>
+    <%= f.submit "Sign in", class: "btn btn-primary" %>
+  <% end %>
+  </div>
 </div>
 </div>
 
