@@ -54,29 +54,32 @@
   <li class="previous">
     <%= link_to "&larr; Continue shopping".html_safe, products_path %>
   </li>
-  <% if session[:cart].count == 0 %>
+  <% if session[:cart].try(:count) %>
+    <% if session[:cart].count == 0 %>
+      <li class="next disabled">
+        <%= link_to "Shipping info &rarr;".html_safe, "#" %>
+      </li>
+    <% else %>
+      <li class="next">
+        <% if signed_in? %>
+          <%= link_to "Shipping info &rarr;".html_safe, new_order_path %>
+        <% else %>
+          <a data-toggle="modal" href="#signInModal">Shipping info &rarr;</a>
+        <% end %>
+    <% end %>
+  <% else %>
     <li class="next disabled">
       <%= link_to "Shipping info &rarr;".html_safe, "#" %>
     </li>
-  <% else %>
-    <li class="next">
-      <% if signed_in? %>
-        <%= link_to "Shipping info &rarr;".html_safe, new_order_path %>
-      <% else %>
-        <a data-toggle="modal" href="#signInModal">Shipping info &rarr;</a>
-      <% end %>
   <% end %>
 </li>
 </ul>
 
-
-
 <div id="signInModal"
      class="modal hide fade in sign-in-modal"
-     id="sign-in-modal"
      tabindex="-1"
      role="dialog"
-     aria-labelledby="myModalLabel"
+     aria-labelledby="SignIn"
      aria-hidden="false"
      style="display: none">
   <div class="modal-header">
@@ -99,5 +102,5 @@
   <% end %>
   </div>
 </div>
-</div>
 
+</div>

@@ -20,8 +20,12 @@
             <%= link_to "About", home_about_path %></li>
           <li class="<%= current_page?(new_cart_path) ? "active" : ""%>" >
             <%= link_to new_cart_path do %>
-              <% if session[:cart].count >= 1 %>
+              <% if session[:cart].try(:count) %>
+                <% if session[:cart].count >= 1 %>
                   Cart <span class="badge badge-info"><%= session[:cart].count %></span>
+                <% else %>
+                  Cart empty
+                <% end %>
               <% else %>
                 Cart empty
               <% end %>
