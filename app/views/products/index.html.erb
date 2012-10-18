@@ -1,22 +1,26 @@
 <div class="content">
-  <%= render 'categories/pills' %>
-  <ul class="thumbnails">
-    <% @products.each do |product| %>
-      <li class="span3a">
-        <div class="thumbnail">
-          <img alt="" src="<%= asset_path "kebab.jpg" %>">
-          <div class="caption">
-            <span class="category"><%= product.category.name %></span>
-            <span class="title"> <%= product.name %> </span>
-            <span class="price"> <%= '%.2f' % product.price %>zł</span>
-            <a href="<%= url_for :controller => "line_items", :action => "update", :id => product, :operation => "add", :menu => true, :method => "get" %>" class="btn" rel="Dodaj">
-              <i class="icon-shopping-cart"></i> Dodaj
-            </a>
+  <% if @parent.try(:name) %>
+    <%= render 'categories/pills' %>
+    <ul class="thumbnails">
+      <% @products.each do |product| %>
+        <li class="span3a">
+          <div class="thumbnail">
+            <img alt="" src="<%= asset_path "kebab.jpg" %>">
+            <div class="caption">
+              <span class="category"><%= product.category.name %></span>
+              <span class="title"> <%= product.name %> </span>
+              <span class="price"> <%= '%.2f' % product.price %>zł</span>
+              <a href="<%= url_for :controller => "line_items", :action => "update", :id => product, :operation => "add", :menu => true, :method => "get" %>" class="btn" rel="Dodaj">
+                <i class="icon-shopping-cart"></i> Dodaj
+              </a>
+            </div>
           </div>
-        </div>
-      </li>
-    <% end %>
-  </ul>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    GO TO WORK LAZY SONOFABITCH
+  <% end %>
 </div>
 
 

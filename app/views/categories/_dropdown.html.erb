@@ -1,13 +1,11 @@
-
 <li class="dropdown">
   <a data-toggle="dropdown" class="dropdown-toggle" href="#">Food Menu <b class="caret"></b></a>
   <ul class="dropdown-menu">
     <% @categories.each do |category| %>
       <li><a href="<%= category_products_path(category) %>"><%= category.name %></a></li>
     <% end %>
-
-    <!-- <li class="divider"></li> -->
+    <li class="divider"></li>
     <!-- <li class="nav-header">Nav header</li> -->
-
+    <li><%= link_to "Show all", categories_path %></li>
   </ul>
 </li>

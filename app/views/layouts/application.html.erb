@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
     <title><%= full_title(yield(:title)) %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "bootstrap-tooltip" %>
@@ -32,6 +34,6 @@
       <%= render 'layouts/footer' %>
       <%= debug(params) if Rails.env.development? %>
     </div>
-  </div>
+</div>
 </body>
 </html>
