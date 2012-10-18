@@ -1,19 +1,23 @@
 Margherita Issues & Bugs
----------------
+------------------------
 
-1210184: Categories view [issue]
-         Right border of the <li> element is not displayed. Should be width problem.
+12101805: Double CSS stylesheets! [bug]
+          Rails is including every single stylesheet per file and
+          as a merged global application.css. Dunno why.
 
-1210183: Products layout [issue]
-         Products list in '/products' should be divided into categories.
+12101804: Categories view [issue]
+          Right border of the <li> element is not displayed. Should be width problem.
 
-1210182: Sign in redirect [issue]
-         Redirect target should depend on the page/situation we are signing in from.
-         1. The 'sign in modal' called by the 'Shipping info' button should be
-            closed and redirect to 'orders/new' after successful signing in.
-         2. Signin in from the 'sessions/new' should redirect to orders history (?)
+12101803: Products layout [issue]
+          Products list in '/products' should be divided into categories.
 
-1210181: Sign in modal [issue]
-         Entering invalid password closes modal & redirects to sign in page,
-         instead of staying in modal and displaying 'sign-in error' msg.
+12101802: Sign in redirect [issue]
+          Redirect target should depend on the page/situation we are signing in from.
+          1. The 'sign in modal' called by the 'Shipping info' button should be
+             closed and redirect to 'orders/new' after successful signing in.
+          2. Signin in from the 'sessions/new' should redirect to orders history (?)
+
+12101801: Sign in modal [issue]
+          Entering invalid password closes modal & redirects to sign in page,
+          instead of staying in modal and displaying 'sign-in error' msg.
 
