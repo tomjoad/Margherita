@@ -1,5 +1,7 @@
 <%= form_for([:admin, @user]) do |f| %>
   <%= f.label :role %>
-  <%= f.select(:role, User::ROLES, selected: @user.role)%>
+  <%= f.select(:role, User::ROLES, selected: @user.role)%><br />
   <%= f.submit %>
 <% end %>
+
+<%= link_to 'Back', :back %>
