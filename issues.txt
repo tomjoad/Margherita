@@ -1,7 +1,8 @@
 Margherita Issues & Bugs
 ---------------
 
-
+1210184: Categories view [issue]
+         Right border of the <li> element is not displayed. Should be width problem.
 
 1210183: Products layout [issue]
          Products list in '/products' should be divided into categories.
