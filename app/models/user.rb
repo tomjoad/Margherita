@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password, :password_confirmation, :phone, :street, :home_number, :city, :zip_code, :last_name, :distance, :role
+  attr_accessible :email, :name, :password, :password_confirmation, :phone, :street, :home_number, :city, :zip_code, :last_name, :distance
+
   has_secure_password
   has_many :orders
 
@@ -26,6 +27,12 @@ class User < ActiveRecord::Base
   def role
     ActiveSupport::StringInquirer.new(self[:role]) if self[:role]
   end
+
+  # def assign_attributes(values, options = {})
+  #   sanitize_for_mass_assignment(values, options[:as]).each do |k, v|
+  #     send("#{k}=", v)
+  #   end
+  # end
 
   private
 

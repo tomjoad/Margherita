@@ -4,4 +4,5 @@ Name: <%= @user.name %><br />
 Surname: <%= @user.last_name %><br />
 Role: <%= @user.role %><br /><br />
 
-<%= link_to 'Edit User', edit_admin_user_path(@user) %>
+<%= link_to 'Edit User', edit_admin_user_path(@user) %> |
+<%= link_to 'Back', :back %>
