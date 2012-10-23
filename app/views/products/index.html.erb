@@ -1,40 +1,11 @@
 <div class="content">
-  <% if @parent.try(:name) %>
-    <%= render 'categories/pills' %>
-    <ul class="thumbnails">
-      <% @products.each do |product| %>
-        <li class="span3a">
-          <div class="thumbnail">
-            <img alt="" src="<%= asset_path "kebab.jpg" %>">
-            <div class="caption">
-              <span class="category"><%= product.category.name %></span>
-              <span class="title"> <%= product.name %> </span>
-              <span class="price"> <%= '%.2f' % product.price %>zł</span>
-              <a href="<%= url_for :controller => "line_items", :action => "update", :id => product, :operation => "add", :menu => true, :method => "get" %>" class="btn" rel="Dodaj">
-                <i class="icon-shopping-cart"></i> Dodaj
-              </a>
-            </div>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-  <% else %>
-    GO TO WORK LAZY SONOFABITCH
-  <% end %>
+  <div class="row">
+    <div id="test" class="span2">
+      <%= render 'categories/left_affix' %>
+    </div>
+    <div class="span7"
+         style="margin-top: -60px">
+      <%= render 'products/stacked' %>
+    </div>
+  </div>
 </div>
-
-
-<!-- <div class="aside"> -->
-
-<!--   <ul class="food-rank"> -->
-<!--     <li class="title"> -->
-<!--       <h4>najczęściej wybierane</h4> -->
-<!--     </li> -->
-<!--     <li class="bg-white">1. Andzia</li> -->
-<!--     <li>2. Makoszowy</li> -->
-<!--     <li class="bg-white">3. Budryk</li> -->
-<!--     <li>4. Jurek</li> -->
-<!--     <li class="bg-white">5. Oreo</li> -->
-<!--     <li>6. Jana Pawła</li> -->
-
-<!-- </div> -->

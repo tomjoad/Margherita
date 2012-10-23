@@ -1,38 +1,15 @@
-<!-- <% @categories.each do |category| %> -->
-<!--   <ul class="categories"> -->
-<!--     <li> -->
-<!--       <div class="info"> -->
-<!--         <h3> -->
-<!--           <%= link_to category.name, category_products_path(category) %> -->
-<!--         </h3> -->
-<!--         <p> -->
-<!--           Category description. Lorem ipsum dolor sit amet, consectetur adipisicing elit... </br> -->
-<!--           <%= link_to "(read more)", category_path(category) %> -->
-<!--         </p> -->
-<!--         <%= link_to category_products_path(category) do %> -->
-<!--           <span class="products-count label label-info"> -->
-<!--             <b><%= category.products.count %> products</b> -->
-<!--           </span> -->
-<!--         <% end %> -->
-<!--       </div> -->
-<!--       <img class="img-rounded" src="<%= asset_path "kebab.jpg" %>"> -->
-<!--     </li> -->
-<!--   </ul> -->
-<!-- <% end %> -->
-
-
-
 <% @categories.each do |category| %>
   <hr>
-  <div class="row" style="margin-bottom: 10px">
+  <div class="row-fluid" style="margin-bottom: 10px">
     <div class="span12">
-      <div class="row">
+      <div class="row-fluid">
         <div class="span4">
-          <h3 style="line-height: 24px">
+          <h3 style="line-height: 24px; text-transform: uppercase">
             <%= link_to category.name, category_products_path(category) %>
           </h3>
           <p>
-            Category description. Lorem ipsum dolor sit amet, consectetur adipisicing elit... </br>
+            Category description. Lorem ipsum dolor sit amet,
+            consectetur adipisicing elit...</br>
             <%= link_to "(read more)", category_path(category) %>
           </p>
           <%= link_to category_products_path(category) do %>
@@ -44,7 +21,7 @@
         <% 4.times do %>
           <div class="span2">
             <img class="img-rounded"
-                 style="box-shadow: 0 0 5px #888"
+                 style=""
                  src="<%= asset_path "kebab.jpg" %>">
           </div>
         <% end %>
@@ -52,3 +29,5 @@
     </div>
   </div>
 <% end %>
+
+

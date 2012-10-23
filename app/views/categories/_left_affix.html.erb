@@ -1,0 +1,8 @@
+<ul class="nav nav-pills nav-stacked affix"
+    style="width: 180px">
+  <% @categories.each do |category| %>
+    <li class="">
+      <a href="#<%= category.name.downcase.delete(' ') %>"><%= category.name %></a>
+    </li>
+  <% end %>
+</ul>
