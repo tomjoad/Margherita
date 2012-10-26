@@ -12,8 +12,25 @@
 
 body {
     background-color: white; // #efefef;
+    background-image: url('bg_01.jpg');
 }
 
+.navbar-brown .navbar-inner {
+    background-color: #390000;
+    background-image: -webkit-linear-gradient(top, #390000, #390019); // Chrome
+    background-image: linear-gradient(to bottom, #390000, #390000); // Firefox
+    border: 1px solid #333;
+}
+
+.navbar .nav > li > a {
+    color: #eee;
+    text-shadow: -1px 0 #532b00, 0 1px #532b00, 1px 0 #532b00, 0 -1px #532b00;
+    font-weight: normal;
+    &:hover {
+        color: #fff;
+        text-shadow: 0 0 1px #fff;
+    }
+}
 .hero-unit {
     padding-top: 50px;
     padding-bottom: 40px;

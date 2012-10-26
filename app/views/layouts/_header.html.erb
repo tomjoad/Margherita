@@ -1,11 +1,10 @@
-<div class="navbar navbar-fixed-top">
+<div class="navbar navbar-fixed-top navbar-brown">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="<%= root_url %>">Kuźnia Cafe & Pizza</a>
       <div class="nav-collapse collapse">
         <ul class="nav">
+          <li><a href="<%= url_for root_url %>"><i class="icon-home"></i> Home</a></li>
           <li><a href="<%= url_for products_path %>">Food Menu</a></li>
-
           <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
               Services<b class="caret"></b>
@@ -24,10 +23,10 @@
               <i class="icon-shopping-cart"></i>
               <% if session[:cart] %>
                 <% if session[:cart].count >= 1 %>
-                   Cart
+                  Cart
                   <span class="badge badge-info"><%= session[:cart].count %></span>
                 <% else %>
-                   Cart empty
+                  Cart empty
                 <% end %>
               <% else %>
                 Cart empty
@@ -50,18 +49,18 @@
                 </ul>
               </li>
             <% end %>
-              <li id="fat-menu" class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="icon-user"></i> Account <i class="caret"></i>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to "Your Orders", orders_path %></li>
-                  <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-                </ul>
-              </li>
-              <li>
-                <%= button_to "Sign out", signout_path, method: "delete", class: "btn btn-danger" %>
-              </li>
+            <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="icon-user"></i> Account <i class="caret"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Your Orders", orders_path %></li>
+                <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+              </ul>
+            </li>
+            <li>
+              <%= button_to "Sign out", signout_path, method: "delete", class: "btn btn-danger" %>
+            </li>
           </ul>
 </ul>
         <% else %>

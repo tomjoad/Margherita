@@ -5,7 +5,7 @@
       <thead>
         <tr class="header">
           <th class="th-id"><i class="icon-th-list"></i></th>
-          <th class="th-title"><%= category.name %></th>
+          <th class="th-category"><%= category.name %></th>
           <th class="th-options">small</th>
           <th class="th-options">medium</th>
           <th class="th-options">large</th>
@@ -15,13 +15,17 @@
         <% category.products.each do |product| %>
           <tr>
             <td class="td-id"><%= product.id %></td>
-            <td class="td-name">
+            <td class="td-product">
               <h4><%= product.name %></h4>
               <p><%= product.description %></p>
             </td>
             <td class="td-price"><%= '%.2f' % product.price %>zł</td>
             <td class="td-price"><%= '%.2f' % product.price %>zł</td>
-            <td class="td-price"><%= '%.2f' % product.price %>zł</td>
+            <td class="td-price">
+              <a href="<%= url_for :controller => "line_items", :action => "update", :id => product, :operation => "add", :menu => true, :method => "get" %>">
+              <%= '%.2f' % product.price %>zł
+              </a>
+            </td>
           </tr>
         <% end %>
       </tbody>
