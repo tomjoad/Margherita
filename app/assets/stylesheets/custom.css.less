@@ -5,15 +5,22 @@
 @border-color: #ddd;
 @font-pale-color: #666;
 @red: #d35a5a;
+@brown: #390000;
+@medium-brown: #683600;
+@light-brown: #cf6206;
 
 // LAYOUT
 @border-radius: 5px;
 
+// Body
 
 body {
+    padding-top: 60px;
     background-color: white; // #efefef;
     background-image: url('bg_01.jpg');
 }
+
+// Navbar
 
 .navbar-brown .navbar-inner {
     background-color: #390000;
@@ -24,30 +31,146 @@ body {
 
 .navbar .nav > li > a {
     color: #eee;
-    text-shadow: -1px 0 #532b00, 0 1px #532b00, 1px 0 #532b00, 0 -1px #532b00;
-    font-weight: normal;
+    text-shadow: -1px 1px 1px @medium-brown;
+    font-weight: bold;
     &:hover {
         color: #fff;
-        text-shadow: 0 0 1px #fff;
+        text-shadow: -1px 1px 4px @brown;
     }
 }
+
+.navbar .nav li.dropdown.open > .dropdown-toggle {
+    background-color: @medium-brown;
+    color: white;
+    border-radius: 4px;
+}
+
+.navbar .nav li.dropdown.active > .dropdown-toggle,
+.navbar .nav li.dropdown.open.active > .dropdown-toggle {
+    background-color: @light-brown;
+    color: white;
+    border-radius: 4px;
+}
+
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus {
+  color: white;
+  text-decoration: none;
+  background-color: @light-brown;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+  -moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+  -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+  -moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+}
+
+.dropdown-menu {
+    .a-signout {
+        background-color: white;
+        display: block;
+        padding: 3px 20px;
+        clear: both;
+        font-weight: normal;
+        line-height: 20px;
+        color: #333;
+        white-space: nowrap;
+        text-decoration: none;
+        border: 0;
+        width: 100%;
+        text-align: left;
+        &:hover {
+            background-color: #0081c2;
+            background-image: linear-gradient(to bottom, #0088cc, #0077b3);
+            background-repeat: repeat-x;
+            color: #fff;
+            text-decoration: none;
+        }
+    }
+}
+
+// Hero Unit
+
 .hero-unit {
     padding-top: 50px;
     padding-bottom: 40px;
 }
 
+// Forms
+
 form {
     margin: 0;
 }
+
+// Modals
 
 .sign-in-modal {
     width: 255px;
     margin: -240px  0 0 -127px;
 }
 
-.img-overlay {
+// Tables
 
-    &:hover {
-        background-color: rgb(0, 0, 0, 0.5);
+.table-products {
+    .header {
+        background-color: @brown;
+        background-image: none;
+        .th-category {
+            color: #fefefe;
+            text-transform: uppercase;
+            text-align: left;
+        }
+        .th-options {
+            color: #fefefe;
+        }
+    }
+    tr {
+        background-color: @light-brown;
+        background-image: -moz-linear-gradient(top, #ffffff, #fff0d4);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#fff0d4));
+        background-image: -webkit-linear-gradient(top, #ffffff, #fff0d4);
+        background-image: -o-linear-gradient(top, #ffffff, #fff0d4);
+        background-image: linear-gradient(to bottom, #ffffff, #fff0d4);
+        background-repeat: repeat-x;
+        &:hover {
+            background-position: 0 -2px;
+         }
+    }
+    .th-id, .td-id, .th-title, .th-options, .td-price {
+        vertical-align: middle;
+    }
+    .td-price, .th-options {
+        width: 70px;
+        text-align: center;
+    }
+    .th-id, td-id {
+        width: 18px;
+        text-align: center;
+        color: #fefefe;
+    }
+    .td-product {
+        text-align: left;
+        h4 {
+            line-height: 20px;
+            color: #ad6f00;
+            margin: 8px 0 0 0;
+            font-weight: normal;
+        }
+    }
+}
+
+.table {
+
+}
+
+.nav-pills a {color: black}
+.nav-pills .active {
+    a {
+        background-color: #ad6f00;
+        &:hover {
+            background-color: #ad6f00;
+        }
     }
 }
