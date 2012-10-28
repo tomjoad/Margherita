@@ -12,9 +12,10 @@
         </tr>
       </thead>
       <tbody style="text-align: left">
+        <% i = 1 %>
         <% category.products.each do |product| %>
           <tr>
-            <td class="td-id"><%= product.id %></td>
+            <td class="td-id"><%= i %></td>
             <td class="td-product">
               <h4><%= product.name %></h4>
               <p><%= product.description %></p>
@@ -27,6 +28,7 @@
               </a>
             </td>
           </tr>
+          <% i += 1 %>
         <% end %>
       </tbody>
     </table>
