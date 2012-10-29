@@ -1,7 +1,12 @@
 <div class="navbar navbar-fixed-top navbar-brown">
   <div class="navbar-inner">
     <div class="container">
-      <div class="nav-collapse collapse">
+      <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <div class="container nav-collapse">
         <ul class="nav">
 
           <!-- HOME  -->
@@ -86,7 +91,7 @@
               </ul>
             </li>
           </ul>
-</ul>
+
         <% else %>
           <%= form_for(:session, :url => sessions_path, :html => {:class => "navbar-form pull-right"}) do |f| %>
             <%= f.text_field :email, :class => 'span2', :placeholder => 'Email'%>
