@@ -8,6 +8,7 @@
 @brown: #291a00;
 @medium-brown: #5c3800;
 @light-brown: #ad6f00;
+@dark-red: #9c0202;
 
 // LAYOUT
 @border-radius: 5px;
@@ -142,6 +143,8 @@ form {
 .table-products {
     font-size: 14px;
     box-shadow: -2px 2px 5px rgba(0,0,0,0.3);
+    // border-left: 2px solid @brown;
+    // border-right: 2px solid @brown;
     .header {
         background-color: @brown;
         background-image: none;
@@ -149,8 +152,10 @@ form {
             color: #fefefe;
             text-transform: uppercase;
             text-align: left;
+            font-weight: normal;
         }
         .th-options {
+            font-weight: normal;
             color: #fefefe;
         }
     }
@@ -164,15 +169,32 @@ form {
         background-repeat: repeat-x;
         &:hover {
             background-position: 0 -2px;
-            .td-product h4{color: #08c}
+            .td-product {
+                h4 {
+                color: @dark-red;
+                text-shadow: 0 0 3px white;
+                }
+                p {color: @brown}
+            }
+            .td-id {color: @dark-red}
         }
 
-        .th-id, .td-id, .th-title, .th-options, .td-price {
+        .th-id, .td-id, .th-category, .th-options, .td-price {
             vertical-align: middle;
+        }
+        .th-category {
+            padding-left: 15px;
+            font-size: 16px;
         }
         .td-price, .th-options {
             width: 70px;
             text-align: center;
+            a {
+                color: @brown;
+                &:hover {
+                    color: #08c;
+                }
+            }
         }
         .th-id, .td-id {
             width: 18px;
@@ -190,6 +212,9 @@ form {
             }
             p {color: @light-brown}
 
+        }
+        .td-price {
+            font-size: 16px;
         }
     }
 }

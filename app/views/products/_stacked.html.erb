@@ -1,15 +1,15 @@
 <% @categories.each do |category| %>
   <section id="<%= category.name.downcase.delete(' ') %>"
-           style="padding-top: 82px;
-                  margin-top: -50px">
+           style="padding-top: 80px;
+                  margin-top: -100px">
     <table class="table table-products">
       <thead>
         <tr class="header">
           <th class="th-id"><i class="icon-th-list"></i></th>
           <th class="th-category"><%= category.name %></th>
-          <th class="th-options">small</th>
-          <th class="th-options">medium</th>
-          <th class="th-options">large</th>
+          <th class="th-options">opt_1</th>
+          <th class="th-options">opt_2</th>
+          <th class="th-options">opt_3</th>
         </tr>
       </thead>
       <tbody style="text-align: left">
@@ -21,11 +21,16 @@
               <h4><%= product.name %></h4>
               <p><%= product.description %></p>
             </td>
-            <td class="td-price"><%= '%.2f' % product.price %>zł</td>
-            <td class="td-price"><%= '%.2f' % product.price %>zł</td>
             <td class="td-price">
-              <a href="<%= url_for :controller => "line_items", :action => "update", :id => product, :operation => "add", :menu => true, :method => "get" %>">
-                <%= '%.2f' % product.price %>zł
+              <a class="">-</a>
+            </td>
+            <td class="td-price">
+              <a class="">-</a>
+            </td>
+            <td class="td-price">
+              <a class=""
+                 href="<%= url_for :controller => "line_items", :action => "update", :id => product, :operation => "add", :menu => true, :method => "get" %>">
+                <%= '%.2f' % product.price %> zł
               </a>
             </td>
           </tr>
