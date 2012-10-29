@@ -8,8 +8,6 @@
 
 <% else %>
 
-  <!-- NIE DZIAŁA TA KURWA -->
-
   <%= form_for(:session, url: sessions_path) do |f| %>
     <%= f.text_field :email, :class => 'span2', :placeholder => 'Email'%>
     <%= f.password_field :password, :class => 'span2', :placeholder => 'Password'%>

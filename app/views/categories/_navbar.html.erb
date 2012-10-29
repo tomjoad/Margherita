@@ -1,0 +1,17 @@
+<div id="navbar-categories"
+     class="navbar"
+     style="">
+  <div class="navbar-inner">
+    <div class="container">
+      <ul class="nav">
+        <% @categories.each do |category| %>
+          <li class="">
+            <a href="#<%= category.name.downcase.delete(' ') %>">
+              <%= category.name %>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

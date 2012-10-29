@@ -5,9 +5,9 @@
 @border-color: #ddd;
 @font-pale-color: #666;
 @red: #d35a5a;
-@brown: #390000;
-@medium-brown: #683600;
-@light-brown: #cf6206;
+@brown: #291a00;
+@medium-brown: #5c3800;
+@light-brown: #ad6f00;
 
 // LAYOUT
 @border-radius: 5px;
@@ -15,7 +15,6 @@
 // Body
 
 body {
-    padding-top: 80px;
     background-color: whiteSmoke;
     background-image: url('bg_02.jpg');
     backgroun-repeat: repeat;
@@ -25,47 +24,47 @@ body {
 // Header
 
 .navbar-brown .navbar-inner {
-    background-color: #390000;
-    background-image: -webkit-linear-gradient(top, #390000, #390019); // Chrome
-    background-image: linear-gradient(to bottom, #390000, #390000); // Firefox
-    border: 1px solid #333;
+    background-color: @brown;
+    background-image: -webkit-linear-gradient(top, @brown, @brown); // Chrome
+    background-image: linear-gradient(to bottom, @brown, @brown); // Firefox
+    border-bottom: 1px solid darken(@brown, 20%);
 }
 
-.navbar .nav > li > a {
+.navbar-brown .nav > li > a {
     color: #eee;
-    text-shadow: -1px 1px 1px @medium-brown;
+    text-shadow: 0px 1px 1px @medium-brown;
     &:hover {
         color: #fff;
-        text-shadow: -1px 1px 4px @brown;
+        text-shadow: 0px 1px 3px @brown;
     }
 }
 
-.navbar .nav li.dropdown.open > .dropdown-toggle {
+.navbar-brown .nav li.dropdown.open > .dropdown-toggle {
     background-color: @medium-brown;
     color: white;
-    border-radius: 4px;
+    // border-radius: 4px;
 }
 
-.navbar .nav li.dropdown.active > .dropdown-toggle,
-.navbar .nav li.dropdown.open.active > .dropdown-toggle {
+.navbar-brown .nav li.dropdown.active > .dropdown-toggle,
+.navbar-brown .nav li.dropdown.open.active > .dropdown-toggle {
     background-color: @light-brown;
     color: white;
-    border-radius: 4px;
+    // border-radius: 4px;
 }
 
-.navbar .nav > .active > a,
-.navbar .nav > .active > a:hover,
-.navbar .nav > .active > a:focus {
+.navbar-brown .nav > .active > a,
+.navbar-brown .nav > .active > a:hover,
+.navbar-brown .nav > .active > a:focus {
     color: white;
     text-decoration: none;
     background-color: @light-brown;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
-    -moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
-    box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
-    -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
-    -moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
-    box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+    // border-radius: 4px;
+    -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.5);
 }
 
 .dropdown-menu {
@@ -141,6 +140,7 @@ form {
 // Tables
 
 .table-products {
+    font-size: 14px;
     box-shadow: -2px 2px 5px rgba(0,0,0,0.3);
     .header {
         background-color: @brown;
@@ -193,16 +193,42 @@ form {
         }
     }
 }
-.table {
 
+
+.nav-pills {
+    border: 1px dashed @brown;
 }
 
-.nav-pills a {color: black}
+.nav-pills > li > a {
+    color: @brown;
+    border-top: 1px solid #F0D5A7;
+    border-radius: 0;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    &:hover {
+        background-color: @medium-brown;
+        color: white;
+    }
+}
+
+.nav-pills.nav-stacked > li > a {
+margin-bottom: 0px;
+}
+
 .nav-pills .active {
     a {
-        background-color: #ad6f00;
+        background-color: @light-brown;
+        text-shadow: 0px 1px 1px #5C3800;
+        -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.5);
+        -moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.5);
+        box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.5);
+        -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.5);
+        -moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.5);
+        box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.5);
         &:hover {
-            background-color: #ad6f00;
+            background-color: @light-brown;
         }
     }
 }

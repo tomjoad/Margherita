@@ -1,6 +1,7 @@
 <% @categories.each do |category| %>
   <section id="<%= category.name.downcase.delete(' ') %>"
-           style="padding-top: 40px">
+           style="padding-top: 82px;
+                  margin-top: -50px">
     <table class="table table-products">
       <thead>
         <tr class="header">
@@ -24,7 +25,7 @@
             <td class="td-price"><%= '%.2f' % product.price %>zł</td>
             <td class="td-price">
               <a href="<%= url_for :controller => "line_items", :action => "update", :id => product, :operation => "add", :menu => true, :method => "get" %>">
-              <%= '%.2f' % product.price %>zł
+                <%= '%.2f' % product.price %>zł
               </a>
             </td>
           </tr>
@@ -35,49 +36,3 @@
   </section>
 <% end %>
 
-
-<!-- <% @categories.each do |category|%> -->
-<!--   <section id="<%= category.name.downcase.delete(' ') %>" -->
-<!--            style="padding-top: 55px"> -->
-<!--     <h2 style="line-height: 30px; -->
-<!--                margin: 0"> -->
-<!--       <%= category.name %> -->
-<!--     </h2> -->
-<!--     <hr> -->
-<!--     <% category.products.each do |product| %> -->
-<!--       <div class="row" -->
-<!--            style="margin-bottom: 19px; -->
-<!--                   position:relative"> -->
-<!--         <div class="span4" -->
-<!--              style=""> -->
-<!--           <h4 style="margin: 2px 0"> -->
-<!--             <%= link_to product.name, product_path(product) %> -->
-<!--           </h4> -->
-<!--           <p class=""><%= product.description %></p> -->
-<!--         </div> -->
-<!--         <span class="span1"> -->
-<!--           <a rel="tooltip" -->
-<!--              data-original-title="Add SMALL to Cart" -->
-<!--              href="<%= url_for :controller => "line_items", :action => "update", :id => product, :operation => "add", :menu => true, :method => "get" %>"> -->
-<!--             <%= '%.2f' % product.price %>zł -->
-<!--           </a> -->
-<!--         </span> -->
-<!--         <span class="span1"> -->
-<!--           <a rel="tooltip" -->
-<!--              data-original-title="Add MEDIUM to Cart" -->
-<!--              href="<%= url_for :controller => "line_items", :action => "update", :id => product, :operation => "add", :menu => true, :method => "get" %>"> -->
-<!--             <%= '%.2f' % product.price %>zł -->
-<!--           </a> -->
-<!--         </span> -->
-<!--         <span class="span1"> -->
-<!--           <a rel="tooltip" -->
-<!--              data-original-title="Add LARGE to Cart" -->
-<!--              href="<%= url_for :controller => "line_items", :action => "update", :id => product, :operation => "add", :menu => true, :method => "get" %>"> -->
-<!--             <%= '%.2f' % product.price %>zł -->
-<!--           </a> -->
-<!--         </span> -->
-<!--       </div> -->
-<!--     <% end %> -->
-<!--   </section> -->
-<!-- <hr style="margin-bottom: -37px"> -->
-<!-- <% end %> -->
