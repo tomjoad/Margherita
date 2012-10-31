@@ -30,16 +30,35 @@ class Order < ActiveRecord::Base
   #   self.total_price = self.delivery_cost + self.products_price
   # end
 
-  scope :for_user_account, where(:state => [:in_delivery, :pending])
-  scope :for_user_history, where(:state => [:finished, :cancelled])
+  scope :for_account, where(:state => [:in_delivery, :pending])
+  scope :history, where(:state => [:finished, :cancelled])
+  # should be in more
+  scope :pending, where(:state => [:pending])
+  # scope :cancelled, where(:state => [:cancelled])
+  scope :finished, where(:state => 'finished')
+  scope :in_delivery, where(:state => 'in_delivery')
+  scope :delivered, where(:state => 'delivered')
+  scope :cancelled, where(:state => 'cancelled')
 
-  # scope :finished, where(:state => 'finished')
-  # scope :in_deliver, where(:state => 'in_delivery')
-  # scope :delivered, where(:state => 'delivered')
-  # scope :cancelled, where(:state => 'cancelled')
+  def self.orders_for_customer(current_user, history)
+    if history == 'true'
+      orders = current_user.orders.history
+    else
+      orders = current_user.orders.for_account
+    end
+  end
+
+  def  self.orders_for_seller(filter)
+    orders = case filter
+    when 'pending' then Order.pending
+    when 'cancelled' then Order.cancelled
+    when 'in_delivery' then Order.in_delivery
+    when 'finished' then Order.finished
+    else Order.all
+    end
+  end
 
   state_machine :state, :initial => :pending do
-
     event :accept do
       transition :pending => :in_delivery
     end

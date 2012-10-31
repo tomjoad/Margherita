@@ -4,12 +4,18 @@ class OrdersController < ApplicationController
 
   include CartHelper
   include SessionsHelper
+  include ApplicationHelper
 
   def index
-    if params[:history]
-      @orders = current_user.orders.for_user_history
+    # need to be modified to current_user.seller? method
+    if user_is_admin_or_seller?
+      # doesn`t matter who is the seller
+      @orders = Order.orders_for_seller(params[:filter])
+      # @orders = Order.all
     else
-      @orders = current_user.orders.for_user_account
+      # if parameter history is 'true', finished and cancelled orders
+      # will be displayed, in other case only pending orders.
+      @orders = Order.orders_for_customer(current_user, params[:history])
     end
   end
 
@@ -21,14 +27,14 @@ class OrdersController < ApplicationController
   end
 
   def create
-    if params[:recal]
-      flash[:notice] = "gowno"
-    else
-      @order = Order.new(params[:order])
-      @order.cart = session[:cart]
-      flash[:notice] = "Your order is pedning" if @order.save
-      redirect_to root_url
-    end
+    # if params[:recal]
+    #   flash[:notice] = "gowno"
+    # else
+    @order = Order.new(params[:order])
+    @order.cart = session[:cart]
+    flash[:notice] = "Your order is pedning" if @order.save
+    redirect_to root_url
+    # end
   end
 
   # def recalculate
