@@ -15,7 +15,13 @@
             <%= link_to product.name, product_path(product) %>
           </span>
           <span class="price"> <%= '%.2f' % product.price %>zł</span>
-          <a href="<%= url_for :controller => "line_items", :action => "update", :id => product, :operation => "add", :menu => true, :method => "get" %>" class="btn" rel="Dodaj">
+          <a href="<%= url_for :controller => "line_items",
+                               :action => "update",
+                               :id => product,
+                               :operation => "add",
+                               :menu => true,
+                               :method => "get" %>"
+          class="btn" rel="Dodaj">
             <i class="icon-shopping-cart"></i> Dodaj
           </a>
         </div>

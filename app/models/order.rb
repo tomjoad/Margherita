@@ -10,8 +10,10 @@ class Order < ActiveRecord::Base
 
   validates :cart, :presence => true
   validates :state, :presence => true
-  # validates :user, :presence => true ??? why isn`t working!?
-
+  validates :user_id, :presence => true
+  # ??? why isn`t working!?
+  # validates :user and validates :user_id isn`t the same!
+  # how it works?
   validates :last_name, :presence => true
   validates :city, :presence => true
   validates :street, :presence => true
@@ -91,7 +93,7 @@ class Order < ActiveRecord::Base
       end
     elsif self.distance == LONG_DISTANCE
       if self.products_price <= PRICE_LIMIT_SWITCH
-        self.delivery_cost = HOGHER_DELIVERY_COST
+        self.delivery_cost = HIGHER_DELIVERY_COST
       else
         self.delivery_cost = LOWER_DELIVERY_COST
       end
