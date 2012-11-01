@@ -10,7 +10,8 @@ class Order < ActiveRecord::Base
 
   validates :cart, :presence => true
   validates :state, :presence => true
-  validates :user, :presence => true
+  # validates :user, :presence => true ??? why isn`t working!?
+
   validates :last_name, :presence => true
   validates :city, :presence => true
   validates :street, :presence => true
@@ -68,7 +69,7 @@ class Order < ActiveRecord::Base
       transition any => :cancelled
     end
 
-    event :delivered do
+    event :finish do
       transition :in_delivery => :finished
     end
 
@@ -77,9 +78,9 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def check
-    self.distance
-  end
+  # def check
+  #   self.distance
+  # end
 
   # values have to be chanched into constants definitions
 

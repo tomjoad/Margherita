@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class OrdersController < ApplicationController
   respond_to :html
   before_filter :signed_in_user
@@ -28,6 +29,17 @@ class OrdersController < ApplicationController
     @order.cart = session[:cart]
     flash[:notice] = "Your order is pedning" if @order.save
     redirect_to root_url
+  end
+
+  def update
+    if params[:operation]
+      # actions for state machine, wrap to the model as much as possible
+      @order = Order.find(params[:id])
+      @order.send params[:operation].to_sym
+    else
+      # standard order updating, details should be considered in the future
+    end
+    redirect_to orders_path
   end
 
 end

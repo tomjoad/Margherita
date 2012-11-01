@@ -1,42 +1,12 @@
+<%= params %><br />
 <% if user_is_admin_or_seller? %>
-  <!-- here lists for seller
-       there is probably better way to access array inside class -->
   <% Order::STATES.split(' ').each do |state| %>
-    <%= link_to state, :controller => "orders", :action => "index", :filter => state %> |
+    <%= link_to state, orders_path(:filter => state) %> |
   <% end %>
-  <!-- find out if I can inject parameter into orders_helper, to make something like:
-       /orders?filter=in_delivery, not using :controller => ... --!>
 <% elsif current_user.role.customer? %>
-  <!-- I should use just 'else' statement not elsif but I`ll leave it like this, maybe
-       some more roles in the future-->
-
-  <!-- here lists for customer -->
   <%= link_to 'In progress', orders_path %> |
   <%= link_to "History", :controller => "orders", :action => "index", :history => true %> |
 <% else %>
-  <!-- nothing here so far -->
 <% end %>
 <br />
-
-<!-- everything below should be inside separate partial -->
-
-<% @orders.each do |order| %>
-  <!-- Id is displayed just to help in debugging, erase it later -->
-  <b>ID</b>
-  <%= order.id%>
-
-  <b>Date</b>
-  <%= order.created_at %>
-  <b>Price</b>
-  <%= order.total_price %>
-  <b>State</b>
-  <%= order.state %>
-
-  <% if user_is_admin_or_seller? %>
-  <!-- here buttons for seller -->
-  <% end %>
-  <!-- no possibility to edit order after making it by customer -->
-<br />
-<% end %>
-
-
+<%= render 'table'%>

@@ -1,7 +1,6 @@
 <div class="content">
     <%= form_for @order, html: {class: 'well form-inline', style: 'margin: auto; width:345px'} do |f| %>
 
-      <!-- shoul be in partial: -->
       <% if @order.errors.any? %>
         <div id="error_explanation">
           <div id="alert alert-error">
