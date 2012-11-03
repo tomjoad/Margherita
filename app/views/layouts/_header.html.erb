@@ -1,4 +1,4 @@
-<div class="navbar navbar-fixed-top navbar-brown">
+<div class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="container">
       <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
@@ -86,7 +86,8 @@
                 <li><%= link_to "Settings", edit_user_path(current_user) %></li>
                 <li class="divider"></li>
                 <li>
-                  <%= button_to "Sign out", signout_path, method: "delete", class: "a-signout" %>
+                  <%= button_to "Sign out", signout_path, method: "delete", class: "a-signout visible-desktop" %>
+                  <%= button_to "Sign out", signout_path, method: "delete", class: "btn btn-block hidden-desktop" %>
                 </li>
               </ul>
             </li>

@@ -1,43 +1,46 @@
+<div class="tab-content">
 <% @categories.each do |category| %>
-  <section id="<%= category.name.downcase.delete(' ') %>"
-           style="padding-top: 80px;
-                  margin-top: -100px">
-    <table class="table table-products">
-      <thead>
-        <tr class="header">
-          <th class="th-id"><i class="icon-th-list"></i></th>
-          <th class="th-category"><%= category.name %></th>
-          <th class="th-options">opt_1</th>
-          <th class="th-options">opt_2</th>
-          <th class="th-options">opt_3</th>
-        </tr>
-      </thead>
-      <tbody style="text-align: left">
-        <% i = 1 %>
-        <% category.products.each do |product| %>
-          <tr>
-            <td class="td-id"><%= i %></td>
-            <td class="td-product">
-              <h4><%= product.name %></h4>
-              <p><%= product.description %></p>
-            </td>
-            <td class="td-price">
-              <a class="">-</a>
-            </td>
-            <td class="td-price">
-              <a class="">-</a>
-            </td>
-            <td class="td-price">
-              <a class=""
-                 href="<%= url_for :controller => "line_items", :action => "update", :id => product, :operation => "add", :menu => true, :method => "get" %>">
-                <%= '%.2f' % product.price %> zł
-              </a>
-            </td>
+  <!-- <section id="<%= category.name.downcase.delete(' ') %>" -->
+  <!--          style="padding-top: 80px; -->
+  <!--                 margin-top: -100px"> -->
+    <div class="tab-pane fade in" id="<%= category.name.downcase.delete(' ') %>">
+      <table class="table table-products">
+        <thead>
+          <tr class="header">
+            <th class="th-id"><i class="icon-th-list"></i></th>
+            <th class="th-category"><%= category.name %></th>
+            <th class="th-options">opt_1</th>
+            <th class="th-options">opt_2</th>
+            <th class="th-options">opt_3</th>
           </tr>
-          <% i += 1 %>
-        <% end %>
-      </tbody>
-    </table>
-  </section>
+        </thead>
+        <tbody style="text-align: left">
+          <% i = 1 %>
+          <% category.products.each do |product| %>
+            <tr>
+              <td class="td-id"><%= i %></td>
+              <td class="td-product">
+                <h4><%= product.name %></h4>
+                <p><%= product.description %></p>
+              </td>
+              <td class="td-price">
+                <a class="">-</a>
+              </td>
+              <td class="td-price">
+                <a class="">-</a>
+              </td>
+              <td class="td-price">
+                <a class=""
+                   href="<%= url_for :controller => "line_items", :action => "update", :id => product, :operation => "add", :menu => true, :method => "get" %>">
+                  <%= '%.2f' % product.price %> zł
+                </a>
+              </td>
+            </tr>
+            <% i += 1 %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <!-- </section> -->
 <% end %>
-
+</div>

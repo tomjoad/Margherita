@@ -1,0 +1,11 @@
+<div class="row" id="myTab">
+  <% @categories.each do |category| %>
+    <div class="span2"
+         style="height: 35px">
+      <i class="icon-tags"></i>
+      <a href="#<%= category.name.downcase.delete(' ') %>" data-toggle="tab">
+        <%= category.name %>
+      </a>
+    </div>
+  <% end %>
+</div>
