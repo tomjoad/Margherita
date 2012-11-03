@@ -10,36 +10,59 @@ class Order < ActiveRecord::Base
 
   validates :cart, :presence => true
   validates :state, :presence => true
-  validates :user, :presence => true
+  validates :user_id, :presence => true
+  # ??? why isn`t working!?
+  # validates :user and validates :user_id isn`t the same!
+  # how it works?
   validates :last_name, :presence => true
   validates :city, :presence => true
   validates :street, :presence => true
   validates :phone, :presence => true
   validates :home_number, :presence => true
   validates :distance, :presence => true
-  # validates :products_price, :presence => true
-  # validates :delivery_cost, :presence => true
-  # validates :total_price, :presence => true
-  # validates :address, :presence => true
 
   attr_accessible :state, :total_price, :user_id, :name, :last_name, :city, :zip_code, :street, :phone, :home_number, :distance
 
   serialize :cart
 
-  # after_validation(:on => :create) do
-  #   self.total_price = self.delivery_cost + self.products_price
+  scope :for_account, where(:state => [:in_delivery, :pending])
+  scope :history, where(:state => [:finished, :cancelled])
+  # should be in more
+  scope :pending, where(:state => [:pending])
+  # scope :cancelled, where(:state => [:cancelled])
+  scope :finished, where(:state => 'finished')
+  scope :in_delivery, where(:state => 'in_delivery')
+  scope :delivered, where(:state => 'delivered')
+  scope :cancelled, where(:state => 'cancelled')
+
+  def self.for_customer(current_user, history)
+    if history == 'true'
+      orders = current_user.orders.history
+    else
+      orders = current_user.orders.for_account
+    end
+  end
+
+  # Previous version of for_seller:
+  # orders = case filter
+  # when 'pending' then Order.pending
+  # when 'cancelled' then Order.cancelled
+  # when 'in_delivery' then Order.in_delivery
+  # when 'finished' then Order.finished
+  # else Order.all
   # end
+  # Now it`s shorter this way, but probably should
+  # handle NoMethoError.
 
-  scope :for_user_account, where(:state => [:in_delivery, :pending])
-  scope :for_user_history, where(:state => [:finished, :cancelled])
-
-  # scope :finished, where(:state => 'finished')
-  # scope :in_deliver, where(:state => 'in_delivery')
-  # scope :delivered, where(:state => 'delivered')
-  # scope :cancelled, where(:state => 'cancelled')
+  def self.for_seller(filter)
+    begin
+      return Order.send filter.to_sym
+    rescue NoMethodError
+      return Order.all
+    end
+  end
 
   state_machine :state, :initial => :pending do
-
     event :accept do
       transition :pending => :in_delivery
     end
@@ -48,7 +71,7 @@ class Order < ActiveRecord::Base
       transition any => :cancelled
     end
 
-    event :delivered do
+    event :finish do
       transition :in_delivery => :finished
     end
 
@@ -57,9 +80,9 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def check
-    self.distance
-  end
+  # def check
+  #   self.distance
+  # end
 
   # values have to be chanched into constants definitions
 
@@ -70,30 +93,12 @@ class Order < ActiveRecord::Base
       end
     elsif self.distance == LONG_DISTANCE
       if self.products_price <= PRICE_LIMIT_SWITCH
-        self.delivery_cost = HOGHER_DELIVERY_COST
+        self.delivery_cost = HIGHER_DELIVERY_COST
       else
         self.delivery_cost = LOWER_DELIVERY_COST
       end
     else
     end
   end
-
-
-  # private
-
-  # def calculate_total_price
-  #   if distance == "0-6"
-  #     if total_price <= 23
-  #       total_price += 5.0
-  #     end
-  #   elsif distance == "6-8"
-  #     if total_price <= 23
-  #       total_price += 10
-  #     else
-  #       total_price += 5
-  #     end
-  #   else
-  #   end
-  # end
 
 end

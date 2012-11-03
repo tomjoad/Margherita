@@ -22,4 +22,8 @@ module ApplicationHelper
     end
   end
 
+  def user_is_admin_or_seller?
+    current_user.role.seller? || current_user.role.admin?
+  end
+
 end

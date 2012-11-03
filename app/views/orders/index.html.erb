@@ -1,12 +1,11 @@
-<!-- user order index -->
-<% @orders.each do |order| %>
-  <b>Date</b>
-  <%= order.created_at %>
-  <b>Price</b>
-  <%= order.total_price %>
-  <b>State</b>
-  <%= order.state %>
-<br />
+<% if user_is_admin_or_seller? %>
+  <% Order::STATES.split(' ').each do |state| %>
+    <%= link_to state, orders_path(:filter => state) %> |
+  <% end %>
+<% elsif current_user.role.customer? %>
+  <%= link_to 'In progress', orders_path %> |
+  <%= link_to "History", :controller => "orders", :action => "index", :history => true %> |
+<% else %>
 <% end %>
-
-<%= link_to "In progress", orders_path %> | <%= link_to "History", :controller => "orders", :action => "index", :history => true %>
+<br />
+<%= render 'table'%>

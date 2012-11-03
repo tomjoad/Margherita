@@ -1,0 +1,30 @@
+<% @orders.each do |order| %>
+
+  <b>ID</b>
+  <%= order.id%>
+
+  <b>Date</b>
+  <%= order.created_at %>
+  <b>Price</b>
+  <%= order.total_price %>
+  <b>State</b>
+  <%= order.state %>
+
+  <% if user_is_admin_or_seller? %>
+    <% case order.state %>
+      <% when 'pending' %>
+      <%= link_to '-> in_delviery', order_path(order, :operation => "accept"), :method => :put %> |
+        <%= link_to '-> cancelled', order_path(order, :operation => "cancel"), :method => :put %>
+      <% when 'in_delivery' %>
+        <%= link_to '-> finished', order_path(order, :operation => "finish"), :method => :put %> |
+        <%= link_to '-> cancelled', order_path(order, :operation => "cancel"), :method => :put %>
+      <% when 'finished' %>
+        <%= link_to '-> cancelled', order_path(order, :operation => "cancel"), :method => :put %>
+      <% when 'cancelled' %>
+        <%= link_to '-> restore', order_path(order, :operation => "restore"), :method => :put %>
+    <% end %>
+
+  <% end %>
+<br />
+<% end %>
+
