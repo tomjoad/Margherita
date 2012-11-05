@@ -1,14 +1,20 @@
-<div class="tab-content">
+<div class="well well-large"
+     style="margin-bottom: 0; border-radius: 4px 4px 0 0">
+  <h2 class="center" style="color: #888">Category IMG</h2>
+</div>
+<div class="tab-content"
+     style="border: 1px solid #eee; border-top: 0">
 <% @categories.each do |category| %>
   <!-- <section id="<%= category.name.downcase.delete(' ') %>" -->
   <!--          style="padding-top: 80px; -->
   <!--                 margin-top: -100px"> -->
-    <div class="tab-pane fade in" id="<%= category.name.downcase.delete(' ') %>">
-      <table class="table table-products">
+    <div class="tab-pane <%= category == @parent ? "active" : "" %>"
+         id="<%= category.name.downcase.delete(' ') %>">
+      <table class="table table-products-bw">
         <thead>
           <tr class="header">
             <th class="th-id"><i class="icon-th-list"></i></th>
-            <th class="th-category"><%= category.name %></th>
+            <th class="th-category">nazwa & składniki</th>
             <th class="th-options">opt_1</th>
             <th class="th-options">opt_2</th>
             <th class="th-options">opt_3</th>

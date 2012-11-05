@@ -1,9 +1,31 @@
-<ul class="nav nav-pills">
+<ul id="myTab" class="nav nav-pills hidden-phone"
+    style="margin-top: 20px;
+           padding: 10px 30px;
+           border: 1px solid #eee;
+           border-radius: 4px;">
   <% @categories.each do |category| %>
-    <li class="<%= category == @parent ? "active" : "" %>">
-      <a href="<%= category_products_path(category) %>">
-      <%= category.name %>
-      </a>
+    <li class="<%= category == @parent ? "active" : "" %>" style="width: 20%">
+        <a href="#<%= category.name.downcase.delete(' ') %>"
+         data-toggle="tab"
+         style="white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden">
+          <%= category.name %>
+        </a>
+    </li>
+  <% end %>
+</ul>
+
+<ul id="myTab" class="nav nav-pills nav-stacked visible-phone"
+        style="padding: 10px;
+           border: 1px solid #eee;
+           border-radius: 4px;">
+  <% @categories.each do |category| %>
+    <li class="<%= category == @parent ? "active" : "" %>" style="width: auto">
+        <a href="#<%= category.name.downcase.delete(' ') %>"
+           data-toggle="tab">
+          <%= category.name %>
+        </a>
     </li>
   <% end %>
 </ul>

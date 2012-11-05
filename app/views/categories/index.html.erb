@@ -1,33 +1,31 @@
-<% @categories.each do |category| %>
-  <hr>
-  <div class="row-fluid" style="margin-bottom: 10px">
-    <div class="span12">
-      <div class="row-fluid">
-        <div class="span4">
-          <h3 style="line-height: 24px; text-transform: uppercase">
-            <%= link_to category.name, category_products_path(category) %>
-          </h3>
-          <p>
-            Category description. Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit...</br>
-            <%= link_to "(read more)", category_path(category) %>
-          </p>
-          <%= link_to category_products_path(category) do %>
-            <span class="products-count label label-info">
-              <b><%= category.products.count %> products</b>
-            </span>
-          <% end %>
-        </div>
-        <% 4.times do %>
-          <div class="span2">
-            <img class="img-rounded"
-                 style=""
-                 src="<%= asset_path "kebab.jpg" %>">
-          </div>
+<div class="row">
+  <% i = 0 %>
+  <% @categories.each do |category| %>
+    <div class="span6"
+         style="height: 160px;
+                margin-top: 20px">
+      <img class="img-polaroid"
+           style="float: left; width: 180px; height: 150px"
+           src="<%= asset_path "kebab.jpg" %>">
+      <div style="padding-left: 210px; top: 50%">
+        <h3 style="line-height: 24px; text-transform: uppercase">
+          <a href="<%= url_for category_products_path(category) %>">
+            <%= category.name %>
+          </a>
+        </h3>
+        <p>
+          Category description. Lorem ipsum dolor sit amet,
+          consectetur adipisicing elit...</br>
+          <%= link_to "(read more)", category_path(category) %>
+        </p>
+        <%= link_to category_products_path(category) do %>
+          <span class="products-count label label-info">
+            <b><%= category.products.count %> products</b>
+          </span>
         <% end %>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
 
 
