@@ -1,31 +1,62 @@
-<div class="row">
-  <% i = 0 %>
-  <% @categories.each do |category| %>
-    <div class="span6"
-         style="height: 160px;
-                margin-top: 20px">
-      <img class="img-polaroid"
-           style="float: left; width: 180px; height: 150px"
-           src="<%= asset_path "kebab.jpg" %>">
-      <div style="padding-left: 210px; top: 50%">
-        <h3 style="line-height: 24px; text-transform: uppercase">
-          <a href="<%= url_for category_products_path(category) %>">
-            <%= category.name %>
-          </a>
-        </h3>
-        <p>
-          Category description. Lorem ipsum dolor sit amet,
-          consectetur adipisicing elit...</br>
-          <%= link_to "(read more)", category_path(category) %>
-        </p>
-        <%= link_to category_products_path(category) do %>
-          <span class="products-count label label-info">
-            <b><%= category.products.count %> products</b>
-          </span>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-</div>
+<!-- <div class="row"> -->
 
+<!--   <% i = 0 %> -->
+<!--   <% @categories.each do |category| %> -->
+<!--     <div class="span6" -->
+<!--          style="height: 160px; -->
+<!--                 margin-top: 20px"> -->
+<!--       <img class="img-polaroid" -->
+<!--            style="float: left; width: 180px; height: 150px" -->
+<!--            src="<%= asset_path "kebab.jpg" %>"> -->
+<!--       <div style="padding-left: 210px; top: 50%"> -->
+<!--         <h3 style="line-height: 24px; text-transform: uppercase"> -->
+<!--           <a href="<%= url_for category_products_path(category) %>"> -->
+<!--             <%= category.name %> -->
+<!--           </a> -->
+<!--         </h3> -->
+<!--         <p> -->
+<!--           Category description. Lorem ipsum dolor sit amet, -->
+<!--           consectetur adipisicing elit...</br> -->
+<!--           <%= link_to "(read more)", category_path(category) %> -->
+<!--         </p> -->
+<!--         <%= link_to category_products_path(category) do %> -->
+<!--           <span class="products-count label label-info"> -->
+<!--             <b><%= category.products.count %> products</b> -->
+<!--           </span> -->
+<!--         <% end %> -->
+<!--       </div> -->
+<!--     </div> -->
 
+<!--   <% end %> -->
+<!-- </div> -->
+
+  <ul class="category-grid">
+    <% i = 0 %>
+    <% @categories.each do |category| %>
+      <li>
+        <img class="img-rounded"
+             style="float: left;
+                    width: 180px;
+                    height: 150px;
+                    margin: 5px 0 5px 5px"
+             src="<%= asset_path "kebab.jpg" %>">
+        <div style="padding-left: 210px; top: 50%">
+          <h3 style="line-height: 24px; text-transform: uppercase">
+            <a href="<%= url_for category_products_path(category) %>">
+              <%= category.name %>
+            </a>
+          </h3>
+          <p>
+            Category description. Lorem ipsum dolor sit amet,
+            consectetur adipisicing elit...</br>
+            <%= link_to "(read more)", category_path(category) %>
+          </p>
+          <%= link_to category_products_path(category) do %>
+            <span class="products-count label label-info">
+              <b><%= category.products.count %> products</b>
+            </span>
+          <% end %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
