@@ -1,7 +1,7 @@
 @import "twitter/bootstrap/bootstrap";
 
 body {
-    padding-top: 40px;
+    padding-top: 0px;
 }
 
 @import "twitter/bootstrap/responsive";
@@ -31,3 +31,337 @@ body {
 //
 // Example:
 // @linkColor: #ff0000;
+
+
+
+
+// Custom Bootstrap CSS
+
+
+
+// COLORS
+@bg-pale-color: #fefefe;
+@border-color: #ddd;
+@font-pale-color: #666;
+@red: #d35a5a;
+@brown: #291a00;
+@medium-brown: #5c3800;
+@light-brown: #ad6f00;
+@brown-bg: #fff0d4;
+@dark-red: #9c0202;
+
+.vertical-gradient(@from: white, @to: whitesmoke) {
+    background-color: @from;
+    background-image: -moz-linear-gradient(top, @from, @to);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@from), to(@to));
+    background-image: -webkit-linear-gradient(top, @from, @to);
+    background-image: -o-linear-gradient(top, @from, @to);
+    background-image: linear-gradient(to bottom, @from, @to);
+    background-repeat: repeat-x;
+}
+
+.box-shadow-inset(@x:0px, @y:1px, @blur:1px, @alpha: 0.05) {
+    -webkit-box-shadow: inset @x @y @blur rgba(0, 0, 0, @alpha);
+    -moz-box-shadow: inset @x @y @blur rgba(0, 0, 0, @alpha);
+    box-shadow: inset @x @y @blur rgba(0, 0, 0, @alpha);
+    -webkit-box-shadow: inset @x @y @blur rgba(0, 0, 0, @alpha);
+    -moz-box-shadow: inset @x @y @blur rgba(0, 0, 0, @alpha);
+    box-shadow: inset @x @y @blur rgba(0, 0, 0, @alpha);
+}
+
+.center {
+    text-align: center;
+}
+
+.text-outline(@width:1px, @blur:0, @alpha: 1) {
+    text-shadow: -(@width) 0 @blur rgba(0,0,0,@alpha), 0 @width @blur rgba(0,0,0,@alpha), @width 0 @blur rgba(0,0,0,@alpha), 0 -(@width) @blur rgba(0,0,0,@alpha);
+}
+
+// LAYOUT
+@border-radius: 5px;
+
+// Body
+
+html, body {height: 100%}
+
+body {
+    background: url('bg_body_01.png');
+    // background-color: rgba(0,0,0,0.8);
+    backgroun-repeat: repeat;
+    background-attachment: fixed;
+}
+
+// Header
+
+.dropdown-menu {
+    .a-signout {
+        background-color: white;
+        display: block;
+        padding: 3px 20px;
+        clear: both;
+        font-weight: normal;
+        line-height: 20px;
+        color: #333;
+        white-space: nowrap;
+        text-decoration: none;
+        border: 0;
+        width: 100%;
+        text-align: left;
+        &:hover {
+            background-color: #0081c2;
+            background-image: linear-gradient(to bottom, #0088cc, #0077b3);
+            background-repeat: repeat-x;
+            color: #fff;
+            text-decoration: none;
+        }
+    }
+}
+
+// Footer
+
+// fixed footer properties
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    /* Negative indent footer by it's height */
+    margin: 0 auto -80px;
+}
+
+/* Set the fixed height of the footer here */
+#push,
+#footer {
+    height: 79px;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+    #footer {
+        margin-left: -20px;
+        margin-right: -20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+// End of fixed footer properties
+
+#footer {
+    background: #222;
+    border-top: 1px solid  #111;
+    .box-shadow-inset(0,2px,5px,0.4);
+    color: #888;
+    a {
+        -moz-transition: all 0.3s linear 0s;
+        -webkit-transition: all 0.3s linear 0s;
+        transition: all 0.2s linear 0s;
+        color: #888;
+        &:hover {
+            color: whiteSmoke;
+            text-decoration: none;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+    }
+    small {
+        float: center;
+        text-align: center;
+    }
+}
+
+// Hero Unit
+
+.hero-unit {
+    padding-top: 50px;
+    padding-bottom: 40px;
+}
+
+// Forms
+
+form {
+    margin: 0;
+}
+
+// Modals
+
+.sign-in-modal {
+    width: 255px;
+    margin: -240px  0 0 -127px;
+}
+
+// Tables
+
+.table-products-bw {
+    font-size: 14px;
+    margin: 0;
+    // box-shadow: -2px 2px 5px rgba(0,0,0,0.3);
+    .header {
+        background-color: #333;
+        background-image: none;
+        .th-category {
+            color: #fefefe;
+            text-transform: uppercase;
+            text-align: left;
+            font-weight: normal;
+        }
+        .th-options {
+            font-weight: normal;
+            color: #fefefe;
+        }
+    }
+    tr {
+        .vertical-gradient(white, whitesmoke);
+        &:hover {
+            .vertical-gradient(white, lighten(@linkColor, 55%));
+            // background-position: 0 -2px;
+            .td-product {
+                h4 {
+                    color: @orange;
+                    text-decoration: none;
+                    text-shadow: 0 1px 0 rgba(0,0,0,0.3);
+                }
+                p {color: #333}
+            }
+            .td-id {color: #333}
+        }
+
+        .th-id, .td-id, .th-category, .th-options, .td-price {
+            vertical-align: middle;
+        }
+        .th-category {
+            padding-left: 15px;
+            font-size: 16px;
+        }
+        .td-price, .th-options {
+            width: 70px;
+            text-align: center;
+            a {
+                color: @brown;
+                &:hover {
+                    color: #08c;
+                }
+            }
+        }
+        .th-id, .td-id {
+            width: 18px;
+            text-align: right;
+            color: #888;
+        }
+        .td-product {
+            text-align: left;
+            padding-left: 15px;
+            h4 {
+                line-height: 20px;
+                color: #08c;
+                margin: 10px 0 0 0;
+                font-weight: normal;
+            }
+            p {color: #888}
+
+        }
+        .td-price {
+            font-size: 16px;
+        }
+    }
+}
+
+// Custom Navs
+
+.nav-pills-grid {
+    .vertical-gradient(white, whiteSmoke);
+    margin: 20px 0 0 0;
+    padding: 10px 30px;
+    border: 1px solid #eee;
+    border-bottom: 0;
+    border-radius: 4px 4px 0 0;
+    li {
+        width: 20%;
+        a {
+            color: #666;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            text-shadow: 0 1px 0 white;
+            &:hover {
+                color: #333;
+            }
+        }
+    }
+    li.active {
+        a, a:hover {
+            background-color: #e03535;
+            text-shadow: 0 1px 0 #ac0000;
+        }
+    }
+}
+
+.nav-pills-stacked {
+    .nav-pills-grid;
+    margin-top: 0;
+    padding: 10px;
+    li {width: auto}
+}
+
+// Product list category image
+
+.well-category-header {
+    margin-bottom: 0;
+    border-radius: 0;
+    background: url('bg_category.png');
+    .box-shadow-inset(0, 0, 15px, 0.5);
+    .title {
+        .center;
+        color: white;
+        // text-shadow: 0 3px 8px black;
+        .text-outline(2px, 8px, 0.8);
+    }
+}
+
+// Category grid container
+
+
+ul.category-grid {
+    .vertical-gradient;
+    margin-top: 30px;
+    margin-left: 0; /* for IE */
+    padding-left: 0; /* for Netscape and Firefox */
+    width: auto;
+    li {
+        .vertical-gradient;
+        border-radius: 4px;
+        float: left;
+        list-style: none;
+        margin: 1px;
+        padding: 8px 8px;
+        max-width: 564px;
+        min-width: 432px;
+        &:hover{.vertical-gradient(white, lighten(@linkColor, 55%))}
+        img {
+            border: 1px solid @dropdownBorder;
+            float: left;
+            width: 180px;
+            height: 150px;
+            margin: 0;
+        }
+        .caption {
+            position: relative;
+            height: 150px;
+            padding-left: 210px;
+            h1, h2, h3, h4, h5, h6 {
+                color: @orange;
+                margin: 0;
+                text-transform: uppercase;
+                text-shadow: 0 1px 0 rgba(0,0,0,0.3);
+            }
+            .bottom-left-fixed {
+                position: absolute;
+                bottom: 8px;
+                left: 210px;
+            }
+            .bottom-right-fixed {
+                position: absolute;
+                bottom: 8px;
+                right: 15px;
+            }
+        }
+    }
+
+}
