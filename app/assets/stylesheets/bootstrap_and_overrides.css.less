@@ -73,6 +73,12 @@ body {
     text-align: center;
 }
 
+sup {
+    vertical-align: baseline;
+    position: relative;
+    top: -0.4em;
+}
+
 .text-outline(@width:1px, @blur:0, @alpha: 1) {
     text-shadow: -(@width) 0 @blur rgba(0,0,0,@alpha), 0 @width @blur rgba(0,0,0,@alpha), @width 0 @blur rgba(0,0,0,@alpha), 0 -(@width) @blur rgba(0,0,0,@alpha);
 }
@@ -215,11 +221,16 @@ form {
                 h4 {
                     color: @orange;
                     text-decoration: none;
-                    text-shadow: 0 1px 0 rgba(0,0,0,0.3);
+                    text-shadow: 0 1px 0 rgba(0,0,0,0.1);
                 }
                 p {color: #333}
             }
             .td-id {color: #333}
+            .td-price a {
+                background-color: white;
+                border-color: @orange;
+                color: @linkColor;
+            }
         }
 
         .th-id, .td-id, .th-category, .th-options, .td-price {
@@ -230,12 +241,17 @@ form {
             font-size: 16px;
         }
         .td-price, .th-options {
-            width: 70px;
+            width: 65px;
             text-align: center;
             a {
-                color: @brown;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                padding: 3px;
+                color: #222;
                 &:hover {
-                    color: #08c;
+                    color: @orange;
+                    border-color: @linkColor;
+                    text-shadow: 0 1px 0 rgba(0,0,0,0.15);
                 }
             }
         }
@@ -266,7 +282,7 @@ form {
 
 .nav-pills-grid {
     .vertical-gradient(white, whiteSmoke);
-    margin: 20px 0 0 0;
+    margin: 0;
     padding: 10px 30px;
     border: 1px solid #eee;
     border-bottom: 0;

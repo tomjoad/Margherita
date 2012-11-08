@@ -1,0 +1,30 @@
+<!-- Cart by the products list view -->
+
+<div class="header"
+     style="padding: 10px 15px;
+            background-color: #333;
+            border-radius: 4px 4px 0 0;
+            border: 1px solid #eee">
+  <h4 style="margin:0; color: whiteSmoke;
+             text-shadow:0 1px 0 #555;
+             font-weight: normal">
+    <i class="icon-shopping-cart"></i> CART
+    <i class="icon-trash pull-right"></i>
+  </h4>
+</div>
+<div class=""
+     style="padding: 0 15px;background-color: whiteSmoke;">
+
+  <ul class="unstyled">
+    <% if there_is_something_in_cart? %>
+      <% @line_items.each do |item| %>
+        <li style="height: 60px;">
+          <small><%= item.product.category.name %></small><br />
+          <%= item.quantity %> x <%= item.product.name %>
+        </li>
+      <% end %>
+      <% else %>
+        <li>Cart is empty.</li>
+    <% end %>
+  </ul>
+</div>

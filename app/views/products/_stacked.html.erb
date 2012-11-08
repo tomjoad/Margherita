@@ -28,15 +28,15 @@
                 <p><%= product.description %></p>
               </td>
               <td class="td-price">
-                <a class="">-</a>
+                <a class="hidden"></a>
               </td>
               <td class="td-price">
-                <a class="">-</a>
+                <a class="hidden"></a>
               </td>
               <td class="td-price">
                 <a class=""
                    href="<%= url_for :controller => "line_items", :action => "update", :id => product, :operation => "add", :menu => true, :method => "get" %>">
-                  <%= '%.2f' % product.price %> zł
+                  <%= '%.2f' % product.price %> <sup>zł</sup>
                 </a>
               </td>
             </tr>
