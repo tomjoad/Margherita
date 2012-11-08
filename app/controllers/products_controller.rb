@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
     @parent = parent
     @products = collection
     @line_items = LineItem.all(session[:cart])
+    @cart = find_cart
   end
 
   def new

@@ -13,18 +13,31 @@
   </h4>
 </div>
 <div class=""
-     style="padding: 0 15px;background-color: whiteSmoke;">
+     style="padding: 0 15px;background-color: whiteSmoke; border-radius: 0 0 4px 4px">
 
   <ul class="unstyled">
     <% if there_is_something_in_cart? %>
+      <% c = [] %>
       <% @line_items.each do |item| %>
-        <li style="height: 60px;">
-          <small><%= item.product.category.name %></small><br />
-          <%= item.quantity %> x <%= item.product.name %>
-        </li>
+        <% c << item.product.category.name %>
       <% end %>
-      <% else %>
-        <li>Cart is empty.</li>
+      <% c.uniq!  %>
+      <% c.each do |cat_name| %>
+        <small><%= cat_name %></small>
+        <% @line_items.each do |item| %>
+          <% if item.product.category.name == cat_name %>
+            <li style="height: 40px;">
+              <%= item.quantity %> x <%= item.product.name %>
+              <span class="pull-right"><%= "%.2f" % item.total_price%><sup> zł</sup></span>
+            </li>
+          <% end %>
+        <% end %>
+      <% end  %>
+      <li style="text-align: right; padding: 20px 0 15px 0; border-radius: 0 0 4px 4px">
+        <strong>Total price: <%= "%.2f" % @cart.price %><sup> zł </sup></strong>
+      </li>
+    <% else %>
+      <li>Cart is empty.</li>
     <% end %>
   </ul>
 </div>
