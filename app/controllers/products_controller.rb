@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
   include CartHelper
+  include ApplicationHelper
+  before_filter :user_is_admin_or_seller?, only: [:new, :edit, :update, :destroy, :create]
 
   def index
     @parent = parent
@@ -64,4 +66,9 @@ class ProductsController < ApplicationController
     (parent.try(:products) || Product).scoped
   end
 
+  private
+
+  def has_rights
+    user_is_admin_or_seller?
+  end
 end
