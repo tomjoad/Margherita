@@ -1,48 +1,63 @@
 <!-- Cart by the products list view -->
 
 <div class="thead-inverted">
-    <span class="left-icon"><i class="icon-shopping-cart"></i></span>
-    <span class="title" style="padding-left: 8px">Cart</span>
-    <span class="right-icon clickable">
-      <%= link_to cart_path, :method => "delete" do %>
-      <i class="icon-trash"></i>
-      <% end %>
-    </span>
+  <span class="left-icon"><i class="icon-shopping-cart"></i></span>
+  <span class="title" style="padding-left: 8px">Cart</span>
+  <span class="right-icon clickable">
+    <%= link_to cart_path, :method => "delete" do %>
+    <i class="icon-trash"></i>
+<% end %>
+</span>
 </div>
 <div class=""
      style="padding: 0 15px;background-color: whiteSmoke; border-radius: 0 0 4px 4px">
 
-  <ul class="unstyled">
     <% if there_is_something_in_cart? %>
       <% c = [] %>
       <% @line_items.each do |item| %>
         <% c << item.product.category.name %>
       <% end %>
       <% c.uniq!  %>
-      <% c.each do |cat_name| %>
-        <li><small><%= cat_name %></small></li>
-        <% @line_items.each do |item| %>
-          <% if item.product.category.name == cat_name %>
-            <!-- <li class="pull-right"> -->
-            <!--   <%= link_to :controller => "line_items", :action => "update", :id => item.product.id, :operation => "subtract" do %> -->
-            <!--     <i id="minus" class="icon-minus-sign"></i> -->
-            <!--   <% end %> -->
-            <!--   <%= link_to :controller => "line_items", :action => "update", :id => item.product.id, :operation => "add" do %> -->
-            <!--     <i id="plus" class="icon-plus-sign"></i> -->
-            <!--   <% end %> -->
-            <!-- </li> -->
-            <li style="height: 30px; clear: both">
-              <%= item.quantity %> x <%= item.product.name %>
-              <span class="pull-right"><%= "%.2f" % item.total_price%><sup> zł</sup></span>
-            </li>
+      <!-- LISTA ZAKUPÓW -->
+      <ul class="cart-aside-items unstyled">
+        <% c.each do |cat_name| %>
+          <li class="category" style="padding: 8px 0 2px 0; border-bottom: 1px solid #ccc">
+            <small><%= cat_name %></small>
+          </li>
+          <% @line_items.each do |item| %>
+            <% if item.product.category.name == cat_name %>
+              <li style="padding: 8px 0; float: left; width: 23px">
+                <%= item.quantity %>
+                <span style="font-size: 0.7em; vertical-align: middle">x</span>
+              </li>
+              <li style="padding: 8px 0; float: left; width: 200px;">
+                <%= item.product.name %>
+              </li>
+              <li style="padding: 8px 0; float: right">
+                <i class="icon-plus-sign" style="margin-right:-5px"></i>
+                <i class="icon-minus-sign" style="margin-right:-5px"></i>
+                <i class="icon-remove-sign"></i>
+              </li>
+              <li style="clear: both; margin-bottom: 8px">
+                <span style="margin-left: 23px">
+                  <sup class="muted">chosen option</sup>
+                </span>
+                <span style="float: right;">
+                  <%= "%.2f" % item.total_price%><sup> zł</sup>
+                </span>
+
+              </li>
+            <% end %>
           <% end %>
-        <% end %>
-      <% end  %>
-      <li style="text-align: right; padding: 20px 0 15px 0; border-radius: 0 0 4px 4px">
-        <strong>Total price: <%= "%.2f" % @cart.price %><sup> zł </sup></strong>
-      </li>
-    <% else %>
-      <li>Cart is empty.</li>
+        <% end  %>
+        <li style="text-align: right;
+                   padding: 10px 0 20px 0;
+                   border-radius: 0 0 4px 4px;
+                   border-top: 1px solid #ccc">
+          <strong>Total price: <%= "%.2f" % @cart.price %><sup> zł </sup></strong>
+        </li>
+      <% else %>
+        <li>Cart is empty.</li>
     <% end %>
-  </ul>
+    </ul>
 </div>
