@@ -1,3 +1,8 @@
+<div class="thead-inverted">
+  <span class="left-icon"><i class="icon-th"></i></span>
+  <span class="title">Categories</span>
+</div>
+
 <ul id="myTab" class="nav nav-pills nav-pills-grid hidden-phone">
   <% @categories.each do |category| %>
     <li class="<%= category == @parent ? "active" : "" %>">

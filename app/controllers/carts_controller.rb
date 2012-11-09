@@ -18,7 +18,7 @@ class CartsController < ApplicationController
 
   def destroy
     session[:cart] = nil
-    redirect_to line_items_path
+    redirect_to products_path
   end
 
 end
