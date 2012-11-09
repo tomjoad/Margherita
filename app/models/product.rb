@@ -11,8 +11,10 @@
 #
 
 class Product < ActiveRecord::Base
-
+  has_many :variants
   belongs_to :category
+
+  SIZES = ["Three sizes","Two sizes","Just one size"]
 
   validates :name, :presence => true
   validates :price, :presence => true
