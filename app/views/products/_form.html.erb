@@ -1,4 +1,4 @@
-<%= form_for @product, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for setup_for(@product), :html => { :class => 'form-horizontal' } do |f| %>
 
   <div class="control-group">
     <%= f.label :category_id, :class => 'control-label' %>
@@ -13,13 +13,29 @@
       <%= f.text_field :name, :class => 'text_field' %>
     </div>
   </div>
-
-  <div class="control-group">
-    <%= f.label :price, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :price, :class => 'text_field' %>
+  <h3>Variants</h3>
+  <%= f.fields_for :variants do |ff| %>
+    <div class="control-group">
+      <%= ff.label :size, :class => 'control-label' %>
+      <div class="controls">
+        <%= ff.text_field :size, :class => 'text_field' %>
+      </div>
     </div>
-  </div>
+
+    <div class="control-group">
+      <%= ff.label :price, :class => 'control-label' %>
+      <div class="controls">
+        <%= ff.text_field :price, :class => 'text_field' %>
+      </div>
+    </div>
+
+      <% if ff.object.persisted? %>
+        <%= ff.check_box :_destroy %>
+        <%= ff.label :_destroy, 'Destroy' %>
+      <% end %>
+  <% end %>
+
+
 
   <div class="control-group">
     <%= f.label :description, :class => 'control-label' %>

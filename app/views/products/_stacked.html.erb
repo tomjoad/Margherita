@@ -24,18 +24,11 @@
                 <h4><%= product.name %></h4>
                 <p><%= product.description %></p>
               </td>
-              <td class="td-price">
-                <a class="hidden"></a>
-              </td>
-              <td class="td-price">
-                <a class="hidden"></a>
-              </td>
-              <td class="td-price">
-                <a class=""
-                   href="<%= url_for :controller => "line_items", :action => "update", :id => product, :operation => "add", :menu => true, :method => "get" %>">
-                  <%= '%.2f' % product.price %> <sup>zł</sup>
-                </a>
-              </td>
+              <% product.variants.each do |variant| %>
+                <td class="td-price">
+                  <%= variant.price %>
+                </td>
+              <% end %>
             </tr>
             <% i += 1 %>
           <% end %>
