@@ -10,8 +10,12 @@
 </span>
 </div>
 <div class=""
-     style="padding: 0 15px;background-color: whiteSmoke; border-radius: 0 0 4px 4px">
-
+     style="padding: 0 15px;
+            background-color: white;
+            border-radius: 0 0 4px 4px;
+            box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.2);">
+  <ul class="cart-aside-items unstyled"
+      style="padding-top: 10px">
     <% if there_is_something_in_cart? %>
       <% c = [] %>
       <% @line_items.each do |item| %>
@@ -19,45 +23,75 @@
       <% end %>
       <% c.uniq!  %>
       <!-- LISTA ZAKUPÓW -->
-      <ul class="cart-aside-items unstyled">
-        <% c.each do |cat_name| %>
-          <li class="category" style="padding: 8px 0 2px 0; border-bottom: 1px solid #ccc">
-            <small><%= cat_name %></small>
-          </li>
-          <% @line_items.each do |item| %>
-            <% if item.product.category.name == cat_name %>
-              <li style="padding: 8px 0; float: left; width: 23px">
-                <%= item.quantity %>
-                <span style="font-size: 0.7em; vertical-align: middle">x</span>
-              </li>
-              <li style="padding: 8px 0; float: left; width: 200px;">
-                <%= item.product.name %>
-              </li>
-              <li style="padding: 8px 0; float: right">
-                <i class="icon-plus-sign" style="margin-right:-5px"></i>
-                <i class="icon-minus-sign" style="margin-right:-5px"></i>
-                <i class="icon-remove-sign"></i>
-              </li>
-              <li style="clear: both; margin-bottom: 8px">
-                <span style="margin-left: 23px">
-                  <sup class="muted">chosen option</sup>
-                </span>
-                <span style="float: right;">
-                  <%= "%.2f" % item.total_price%><sup> zł</sup>
-                </span>
 
-              </li>
-            <% end %>
-          <% end %>
-        <% end  %>
-        <li style="text-align: right;
-                   padding: 10px 0 20px 0;
-                   border-radius: 0 0 4px 4px;
-                   border-top: 1px solid #ccc">
-          <strong>Total price: <%= "%.2f" % @cart.price %><sup> zł </sup></strong>
+      <% c.each do |cat_name| %>
+        <li class="category"
+            style="padding: 2px 0 2px 8px;
+                   border-bottom: 1px solid #ccc;
+                   background: rgba(0,0,0,0.08);
+                   border-radius: 4px">
+          <small><%= cat_name %></small>
         </li>
-      <% else %>
-        <li>Cart is empty.</li>
+        <% @line_items.each do |item| %>
+          <% if item.product.category.name == cat_name %>
+            <li style="padding: 13px 0 0 0;
+                       float: left;
+                       width: 23px">
+              <%= item.quantity %>
+              <span style="">x</span>
+            </li>
+            <li style="padding: 13px 0 0 0;
+                       float: left;
+                       width: 120px;">
+              <%= item.product.name %>
+            </li>
+            <li style="padding: 8px 0;
+                       float: right">
+              <button class="btn btn-mini btn-success"
+                      style="padding: 0 3px">
+                <i class="icon-plus"
+                   style="vertical-align: baseline">
+                </i>
+              </button>
+              <button class="btn btn-mini btn-warning"
+                      style="padding: 0 3px">
+                <i class="icon-minus"
+                   style="vertical-align: baseline">
+                </i>
+              </button>
+              <button class="btn btn-mini btn-danger"
+                      style="padding: 0 3px">
+                <i class="icon-remove"
+                   style="vertical-align: baseline">
+                </i>
+              </button>
+            </li>
+            <li style="clear: both; margin-bottom: 8px">
+              <span style="margin-left: 23px">
+                <sup class="muted">chosen option</sup>
+              </span>
+              <span style="float: right;">
+                <%= "%.2f" % item.total_price%><sup> zł</sup>
+              </span>
+
+            </li>
+          <% end %>
+        <% end %>
+      <% end  %>
+      <li style="text-align: right;
+                 padding: 10px 0 20px 0;
+                 border-radius: 0 0 4px 4px;
+                 border-top: 1px solid #ccc">
+        <strong>Total price: <%= "%.2f" % @cart.price %><sup> zł </sup></strong>
+      </li>
+    <% else %>
+      <li class="center"
+          style="padding: 8px 0 15px 0;">
+        Cart is empty!
+      </li>
     <% end %>
-    </ul>
+  </ul>
 </div>
+<button class="btn btn-block btn-success btn-large">
+  Create Order
+</button>

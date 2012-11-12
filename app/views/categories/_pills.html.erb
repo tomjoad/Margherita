@@ -5,7 +5,7 @@
 
 <ul id="myTab" class="nav nav-pills nav-pills-grid hidden-phone">
   <% @categories.each do |category| %>
-    <li class="<%= category == @parent ? "active" : "" %>">
+    <li class="<%= category.id == 1 ? "active" : "" %>">
         <a href="#<%= category.name.downcase.delete(' ') %>"
          data-toggle="tab">
           <i class="icon-th-list"></i> <%= category.name %>
@@ -16,7 +16,7 @@
 
 <ul id="myTab" class="nav nav-pills nav-stacked nav-pills-stacked visible-phone">
   <% @categories.each do |category| %>
-    <li class="<%= category == @parent ? "active" : "" %>">
+    <li class="<%= category.id == 1 ? "active" : "" %>">
         <a href="#<%= category.name.downcase.delete(' ') %>"
            data-toggle="tab">
           <i class="icon-th-list"></i> <%= category.name %>

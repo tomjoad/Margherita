@@ -1,6 +1,6 @@
 <div class="tab-content">
   <% @categories.each do |category| %>
-    <div class="tab-pane <%= category == @parent ? "active" : "" %>"
+    <div class="tab-pane <%= category.id == 1 ? "active" : "" %>"
          id="<%= category.name.downcase.delete(' ') %>">
       <div class="category-img-wide">
         <h2 class="title">
