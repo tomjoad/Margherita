@@ -17,12 +17,12 @@ class Cart
     # @price = cart_total_price
   end
 
-  def update_line_item(operation, product_id)
+  def update_line_item(operation, variant_id)
     if operation == "add"
-      @items << product_id
+      @items << variant_id
     elsif operation == "subtract"
-      if @items.include?(product_id)
-        @items.delete_at(@items.find_index(product_id))
+      if @items.include?(variant_id)
+        @items.delete_at(@items.find_index(variant_id))
         # what to do if items don`t include item i want to subtract
       end
     else
