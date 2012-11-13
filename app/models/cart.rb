@@ -4,7 +4,7 @@ class Cart
 
   def initialize(items)
     # raise ArgumentError, "value should be hash of items" unless items.class == Hash
-    # in session hash of items like:
+    # in session hash of items like
     # { "Frytki" => 1, "Hot-dog" => 1, "Ciabatta" => 2}
     # second attempt: Session could look like this also:
     # [1, 2, 1, 1, 32, 2, 2] Array consists of products id`s which can duplicate.
@@ -24,6 +24,7 @@ class Cart
       if @items.include?(variant_id)
         @items.delete_at(@items.find_index(variant_id))
         # what to do if items don`t include item i want to subtract
+        # safety for this operation need to be done
       end
     else
       # do more
@@ -35,16 +36,5 @@ class Cart
     LineItem.all(@items).each { |element| x += element.total_price }
     x
   end
-
-  # private
-
-    # def check_item_existence(name)
-    #   raise ArgumentError, "there are no such thing as #{name} in cart" unless @items.keys.include? name
-    # end
-
-    # def check_zero_values
-    #   @items.delete_if { |key, value| value <= 0 }
-    # end
-
 
 end

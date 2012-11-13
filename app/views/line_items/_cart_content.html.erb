@@ -20,17 +20,26 @@
                 <%= i %>
               </td>
               <td style="text-align:left">
+                <%= line_item.size %>
                 <%= line_item.product.name %>&nbsp
-                <%= link_to :controller => "line_items", :action => "destroy", :id => line_item.product.id do %>
+                <%= link_to :controller => "line_items",
+                    :action => "destroy",
+                    :id => line_item.variant.id do %>
                   <i id="remove" class="icon-remove-sign"></i>
                 <% end %>
               </td>
               <td>
-                <%= link_to :controller => "line_items", :action => "update", :id => line_item.product.id, :operation => "subtract" do %>
+                <%= link_to :controller => "line_items",
+                    :action => "update",
+                    :id => line_item.variant.id,
+                    :operation => "subtract" do %>
                 <i id="minus" class="icon-minus-sign"></i>
           <% end %>
           <%= line_item.quantity %>
-          <%= link_to :controller => "line_items", :action => "update", :id => line_item.product.id, :operation => "add" do %>
+          <%= link_to :controller => "line_items",
+              :action => "update",
+              :id => line_item.variant.id,
+              :operation => "add" do %>
           <i id="plus" class="icon-plus-sign"></i>
     <% end %>
 </td>

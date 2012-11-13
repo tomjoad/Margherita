@@ -26,7 +26,15 @@
               </td>
               <% product.variants.each do |variant| %>
                 <td class="td-price">
-                  <%= variant.price %>
+                  <a class=""
+                  href="<%= url_for :controller => 'line_items',
+                        :action => 'update',
+                        :id => variant.id,
+                        :operation => 'add',
+                        :menu => true,
+                        :method => 'get' %>">
+                    <%= '%.2f' % variant.price %>
+                  </a>
                 </td>
               <% end %>
             </tr>

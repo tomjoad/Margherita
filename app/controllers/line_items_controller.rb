@@ -12,12 +12,14 @@ class LineItemsController < ApplicationController
   end
 
   def update
+    # params[:id] is variant_id
     @cart = find_cart
     @cart.update_line_item(params[:operation], params[:id])
-    @product = Product.find(params[:id])
+    @variant = Variant.find(params[:id])
+#    @product = Variant.products.find(params[:id])
     session[:cart] = @cart.items
     if params[:menu]
-      redirect_to category_products_path(@product.category)
+      redirect_to category_products_path(@variant.category)
     else
       redirect_to new_cart_path
     end
