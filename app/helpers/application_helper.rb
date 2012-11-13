@@ -26,4 +26,7 @@ module ApplicationHelper
     current_user.role.seller? || current_user.role.admin?
   end
 
+  def current_view_is?(controller, action)
+    ( params[:controller] == controller && params[:action] == action )
+  end
 end
