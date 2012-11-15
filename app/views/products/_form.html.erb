@@ -1,3 +1,8 @@
+<% @product.errors.full_messages.each do |msg| %>
+<li>
+  <%= msg %>
+</li>
+<% end %>
 <%= form_for setup_for(@product), :html => { :class => 'form-horizontal' } do |f| %>
 
   <div class="control-group">
@@ -26,7 +31,7 @@
     <div class="control-group">
       <%= ff.label :size, :class => 'control-label' %>
       <div class="controls">
-        <%= ff.text_field :size, :class => 'text_field' %>
+        <%= ff.text_field :size, :readonly => true, :class => 'text_field' %>
       </div>
     </div>
 

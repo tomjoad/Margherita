@@ -7,4 +7,6 @@ class Variant < ActiveRecord::Base
   validates_presence_of :size
   validates_presence_of :price
 
+  delegate :name, :to => :product, :allow_nil => true
+
 end
