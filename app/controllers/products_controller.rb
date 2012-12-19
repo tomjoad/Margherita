@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   include CartHelper
   include ApplicationHelper
+
   before_filter :user_is_admin_or_seller?, only: [:new, :edit, :update, :destroy, :create]
 
   def index
@@ -16,11 +17,9 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(params[:product])
-
     if @product.save
       redirect_to products_path
     else
-    #  redirect_to new_product_path
       render :action => "new"
     end
   end
@@ -45,17 +44,8 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
-
     redirect_to products_url
   end
-
-  # def add_to_cart
-  #   @product = Product.find(params[:id])
-  #   @cart = find_cart
-  #   @cart.add_item(@product.name)
-  #   session[:cart] = @cart.items
-  #   redirect_to category_products_path(@product.category)
-  # end
 
   protected
 

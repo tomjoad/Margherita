@@ -4,7 +4,7 @@
          id="<%= category.name.downcase.delete(' ') %>">
       <div class="category-img-wide">
         <h2 class="title">
-          <%= category.name.capitalize%>
+          <%= category.name.capitalize %>
         </h2>
       </div>
       <div class="thead-inverted" style="border-radius: 0">
@@ -24,16 +24,18 @@
                 <h4><%= product.name %></h4>
                 <p><%= product.description %></p>
               </td>
-              <% product.variants.each do |variant| %>
+              <% display_in_order(product.variants).each do |variant| %>
                 <td class="td-price">
                   <a class=""
-                  href="<%= url_for :controller => 'line_items',
-                        :action => 'update',
-                        :id => variant.id,
-                        :operation => 'add',
-                        :menu => true,
-                        :method => 'get' %>">
-                    <%= '%.2f' % variant.price %>
+                     <% if variant %>
+                     href="<%= url_for :controller => 'line_items',
+                           :action => 'update',
+                           :id => variant.id,
+                           :operation => 'add',
+                           :menu => true,
+                           :method => 'get' %>">
+                      <%= '%.2f' % variant.price %>
+                    <% end %>
                   </a>
                 </td>
               <% end %>

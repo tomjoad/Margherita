@@ -7,13 +7,14 @@ class OrdersController < ApplicationController
   include SessionsHelper
   include ApplicationHelper
 
+  # doesn`t matter who is the seller
+  # if parameter history is 'true', finished and cancelled orders
+  # will be displayed, in other case only pending orders.
+
   def index
     if user_is_admin_or_seller?
-      # doesn`t matter who is the seller
       @orders = Order.for_seller(params[:filter])
     else
-      # if parameter history is 'true', finished and cancelled orders
-      # will be displayed, in other case only pending orders.
       @orders = Order.for_customer(current_user, params[:history])
     end
   end
@@ -31,13 +32,13 @@ class OrdersController < ApplicationController
     redirect_to root_url
   end
 
+  # actions for state machine, wrap to the model as much as possible
+  # standard order updating, details should be considered in the future
+
   def update
     if params[:operation]
-      # actions for state machine, wrap to the model as much as possible
       @order = Order.find(params[:id])
       @order.send params[:operation].to_sym
-    else
-      # standard order updating, details should be considered in the future
     end
     redirect_to orders_path
   end
