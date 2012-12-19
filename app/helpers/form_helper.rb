@@ -1,14 +1,15 @@
 module FormHelper
-  # def setup_for(product)
-  #   3.times {product.variants.build}
-  #   product
-  # end
 
   def setup_for(product)
-    Product::SIZES.each do |size|
+    # if product.variants.empty?
+    (Product::SIZES - product.sizes).each do |size|
       product.variants.build(:size => size)
     end
+    # else
+    #   (Product::SIZES - product.sizes)
+    # end
     product
+    # end
   end
-
 end
+

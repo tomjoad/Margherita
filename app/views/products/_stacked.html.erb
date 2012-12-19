@@ -24,7 +24,7 @@
                 <h4><%= product.name %></h4>
                 <p><%= product.description %></p>
               </td>
-              <% display_in_order(product.variants).each do |variant| %>
+              <% display_in_order(product.variants, Product::SIZES).each do |variant| %>
                 <td class="td-price">
                   <a class=""
                      <% if variant %>
