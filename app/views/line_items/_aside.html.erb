@@ -42,7 +42,7 @@
             </li>
             <li style="padding: 13px 0 0 0;
                        float: left;
-                       width: 120px;">
+                       width: 220px;">
               <%= item.product.name %>
             </li>
             <li style="padding: 8px 0;
@@ -92,6 +92,12 @@
     <% end %>
   </ul>
 </div>
-<button class="btn btn-block btn-success btn-large">
-  Create Order
-</button>
+<% if there_is_something_in_cart?%>
+  <button class="btn btn-block btn-success btn-large">
+    Create Order
+  </button>
+  <% else %>
+    <button class="btn btn-block btn-success btn-large disabled">
+      Create Order
+    </button>
+<% end %>

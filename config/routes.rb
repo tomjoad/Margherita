@@ -1,4 +1,12 @@
 Margherita::Application.routes.draw do
+  get "services/contact"
+
+  get "services/contact_us"
+
+  get "services/catering"
+
+  get "services/reservations"
+
   root :to => "home#index"
 
   resource :cart, only: [:new, :destroy]
