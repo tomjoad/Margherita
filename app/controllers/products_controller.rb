@@ -2,7 +2,8 @@ class ProductsController < ApplicationController
   include CartHelper
   include ApplicationHelper
 
-  before_filter :user_is_admin_or_seller?, only: [:new, :edit, :update, :destroy, :create]
+  before_filter :has_rights, :except => [:index]
+  # , :only => [:new, :edit, :update, :destroy, :create]
 
   def index
     @parent = parent
@@ -57,9 +58,19 @@ class ProductsController < ApplicationController
     (parent.try(:products) || Product).scoped
   end
 
+
+  # def user_is_admin_or_seller
+  #   redirect_to root_url
+  #   # current_user.role.seller? || current_user.role.admin?
+  # end
+
   private
 
   def has_rights
-    user_is_admin_or_seller?
+    unless user_is_admin_or_seller?
+      flash[:notice] = 'No permission!'
+      redirect_to root_url
+    end
   end
+
 end

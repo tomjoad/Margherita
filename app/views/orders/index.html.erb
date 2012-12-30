@@ -1,14 +1,20 @@
-<!-- delete these kalisz when you get through header bug --!>
-<br />
-<br />
-<% if user_is_admin_or_seller? %>
-  <% Order::STATES.split(' ').each do |state| %>
-    <%= link_to state, orders_path(:filter => state) %> |
+<div class="content">
+  <% if user_is_admin_or_seller? %>
+    <% Order::STATES.split(' ').each do |state| %>
+      <%= link_to state, orders_path(:filter => state) %> |
+    <% end %>
+  <% elsif current_user.role.customer? %>
+    <ul class="nav nav-tabs">
+      <li class="<%= current_page?(url_for(:controller => "orders", :action => "index", :pending => "true")) ? 'active' : '' %>">
+        <%= link_to 'In progress', :controller => "orders", :action => "index", :pending => true %>
+      </li>
+      <li class="<%= current_page?(url_for(:controller => "orders", :action => "index", :history => true)) ? 'active' : '' %>">
+        <%= link_to "History", :controller => "orders", :action => "index", :history => true %>
+      </li>
+    </ul>
+  <% else %>
   <% end %>
-<% elsif current_user.role.customer? %>
-  <%= link_to 'In progress', orders_path %> |
-  <%= link_to "History", :controller => "orders", :action => "index", :history => true %> |
-<% else %>
-<% end %>
-<br />
-<%= render 'table'%>
+
+  <%= render 'table'%>
+
+</div>
