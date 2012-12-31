@@ -1,4 +1,4 @@
-<% @orders.each do |order| %>
+<% @orders.reverse_each do |order| %>
   <div style="background-color: transparent; margin-bottom: 50px">
     <blockquote style="position: relative; background-color: rgba(255,255,255,0.2)">
       <h3>Zamówienie nr <%= order.id %>   <sup><span class="label label-info"><%= order.state.gsub('_', ' ') %></span></sup></h3>
@@ -40,7 +40,7 @@
       </dd>
     </br>
       <dt>Produkty:</dt>
-      <dd>
+      <dd style="margin-right: 160px;">
 
         <% variants = [] %>
         <% order.cart.each do |variant_id| %>
@@ -57,7 +57,7 @@
         <% end %>
         <% categories.uniq! %>
 
-        <table class="table" style="margin: 0; width: 85%">
+        <table class="table table-hover table-condensed">
           <tr>
             <th>Kategoria</th>
             <th style="text-align: center">Nr</th>
