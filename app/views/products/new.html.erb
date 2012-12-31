@@ -1,0 +1,10 @@
+<<<<<<< HEAD
+<br />
+=======
+<div class="content">
+>>>>>>> 1c12f0c4ba257a76d93c153b8822caf9abd175bc
+<%- model_class = @product.class -%>
+<h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
+                               :default => "New #{model_class.model_name.human}") %></h1>
+<%= render :partial => 'form' %>
+</div>
