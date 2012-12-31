@@ -41,7 +41,7 @@ class OrdersController < ApplicationController
       @order = Order.find(params[:id])
       @order.send params[:operation].to_sym
     end
-    redirect_to orders_path
+    redirect_to orders_path(:filter => @order.state)
   end
 
 end

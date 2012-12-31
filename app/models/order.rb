@@ -100,5 +100,5 @@ class Order < ActiveRecord::Base
     else
     end
   end
-
+  #
 end
