@@ -27,8 +27,9 @@ class OrdersController < ApplicationController
   end
 
   def create
+    @order = Order.new(params[:order])
     @order.cart = session[:cart]
-    flash[:notice] = "Your order is pedning" if @order.save
+    flash[:notice] = "Your order is pending" if @order.save
     redirect_to root_url
   end
 
