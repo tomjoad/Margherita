@@ -1,7 +1,23 @@
 <% @orders.each do |order| %>
-  <div style="background-color: rgba(255,255,255,0); margin-bottom: 50px">
-    <blockquote style="background-color: rgba(255,255,255,0.2)">
-      <h3>Zamówienie nr <%= order.id %></h3>
+  <div style="background-color: transparent; margin-bottom: 50px">
+    <blockquote style="position: relative; background-color: rgba(255,255,255,0.2)">
+      <h3>Zamówienie nr <%= order.id %>   <sup><span class="label label-info"><%= order.state.gsub('_', ' ') %></span></sup></h3>
+      <% if user_is_admin_or_seller? %>
+          <span style="position: absolute; top: 5px; right:5px;">
+            <% case order.state %>
+            <% when 'pending' %>
+            <%= link_to 'Move to "In Delivery"', order_path(order, :operation => "accept"), :method => :put, :class => "btn btn-primary" %>
+            <%= link_to 'Move to "Cancelled"', order_path(order, :operation => "cancel"), :method => :put, :class => "btn btn-danger" %>
+            <% when 'in_delivery' %>
+            <%= link_to 'Move to "Finished"', order_path(order, :operation => "finish"), :method => :put, :class => "btn btn-success" %>
+            <%= link_to 'Move to "Cancelled"', order_path(order, :operation => "cancel"), :method => :put, :class => "btn btn-danger" %>
+            <% when 'finished' %>
+            <%= link_to 'Move to "Cancelled"', order_path(order, :operation => "cancel"), :method => :put, :class => "btn btn-danger" %>
+            <% when 'cancelled' %>
+            <%= link_to 'Restore Order', order_path(order, :operation => "restore"), :method => :put, :class => "btn btn-warning" %>
+          </span>
+      <% end %>
+<% end %>
     </blockquote>
     <dl class="dl-horizontal">
       <dt>Utworzono:</dt>
@@ -23,7 +39,7 @@
         <%= order.phone %>
       </dd>
     </br>
-      <dt>Zamówione dania:</dt>
+      <dt>Produkty:</dt>
       <dd>
 
         <% variants = [] %>
@@ -41,7 +57,7 @@
         <% end %>
         <% categories.uniq! %>
 
-        <table class="table" style="margin: 0">
+        <table class="table" style="margin: 0; width: 85%">
           <tr>
             <th>Kategoria</th>
             <th style="text-align: center">Nr</th>
@@ -50,12 +66,13 @@
             <th style="text-align: center">Ilość</th>
             <th style="text-align: center">Cena</th>
           </tr>
+
+          <% i = 1 %>
           <% categories.each do |category| %>
             <tr>
               <th colspan="6" style="background-color: rgba(255,255,255,0.2)"><%= category.upcase %></th>
             </tr>
 
-            <% i = 1 %>
             <% variants_unique.each do |variant| %>
               <% if variant.category.name == category %>
                 <tr>
@@ -83,23 +100,6 @@
       <dt>Całkowity koszt:</dt>
       <dd><%= "%.2f" % order.total_price %> zł</dd>
     </dl>
-
-
-    <% if user_is_admin_or_seller? %>
-      <% case order.state %>
-      <% when 'pending' %>
-      <%= link_to '-> in_delviery', order_path(order, :operation => "accept"), :method => :put %> |
-          <%= link_to '-> cancelled', order_path(order, :operation => "cancel"), :method => :put %>
-          <% when 'in_delivery' %>
-          <%= link_to '-> finished', order_path(order, :operation => "finish"), :method => :put %> |
-          <%= link_to '-> cancelled', order_path(order, :operation => "cancel"), :method => :put %>
-          <% when 'finished' %>
-          <%= link_to '-> cancelled', order_path(order, :operation => "cancel"), :method => :put %>
-          <% when 'cancelled' %>
-          <%= link_to '-> restore', order_path(order, :operation => "restore"), :method => :put %>
-        <% end %>
-
-<% end %>
 </div>
 <% end %>
 

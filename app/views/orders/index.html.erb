@@ -1,8 +1,52 @@
 <div class="content">
   <% if user_is_admin_or_seller? %>
-    <% Order::STATES.split(' ').each do |state| %>
-      <%= link_to state, orders_path(:filter => state) %> |
-    <% end %>
+    <% states = Order::STATES.split(' ') %>
+    <ul class="breadcrumb">
+      <% if current_page?(url_for(:controller => "orders", :action => "index", :filter => "")) %>
+      <li class="active"><i class="icon icon-th-list"></i>
+        All
+      <% else %>
+      <li><i class="icon icon-th-list"></i>
+        <%= link_to "All", orders_path %>
+      <% end %>
+        <span class="divider">/</span>
+      </li>
+      <% if current_page?(url_for(:controller => "orders", :action => "index", :filter => states[0])) %>
+      <li class="active"><i class="icon icon-refresh"></i>
+        <%= states[0].gsub('_', ' ').titleize %>
+      <% else %>
+      <li><i class="icon icon-refresh"></i>
+        <%= link_to states[0].gsub('_', ' ').titleize, orders_path(:filter => states[0]) %>
+      <% end %>
+        <span class="divider">/</span>
+      </li>
+      <% if current_page?(url_for(:controller => "orders", :action => "index", :filter => states[1])) %>
+      <li class="active"><i class="icon icon-gift"></i>
+        <%= states[1].gsub('_', ' ').titleize %>
+      <% else %>
+      <li><i class="icon icon-gift"></i>
+        <%= link_to states[1].gsub('_', ' ').titleize, orders_path(:filter => states[1]) %>
+      <% end %>
+        <span class="divider">/</span>
+      </li>
+      <% if current_page?(url_for(:controller => "orders", :action => "index", :filter => states[2])) %>
+      <li class="active"><i class="icon icon-ok"></i>
+        <%= states[2].gsub('_', ' ').titleize %>
+      <% else %>
+      <li><i class="icon icon-ok"></i>
+        <%= link_to states[2].gsub('_', ' ').titleize, orders_path(:filter => states[2]) %>
+      <% end %>
+      </li>
+      <% if current_page?(url_for(:controller => "orders", :action => "index", :filter => states[3])) %>
+      <li class="pull-right active"><i class="icon icon-trash"></i>
+        <%= states[3].gsub('_', ' ').titleize %>
+      <% else %>
+      <li class="pull-right"><i class="icon icon-trash"></i>
+        <%= link_to states[3].gsub('_', ' ').titleize, orders_path(:filter => states[3]) %>
+      <% end %>
+      </li>
+    </ul>
+
   <% elsif current_user.role.customer? %>
     <ul class="nav nav-tabs">
       <li class="<%= current_page?(url_for(:controller => "orders", :action => "index", :pending => "true")) ? 'active' : '' %>">
@@ -12,7 +56,6 @@
         <%= link_to "History", :controller => "orders", :action => "index", :history => true %>
       </li>
     </ul>
-  <% else %>
   <% end %>
 
   <%= render 'table'%>
