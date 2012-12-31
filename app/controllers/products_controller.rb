@@ -62,4 +62,5 @@ class ProductsController < ApplicationController
   def has_rights
     user_is_admin_or_seller?
   end
+
 end

@@ -4,9 +4,13 @@ class Variant < ActiveRecord::Base
 
   attr_accessible :price, :size
 
-  validates_presence_of :size
-  validates_presence_of :price
+  # validates_presence_of :size
+  # validates_presence_of :price
 
   delegate :name, :to => :product, :allow_nil => true
+
+  # def price_is_blank?
+  #   self.price.blank?
+  # end
 
 end
