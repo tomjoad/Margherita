@@ -1,0 +1,62 @@
+<% states = Order::STATES.split(' ') %>
+<% states_titles = states.collect {|t| t.gsub('_', ' ').titleize} %>
+
+<ul class="breadcrumb">
+
+  <% if current_page?(orders_path(filter: 'all')) %>
+    <li class="active"><i class="icon icon-th-list"></i>
+      All
+      <span class="divider">/</span>
+    </li>
+  <% else %>
+    <li><i class="icon icon-th-list"></i>
+      <%= link_to "All", orders_path(filter: 'all') %>
+      <span class="divider">/</span>
+    </li>
+  <% end %>
+
+  <% if current_page?(orders_path(filter: states[0])) %>
+    <li class="active"><i class="icon icon-refresh"></i>
+      <%= states_titles[0] %>
+      <span class="divider">/</span>
+    </li>
+  <% else %>
+    <li><i class="icon icon-refresh"></i>
+      <%= link_to states_titles[0], orders_path(filter: states[0]) %>
+      <span class="divider">/</span>
+    </li>
+  <% end %>
+
+  <% if current_page?(orders_path(filter: states[1])) %>
+    <li class="active"><i class="icon icon-gift"></i>
+      <%= states_titles[1] %>
+      <span class="divider">/</span>
+    </li>
+  <% else %>
+    <li><i class="icon icon-gift"></i>
+      <%= link_to states_titles[1], orders_path(filter: states[1]) %>
+      <span class="divider">/</span>
+    </li>
+  <% end %>
+
+  <% if current_page?(orders_path(filter: states[2])) %>
+    <li class="active"><i class="icon icon-ok"></i>
+      <%= states_titles[2] %>
+    </li>
+  <% else %>
+    <li><i class="icon icon-ok"></i>
+      <%= link_to states_titles[2], orders_path(filter: states[2]) %>
+    </li>
+  <% end %>
+
+  <% if current_page?(orders_path(filter: states[3])) %>
+    <li class="active pull-right"><i class="icon icon-trash"></i>
+      <%= states_titles[3] %>
+    </li>
+  <% else %>
+    <li class="pull-right"><i class="icon icon-trash"></i>
+      <%= link_to states_titles[3], orders_path(filter: states[3]) %>
+    </li>
+  <% end %>
+
+</ul>
