@@ -7,93 +7,16 @@
         <span class="icon-bar"></span>
       </a>
       <div class="container nav-collapse">
-        <ul class="nav">
 
-          <!-- HOME  -->
-
-          <li class="<%= current_page?(root_url) ? "active" : ""%>">
-            <a href="<%= url_for root_url %>"><i class="icon-home"></i> Home</a>
-          </li>
-
-          <!-- PRODUCTS -->
-
-          <li class="<%= current_page?(products_path) ? "active" : ""%>">
-            <a href="<%= url_for products_path %>">Food Menu</a>
-          </li>
-
-          <!-- SERVICES MENU -->
-
-          <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-              Services <i class="caret"></i>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="<%= url_for services_reservations_path %>">Reservations</a></li>
-              <li><a href="<%= url_for services_catering_path %>">Catering</a></li>
-              <li class="divider"></li>
-              <li><a href="<%= url_for services_contact_path %>">Contact Us</a></li>
-            </ul>
-          </li>
-
-          <!-- ABOUT -->
-
-          <li class="<%= current_page?(home_about_path) ? "active" : ""%>">
-            <a href="<%= url_for home_about_path %>">About</a>
-          </li>
-
-          <!-- CART -->
-
-          <li class="<%= current_page?(new_cart_path) ? "active" : ""%>" >
-            <%= link_to new_cart_path do %>
-              <i class="icon-shopping-cart"></i>
-              <% if session[:cart] %>
-                <% if session[:cart].count >= 1 %>
-                  Cart
-                  <span class="badge badge-info"><%= session[:cart].count %></span>
-                <% else %>
-                  Cart empty
-                <% end %>
-              <% else %>
-                Cart empty
-              <% end %>
-            <% end %>
-          </li>
-        </ul>
-
-        <!-- USER MENU -->
+        <%= render 'layouts/header_navbar_links' %>
 
         <% if current_user %>
-          <ul class="nav pull-right" style="margin-right: 0">
-            <% if current_user.role.admin? %>
-              <li id="fat-menu" class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  Admin Menu <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to "Users", admin_users_path %></li>
-                  <li><%= link_to "Categories", admin_categories_path %></li>
-                  <li><%= link_to "Orders", admin_orders_path %></li>
-                  <li><%= link_to "Products", products_path %></li>
-                  <li><%= link_to "New Product", new_product_path %></li>
-                  <li><%= link_to "New Category", new_category_path %></li>
-                </ul>
-              </li>
-            <% end %>
-            <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="icon-user"></i> Account <i class="caret"></i>
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "Your Orders", orders_path %></li>
-                <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-                <li class="divider"></li>
-                <li>
-                  <%= button_to "Sign out", signout_path, method: "delete", class: "a-signout visible-desktop" %>
-                  <%= button_to "Sign out", signout_path, method: "delete", class: "btn btn-block hidden-desktop" %>
-                </li>
-              </ul>
-            </li>
-          </ul>
+
+          <% if current_user.role.admin? %>
+            <%= render 'layouts/user_admin_menu' %>
+          <% else %>
+            <%= render 'layouts/user_customer_menu' %>
+          <% end %>
 
         <% else %>
           <% unless current_view_is?('sessions', 'new') %>
@@ -104,6 +27,7 @@
           <% end %>
           <% end %>
         <% end %>
+
       </div>
     </div>
   </div>

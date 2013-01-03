@@ -1,65 +1,61 @@
-<div class="content">
-    <%= form_for @order, html: {class: 'well form-inline', style: 'margin: auto; width:345px'} do |f| %>
+<%= form_for @order, html: {class: 'well form-inline', style: 'margin: auto; width:345px'} do |f| %>
 
-      <% if @order.errors.any? %>
-        <div id="error_explanation">
-          <div id="alert alert-error">
-            The form contains <%= pluralize( @order.errors.count, "error")%>
-          </div>
-          <ul>
-            <% @order.errors.full_messages.each do |msg| %>
-              <li>* <%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
+<% if @order.errors.any? %>
+  <div id="error_explanation">
+    <div id="alert alert-error">
+      The form contains <%= pluralize( @order.errors.count, "error")%>
+    </div>
+    <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+        <li>* <%= msg %></li>
       <% end %>
+    </ul>
+  </div>
+<% end %>
 
 
-      <h2 class="center" style="text-transform: uppercase">Shipping details</h2>
+<h2 class="center" style="text-transform: uppercase">Shipping details</h2>
 
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-      <%= f.hidden_field :total_price, :value => @cart.price %>
+<%= f.hidden_field :user_id, :value => current_user.id %>
+<%= f.hidden_field :total_price, :value => @cart.price %>
 
 
-        <p>
-          <h5>Name:</h5>
-          <%= f.text_field :name, value: @user.name, class: 'span2', placeholder: 'First name' %>
-          <%= f.text_field :last_name, value: @user.last_name, class: 'span2', placeholder: 'Last name' %>
-        </p>
-        <p>
-          <h5>Address:</h5>
-          <%= f.text_field :street, value: @user.street, class: 'span2', placeholder: 'Street' %>
-          <%= f.text_field :home_number, value: @user.home_number, class: 'span2', placeholder: 'House no.' %>
-        </p>
-        <p>
-          <%= f.select :city, User::CITIES, {selected: @user.city}, {class: 'span2'} %>
-          <%= f.select :zip_code, User::ZIP_CODES, {selected: @user.zip_code}, {class: 'span2'} %>
-        </p>
-        <p>
-          <h5>Phone no:</h5>
-          <%= f.text_field :phone, value: @user.phone, class: 'span2', placeholder: 'Phone no.' %>
-        </p>
-        <p>
-          <h5>Delivery distance:</h5>
-          <%= f.select :distance, User::DISTANCES, {selected: @user.distance}, {class: 'span2'} %>
-        </p>
+<p>
+  <h5>Name:</h5>
+  <%= f.text_field :name, value: @user.name, class: 'span2', placeholder: 'First name' %>
+  <%= f.text_field :last_name, value: @user.last_name, class: 'span2', placeholder: 'Last name' %>
+</p>
+<p>
+  <h5>Address:</h5>
+  <%= f.text_field :street, value: @user.street, class: 'span2', placeholder: 'Street' %>
+  <%= f.text_field :home_number, value: @user.home_number, class: 'span2', placeholder: 'House no.' %>
+</p>
+<p>
+  <%= f.select :city, User::CITIES, {selected: @user.city}, {class: 'span2'} %>
+  <%= f.select :zip_code, User::ZIP_CODES, {selected: @user.zip_code}, {class: 'span2'} %>
+</p>
+<p>
+  <h5>Phone no:</h5>
+  <%= f.text_field :phone, value: @user.phone, class: 'span2', placeholder: 'Phone no.' %>
+</p>
+<p>
+  <h5>Delivery distance:</h5>
+  <%= f.select :distance, User::DISTANCES, {selected: @user.distance}, {class: 'span2'} %>
+</p>
 
-        <button style="margin-top:20px"
-                class="btn btn-large btn-block btn-primary"
-                type="submit">
-          Create Order
-        </button>
+<button style="margin-top:20px"
+        class="btn btn-large btn-block btn-primary"
+        type="submit">
+  Create Order
+</button>
 
 <% end %>
 
 <ul class="pager">
   <li class="previous">
-      <%= link_to "&larr; Back to Cart".html_safe, new_cart_path %>
+    <%= link_to "&larr; Back to Cart".html_safe, new_cart_path %>
   </li>
   <li class="next">
-      <%= link_to "Summary &rarr;".html_safe, "#" %>
+    <%= link_to "Summary &rarr;".html_safe, "#" %>
   </li>
 </ul>
-
-</div>
-

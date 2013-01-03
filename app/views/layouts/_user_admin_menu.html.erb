@@ -1,0 +1,20 @@
+<ul class="nav pull-right" style="margin-right: 0">
+  <li id="fat-menu" class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      <i class="icon icon-user"></i>Admin Menu <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li><%= link_to "Users", admin_users_path %></li>
+      <li><%= link_to "Categories", admin_categories_path %></li>
+      <li><%= link_to "Orders", orders_path(filter: 'pending') %></li>
+      <li><%= link_to "Products", products_path %></li>
+      <li><%= link_to "New Product", new_product_path %></li>
+      <li><%= link_to "New Category", new_category_path %></li>
+      <li class="divider"></li>
+      <li>
+        <%= button_to "Sign out", signout_path, method: "delete", class: "a-signout visible-desktop" %>
+        <%= button_to "Sign out", signout_path, method: "delete", class: "btn btn-block hidden-desktop" %>
+      </li>
+    </ul>
+  </li>
+</ul>

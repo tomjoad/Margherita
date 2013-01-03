@@ -1,88 +1,66 @@
-<%= form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= render 'shared/error_messages' %>
+<h2>Edycja profilu</h2>
+<hr>
 
-  <div class="control-group">
-    <%= f.label :email, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :email, :class => 'text_field' %>
-    </div>
+<h4 style="margin: 25px 0">Logowanie</h4>
+<%= form_for @user, html: { class: 'form-horizontal' } do |f| %>
+<div class="control-group">
+  <%= f.label :email, class: 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :email, placeholder: 'e-mail' %>
   </div>
+</div>
+<div class="control-group form-inline">
+  <%= f.label :password, class: 'control-label' %>
+  <div class="controls">
+    <%= f.password_field :password, placeholder: 'Hasło' %>
+    <%= f.password_field :password_confirmation, placeholder: 'Potwierdź hasło' %>
+    <span class="help-block">MOŻNA ZMIENIĆ HASŁO BEZ PODANIA STAREGO?</span>
+  </div>
+</div>
 
-  <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
-    </div>
-  </div>
+<h4 style="margin: 25px 0">Domyślny adres dostawy</h4>
 
-  <div class="control-group">
-    <%= f.label :password, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.password_field :password, :class => 'text_field' %>
-    </div>
+<div class="control-group form-inline">
+  <%= f.label :name, class: 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :name, placeholder: 'Imię' %>
+    <%= f.text_field :last_name, placeholder: 'Nazwisko' %>
   </div>
+</div>
+<div class="control-group form-inline">
+  <%= f.label :street, class: 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :street, placeholder: 'Ulica' %>
+    <%= f.text_field :home_number, placeholder: 'Numer', class: 'input-mini'%>
+  </div>
+</div>
+<div class="control-group">
+  <%= f.label :city, class: 'control-label' %>
+  <div class="controls">
+    <%= f.select(:zip_code, User::ZIP_CODES, {}, class: 'input-small') %>
+    <%= f.select(:city, User::CITIES, {}, class: 'input-medium') %>
+  </div>
+</div>
 
-  <div class="control-group">
-    <%= f.label :password_confrimation, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.password_field :password_confirmation, :class => 'text_field' %>
-    </div>
-  </div>
+<h4 style="margin: 25px 0">Telefon kontaktowy</h4>
 
-  <div class="control-group">
-    <%= f.label :last_name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :last_name, :class => 'text_field' %>
-    </div>
+<div class="control-group">
+  <div class="controls">
+    <%= f.text_field :phone, placeholder: 'Numer' %>
   </div>
+</div>
 
-  <div class="control-group">
-    <%= f.label :zip_code, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.select(:zip_code, User::ZIP_CODES) %>
-    </div>
-  </div>
+<!-- <div class="control-group"> -->
+<!--   <%= f.label :distance, :class => 'control-label' %> -->
+<!--   <div class="controls"> -->
+<!--     <%= f.select(:distance, User::DISTANCES) %> -->
+<!--   </div> -->
+<!-- </div> -->
 
-  <div class="control-group">
-    <%= f.label :city, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.select :city, User::CITIES %>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <%= f.label :distance, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.select(:distance, User::DISTANCES) %>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <%= f.label :home_number, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :home_number %>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <%= f.label :street, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :street %>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <%= f.label :phone, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :phone, :rows => 5 %>
-    </div>
-  </div>
-
-  <div class="form-actions">
-    <%= f.submit "Save changes", :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                products_path, :class => 'btn' %>
-  </div>
+<div class="form-actions">
+  <%= f.submit "Save changes", :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+      user_path(current_user), :class => 'btn' %>
+</div>
 
 <% end %>
-

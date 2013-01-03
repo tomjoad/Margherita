@@ -70,7 +70,9 @@
           <% i = 1 %>
           <% categories.each do |category| %>
             <tr>
-              <th colspan="6" style="background-color: rgba(255,255,255,0.2)"><%= category.upcase %></th>
+              <td colspan="6" style="background-color: rgba(255,255,255,0.2)">
+                <%= category.titleize %>
+              </td>
             </tr>
 
             <% variants_unique.each do |variant| %>

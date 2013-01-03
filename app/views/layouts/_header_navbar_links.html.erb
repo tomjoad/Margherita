@@ -1,0 +1,52 @@
+<ul class="nav">
+
+  <!-- HOME  -->
+
+  <li class="<%= current_page?(root_url) ? "active" : ""%>">
+    <a href="<%= url_for root_url %>"><i class="icon-home"></i> Home</a>
+  </li>
+
+  <!-- PRODUCTS -->
+
+  <li class="<%= current_page?(products_path) ? "active" : ""%>">
+    <a href="<%= url_for products_path %>">Food Menu</a>
+  </li>
+
+  <!-- SERVICES MENU -->
+
+  <li class="dropdown">
+    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+      Services <i class="caret"></i>
+    </a>
+    <ul class="dropdown-menu">
+      <li><a href="<%= url_for services_reservations_path %>">Reservations</a></li>
+      <li><a href="<%= url_for services_catering_path %>">Catering</a></li>
+      <li class="divider"></li>
+      <li><a href="<%= url_for services_contact_path %>">Contact Us</a></li>
+    </ul>
+  </li>
+
+  <!-- ABOUT -->
+
+  <li class="<%= current_page?(home_about_path) ? "active" : ""%>">
+    <a href="<%= url_for home_about_path %>">About</a>
+  </li>
+
+  <!-- CART -->
+
+    <li class="<%= current_page?(new_cart_path) ? "active" : ""%>" >
+      <%= link_to new_cart_path do %>
+        <i class="icon-shopping-cart"></i>
+        <% if session[:cart] %>
+          <% if session[:cart].count >= 1 %>
+            Cart
+            <span class="badge badge-info"><%= session[:cart].count %></span>
+          <% else %>
+            Cart empty
+          <% end %>
+        <% else %>
+          Cart empty
+        <% end %>
+      <% end %>
+    </li>
+</ul>

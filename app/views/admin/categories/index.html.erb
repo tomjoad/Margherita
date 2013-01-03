@@ -1,1 +1,25 @@
-admin categories path
+<h3>Categories</h3>
+
+<table class="table table-condensed table-hover">
+  <thead>
+    <tr>
+      <th style="text-align: center">Id</th>
+      <th>Name</th>
+      <th style="text-align: center">Products</th>
+      <th style="text-align: center">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @categories.each do |c| %>
+      <tr>
+        <td style="text-align: center"><%= c.id %></td>
+        <td><%= c.name %></td>
+        <td style="text-align: center"><%= c.products.count %></td>
+        <td style="text-align: center">
+          <button class="btn btn-warning">Edit</button>
+          <button class="btn btn-submit">Show</button>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
