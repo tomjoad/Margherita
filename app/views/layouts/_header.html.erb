@@ -14,9 +14,7 @@
 
           <% if current_user.role.admin? %>
             <%= render 'layouts/user_admin_menu' %>
-          <% end %>
-
-          <% if current_user.role.customer? %>
+          <% else %>
             <%= render 'layouts/user_customer_menu' %>
           <% end %>
 

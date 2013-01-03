@@ -1,30 +1,25 @@
-<div class="content">
+<h3>Registered Users</h3>
 
-  <h3>Registered Users</h3>
-
-  <table class="table table-hover table-condensed">
-    <thead>
+<table class="table table-hover table-condensed">
+  <thead>
+    <tr>
+      <th style="text-align: center">Id</th>
+      <th>Login/e-mail</th>
+      <th style="text-align: center">Role</th>
+      <th style="text-align: center">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
       <tr>
-        <th style="text-align: center">Id</th>
-        <th>Login/e-mail</th>
-        <th style="text-align: center">Role</th>
-        <th style="text-align: center">Actions</th>
+        <td style="text-align: center"><%= user.id %></td>
+        <td><%= link_to user.email, admin_user_path(user) %></td>
+        <td style="text-align: center"><%= user.role %></td>
+        <td style="text-align: center">
+          <%= link_to 'Edit', edit_admin_user_path(user), class: 'btn btn-warning' %>
+          <%= link_to 'Show', admin_user_path(user), class: 'btn btn-submit' %>
+        </td>
       </tr>
-    </thead>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td style="text-align: center"><%= user.id %></td>
-          <td><%= link_to user.email, admin_user_path(user) %></td>
-          <td style="text-align: center"><%= user.role %></td>
-          <td style="text-align: center">
-            <%= link_to 'Edit', edit_admin_user_path(user), class: 'btn btn-warning' %>
-            <%= link_to 'Show', admin_user_path(user), class: 'btn btn-submit' %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-</div>
-
+    <% end %>
+  </tbody>
+</table>

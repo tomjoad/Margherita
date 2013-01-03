@@ -1,47 +1,46 @@
 <!-- cart content -->
-<div class="content">
-  <div class="well" style="margin: auto; width: 450px;">
-    <% if there_is_something_in_cart? %>
-      <h2 class="center" style="text-transform: uppercase">Your cart</h2>
-      <table class="table table-striped">
-        <thead>
+<div class="well" style="margin: auto; width: 450px;">
+  <% if there_is_something_in_cart? %>
+    <h2 class="center" style="text-transform: uppercase">Your cart</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th style="text-align:left">Product</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% i = 1 %>
+        <% @line_items.each do |line_item| %>
           <tr>
-            <th>#</th>
-            <th style="text-align:left">Product</th>
-            <th>Quantity</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% i = 1 %>
-          <% @line_items.each do |line_item| %>
-            <tr>
-              <td>
-                <%= i %>
-              </td>
-              <td style="text-align:left">
-                <%= line_item.size %>
-                <%= line_item.product.name %>&nbsp
-                <%= link_to :controller => "line_items",
-                    :action => "destroy",
-                    :id => line_item.variant.id do %>
-                  <i id="remove" class="icon-remove-sign"></i>
-                <% end %>
-              </td>
-              <td>
-                <%= link_to :controller => "line_items",
-                    :action => "update",
-                    :id => line_item.variant.id,
-                    :operation => "subtract" do %>
-                <i id="minus" class="icon-minus-sign"></i>
-          <% end %>
-          <%= line_item.quantity %>
-          <%= link_to :controller => "line_items",
-              :action => "update",
-              :id => line_item.variant.id,
-              :operation => "add" do %>
-          <i id="plus" class="icon-plus-sign"></i>
-    <% end %>
+            <td>
+              <%= i %>
+            </td>
+            <td style="text-align:left">
+              <%= line_item.size %>
+              <%= line_item.product.name %>&nbsp
+              <%= link_to :controller => "line_items",
+                  :action => "destroy",
+                  :id => line_item.variant.id do %>
+                <i id="remove" class="icon-remove-sign"></i>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to :controller => "line_items",
+                  :action => "update",
+                  :id => line_item.variant.id,
+                  :operation => "subtract" do %>
+              <i id="minus" class="icon-minus-sign"></i>
+        <% end %>
+        <%= line_item.quantity %>
+        <%= link_to :controller => "line_items",
+            :action => "update",
+            :id => line_item.variant.id,
+            :operation => "add" do %>
+        <i id="plus" class="icon-plus-sign"></i>
+  <% end %>
 </td>
 <td><%= "%.2f zł" % line_item.total_price%></td>
 </tr>
@@ -112,4 +111,4 @@
   </div>
 </div>
 
-</div>
+

@@ -34,8 +34,6 @@
 
   <!-- CART -->
 
-  <% if current_user.role.customer? %>
-
     <li class="<%= current_page?(new_cart_path) ? "active" : ""%>" >
       <%= link_to new_cart_path do %>
         <i class="icon-shopping-cart"></i>
@@ -51,5 +49,4 @@
         <% end %>
       <% end %>
     </li>
-  <% end %>
 </ul>
