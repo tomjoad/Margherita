@@ -1,8 +1,40 @@
-ID: <%= @user.id %><br />
-Email: <%= @user.email %><br />
-Name: <%= @user.name %><br />
-Surname: <%= @user.last_name %><br />
-Role: <%= @user.role %><br /><br />
+<% provide(:title, @user.email) %>
 
-<%= link_to 'Edit User', edit_admin_user_path(@user) %> |
-<%= link_to 'Back', :back %>
+<div class="content">
+
+  <h3><%= @user.email %></h3>
+  <hr>
+
+  <dl class="dl-horizontal">
+    <dt>Id:</dt>
+    <dd><%= @user.id %></dd>
+    <dt>E-mail:</dt>
+    <dd><%= @user.email %></dd>
+    <dt>Rola:</dt>
+    <dd><%= @user.role %></dd>
+  </dl>
+  <hr>
+
+  <dl class="dl-horizontal">
+    <dt>Dane osobiste:</dt>
+    <dd>
+
+      <%= @user.try {|u| "#{u.name} #{u.last_name}"} %></br>
+      <%= @user.try {|u| "#{u.street} #{u.home_number}"} %></br>
+      <%= @user.try {|u| "#{u.zip_code} #{u.city}"} %>
+    </dd>
+  </dl>
+  <hr>
+
+  <dl class="dl-horizontal">
+    <dt>Telefon kontaktowy:</dt>
+    <dd><%= @user.phone %></dd>
+  </dl>
+
+  <div class="form-actions" style="padding-left: 180px">
+    <%= link_to "Edytuj", edit_admin_user_path(@user), class: 'btn btn-warning' %>
+    <%= link_to "Back", :back, class: 'btn btn-submit' %>
+  </div>
+
+</div>
+

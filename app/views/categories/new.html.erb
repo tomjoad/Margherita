@@ -1,4 +1,8 @@
-<%- model_class = @category.class -%>
-<h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
-                               :default => "New #{model_class.model_name.human}") %></h1>
-<%= render :partial => 'form' %>
+<div class="content">
+
+  <h3>Create new category</h3>
+  <hr>
+
+  <%= render :partial => 'form' %>
+
+</div>
