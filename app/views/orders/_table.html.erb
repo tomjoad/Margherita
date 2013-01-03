@@ -42,21 +42,6 @@
       <dt>Produkty:</dt>
       <dd style="margin-right: 160px;">
 
-        <% variants = [] %>
-        <% order.cart.each do |variant_id| %>
-          <% variants << Variant.find(variant_id) %>
-        <% end %>
-
-        <% variants_unique = variants.uniq %>
-        <% variants.sort_by!{ |variant| variant.category.id } %>
-        <% variants_unique.sort_by!{ |variant| variant.product.id }%>
-
-        <% categories = [] %>
-        <% variants.each do |variant| %>
-          <% categories << variant.category.name %>
-        <% end %>
-        <% categories.uniq! %>
-
         <table class="table table-hover table-condensed">
           <tr>
             <th>Kategoria</th>
@@ -68,22 +53,22 @@
           </tr>
 
           <% i = 1 %>
-          <% categories.each do |category| %>
+          <% order.categories.each do |category| %>
             <tr>
               <td colspan="6" style="background-color: rgba(255,255,255,0.2)">
                 <%= category.titleize %>
               </td>
             </tr>
 
-            <% variants_unique.each do |variant| %>
+            <% order.uniq_and_sorted_variants.each do |variant| %>
               <% if variant.category.name == category %>
                 <tr>
                   <td></td>
                   <td style="text-align: center"><%= i %></td>
                   <td><%= variant.name %></td>
                   <td style="text-align: center"><%= variant.size %></td>
-                  <td style="text-align: center"><%= variants.count(variant) %></td>
-                  <td style="text-align: center"><%= "%.2f" % ( variant.price * variants.count(variant) )%> zł</td>
+                  <td style="text-align: center"><%= order.variants.count(variant) %></td>
+                  <td style="text-align: center"><%= order.variant_total_price(variant) %> zł</td>
                 </tr>
                 <% i += 1 %>
               <% end %>
@@ -100,7 +85,7 @@
       <dd><%= order.delivery_cost %></dd>
     </br>
       <dt>Całkowity koszt:</dt>
-      <dd><%= "%.2f" % order.total_price %> zł</dd>
+      <dd><%= order.formated_total_price %> zł</dd>
     </dl>
 </div>
 <% end %>
