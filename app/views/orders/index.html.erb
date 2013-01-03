@@ -55,7 +55,7 @@
       <li class="<%= current_page?(url_for(:controller => "orders", :action => "index", :history => true)) ? 'active' : '' %>">
         <%= link_to "History", :controller => "orders", :action => "index", :history => true %>
       </li>
-   </ul>
+    </ul>
   <% end %>
 
   <%= render 'table'%>
