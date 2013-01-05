@@ -10,7 +10,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @categories.each do |c| %>
+    <% @categories.sort.each do |c| %>
       <tr>
         <td style="text-align: center"><%= c.id %></td>
         <td><%= c.name %></td>

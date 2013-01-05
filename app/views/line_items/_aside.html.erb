@@ -93,11 +93,7 @@
   </ul>
 </div>
 <% if there_is_something_in_cart?%>
-  <button class="btn btn-block btn-success btn-large">
-    Create Order
-  </button>
-  <% else %>
-    <button class="btn btn-block btn-success btn-large disabled">
-      Create Order
-    </button>
+  <%= link_to "Continue", new_order_path, class: 'btn btn-block btn-success btn-large' %>
+<% else %>
+  <%= link_to "Continue", new_order_path, class: 'btn btn-block btn-success btn-large disabled' %>
 <% end %>

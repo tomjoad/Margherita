@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
     @order = Order.new(params[:order])
     @order.cart = session[:cart]
     flash[:notice] = "Your order is pending" if @order.save
-    redirect_to root_url
+    redirect_to orders_path(:filter => @order.state)
   end
 
   # actions for state machine, wrap to the model as much as possible

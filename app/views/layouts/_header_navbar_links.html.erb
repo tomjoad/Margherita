@@ -34,18 +34,18 @@
 
   <!-- CART -->
 
-    <li class="<%= current_page?(new_cart_path) ? "active" : ""%>" >
-      <%= link_to new_cart_path do %>
+    <li class="<%= current_page?(new_order_path) ? "active" : ""%>" >
+      <%= link_to new_order_path do %>
         <i class="icon-shopping-cart"></i>
         <% if session[:cart] %>
           <% if session[:cart].count >= 1 %>
-            Cart
-            <span class="badge badge-info"><%= session[:cart].count %></span>
+            Current Order
+            <span class="badge badge-info"><%= session[:cart].count %> product(s)</span>
           <% else %>
-            Cart empty
+            Current Order
           <% end %>
         <% else %>
-          Cart empty
+          Current Order
         <% end %>
       <% end %>
     </li>

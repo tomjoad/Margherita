@@ -1,4 +1,161 @@
-<%= render 'form' %>
+<div style="background-color: transparent; margin-bottom: 50px">
 
+  <!-- NAGŁÓWEK -->
 
+  <blockquote style="position: relative; background-color: rgba(255,255,255,0.2)">
+    <h3>
+      Twoje zamówienie&nbsp
+      <sup>
+        <span class="label label-info">
+          <% if there_is_something_in_cart? %>
+            oczekuje na potwierdzenie
+          <% else %>
+            jest puste
+          <% end %>
+        </span>
+      </sup>
+    </h3>
+  </blockquote>
 
+  <%= form_for @order do |f| %>
+    <dl class="dl-horizontal">
+
+      <!-- UZUPEŁNIANIE DANYCH -->
+
+      <% if @order.errors.any? %>
+        <div id="error_explanation">
+          <div id="alert alert-error">
+            The form contains <%= pluralize( @order.errors.count, "error")%>
+          </div>
+          <ul>
+            <% @order.errors.full_messages.each do |msg| %>
+              <li>* <%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :total_price, value: @cart.price %>
+      <%= f.hidden_field :distance, value: @user.distance %>
+
+      <dt>Twoje dane:</dt>
+      <dd>
+        <div class="control-group form-inline">
+          <%= f.label :name, class: 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :name, value: @user.name, placeholder: 'Imię' %>
+            <%= f.text_field :last_name, value: @user.last_name, placeholder: 'Nazwisko' %>
+          </div>
+        </div>
+        <div class="control-group form-inline">
+          <%= f.label :street, class: 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :street, value: @user.street, placeholder: 'Ulica' %>
+            <%= f.text_field :home_number, value: @user.home_number, placeholder: 'Numer', class: 'input-mini'%>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :city, class: 'control-label' %>
+          <div class="controls">
+            <%= f.select(:zip_code, User::ZIP_CODES, selected: @user.city, class: 'input-small') %>
+            <%= f.select(:city, User::CITIES, selected: @user.zip_code, class: 'input-medium') %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :phone, class: 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :phone, value: @user.phone, placeholder: 'Numer' %>
+          </div>
+        </div>
+      </dd>
+      </br>
+
+      <!-- TABELA PRODUKTÓW -->
+
+      <% categories = [] %>
+      <% @line_items.each { |item| categories << item.product.category.name }%>
+      <% categories.uniq!  %>
+
+      <dt>Wybrane produkty:</dt>
+      <dd>
+        <% if there_is_something_in_cart? %>
+
+          <table class="table table-hover table-condensed" style="margin: 0">
+
+            <thead>
+              <tr>
+                <th>Kategoria</th>
+                <th style="text-align: center">Nr</th>
+                <th>Nazwa</th>
+                <th style="text-align: center">Opcja</th>
+                <th style="text-align: center">Ilość</th>
+                <th style="text-align: center">Cena</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% categories.each do |category| %>
+                <tr>
+                  <td colspan="6" style="background-color: rgba(255,255,255,0.2)">
+                    <%= category.titleize %>
+                  </td>
+                </tr>
+
+                <% i = 1 %>
+                <% @line_items.each do |item| %>
+                  <% if item.product.category.name == category %>
+                    <tr>
+                      <td></td>
+                      <td style="text-align: center"><%= i %></td>
+                      <td><%= item.product.name %></td>
+                      <td style="text-align: center"><%= item.variant.size %></td>
+                      <td style="text-align: center"><%= item.quantity %></td>
+                      <td style="text-align: center"><%= "%.2f" % item.total_price %> zł</td>
+                    </tr>
+                    <% i += 1 %>
+                  <% end %>
+                <% end %>
+              <% end %>
+              <tr>
+                <th colspan="5" style="text-align: right">Suma:</th>
+                <th style="text-align: center"><%= "%.2f" % @cart.price %> zł</th>
+              </tr>
+            </tbody>
+
+          </table>
+
+        <% else %>
+
+          <%= link_to "Wybierz produkty", products_path, class: 'btn btn-large btn-block btn-submit' %>
+
+        <% end %>
+      </dd>
+    </br>
+
+    <!-- PODSUMOWANIE -->
+
+      <dt>Koszt dostawy:</dt>
+      <dd>(kosz dostawy)</dd>
+    </br>
+      <dt>Całkowity koszt:</dt>
+      <dd>(całkowity koszt)</dd>
+    </br>
+
+    <!-- ZATWIERDZENIE -->
+
+    <div class="form-actions" style="padding-left: 180px">
+      <% if there_is_something_in_cart? %>
+        <%= f.submit "Zatwierdź i wyślij", class: 'btn btn-success' %>
+        <%= link_to "Wyczyść zamówienie", cart_path, method: 'delete', class: 'btn btn-submit' %>
+      <% else %>
+        <a class="btn btn-success disabled">Zatwierdź i wyślij</a>
+        <a class="btn btn-submit disabled">Wyczyść zamówienie</a>
+      <% end %>
+    </div>
+    </dl>
+  <% end %>
+
+</div>
+
+<!-- <%= render 'form' %> -->
