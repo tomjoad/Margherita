@@ -20,17 +20,29 @@ class OrdersController < ApplicationController
   end
 
   def new
+    session[:order_params] ||= {}
     @cart = find_cart
     @line_items = LineItem.all(session[:cart])
-    @order = Order.new
+    @order = Order.new(session[:order_params])
     @user = current_user
   end
 
   def create
+    session[:order_params] = params[:order]
     @order = Order.new(params[:order])
     @order.cart = session[:cart]
-    flash[:notice] = "Your order is pending" if @order.save
-    redirect_to orders_path(:filter => @order.state)
+    # if @order.valid?
+      if session[:checkout]
+        flash[:notice] = 'Your order is pending' if @order.save
+        redirect_to root_url
+        session[:checkout] = nil
+      else
+        session[:checkout] = true
+        redirect_to new_order_path
+      end
+    #else
+    #   redirect_to 'new'
+    # end
   end
 
   # actions for state machine, wrap to the model as much as possible

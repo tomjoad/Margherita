@@ -39,38 +39,11 @@
       <%= f.hidden_field :total_price, value: @cart.price %>
       <%= f.hidden_field :distance, value: @user.distance %>
 
-      <dt>Twoje dane:</dt>
-      <dd>
-        <div class="control-group form-inline">
-          <%= f.label :name, class: 'control-label' %>
-          <div class="controls">
-            <%= f.text_field :name, value: @user.name, placeholder: 'Imię' %>
-            <%= f.text_field :last_name, value: @user.last_name, placeholder: 'Nazwisko' %>
-          </div>
-        </div>
-        <div class="control-group form-inline">
-          <%= f.label :street, class: 'control-label' %>
-          <div class="controls">
-            <%= f.text_field :street, value: @user.street, placeholder: 'Ulica' %>
-            <%= f.text_field :home_number, value: @user.home_number, placeholder: 'Numer', class: 'input-mini'%>
-          </div>
-        </div>
-        <div class="control-group">
-          <%= f.label :city, class: 'control-label' %>
-          <div class="controls">
-            <%= f.select(:zip_code, User::ZIP_CODES, selected: @user.city, class: 'input-small') %>
-            <%= f.select(:city, User::CITIES, selected: @user.zip_code, class: 'input-medium') %>
-          </div>
-        </div>
-        <div class="control-group">
-          <%= f.label :phone, class: 'control-label' %>
-          <div class="controls">
-            <%= f.text_field :phone, value: @user.phone, placeholder: 'Numer' %>
-          </div>
-        </div>
-      </dd>
-      </br>
-
+      <% if session[:checkout] %>
+        <%= render 'checkout', :f => f %>
+      <% else %>
+        <%= render 'user_data_form', :f => f %>
+      <% end %>
       <!-- TABELA PRODUKTÓW -->
 
       <% categories = [] %>
@@ -146,8 +119,9 @@
 
     <div class="form-actions" style="padding-left: 180px">
       <% if there_is_something_in_cart? %>
-        <%= f.submit "Zatwierdź i wyślij", class: 'btn btn-success' %>
-        <%= link_to "Wyczyść zamówienie", cart_path, method: 'delete', class: 'btn btn-submit' %>
+
+          <%= f.submit "Zatwierdź i wyślij", class: 'btn btn-success' %>
+          <%= link_to "Wyczyść zamówienie", cart_path, method: 'delete', class: 'btn btn-submit' %>
       <% else %>
         <a class="btn btn-success disabled">Zatwierdź i wyślij</a>
         <a class="btn btn-submit disabled">Wyczyść zamówienie</a>
@@ -157,5 +131,3 @@
   <% end %>
 
 </div>
-
-<!-- <%= render 'form' %> -->

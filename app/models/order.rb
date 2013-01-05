@@ -19,7 +19,7 @@ class Order < ActiveRecord::Base
   validates :street, :presence => true
   validates :phone, :presence => true
   validates :home_number, :presence => true
-  validates :distance, :presence => true
+  # validates :distance, :presence => true
 
   attr_accessible :state, :total_price, :user_id, :name, :last_name, :city, :zip_code, :street, :phone, :home_number, :distance
 
@@ -86,8 +86,6 @@ class Order < ActiveRecord::Base
       variants << Variant.find(variant_id)
     end
     variants.sort_by! { |variant| variant.category.id }
-    # check if working without =>
-    # variants
   end
 
   def categories
@@ -109,7 +107,6 @@ class Order < ActiveRecord::Base
   def uniq_and_sorted_variants
     variants_uniq = self.variants.uniq
     variants_uniq.sort_by! { |variant| variant.product.id }
-    # variants_uniq
   end
 
   def calculate_delivery_cost

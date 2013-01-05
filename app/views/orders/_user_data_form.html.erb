@@ -1,0 +1,31 @@
+      <dt>Twoje dane:</dt>
+      <dd>
+        <div class="control-group form-inline">
+          <%= f.label :name, class: 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :name, value: @user.name, placeholder: 'Imię' %>
+            <%= f.text_field :last_name, value: @user.last_name, placeholder: 'Nazwisko' %>
+          </div>
+        </div>
+        <div class="control-group form-inline">
+          <%= f.label :street, class: 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :street, value: @user.street, placeholder: 'Ulica' %>
+            <%= f.text_field :home_number, value: @user.home_number, placeholder: 'Numer', class: 'input-mini'%>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :city, class: 'control-label' %>
+          <div class="controls">
+            <%= f.select(:zip_code, User::ZIP_CODES, selected: @user.city, class: 'input-small') %>
+            <%= f.select(:city, User::CITIES, selected: @user.zip_code, class: 'input-medium') %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :phone, class: 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :phone, value: @user.phone, placeholder: 'Numer' %>
+          </div>
+        </div>
+      </dd>
+      </br>
