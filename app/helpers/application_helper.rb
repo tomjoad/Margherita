@@ -29,4 +29,5 @@ module ApplicationHelper
   def current_view_is?(controller, action)
     ( params[:controller] == controller && params[:action] == action )
   end
+
 end

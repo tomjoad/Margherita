@@ -80,11 +80,37 @@ class Order < ActiveRecord::Base
     end
   end
 
-  # def check
-  #   self.distance
-  # end
+  def variants
+    variants = []
+    self.cart.each do |variant_id|
+      variants << Variant.find(variant_id)
+    end
+    variants.sort_by! { |variant| variant.category.id }
+    # check if working without =>
+    # variants
+  end
 
-  # values have to be chanched into constants definitions
+  def categories
+    categories = []
+    self.variants.each do |variant|
+      categories << variant.category.name
+    end
+    categories.uniq
+  end
+
+  def variant_total_price(variant)
+    "%.2f" % (variant.price * self.variants.count(variant))
+  end
+
+  def formated_total_price
+    "%.2f" % self.total_price
+  end
+
+  def uniq_and_sorted_variants
+    variants_uniq = self.variants.uniq
+    variants_uniq.sort_by! { |variant| variant.product.id }
+    # variants_uniq
+  end
 
   def calculate_delivery_cost
     if self.distance == SHORT_DISTANCE
@@ -100,5 +126,5 @@ class Order < ActiveRecord::Base
     else
     end
   end
-  #
+
 end
