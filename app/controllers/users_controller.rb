@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      flash[:notice] = "You have changed your user info!"
+      flash[:notice] = "You have changed your profile details!"
       sign_in @user
       redirect_to @user
     else
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to the Margherita! Now you can edit your shipping info in \"Account\" menu."
+      flash[:success] = "Welcome to Margherita! Complete your profile details to order faster every time you visit!"
       redirect_to @user
     else
       render 'new'

@@ -22,18 +22,7 @@
 
       <!-- UZUPEŁNIANIE DANYCH -->
 
-      <% if @order.errors.any? %>
-        <div id="error_explanation">
-          <div id="alert alert-error">
-            The form contains <%= pluralize( @order.errors.count, "error")%>
-          </div>
-          <ul>
-            <% @order.errors.full_messages.each do |msg| %>
-              <li>* <%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+      <%= render 'shared/error_messages'%>
 
       <%= f.hidden_field :user_id, value: current_user.id %>
       <%= f.hidden_field :total_price, value: @cart.price %>

@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       sign_in user
       redirect_to root_url
     else
-      flash.now[:error] = "Invalid email or password"
+      flash.now[:error] = "Invalid email / password"
       redirect_to new_session_path
     end
   end
