@@ -1,31 +1,48 @@
-      <dt>Twoje dane:</dt>
-      <dd>
-        <div class="control-group form-inline">
-          <%= f.label :name, class: 'control-label' %>
-          <div class="controls">
-            <%= f.text_field :name, value: @user.name, placeholder: 'Imię' %>
-            <%= f.text_field :last_name, value: @user.last_name, placeholder: 'Nazwisko' %>
-          </div>
-        </div>
-        <div class="control-group form-inline">
-          <%= f.label :street, class: 'control-label' %>
-          <div class="controls">
-            <%= f.text_field :street, value: @user.street, placeholder: 'Ulica' %>
-            <%= f.text_field :home_number, value: @user.home_number, placeholder: 'Numer', class: 'input-mini'%>
-          </div>
-        </div>
-        <div class="control-group">
-          <%= f.label :city, class: 'control-label' %>
-          <div class="controls">
-            <%= f.select(:zip_code, User::ZIP_CODES, selected: @user.city, class: 'input-small') %>
-            <%= f.select(:city, User::CITIES, selected: @user.zip_code, class: 'input-medium') %>
-          </div>
-        </div>
-        <div class="control-group">
-          <%= f.label :phone, class: 'control-label' %>
-          <div class="controls">
-            <%= f.text_field :phone, value: @user.phone, placeholder: 'Numer' %>
-          </div>
-        </div>
-      </dd>
-      </br>
+<dt>Adres dostawy:</dt>
+<dd style="padding: 25px 0">
+
+  <div class="row" style="margin-left: -20px">
+    <div class="span2">
+      <%= f.label :name, class: 'control-label' %>
+      <%= f.text_field :name, value: @user.name, placeholder: 'Imię', class: 'span2' %>
+    </div>
+    <div class="span2">
+      <%= f.label :last_name, class: 'control-label' %>
+      <%= f.text_field :last_name, value: @user.last_name, placeholder: 'Nazwisko', class: 'span2' %>
+    </div>
+  </div>
+
+  <div class="row" style="margin-left: -20px">
+    <div class="span2">
+      <%= f.label :street, class: 'control-label' %>
+      <%= f.text_field :street, value: @user.street, placeholder: 'Ulica', class: 'span2' %>
+    </div>
+    <div class="span1">
+      <%= f.label "no", class: 'control-label' %>
+      <%= f.text_field :home_number, value: @user.home_number, placeholder: 'Numer', class: 'span1'%>
+    </div>
+  </div>
+
+
+  <div class="row" style="margin-left: -20px">
+    <div class="span2">
+      <!-- ZIP CODE trzeba zautomatyzować: wybór zależy od wyboru miasta -->
+      <%= f.label :city, class: 'control-label' %>
+      <%= f.select(:city, User::CITIES, {selected: @user.zip_code}, {class: 'span2'}) %>
+    </div>
+    <div class="span1">
+      <%= f.label :zip_code, class: 'control-label hidden' %>
+      <%= f.select(:zip_code, User::ZIP_CODES, {selected: @user.city}, {class: 'input-small hidden'}) %>
+    </div>
+  </div>
+</dd>
+
+<dt>Telefon kontaktowy:</dt>
+<dd style="padding: 25px 0">
+  <div class="row" style="margin-left: -20px">
+    <div class="span2">
+      <%= f.label :phone, class: 'control-label' %>
+      <%= f.text_field :phone, value: @user.phone, placeholder: 'Numer', class: 'span2' %>
+    </div>
+  </div>
+</dd>

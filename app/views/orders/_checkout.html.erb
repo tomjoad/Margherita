@@ -1,31 +1,11 @@
-      <dt>Twoje dane:</dt>
-      <dd>
-        <div class="control-group form-inline">
-          <%= f.label :name, class: 'control-label' %>
-          <div class="controls">
-            <%= f.text_field :name, value: @order.name, readonly: true %>
-            <%= f.text_field :last_name, value: @order.last_name, readonly: true %>
-          </div>
-        </div>
-        <div class="control-group form-inline">
-          <%= f.label :street, class: 'control-label' %>
-          <div class="controls">
-            <%= f.text_field :street, value: @order.street, readonly: true %>
-            <%= f.text_field :home_number, value: @order.home_number, readonly: true %>
-          </div>
-        </div>
-        <div class="control-group">
-          <%= f.label :city, class: 'control-label' %>
-          <div class="controls">
-            <%= f.text_field :zip_code, value: @order.zip_code, readonly: true %>
-            <%= f.text_field :city, value: @order.city, readonly: true %>
-          </div>
-        </div>
-        <div class="control-group">
-          <%= f.label :phone, class: 'control-label' %>
-          <div class="controls">
-            <%= f.text_field :phone, value: @order.phone, readonly: true %>
-          </div>
-        </div>
-      </dd>
-      </br>
+<dt>Adres dostawy:</dt>
+<dd>
+  <%= @order.name + " " + @order.last_name %></br>
+  ul. <%= @order.street + " " + @order.home_number %></br>
+  <%= @order.zip_code + " " + @order.city %></br></br>
+</dd>
+<dt>Telefon kontaktowy:</dt>
+<dd>
+  <%= @order.phone %></br></br>
+</dd>
+

@@ -29,10 +29,11 @@
       <%= f.hidden_field :distance, value: @user.distance %>
 
       <% if session[:checkout] %>
-        <%= render 'checkout', :f => f %>
+        <%= render 'checkout', :f => f %> <!-- Czy przy obecnej formie potrzebne jest :f => f? -->
       <% else %>
         <%= render 'user_data_form', :f => f %>
       <% end %>
+
       <!-- TABELA PRODUKTÓW -->
 
       <% categories = [] %>
@@ -40,7 +41,7 @@
       <% categories.uniq!  %>
 
       <dt>Wybrane produkty:</dt>
-      <dd>
+      <dd style="padding: 20px 180px 0 10px">
         <% if there_is_something_in_cart? %>
 
           <table class="table table-hover table-condensed" style="margin: 0">

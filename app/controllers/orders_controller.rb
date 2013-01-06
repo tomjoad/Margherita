@@ -34,7 +34,7 @@ class OrdersController < ApplicationController
     # if @order.valid?
       if session[:checkout]
         flash[:notice] = 'Your order is pending' if @order.save
-        redirect_to root_url
+        redirect_to orders_path(:filter => @order.state)
         session[:checkout] = nil
       else
         session[:checkout] = true
