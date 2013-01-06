@@ -47,13 +47,20 @@
           <table class="table table-hover table-condensed" style="margin: 0">
 
             <thead>
+              <% unless session[:checkout] %>
+                <tr>
+                  <th colspan="6" style="text-align: right">
+                    <a href="" class="btn btn-mini btn-danger">Usuń wszystko</a>
+                  </th>
+                </tr>
+              <% end %>
               <tr>
                 <th>Kategoria</th>
                 <th style="text-align: center">Nr</th>
                 <th>Nazwa</th>
-                <th style="text-align: center">Opcja</th>
+                <th style="text-align: left">Opcja</th>
                 <th style="text-align: center">Ilość</th>
-                <th style="text-align: center">Cena</th>
+                <th style="text-align: right">Cena</th>
               </tr>
             </thead>
 
@@ -72,30 +79,30 @@
                       <td></td>
                       <td style="text-align: center"><%= i %></td>
                       <td><%= item.product.name %></td>
-                      <td style="text-align: center"><%= item.variant.size %></td>
+                      <td style="text-align: left"><%= item.variant.size %></td>
                       <td style="text-align: center"><%= item.quantity %></td>
-                      <td style="text-align: center"><%= "%.2f" % item.total_price %> zł</td>
+                      <td style="text-align: right"><%= "%.2f" % item.total_price %> zł</td>
                     </tr>
                     <% i += 1 %>
                   <% end %>
                 <% end %>
               <% end %>
               <tr>
-                <th colspan="5" style="text-align: right">Suma:</th>
-                <th style="text-align: center"><%= "%.2f" % @cart.price %> zł</th>
+                <th colspan="6" style="text-align: right">
+                  Suma:&nbsp&nbsp<%= "%.2f" % @cart.price %> zł
+                </th>
               </tr>
             </tbody>
 
           </table>
 
         <% end %>
-
-        <% if not session[:checkout] %>
-          <%= link_to "Dodaj produkty", products_path, class: 'btn btn-large btn-block btn-submit' %>
-        <% end %>
-
+        <p style="padding-top: 15px">
+          <% unless session[:checkout] %>
+            <%= link_to "Dodaj produkty", products_path, class: 'btn btn-large btn-block btn-submit' %>
+          <% end %>
+        </p>
       </dd>
-    </br>
 
     <!-- PODSUMOWANIE -->
 
@@ -110,12 +117,15 @@
 
     <div class="form-actions" style="padding-left: 180px">
       <% if there_is_something_in_cart? %>
-
-          <%= f.submit "Zatwierdź i wyślij", class: 'btn btn-success' %>
-          <%= link_to "Anuluj zamówienie", cart_path, method: 'delete', class: 'btn btn-submit' %>
+        <% if session[:checkout] %>
+          <%= f.submit "Finish Order!", class: 'btn btn-success' %>
+        <% else %>
+          <%= f.submit "Next: Checkout", class: 'btn btn-success' %>
+        <% end %>
+          <%= link_to "Cancel order", session[:checkout] = nil, class: 'btn btn-danger' %>
       <% else %>
         <a class="btn btn-success disabled">Zatwierdź i wyślij</a>
-        <a class="btn btn-submit disabled">Anuluj zamówienie</a>
+        <a class="btn btn-danger disabled">Anuluj zamówienie</a>
       <% end %>
     </div>
     </dl>

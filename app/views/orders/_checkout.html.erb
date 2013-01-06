@@ -1,11 +1,11 @@
 <dt>Adres dostawy:</dt>
 <dd>
-  <%= @order.name + " " + @order.last_name %></br>
-  ul. <%= @order.street + " " + @order.home_number %></br>
-  <%= @order.zip_code + " " + @order.city %></br></br>
+  <%= @order.try(:name) %>&nbsp<%= @order.try(:last_name) %></br>
+  ul. <%= @order.try(:street) %>&nbsp<%= @order.try(:home_number) %></br>
+  <%= @order.try(:zip_code) %>&nbsp<%= @order.try(:city) %></br></br>
 </dd>
 <dt>Telefon kontaktowy:</dt>
 <dd>
-  <%= @order.phone %></br></br>
+  <%= @order.try(:phone) %></br></br>
 </dd>
 
