@@ -37,15 +37,9 @@
     <li class="<%= current_page?(new_order_path) ? "active" : ""%>" >
       <%= link_to new_order_path do %>
         <i class="icon-shopping-cart"></i>
-        <% if session[:cart] %>
-          <% if session[:cart].count >= 1 %>
-            Current Order
-            <span class="badge badge-info"><%= session[:cart].count %> product(s)</span>
-          <% else %>
-            Current Order
-          <% end %>
-        <% else %>
-          Current Order
+        Current Order
+        <% if @cart.try(:price) %>
+          <span class="badge badge-info"><%= "%.2f" % @cart.price %>zł</span>
         <% end %>
       <% end %>
     </li>
