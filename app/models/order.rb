@@ -8,17 +8,17 @@ class Order < ActiveRecord::Base
   LOWER_DELIVERY_COST = 5.0
   HIGHER_DELIVERY_COST = 10.0
 
-  validates :cart, :presence => true
-  validates :state, :presence => true
-  validates :user_id, :presence => true
-  # ??? why isn`t working!?
-  # validates :user and validates :user_id isn`t the same!
-  # how it works?
-  validates :last_name, :presence => true
-  validates :city, :presence => true
-  validates :street, :presence => true
-  validates :phone, :presence => true
-  validates :home_number, :presence => true
+  ### validates :cart, :presence => true
+  # validates :state, :presence => true
+  # validates :user_id, :presence => true
+  # # ??? why isn`t working!?
+  # # validates :user and validates :user_id isn`t the same!
+  # # how it works?
+  # validates :last_name, :presence => true
+  # validates :city, :presence => true
+  # validates :street, :presence => true
+  # validates :phone, :presence => true
+  # validates :home_number, :presence => true
   # validates :distance, :presence => true
 
   attr_accessible :state, :total_price, :user_id, :name, :last_name, :city, :zip_code, :street, :phone, :home_number, :distance
