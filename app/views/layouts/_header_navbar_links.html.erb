@@ -35,7 +35,7 @@
   <!-- CART -->
 
     <li class="<%= current_page?(new_order_path) ? "active" : ""%>" >
-      <%= link_to new_order_path do %>
+      <%= link_to new_cart_path do %>
         <i class="icon-shopping-cart"></i>
         Current Order
         <% if @cart.try(:price) %>

@@ -1,3 +1,105 @@
+<%= form_for @order do |f| %>
+  <div class="row-fluid">
+    <div class="span6 offset3">
+      <div class="thead-inverted">
+        <span class="left-icon"><i class="icon-road"></i></span>
+        <span class="title" style="padding-left: 8px">Shipping Info</span>
+      </div>
+      <div class=""
+           style="padding: 20px 15px 10px 15px;
+                  margin: 0 0 10px 0;
+                  background-color: white;
+                  border-radius: 0 0 4px 4px;
+                  box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.2);">
+        <ul class="cart-aside-items unstyled">
+          <li class="category"
+              style="padding: 2px 0 2px 8px;
+                     border-bottom: 1px solid #ccc;
+                     background: rgba(0,0,0,0.08);
+                     border-radius: 4px">
+            <small>Imię i nazwisko</small>
+          </li>
+          <li style="margin: 10px 0">
+            <div class="row-fluid">
+              <div class="span6">
+                <%= f.label :name, class: 'control-label hidden' %>
+                <%= f.text_field :name, value: @user.name, placeholder: 'Imię', class: 'span12' %>
+              </div>
+              <div class="span6">
+                <%= f.label :last_name, class: 'control-label hidden' %>
+                <%= f.text_field :last_name, value: @user.last_name, placeholder: 'Nazwisko', class: 'span12' %>
+              </div>
+            </div>
+          </li>
+          <li class="category"
+              style="padding: 2px 0 2px 8px;
+                     border-bottom: 1px solid #ccc;
+                     background: rgba(0,0,0,0.08);
+                     border-radius: 4px">
+            <small>Ulica i numer domu</small>
+          </li>
+          <li style="margin: 10px 0">
+            <div class="row-fluid">
+              <div class="span6">
+                <%= f.label :street, class: 'control-label hidden' %>
+                <%= f.text_field :street, value: @user.street, placeholder: 'Ulica', class: 'span12' %>
+              </div>
+              <div class="span6">
+                <%= f.label "no", class: 'control-label hidden' %>
+                <%= f.text_field :home_number, value: @user.home_number, placeholder: 'Numer', class: 'span4'%>
+              </div>
+            </div>
+          </li>
+          <li class="category"
+              style="padding: 2px 0 2px 8px;
+                     border-bottom: 1px solid #ccc;
+                     background: rgba(0,0,0,0.08);
+                     border-radius: 4px">
+            <small>Miejscowość</small>
+          </li>
+          <li style="margin: 10px 0">
+            <div class="row-fluid">
+              <div class="span6">
+                <!-- ZIP CODE trzeba zautomatyzować: wybór zależy od wyboru miasta -->
+                <%= f.label :city, class: 'control-label hidden' %>
+                <%= f.select(:city, User::CITIES, {selected: @user.zip_code}, {class: 'span12'}) %>
+              </div>
+              <div class="span6">
+                <%= f.label :zip_code, class: 'control-label hidden' %>
+                <%= f.select(:zip_code, User::ZIP_CODES, {selected: @user.city}, {class: 'input-small hidden'}) %>
+              </div>
+            </div>
+          </li>
+          <li class="category"
+              style="padding: 2px 0 2px 8px;
+                     border-bottom: 1px solid #ccc;
+                     background: rgba(0,0,0,0.08);
+                     border-radius: 4px">
+            <small>Telefon kontaktowy</small>
+          </li>
+          <li style="margin: 10px 0">
+            <div class="row-fluid">
+              <div class="span6">
+                <%= f.label :phone, class: 'control-label hidden' %>
+                <%= f.text_field :phone, value: @user.phone, placeholder: 'Numer', class: 'span6' %>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- TU POWINIEN BYC LINK DO CHECKOUT -->
+      <%= f.submit "Next: Checkout", class: 'btn btn-block btn-success btn-large' %>
+      <% link_to "Next: Checkout", new_order_path, class: 'btn btn-block btn-success btn-large' %>
+    </div>
+  </div>
+<% end %>
+
+
+
+<!-- UKRYWAM TO BO MUSZE PRZENIESC DO CHECKOUT -->
+
+<% if 1 == 2 %>
 <div style="background-color: transparent; margin-bottom: 50px">
 
   <!-- NAGŁÓWEK -->
@@ -17,118 +119,123 @@
     </h3>
   </blockquote>
 
-  <%= form_for @order do |f| %>
-    <dl class="dl-horizontal">
 
-      <!-- UZUPEŁNIANIE DANYCH -->
+  <!-- TABELA PRODUKTÓW -->
 
-      <%= render 'shared/error_messages'%>
+  <% categories = [] %>
+  <% @line_items.each { |item| categories << item.product.category.name }%>
+  <% categories.uniq!  %>
 
-      <%= f.hidden_field :user_id, value: current_user.id %>
-      <%= f.hidden_field :total_price, value: @cart.price %>
-      <%= f.hidden_field :distance, value: @user.distance %>
+  <dt>Wybrane produkty:</dt>
+  <dd style="padding: 20px 180px">
+    <% if there_is_something_in_cart? %>
 
-      <% if session[:checkout] %>
-        <%= render 'checkout', :f => f %> <!-- Czy przy obecnej formie potrzebne jest :f => f? -->
-      <% else %>
-        <%= render 'user_data_form', :f => f %>
-      <% end %>
+      <table class="table table-hover table-condensed" style="margin: 0">
 
-      <!-- TABELA PRODUKTÓW -->
-
-      <% categories = [] %>
-      <% @line_items.each { |item| categories << item.product.category.name }%>
-      <% categories.uniq!  %>
-
-      <dt>Wybrane produkty:</dt>
-      <dd style="padding: 20px 180px 20px 10px">
-        <% if there_is_something_in_cart? %>
-
-          <table class="table table-hover table-condensed" style="margin: 0">
-
-            <thead>
-              <% unless session[:checkout] %>
-                <tr>
-                  <th colspan="6" style="text-align: right">
-                    <a href="" class="btn btn-mini btn-danger">Usuń wszystko</a>
-                  </th>
-                </tr>
-              <% end %>
-              <tr>
-                <th>Kategoria</th>
-                <th style="text-align: center">Nr</th>
-                <th>Nazwa</th>
-                <th style="text-align: left">Opcja</th>
-                <th style="text-align: center">Ilość</th>
-                <th style="text-align: right">Cena</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <% categories.each do |category| %>
-                <tr>
-                  <td colspan="6" style="background-color: rgba(255,255,255,0.2)">
-                    <%= category.titleize %>
-                  </td>
-                </tr>
-
-                <% i = 1 %>
-                <% @line_items.each do |item| %>
-                  <% if item.product.category.name == category %>
-                    <tr>
-                      <td></td>
-                      <td style="text-align: center"><%= i %></td>
-                      <td><%= item.product.name %></td>
-                      <td style="text-align: left"><%= item.variant.size %></td>
-                      <td style="text-align: center"><%= item.quantity %></td>
-                      <td style="text-align: right"><%= "%.2f" % item.total_price %> zł</td>
-                    </tr>
-                    <% i += 1 %>
-                  <% end %>
-                <% end %>
-              <% end %>
-              <tr>
-                <th colspan="6" style="text-align: right">
-                  Suma:&nbsp&nbsp<%= "%.2f" % @cart.price %> zł
-                </th>
-              </tr>
-            </tbody>
-
-          </table>
-
-        <% end %>
-        <p style="padding-top: 15px">
+        <thead>
           <% unless session[:checkout] %>
-            <%= link_to "Dodaj produkty", products_path, class: 'btn btn-large btn-block btn-submit' %>
+            <tr>
+              <th colspan="6" style="text-align: right">
+                <button class="btn btn-danger">
+                  <i class="icon icon-trash"></i> Wyczyść
+                </button>
+              </th>
+            </tr>
           <% end %>
-        </p>
-      </dd>
+          <tr>
+            <th>Kategoria</th>
+            <th style="text-align: center">Nr</th>
+            <th>Nazwa</th>
+            <th style="text-align: left">Opcja</th>
+            <th style="text-align: center">Ilość</th>
+            <th style="text-align: right">Cena</th>
+          </tr>
+        </thead>
 
-    <!-- PODSUMOWANIE -->
+        <tbody>
+          <% categories.each do |category| %>
+            <tr>
+              <td colspan="6" style="background-color: rgba(255,255,255,0.2)">
+                <%= category.titleize %>
+              </td>
+            </tr>
 
-      <dt>Koszt dostawy:</dt>
-      <dd>(kosz dostawy)</dd>
-    </br>
-      <dt>Całkowity koszt:</dt>
-      <dd>(całkowity koszt)</dd>
-    </br>
+            <% i = 1 %>
+            <% @line_items.each do |item| %>
+              <% if item.product.category.name == category %>
+                <tr>
+                  <td></td>
+                  <td style="text-align: center"><%= i %></td>
+                  <td><%= item.product.name %></td>
+                  <td style="text-align: left"><%= item.variant.size %></td>
+                  <td style="text-align: center"><%= item.quantity %></td>
+                  <td style="text-align: right"><%= "%.2f" % item.total_price %> zł</td>
+                </tr>
+                <% i += 1 %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <tr>
+            <th colspan="6" style="text-align: right">
+              Suma:&nbsp&nbsp<%= "%.2f" % @cart.price %> zł
+            </th>
+          </tr>
+        </tbody>
 
-    <!-- ZATWIERDZENIE -->
+      </table>
 
-    <div class="form-actions" style="padding-left: 180px">
-      <% if there_is_something_in_cart? %>
-        <% if session[:checkout] %>
-          <%= f.submit "Finish Order!", class: 'btn btn-success' %>
-        <% else %>
-          <%= f.submit "Next: Checkout", class: 'btn btn-success' %>
-        <% end %>
-          <%= link_to "Cancel order", session[:checkout] = nil, class: 'btn btn-danger' %>
-      <% else %>
-        <a class="btn btn-success disabled">Zatwierdź i wyślij</a>
-        <a class="btn btn-danger disabled">Anuluj zamówienie</a>
+    <% end %>
+    <p style="padding-top: 15px;">
+      <% unless session[:checkout] %>
+        <%= link_to "Dodaj produkty", products_path, class: 'btn btn-large btn-block btn-submit' %>
       <% end %>
-    </div>
-    </dl>
+    </p>
+  </dd>
+
+  <!-- PODSUMOWANIE KOSZTÓW -->
+
+  <dt>Koszt dostawy:</dt>
+  <dd>(kosz dostawy)</dd>
+    </br>
+  <dt>Całkowity koszt:</dt>
+  <dd>(całkowity koszt)</dd>
+    </br>
+
+    <!-- UZUPEŁNIANIE DANYCH OSOBOWYCH -->
+
+    <%= form_for @order do |f| %>
+      <dl class="dl-horizontal">
+
+        <%= render 'shared/error_messages'%>
+
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.hidden_field :total_price, value: @cart.price %>
+        <%= f.hidden_field :distance, value: @user.distance %>
+
+
+        <% if session[:checkout] %>
+          <%= render 'checkout', :f => f %>
+<% else %>
+  <%= render 'user_data_form', :f => f %>
+<% end %>
+
+<!-- ZATWIERDZENIE -->
+
+<div class="form-actions" style="padding-left: 180px">
+  <% if there_is_something_in_cart? %>
+    <% if session[:checkout] %>
+      <%= f.submit "Finish Order!", class: 'btn btn-success' %>
+    <% else %>
+      <%= f.submit "Next: Checkout", class: 'btn btn-success' %>
+    <% end %>
+    <%= link_to "Cancel order", session[:checkout] = nil, class: 'btn btn-danger' %>
+  <% else %>
+    <a class="btn btn-success disabled">Zatwierdź i wyślij</a>
+    <a class="btn btn-danger disabled">Anuluj zamówienie</a>
   <% end %>
+</div>
+</dl>
+<% end %>
 
 </div>
+<% end %>

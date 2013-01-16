@@ -1,88 +1,106 @@
-<!-- cart content -->
 
-<div class="well" style="margin: auto; width: 450px;">
-  <% if there_is_something_in_cart? %>
-    <h2 class="center" style="text-transform: uppercase">Your cart</h2>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th style="text-align:left">Product</th>
-          <th>Quantity</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% i = 1 %>
-        <% @line_items.each do |line_item| %>
-          <tr>
-            <td>
-              <%= i %>
-            </td>
-            <td style="text-align:left">
-              <%= line_item.size %>
-              <%= line_item.product.name %>&nbsp
-              <%= link_to :controller => "line_items",
-                  :action => "destroy",
-                  :id => line_item.variant.id do %>
-                <i id="remove" class="icon-remove-sign"></i>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to :controller => "line_items",
-                  :action => "update",
-                  :id => line_item.variant.id,
-                  :operation => "subtract" do %>
-              <i id="minus" class="icon-minus-sign"></i>
-        <% end %>
-        <%= line_item.quantity %>
-        <%= link_to :controller => "line_items",
-            :action => "update",
-            :id => line_item.variant.id,
-            :operation => "add" do %>
-        <i id="plus" class="icon-plus-sign"></i>
-  <% end %>
-</td>
-<td><%= "%.2f zł" % line_item.total_price%></td>
-</tr>
-<% i += 1 %>
+<!-- Cart by the products list view -->
+<div class="row-fluid">
+<div class="span6 offset3">
+  <div class="thead-inverted">
+    <span class="left-icon"><i class="icon-shopping-cart"></i></span>
+    <span class="title" style="padding-left: 8px">Cart</span>
+    <span class="right-icon clickable">
+      <%= link_to cart_path, :method => "delete" do %>
+      <i class="icon-trash"></i>
 <% end %>
-<tr style="font-weight:bold">
-  <td colspan="3" style="text-align:right">Total Price:</td>
-  <td><%= "%.2f zł" % @cart.price %></td>
-</tr>
-</tbody>
-</table>
-
-<% else %>
-  <h2 class="center">Your cart is empty!</h2>
-<% end %>
-
+</span>
 </div>
-<ul class="pager">
-  <li class="previous">
-    <%= link_to "&larr; Continue shopping".html_safe, products_path %>
-  </li>
-  <% if session[:cart].try(:count) %>
-    <% if session[:cart].count == 0 %>
-      <li class="next disabled">
-        <%= link_to "Shipping info &rarr;".html_safe, "#" %>
+<div class=""
+     style="padding: 0 15px;
+            background-color: white;
+            border-radius: 0 0 4px 4px;
+            box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.2);">
+  <ul class="cart-aside-items unstyled"
+      style="padding-top: 10px">
+    <% if there_is_something_in_cart? %>
+      <% c = [] %>
+      <% @line_items.each do |item| %>
+        <% c << item.product.category.name %>
+      <% end %>
+      <% c.uniq!  %>
+      <!-- LISTA ZAKUPÓW -->
+
+      <% c.each do |cat_name| %>
+        <li class="category"
+            style="padding: 2px 0 2px 8px;
+                   border-bottom: 1px solid #ccc;
+                   background: rgba(0,0,0,0.08);
+                   border-radius: 4px">
+          <small><%= cat_name %></small>
+        </li>
+        <% @line_items.each do |item| %>
+          <% if item.product.category.name == cat_name %>
+            <li style="padding: 13px 0 0 0;
+                       float: left;
+                       width: 23px">
+              <%= item.quantity %>
+              <span style="">x</span>
+            </li>
+            <li style="padding: 13px 0 0 0;
+                       float: left;
+                       width: 220px;">
+              <%= item.product.name %>
+            </li>
+            <li style="padding: 8px 0;
+                       float: right">
+              <button class="btn btn-mini btn-success"
+                      style="padding: 0 3px">
+                <i class="icon-plus"
+                   style="vertical-align: baseline">
+                </i>
+              </button>
+              <button class="btn btn-mini btn-warning"
+                      style="padding: 0 3px">
+                <i class="icon-minus"
+                   style="vertical-align: baseline">
+                </i>
+              </button>
+              <button class="btn btn-mini btn-danger"
+                      style="padding: 0 3px">
+                <i class="icon-remove"
+                   style="vertical-align: baseline">
+                </i>
+              </button>
+            </li>
+            <li style="clear: both; margin-bottom: 8px">
+              <span style="margin-left: 23px">
+                <sup class="muted"><%= item.variant.size %></sup>
+              </span>
+              <span style="float: right;">
+                <%= "%.2f" % item.total_price%><sup> zł</sup>
+              </span>
+
+            </li>
+          <% end %>
+        <% end %>
+      <% end  %>
+      <li style="text-align: right;
+                 padding: 10px 0 20px 0;
+                 border-radius: 0 0 4px 4px;
+                 border-top: 1px solid #ccc">
+        <strong>Total price: <%= "%.2f" % @cart.price %><sup> zł </sup></strong>
       </li>
     <% else %>
-      <li class="next">
-        <% if signed_in? %>
-          <%= link_to "Shipping info &rarr;".html_safe, new_order_path %>
-        <% else %>
-          <a data-toggle="modal" href="#signInModal">Shipping info &rarr;</a>
-        <% end %>
+      <li class="center"
+          style="padding: 8px 0 15px 0;">
+        <h1>Cart is empty!</h1>
+      </li>
     <% end %>
-  <% else %>
-    <li class="next disabled">
-      <%= link_to "Shipping info &rarr;".html_safe, "#" %>
-    </li>
-  <% end %>
-</li>
-</ul>
+  </ul>
+</div>
+<% if there_is_something_in_cart?%>
+  <%= link_to "Next: Shipping Info", new_order_path, class: 'btn btn-block btn-success btn-large' %>
+<% else %>
+
+<% end %>
+</div>
+</div>
 
 <div id="signInModal"
      class="modal hide fade in sign-in-modal"
@@ -111,5 +129,3 @@
   <% end %>
   </div>
 </div>
-
-
