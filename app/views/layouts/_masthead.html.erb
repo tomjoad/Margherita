@@ -1,0 +1,18 @@
+<!-- Masthead
+     ================================================== -->
+<header class="jumbotron subhead" id="overview">
+  <div class="row">
+    <div class="span6">
+      <h1>Kuźnia<small> cafe & pizza</small></h1>
+      <!-- <p class="lead">restauracja rodzinna</p> -->
+    </div>
+    <div class="span6">
+    </div>
+  </div>
+  <div class="subnav">
+    <ul class="nav nav-pills">
+      <% categories = [ 'Pizza', 'Dania Obiadowe', 'Spaghetti', 'Naleśniki', 'Fast Food', 'Sałatki', 'Zupy', 'Sosy', 'Dodatki' ] %>
+      <%= render 'products/nav_pills_items', :categories => categories %>
+    </ul>
+  </div>
+</header>

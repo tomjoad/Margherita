@@ -5,7 +5,7 @@
 
 <ul id="myTab" class="nav nav-pills nav-pills-grid hidden-phone">
   <% @categories.each do |category| %>
-    <li class="<%= category.id == 1 ? "active" : "" %>">
+    <li class="<%= params[:id] == category.name.downcase.delete(' ') ? "active" : "" %>">
         <a href="#<%= category.name.downcase.delete(' ') %>"
          data-toggle="tab">
           <i class="icon-th-list"></i> <%= category.name %>
