@@ -1,16 +1,7 @@
 <!-- Cart by the products list view -->
 
-<div class="thead-inverted">
-  <span class="left-icon"><i class="icon-shopping-cart"></i></span>
-  <span class="title" style="padding-left: 8px">Cart</span>
-  <span class="right-icon clickable">
-    <%= link_to cart_path, :method => "delete" do %>
-    <i class="icon-trash"></i>
-<% end %>
-</span>
-</div>
 <div class="">
-  <ul class="cart-aside-items unstyled"
+  <ul class="unstyled"
       style="padding-top: 10px">
     <% if there_is_something_in_cart? %>
       <% c = [] %>
@@ -18,52 +9,37 @@
         <% c << item.product.category.name %>
       <% end %>
       <% c.uniq!  %>
+
       <!-- LISTA ZAKUPÓW -->
 
       <% c.each do |cat_name| %>
-        <li class="category"
-            style="padding: 2px 0 2px 8px;
-                   border-bottom: 1px solid #ccc;
-                   background: rgba(0,0,0,0.08);
-                   border-radius: 4px">
+        <li style="border-bottom: 1px solid #e5e5e5;">
           <small><%= cat_name %></small>
         </li>
         <% @line_items.each do |item| %>
           <% if item.product.category.name == cat_name %>
             <li style="padding: 13px 0 0 0;
                        float: left;
-                       width: 23px">
+                       width: 9%">
               <%= item.quantity %>
-              <span style="">x</span>
+              <span>x</span>
             </li>
             <li style="padding: 13px 0 0 0;
                        float: left;
-                       width: 220px;">
+                       width: 84%;">
               <%= item.product.name %>
             </li>
-            <li style="padding: 8px 0;
-                       float: right">
-              <button class="btn btn-link"
-                      style="padding: 0 3px">
-                <i class="icon-plus"
-                   style="vertical-align: baseline">
-                </i>
-              </button>
-              <button class="btn btn-link"
-                      style="padding: 0 3px">
-                <i class="icon-minus"
-                   style="vertical-align: baseline">
-                </i>
-              </button>
-              <button class="btn btn-link"
-                      style="padding: 0 3px">
+            <li style="padding: 13px 0 0 0;
+                       float: left;
+                       width: 7%;">
+              <button class="btn btn-link" style="padding:0">
                 <i class="icon-remove"
-                   style="vertical-align: baseline">
+                   style="right:0"> <!-- ADD TOOLTIP -->
                 </i>
               </button>
             </li>
             <li style="clear: both; margin-bottom: 8px">
-              <span style="margin-left: 23px">
+              <span style="margin-left: 9%">
                 <sup class="muted"><%= item.variant.size %></sup>
               </span>
               <span style="float: right;">
@@ -74,11 +50,20 @@
           <% end %>
         <% end %>
       <% end  %>
-      <li style="text-align: right;
+      <li style="width: 50%;
+                 float: left;
+                 margin-top: 15px;
                  padding: 10px 0 20px 0;
-                 border-radius: 0 0 4px 4px;
-                 border-top: 1px solid #ccc">
-        <strong>Total price: <%= "%.2f" % @cart.price %><sup> zł </sup></strong>
+                 border-top: 2px solid #333">
+        Do zapłaty
+      </li>
+      <li style="width: 50%;
+                 float: left;
+                 text-align: right;
+                 margin-top: 15px;
+                 padding: 10px 0 20px 0;
+                 border-top: 2px solid #333">
+        <%= "%.2f" % @cart.price %><sup> zł</sup>
       </li>
     <% else %>
       <li class="center"
@@ -88,8 +73,10 @@
     <% end %>
   </ul>
 </div>
+<div class="clearfix">
 <% if there_is_something_in_cart?%>
   <%= link_to "Continue", new_cart_path, class: 'btn btn-block btn-success btn-large' %>
 <% else %>
   <button class="btn btn-block btn-success btn-large disabled">Continue</button>
 <% end %>
+</div>

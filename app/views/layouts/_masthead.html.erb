@@ -9,10 +9,31 @@
     <div class="span6">
     </div>
   </div>
-  <div class="subnav">
-    <ul class="nav nav-pills">
-      <% categories = [ 'Pizza', 'Dania Obiadowe', 'Spaghetti', 'Naleśniki', 'Fast Food', 'Sałatki', 'Zupy', 'Sosy', 'Dodatki' ] %>
-      <%= render 'products/nav_pills_items', :categories => categories %>
-    </ul>
-  </div>
+  <div class="row">
+    <div class="span-expand span<%= current_page?(products_path) ? "9" : "12" %>">
+      <div class="subnav">
+        <ul class="nav nav-pills">
+          <% categories = [ 'Pizza', 'Dania Obiadowe', 'Spaghetti', 'Naleśniki', 'Fast Food', 'Sałatki', 'Zupy', 'Sosy', 'Dodatki' ] %>
+          <%= render 'products/nav_pills_items', :categories => categories %>
+        </ul>
+      </div>
+    </div>
+    <% if current_page?(products_path) %>
+      <div class="span3 visible-desktop">
+        <div class="subnav">
+          <ul class="nav nav-pills">
+            <li style="width: 85%">
+              <%= link_to new_cart_path do %>
+                <i class="icon-shopping-cart"></i>&nbsp;Koszyk
+              <% end %>
+            </li>
+            <li class="center" style="width: 15%">
+              <%= link_to(cart_path, :method => "delete") do %>
+                <i class="icon-trash"></i> <!-- ADD TOOLTIP -->
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    <% end %>
 </header>

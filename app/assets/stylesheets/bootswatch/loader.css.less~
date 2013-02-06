@@ -37,6 +37,7 @@
 @import "twitter/bootstrap/utilities";
 
 
-// @import "twitter/bootstrap/responsive";
+@import "twitter/bootstrap/responsive";
+@import "boootstrap_responsive_overrides";
 
 // @import "bootswatch/bootswatch";
