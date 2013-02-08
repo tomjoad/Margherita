@@ -3,43 +3,42 @@
   <!-- HOME  -->
 
   <li class="<%= current_page?(root_url) ? "active" : ""%>">
-    <a href="<%= url_for root_url %>"><i class="icon-home"></i> Home</a>
+    <a href="<%= url_for root_url %>"><i class="icon-home icon-white"></i> Główna</a>
   </li>
 
   <!-- PRODUCTS -->
 
   <li class="<%= current_page?(products_path) ? "active" : ""%>">
-    <a href="<%= url_for products_path %>">Food Menu</a>
+    <a href="<%= url_for products_path %>">
+      <i class="icon-book icon-white"></i> Menu</a>
   </li>
 
-  <!-- SERVICES MENU -->
+  <!-- SERVICES -->
 
-  <li class="dropdown">
-    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-      Services <i class="caret"></i>
-    </a>
-    <ul class="dropdown-menu">
-      <li><a href="<%= url_for services_reservations_path %>">Reservations</a></li>
-      <li><a href="<%= url_for services_catering_path %>">Catering</a></li>
-      <li class="divider"></li>
-      <li><a href="<%= url_for services_contact_path %>">Contact Us</a></li>
-    </ul>
+  <li><a href="<%= url_for services_reservations_path %>">
+      <i class="icon-calendar icon-white"></i> Rezerwacje</a>
   </li>
+  <li><a href="<%= url_for services_catering_path %>">
+      <i class="icon-globe icon-white"></i> Catering</a></li>
 
   <!-- ABOUT -->
 
   <li class="<%= current_page?(home_about_path) ? "active" : ""%>">
-    <a href="<%= url_for home_about_path %>">About</a>
+    <a href="<%= url_for home_about_path %>">
+      <i class="icon-info-sign icon-white"></i> Informacje</a>
+  </li>
+  <li>
+    <a href="<%= url_for services_contact_path %>">
+      <i class="icon-envelope icon-white"></i> Kontakt</a>
   </li>
 
   <!-- CART -->
 
     <li class="<%= current_page?(new_order_path) ? "active" : ""%>" >
       <%= link_to new_cart_path do %>
-        <i class="icon-shopping-cart"></i>
-        Current Order
+        <i class="icon-shopping-cart icon-white"></i> Koszyk
         <% if @cart.try(:price) %>
-          <span class="badge badge-info"><%= "%.2f" % @cart.price %>zł</span>
+          [ <%= "%.2f" % @cart.price %><sup> zł</sup> ]
         <% end %>
       <% end %>
     </li>

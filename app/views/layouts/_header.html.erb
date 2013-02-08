@@ -20,11 +20,18 @@
 
         <% else %>
           <% unless current_view_is?('sessions', 'new') %>
-          <%= form_for(:session, :url => sessions_path, :html => {:class => "navbar-form pull-right"}) do |f| %>
-            <%= f.text_field :email, :class => 'span2', :placeholder => 'Email'%>
-            <%= f.password_field :password, :class => 'span2', :placeholder => 'Password'%>
-            <%= f.submit 'Sign in', :class => 'btn'%>
-          <% end %>
+            <%= form_for(:session, :url => sessions_path, :html => {:class => "navbar-form pull-right visible-desktop"}) do |f| %>
+              <%= f.text_field :email, :class => 'input-medium', :placeholder => 'Email'%>
+              <%= f.password_field :password, :class => 'input-small', :placeholder => 'Hasło'%>
+              <%= f.submit 'Zaloguj', :class => 'btn'%>
+            <% end %>
+            <ul class="nav pull-right hidden-desktop">
+              <li>
+                <%= link_to signin_path do %>
+                  <i class="icon-hand-right icon-white"></i> Logowanie
+                <% end %>
+              </li>
+            </ul>
           <% end %>
         <% end %>
 

@@ -5,7 +5,7 @@
     <li style="width: 100%"><a href="<%= url_for new_cart_path %>"><i class="icon-shopping-cart"></i>&nbsp;Koszyk</li></a>
   </ul>
 </div>
-  <ul class="unstyled">
+  <ul class="unstyled" style="padding-top: 10px;">
     <!-- <li class="hidden-desktop"> -->
     <!--     <a href="<%= url_for new_cart_path %>" -->
     <!--        class="btn btn-submit"> -->
@@ -25,10 +25,10 @@
 
       <!-- LISTA ZAKUPÓW -->
       <% c.each do |cat_name| %>
-        <li class="btn btn-inverse btn-block btn-small disabled"
-            style="float: left; margin: 10px 0 5px 0">
-          <%= cat_name %>
-        </li>
+        <!-- <li class="btn btn-inverse btn-block btn-small disabled" -->
+        <!--     style="float: left; margin: 10px 0 5px 0"> -->
+        <!--   <%= cat_name %> -->
+        <!-- </li> -->
         <% @line_items.each do |item| %>
           <% if item.product.category.name == cat_name %>
             <li style="padding: 12px 0 0 0;
@@ -39,7 +39,7 @@
             <li style="padding: 12px 0 0 0;
                        float: left;
                        width: 89%;">
-              <%= item.product.name %>
+              <%= item.product.name %>&nbsp;[<%= item.variant.size %>]
             </li>
             <li style="padding: 12px 0 0 0;
                        float: left;
@@ -52,7 +52,7 @@
             </li>
             <li style="clear: both">
               <span style="margin-left: 6%">
-                <sup class="muted"><%= item.variant.size %></sup>
+                <sup class="muted"><%= cat_name %></sup>
               </span>
               <span style="float: right;">
                 <sup class="muted"><%= "%.2f" % item.total_price%>zł</sup>
@@ -62,14 +62,14 @@
           <% end %>
         <% end %>
       <% end  %>
-      <li style="width: 50%;
+      <li style="width: 70%;
                  float: left;
                  margin-top: 12px;
                  padding-top: 20px;
                  border-top: 2px solid #333">
         Koszt dostawy
       </li>
-      <li style="width: 50%;
+      <li style="width: 30%;
                  float: left;
                  text-align: right;
                  margin-top: 12px;
@@ -77,12 +77,12 @@
                  border-top: 2px solid #333">
         0,00<sup> zł</sup>
       </li>
-      <li style="width: 50%;
+      <li style="width: 70%;
                  float: left;
                  padding: 20px 0 20px 0;">
         Do zapłaty
       </li>
-      <li style="width: 50%;
+      <li style="width: 30%;
                  float: left;
                  text-align: right;
                  padding: 20px 0 20px 0;">
@@ -95,11 +95,12 @@
       </li>
     <% end %>
   </ul>
-</div>
+
 <div class="clearfix">
   <% if there_is_something_in_cart? %>
-    <%= link_to "Kontynuuj", new_cart_path, class: 'btn btn-inverse pull-right' %>
+    <%= link_to "Kontynuuj", new_cart_path, class: 'btn btn-inverse btn-block' %>
   <% else %>
     <button class="btn btn-inverse disabled pull-right">Kontynuuj</button>
   <% end %>
   <!-- <button class="btn btn-block btn-inverse btn-large disabled">Koszyk jest pusty!</button> -->
+</div>
