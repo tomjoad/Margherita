@@ -38,6 +38,8 @@
 
 
 @import "twitter/bootstrap/responsive";
-@import "boootstrap_responsive_overrides";
+@import "bootstrap_responsive_overrides";
+
+@import "cart_small.less";
 
 // @import "bootswatch/bootswatch";
