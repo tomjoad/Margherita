@@ -19,7 +19,7 @@ class LineItemsController < ApplicationController
 #    @product = Variant.products.find(params[:id])
     session[:cart] = @cart.items
     if params[:menu]
-      redirect_to category_products_path(@variant.category)
+      redirect_to products_path(:id => @variant.category.name.downcase.delete(' '))
     else
       redirect_to new_cart_path
     end

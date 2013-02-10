@@ -13,7 +13,7 @@
     <div class="span-expand span<%= current_page?(products_path) ? "9" : "12" %>">
       <div class="subnav">
         <ul class="nav nav-pills">
-          <%= render 'products/nav_pills_items', :categories => Category.manual_order %>
+          <%= render 'categories/nav_pills_items', :categories => Category.manual_order %>
         </ul>
       </div>
     </div>
@@ -27,7 +27,7 @@
               <% end %>
             </li>
             <li class="center" style="width: 15%">
-              <%= link_to(cart_path, :method => "delete") do %>
+              <%= link_to cart_path, { :method => "delete" } do %>
                 <i class="icon-trash"></i> <!-- ADD TOOLTIP -->
               <% end %>
             </li>
