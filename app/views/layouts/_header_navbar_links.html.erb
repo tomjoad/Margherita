@@ -9,17 +9,23 @@
   <!-- PRODUCTS -->
 
   <li class="<%= current_page?(products_path) ? "active" : ""%>">
-    <a href="<%= url_for products_path %>">
-      <i class="icon-book icon-white"></i> Menu</a>
+    <a href="<%= url_for products_path(:id => "pizza") %>">
+      <i class="icon-book icon-white"></i> Menu
+    </a>
   </li>
 
   <!-- SERVICES -->
 
-  <li><a href="<%= url_for services_reservations_path %>">
-      <i class="icon-calendar icon-white"></i> Rezerwacje</a>
+  <li class="<%= current_page?(services_reservations_path) ? "active" : ""%>">
+    <a href="<%= url_for services_reservations_path %>">
+      <i class="icon-calendar icon-white"></i> Rezerwacje
+    </a>
   </li>
-  <li><a href="<%= url_for services_catering_path %>">
-      <i class="icon-globe icon-white"></i> Catering</a></li>
+  <li class="<%= current_page?(services_catering_path) ? "active" : ""%>">
+    <a href="<%= url_for services_catering_path %>">
+      <i class="icon-globe icon-white"></i> Catering
+    </a>
+  </li>
 
   <!-- ABOUT -->
 
@@ -27,7 +33,7 @@
     <a href="<%= url_for home_about_path %>">
       <i class="icon-info-sign icon-white"></i> Informacje</a>
   </li>
-  <li>
+  <li class="<%= current_page?(services_contact_path) ? "active" : ""%>">
     <a href="<%= url_for services_contact_path %>">
       <i class="icon-envelope icon-white"></i> Kontakt</a>
   </li>
@@ -36,9 +42,11 @@
 
     <li class="<%= current_page?(new_order_path) ? "active" : ""%>" >
       <%= link_to new_cart_path do %>
-        <i class="icon-shopping-cart icon-white"></i> Koszyk
+        <i class="icon-shopping-cart icon-white"></i>&nbsp;
         <% if @cart.try(:price) %>
-          [ <%= "%.2f" % @cart.price %><sup> zł</sup> ]
+          Koszyk [ <%= "%.2f" % @cart.price %><sup> zł</sup> ]
+        <% else %>
+          Koszyk [ 0,00<sup> zł</sup> ]
         <% end %>
       <% end %>
     </li>
