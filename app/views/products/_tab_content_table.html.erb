@@ -1,0 +1,53 @@
+<div class="tab-content">
+  <% @categories.each do |category| %>
+    <div class="tab-pane <%= params[:id] == category.name.downcase.delete(' ') ? "active" : "" %>"
+         id="<%= category.name.downcase.delete(' ') %>">
+      <table class="table table-striped table-products">
+        <thead> <!-- Table header -->
+          <tr>
+            <th class="id">
+              Nr
+            </th>
+            <th class="name">
+              Produkt
+            </th>
+            <th colspan="3" class="price">
+              Cena
+            </th>
+          </tr>
+        </thead>
+        <tbody> <!-- Table body -->
+          <% category.products.each do |product| %>
+            <tr>
+              <td class="id">
+                <%= product.fixed_number %>
+              </td>
+              <td class="name">
+                <%= product.name %><br>
+                <small class="muted"><%= product.description %></small>
+              </td>
+              <% display_in_order(product.variants, Product::SIZES).each do |variant| %>
+                <td class="price-variant">
+                  <% if variant %>
+                    <a class=""
+                       href="<%= url_for :controller => 'line_items',
+                             :action => 'update',
+                             :id => variant.id,
+                             :operation => 'add',
+                             :menu => true,
+                             :method => 'get' %>">
+                      <%= '%.2f' % variant.price %><br>
+                      <small class="muted"><%= variant.size %></small>
+                    </a>
+                  <% else %>
+                    <span class="muted">-</span>
+                  <% end %>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <% end %>
+</div>

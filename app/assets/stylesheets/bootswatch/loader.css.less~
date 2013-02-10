@@ -40,6 +40,6 @@
 @import "twitter/bootstrap/responsive";
 @import "bootstrap_responsive_overrides";
 
-@import "cart_small.less";
+@import "cart.css.less";
 
 // @import "bootswatch/bootswatch";
