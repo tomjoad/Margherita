@@ -36,10 +36,12 @@
 @import "twitter/bootstrap/hero-unit";
 @import "twitter/bootstrap/utilities";
 
+@import "bootswatch/bootswatch";
 
 @import "twitter/bootstrap/responsive";
 @import "bootstrap_responsive_overrides";
 
 @import "cart.css.less";
+@import "table_products.css.less";
 
-// @import "bootswatch/bootswatch";
+
