@@ -13,8 +13,7 @@
     <div class="span-expand span<%= current_page?(products_path) ? "9" : "12" %>">
       <div class="subnav">
         <ul class="nav nav-pills">
-          <% categories = [ 'Pizza', 'Dania Obiadowe', 'Spaghetti', 'Naleśniki', 'Fast Food', 'Sałatki', 'Zupy', 'Sosy', 'Dodatki' ] %>
-          <%= render 'products/nav_pills_items', :categories => categories %>
+          <%= render 'products/nav_pills_items', :categories => Category.manual_order %>
         </ul>
       </div>
     </div>
