@@ -8,7 +8,7 @@ class CartsController < ApplicationController
 
   def destroy
     session[:cart] = nil
-    redirect_to products_path
+    redirect_to products_path(:id => "pizza")
   end
 
 end
