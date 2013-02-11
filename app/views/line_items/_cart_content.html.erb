@@ -18,7 +18,7 @@
           Ilość
         </th>
         <th class="price-variant">
-          Cena
+          Cena<sup class="muted">[zł]</sup>
         </th>
         <th class="price-variant">
           Usuń?
@@ -90,10 +90,15 @@
   </h1>
 <% end %>
 
-<%= link_to(cart_path, { :method => "delete", :class => "btn btn-danger" }) do %>
-  <i class="icon-trash"></i> Opróżnij koszyk
-<% end %>
+<div class="well">
+  <%= link_to(new_order_path, { :class => "btn btn-primary" }) do %>
+    <i class="icon-ok icon-white"></i> Przejdź dalej <!-- NAJPIERW KURWA ZALOGUJ, nie? -->
+  <% end %>
 
+  <%= link_to(cart_path, { :method => "delete", :class => "btn btn-danger" }) do %>
+    <i class="icon-trash"></i> Opróżnij koszyk
+  <% end %>
+</div>
 
 <div id="signInModal"
      class="modal hide fade in sign-in-modal"
