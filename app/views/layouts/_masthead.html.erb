@@ -10,13 +10,25 @@
     </div>
   </div>
   <div class="row">
-    <div class="span-expand span<%= current_page?(products_path) ? "9" : "12" %>">
-      <div class="subnav">
-        <ul class="nav nav-pills">
-          <%= render 'categories/nav_pills_items', :categories => Category.manual_order %>
+    <% if current_page?(root_url) or current_page?(products_path) %>
+      <div class="span-expand span<%= current_page?(products_path) ? "9" : "12" %>">
+        <%= render 'categories/subhead_nav_pills', :categories => Category.manual_order %>
+      </div>
+    <% elsif current_page?(new_cart_path) or current_page?(new_order_path) %>
+      <div class="span3">
+        <ul class="breadcrumb breadcrumb-darker">
+          <li>Postęp zamówienia</li>
         </ul>
       </div>
-    </div>
+      <div class="span9">
+        <ul class="breadcrumb">
+          <li>
+            <%= "Krok 1: Potwierdź zawartość koszyka" if current_page?(new_cart_path) %>
+            <%= "Krok 2: Wprowadź swoje dane osobowe" if current_page?(new_order_path) %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
     <% if current_page?(products_path) %>
       <div class="span3 visible-desktop">
         <div class="subnav">

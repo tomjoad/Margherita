@@ -35,7 +35,9 @@
           </td>
           <td class="name">
             <%= item.product.name %><br>
-            <small class="muted"><%= item.product.description %></small>
+            <small class="muted">
+              <%= item.product.category.name %>
+            </small>
           </td>
           <td class="price-variant">
             <%= item.variant.size %>
@@ -84,22 +86,39 @@
     </tbody>
   </table>
 <% else %>
-  <h1 class="muted">
-    Nie powinno dać się wejść do koszyka dopóki nie ma w nim produktów.<br><br>
-    Jutro bydzie zrobione.
-  </h1>
+  <legend>
+    <div class="alert">
+      Twój koszyk jest pusty!
+    </div>
+  </legend>
+  <div class="well">
+    <p>
+      <strong>Nie wiesz co dodać?</strong><br>
+      Tu może być jakieś zdanie zachęcające do zakupów. Takie sranie w banie a la IKEA. Lorem ipsum dolor sit amet.
+    </p>
+  </div>
 <% end %>
 
 <div class="well">
-  <%= link_to(new_order_path, { :class => "btn btn-primary" }) do %>
-    <i class="icon-ok icon-white"></i> Przejdź dalej <!-- NAJPIERW KURWA ZALOGUJ, nie? -->
-  <% end %>
-
-  <%= link_to(cart_path, { :method => "delete", :class => "btn btn-danger" }) do %>
-    <i class="icon-trash"></i> Opróżnij koszyk
+  <% if there_is_something_in_cart? %>
+    <%= link_to(products_path(:id => "pizza"), { :class => "btn btn-submit" }) do %>
+      <i class="icon-chevron-left icon-white"></i> Wróć do zakupów
+    <% end %>
+    <%= link_to(new_order_path, { :class => "btn btn-primary" }) do %>
+      Przejdź dalej <i class="icon-ok icon-white"></i><!-- NAJPIERW KURWA ZALOGUJ, nie? -->
+    <% end %>
+    <%= link_to(cart_path, { :method => "delete", :class => "btn btn-danger pull-right" }) do %>
+      <i class="icon-trash"></i>
+    <% end %>
+  <% else %>
+    <%= link_to(:back, { :class => "btn btn-primary" }) do %>
+      Wróć do zakupów <i class="icon-chevron-left icon-white"></i>
+    <% end %>
   <% end %>
 </div>
 
+
+<!-- login modal -->
 <div id="signInModal"
      class="modal hide fade in sign-in-modal"
      tabindex="-1"

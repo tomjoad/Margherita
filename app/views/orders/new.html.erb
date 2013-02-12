@@ -60,15 +60,14 @@
         </fieldset>
       </div>
       <div class="well">
-        <div class="controls">
-          <button type="submit" class="btn btn-primary">
-            Przejdź dalej <i class="icon-ok icon-white"></i>
-          </button>
-          <a href="<%= url_for new_cart_path %>" class="btn btn-submit">
-            Wróć do koszyka <i class="icon-shopping-cart"></i>
-          </a>
-        </div>
+        <a href="<%= url_for new_cart_path %>" class="btn btn-submit">
+          <i class="icon-shopping-cart icon-white"></i> Wróć do koszyka
+        </a>
+        <button type="submit" class="btn btn-primary">
+          Przejdź dalej <i class="icon-ok icon-white"></i>
+        </button>
       </div>
+
     <% end %>
   </div>
 </div>

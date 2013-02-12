@@ -10,37 +10,29 @@
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
-
   <!-- BODY -->
-
   <body data-spy="scroll" data-target="#nav-affix-left" data-offset="102">
-    <%= render 'layouts/header' %>
-
+    <!-- NAVBAR -->
+    <%= render 'layouts/navbar_fixed_top' %>
     <div id="wrap">
       <div class="container">
-
-        <!-- CONTENT -->
-
+        <!-- HEADER -->
         <div class="content">
           <% flash.each do |key, value| %>
             <div class="alert alert-<%= key %>"><%= value %></div>
           <% end %>
           <%= render 'layouts/masthead' %>
+          <!-- CONTENT -->
           <%= yield %>
         </div>
-
         <!-- DEBUG  -->
-
         <div style="margin-top: 20px">
           <%= debug(params) if Rails.env.development? %>
         </div>
         <div id="push"></div>
       </div>
     </div>
-
     <!-- FOOTER -->
-
     <%= render 'layouts/footer' %>
   </body>
-
 </html>

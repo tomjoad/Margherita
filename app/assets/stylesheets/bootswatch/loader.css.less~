@@ -37,11 +37,12 @@
 
 @import "twitter/bootstrap/responsive";
 @import "bootstrap_responsive_overrides";
+@import "bootstrap_overrides";
 
 @import "cart.css.less";
 @import "table_products.css.less";
 
-// @import "bootswatch/variables_cosmo";
+@import "bootswatch/variables_cosmo";
 @import "bootswatch/bootswatch_cosmo";
 
 

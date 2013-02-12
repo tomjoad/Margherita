@@ -1,0 +1,15 @@
+<!-- NAV-PILLS-STYLED SUBNAV CATEGORIES LIST-->
+<div class="subnav">
+  <ul class="nav nav-pills">
+    <% categories.each do |category| %>
+      <% anchor = category.downcase.delete(' ') %>
+      <li class="<%= params[:id] == anchor ? 'active' : '' %>">
+        <%=
+           link_to_if(params[:controller] == 'products', category, '#' + anchor, { :'data-toggle' => 'tab' }) do
+             link_to(category, { controller: 'products', action: 'index', id: anchor })
+           end
+           %>
+      </li>
+    <% end %>
+  </ul>
+</div>
