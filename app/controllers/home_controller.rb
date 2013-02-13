@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @paternt = 0
+    @paternt = 0 # wtf??
   end
 
   def help

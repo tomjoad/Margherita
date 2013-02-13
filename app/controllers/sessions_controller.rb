@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class SessionsController < ApplicationController
 
   def new
@@ -7,10 +8,10 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       sign_in user
-      redirect_to root_url
+      redirect_back_or(root_url)
     else
-      flash.now[:error] = "Invalid email / password"
-      redirect_to new_session_path
+      flash[:error] = "Nieprawidłowy email / hasło"
+      redirect_back_or(root_url)
     end
   end
 

@@ -28,6 +28,12 @@
           </li>
         </ul>
       </div>
+      <% elsif current_page?(new_session_path) %>
+        <div class="span12">
+          <ul class="breadcrumb">
+            <li>Zaloguj lub zarejestruj się aby przejść dalej!</li>
+          </ul>
+        </div>
     <% end %>
     <% if current_page?(products_path) %>
       <div class="span3 visible-desktop">
