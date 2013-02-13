@@ -1,6 +1,6 @@
 <div class="row-fluid">
   <div class="span3">
-
+    <%= render "orders/steps", :step => 2%>
   </div>
   <div class="span9">
     <%= form_for(@order, :url => { :action => "create" }, :html => {:class => "form-horizontal"}) do |f| %>
