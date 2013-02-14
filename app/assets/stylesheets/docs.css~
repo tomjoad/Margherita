@@ -758,8 +758,8 @@ form.well {
   }
   .subnav .nav > li:first-child > a,
   .subnav .nav > li:first-child > a:hover {
-      -webkit-border-radius: 0; // was '4px 4px 0 0' - n0stromo
-         -moz-border-radius: 0;
+      -webkit-border-radius: 0;
+         -moz-border-radius: 4px 4px 0 0;
               border-radius: 0;
   }
 

@@ -1,5 +1,5 @@
-<ul class="nav pull-right" style="margin-right: 0">
-  <li id="fat-menu" class="dropdown">
+<ul class="nav pull-right">
+  <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
       <i class="icon-user icon-white"></i> Admin Menu <b class="caret"></b>
     </a>
@@ -10,10 +10,8 @@
       <li><%= link_to "Products", products_path %></li>
       <li><%= link_to "New Product", new_product_path %></li>
       <li><%= link_to "New Category", new_category_path %></li>
-      <li class="divider"></li>
       <li>
-        <%= button_to "Sign out", signout_path, method: "delete", class: "a-signout visible-desktop" %>
-        <%= button_to "Sign out", signout_path, method: "delete", class: "btn btn-block hidden-desktop" %>
+        <%= button_to "Wyloguj się", signout_path, method: "delete", class: "btn btn-block btn-danger" %>
       </li>
     </ul>
   </li>
