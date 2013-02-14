@@ -1,58 +1,30 @@
 <%= render 'home/carousel' %>
-
-<div class="row-fluid" style="margin-top: 20px">
-  <ul class="thumbnails">
-    <li class="span4">
-      <div class="thumbnail"
-           style="background-color: white;
-                  max-width: 400px;
-                  margin: auto;">
-        <div class="caption">
-        <img class="img-rounded" src="<%= asset_path 'invite_pizza.jpg' %>">
-        <h3 class="center">Zasmakuj!</h3>
-        <p class="description">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue,
-          suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque
-          aliquet tellus. Phasellus pharetra nulla ac diam. Quisque semper justo at risus.
-        </p>
-        <p><%= link_to "Przejdź do menu", products_path, class: "btn btn-block btn-primary btn-large" %>
-          </div>
-      </div>
-    </li>
-    <li class="span4">
-      <div class="thumbnail"
-           style="background-color: white;
-                  max-width: 400px;
-                  margin: auto;">
-        <div class="caption">
-        <img class="img-rounded" src="<%= asset_path 'invite_catering.jpg' %>">
-        <h3 class="center">Zamów catering!</h3>
-        <p class="description">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue,
-          suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque
-          aliquet tellus. Phasellus pharetra nulla ac diam. Quisque semper justo at risus.
-        </p>
-        <p><%= link_to "Skontaktuj się z nami", products_path, class: "btn btn-block btn-primary btn-large" %>
-      </div>
-        </div>
-    </li>
-
-    <li class="span4">
-      <div class="thumbnail"
-           style="background-color: white;
-                  max-width: 400px;
-                  margin: auto;">
-        <div class="caption">
-        <img class="img-rounded" src="<%= asset_path 'invite_book.jpg' %>">
-        <h3 class="center">Wynajmij salę!</h3>
-        <p class="description">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue,
-          suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque
-          aliquet tellus. Phasellus pharetra nulla ac diam. Quisque semper justo at risus.
-        </p>
-        <p><%= link_to "Skontaktuj się z nami", products_path, class: "btn btn-block btn-primary btn-large" %>
-      </div>
-        </div>
-    </li>
-  </ul>
+<div class="row-fluid">
+  <div class="span4 well">
+      <h3>Super opcja 1</h3>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet ante risus, eget ultricies nulla. Praesent leo lorem, egestas eu gravida sed, semper in ipsum.
+    </p>
+    <p>
+      <%= link_to "Zobacz to", "#", class: "btn btn-primary btn-block btn-large" %>
+    </p>
+  </div>
+  <div class="span4 well">
+    <h3>Super opcja 2</h3>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet ante risus, eget ultricies nulla. Praesent leo lorem, egestas eu gravida sed, semper in ipsum.
+    </p>
+    <p>
+      <%= link_to "Sprawdź to", "#", class: "btn btn-primary btn-block btn-large" %>
+    </p>
+  </div>
+  <div class="span4 well">
+    <h3>Super opcja 3</h3>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet ante risus, eget ultricies nulla. Praesent leo lorem, egestas eu gravida sed, semper in ipsum.
+    </p>
+    <p>
+      <%= link_to "Ogarnij to", "#", class: "btn btn-primary btn-block btn-large" %>
+    </p>
+  </div>
 </div>
