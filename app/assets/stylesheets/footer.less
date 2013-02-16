@@ -6,7 +6,7 @@
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    /* Negative indent footer by it's height & borders*/
+    /* Negative indent footer by it's height & borders */
     margin: 0 auto -86px;
 }
 
@@ -21,6 +21,12 @@
 }
 
 /* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 980px) {
+    #wrap {
+        margin-top: -81px; // collapsed Navbar pushes down #wrap
+    }
+}
+
 @media (max-width: 767px) {
     #footer {
         margin-left: -20px;

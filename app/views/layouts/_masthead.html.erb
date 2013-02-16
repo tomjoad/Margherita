@@ -14,56 +14,5 @@
     <div class="span4">
     </div>
   </div>
-  <div class="row">
-    <% if current_page?(root_url) or current_page?(products_path) %>
-      <div class="span-expand span<%= current_page?(products_path) ? "9" : "12" %>">
-        <%= render 'categories/subhead_nav_pills', :categories => Category.manual_order %>
-      </div>
-    <% elsif current_page?(new_cart_path) or current_page?(new_order_path) %>
-      <div class="span3">
-        <ul class="breadcrumb breadcrumb-darker">
-          <li>Postęp zamówienia</li>
-          <li class="pull-right"><i class="icon-chevron-down"></i></li>
-        </ul>
-      </div>
-      <div class="span9">
-        <ul class="breadcrumb breadcrumb-alert">
-          <li>
-            <% if current_page?(new_cart_path) %>
-              <span class="title">Krok 1/3</span>
-              &raquo; Edytuj i/lub potwierdź zawartość koszyka
-            <% elsif current_page?(new_order_path) %>
-              <span class="title">Krok 2/3</span>
-              &raquo; Wprowadź swoje dane osobowe
-            <% end %>
-          </li>
-          <li class="pull-right"><i class="icon-edit"></i></li>
-        </ul>
-      </div>
-    <% elsif current_page?(new_session_path) %>
-      <div class="span12">
-        <ul class="breadcrumb">
-          <li>Zaloguj lub zarejestruj się aby przejść dalej!</li>
-        </ul>
-      </div>
-    <% end %>
-    <% if current_page?(products_path) %>
-      <div class="span3 visible-desktop">
-        <div class="subnav">
-          <ul class="nav nav-pills">
-            <li style="width: 85%">
-              <%= link_to new_cart_path do %>
-                <i class="icon-shopping-cart"></i>&nbsp;Koszyk
-              <% end %>
-            </li>
-            <li class="center" style="width: 15%">
-              <%= link_to cart_path, { :method => "delete" } do %>
-              <i class="icon-trash"></i> <!-- ADD TOOLTIP -->
-    <% end %>
-</li>
-</ul>
-</div>
-</div>
-<% end %>
-</div>
+  <%= render params[:controller] + "/subnav" %>
 </header>

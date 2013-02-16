@@ -1,45 +1,33 @@
 <div class="row-fluid">
-  <div class="span8">
-    <iframe src="https://www.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=pl.polish%23holiday%40group.v.calendar.google.com&amp;color=%23A32929&amp;ctz=Europe%2FWarsaw" style=" border-width:0 " width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+  <div class="span9 well">
+    <legend>
+      Kalendarz rezerwacji
+    </legend>
+    <iframe src="https://www.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=pl.polish%23holiday%40group.v.calendar.google.com&amp;color=%23A32929&amp;ctz=Europe%2FWarsaw" style=" border-width:0 " width="100%" height="440" frameborder="0" scrolling="no"></iframe>
   </div>
-  <div class="span4 well">
-    <form class="form-horizontal">
-      <div class="control-group">
+  <div class="span3 well">
+    <form class="">
+      <fieldset>
+        <legend>
+          Rezerwacja online
+        </legend>
         <label class="control-label" for="inputDate">Data</label>
-        <div class="controls">
-          <input type="text" class="span2" value="" id="inputDate" placeholder="dd-mm-rrrr">
-        </div>
-      </div>
-      <div class="control-group">
+        <input type="text" class="span12" value="" id="inputDate" placeholder="dd-mm-rrrr">
         <label class="control-label" for="inputTime">Godzina</label>
-        <div class="controls">
-          <input class="timepicker-2" type="text" id="inputTime" style="width: 60px;" placeholder="hh:mm">
-          <i class="icon-time" style="margin: 0 0 0 -22.5px; pointer-events: none; position: relative;"></i>
-        </div>
-      </div>
-      <div class="control-group">
+        <input class="timepicker-2" type="text" id="inputTime" style="width: 60px;" placeholder="hh:mm">
+        <i class="icon-time" style="margin: 0 0 0 -22.5px; pointer-events: none; position: relative;"></i>
         <label class="control-label" for="inputTables">Stoliki</label>
-        <div class="controls">
-          <select class="span1">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-        </div>
-      </div>
-      <div class="control-group">
+        <select class="span6">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
         <label class="control-label" for="inputClient">Nazwisko</label>
-        <div class="controls">
-          <input type="text" class="span2" id="inputClient" placeholder="Kowalski">
-        </div>
-      </div>
-      <div class="control-group">
-        <div class="controls">
-          <button type="submit" class="btn">Rezerwuj!</button>
-        </div>
-      </div>
+        <input type="text" class="span12" id="inputClient" placeholder="Kowalski">
+        <button type="submit" class="btn btn-primary btn-block btn-large">Rezerwuj!</button>
+      </fieldset>
     </form>
   </div>
 </div>
