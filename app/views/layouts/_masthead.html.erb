@@ -1,6 +1,11 @@
 <!-- Masthead
      ================================================== -->
 <header class="jumbotron subhead" id="overview">
+  <!-- Error Messages -->
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
+
   <div class="row-fluid">
     <div class="span8">
       <h1>Kuźnia<small> cafe&nbsp;&&nbsp;pizza</small></h1>
@@ -35,12 +40,12 @@
           <li class="pull-right"><i class="icon-edit"></i></li>
         </ul>
       </div>
-      <% elsif current_page?(new_session_path) %>
-        <div class="span12">
-          <ul class="breadcrumb">
-            <li>Zaloguj lub zarejestruj się aby przejść dalej!</li>
-          </ul>
-        </div>
+    <% elsif current_page?(new_session_path) %>
+      <div class="span12">
+        <ul class="breadcrumb">
+          <li>Zaloguj lub zarejestruj się aby przejść dalej!</li>
+        </ul>
+      </div>
     <% end %>
     <% if current_page?(products_path) %>
       <div class="span3 visible-desktop">
@@ -53,12 +58,12 @@
             </li>
             <li class="center" style="width: 15%">
               <%= link_to cart_path, { :method => "delete" } do %>
-                <i class="icon-trash"></i> <!-- ADD TOOLTIP -->
-              <% end %>
-            </li>
-          </ul>
-        </div>
-      </div>
+              <i class="icon-trash"></i> <!-- ADD TOOLTIP -->
     <% end %>
+</li>
+</ul>
+</div>
+</div>
+<% end %>
 </div>
 </header>
