@@ -29,7 +29,11 @@ class LineItemsController < ApplicationController
     @cart = find_cart
     @cart.items.delete(params[:id])
     session[:cart] = @cart.items
-    redirect_to new_cart_path
+    if params[:cart] == "small"
+      redirect_to products_path(:id => "pizza")
+    else
+      redirect_to new_cart_path
+    end
   end
 
   # private

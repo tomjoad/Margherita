@@ -37,7 +37,7 @@
                 </div>
                 <div class="column-two">
                   <div class="item-remove">
-                    <%= link_to({ :controller => "line_items", :action => "destroy", :id => item.variant.id }, { :class => "icon-link" }) do %>
+                    <%= link_to({ :controller => "line_items", :action => "destroy", :id => item.variant.id, :cart => "small" }, { :class => "icon-link" }) do %>
                       <i class="icon-remove"></i>
                     <% end %>
                   </div>
