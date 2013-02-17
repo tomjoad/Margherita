@@ -38,10 +38,12 @@ class OrdersController < ApplicationController
         session[:checkout] = nil
         flash[:notice] = 'Your order is pending'
         redirect_to orders_path(:filter => @order.state)
-      else
-        session[:checkout] = true
-        redirect_to new_order_path
       end
+
+    else
+      session[:checkout] = true
+      redirect_to new_order_path
+    end
     #else
     #   redirect_to 'new'
     # end
