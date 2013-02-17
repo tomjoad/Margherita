@@ -1,26 +1,18 @@
-<% if session[:checkout] %>
-  PIERDOL SIE
-
-<% else %>
-  <div class="row-fluid">
-    <div class="span3 hidden-phone">
-      <%= render "orders/steps", :step => 2%>
-    </div>
-    <div class="span9">
-      <%= form_for(@order, :url => { :action => "create" }, :html => {:class => "form-horizontal"}) do |f| %>
-        <%#=render "orders/user_data_form", :f => f %>
-        <%= render "orders/transport_data", :f => f %>
-
-        <div class="well">
-          <button type="submit" class="btn btn-primary">
-            Przejdź dalej <i class="icon-ok icon-white"></i>
-          </button>
-          <a href="<%= url_for new_cart_path %>" class="btn btn-submit">
-            Wróć do koszyka <i class="icon-shopping-cart icon-white"></i>
-          </a>
-        </div>
-
-      <% end %>
-    </div>
+<%# session[:checkout] = true %>
+<div class="row-fluid">
+  <div class="span3 hidden-phone">
+    <%= render "orders/steps", :step => 2%>
   </div>
-<% end %>
+  <div class="span9">
+    <%= form_for(@order, :url => { :action => "create" },
+             :html => {:class => "form-horizontal"}) do |f| %>
+
+      <% if session[:checkout] %>
+        <%= render "orders/checkout", :f => f %>
+      <% else %>
+        <%= render "orders/transport_data", :f => f %>
+      <% end %>
+
+    <% end %>
+  </div>
+</div>
