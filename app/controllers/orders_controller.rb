@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
     @line_items = LineItem.all(session[:cart])
     @order = Order.new(session[:order_params])
     @user = current_user
-    session[:checkout] = nil
+    # session[:checkout] = nil
   end
 
   def create
@@ -33,13 +33,14 @@ class OrdersController < ApplicationController
     @order = Order.new(params[:order])
     @order.cart = session[:cart]
     # if @order.valid?
-      if session[:checkout]
-        flash[:notice] = 'Your order is pending' if @order.save
-        redirect_to orders_path(:filter => @order.state)
+    if session[:checkout]
+      if @order.save
         session[:checkout] = nil
+        flash[:notice] = 'Your order is pending'
+        redirect_to orders_path(:filter => @order.state)
       else
         session[:checkout] = true
-        redirect_to orders_path
+        redirect_to new_order_path
       end
     #else
     #   redirect_to 'new'

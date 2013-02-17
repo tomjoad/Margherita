@@ -2,7 +2,7 @@
 <dd>
   <%= @order.try(:name) %>&nbsp<%= @order.try(:last_name) %></br>
   ul. <%= @order.try(:street) %>&nbsp<%= @order.try(:home_number) %></br>
-  <%= @order.try(:zip_code) %>&nbsp<%= @order.try(:city) %></br></br>
+  <%#= @order.try(:zip_code) %><!-- &nbsp --><%#= @order.try(:city) %><!-- </br></br> -->
 </dd>
 <dt>Telefon kontaktowy:</dt>
 <dd>
