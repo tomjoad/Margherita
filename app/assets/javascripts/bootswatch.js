@@ -1,7 +1,7 @@
 // tooltips
 
 $('a[rel=tooltip]').tooltip({
-	'placement': 'bottom'
+        'placement': 'bottom'
 });
 
 // smooth scroll
@@ -15,7 +15,7 @@ $(document).ready(function() {
   }
   var locationPath = filterPath(location.pathname);
   var scrollElem = scrollableElement('html', 'body');
- 
+
   $('a[href^=#]').each(function() {
     var thisPath = filterPath(this.pathname) || locationPath;
     if (  locationPath == thisPath
@@ -33,7 +33,7 @@ $(document).ready(function() {
       }
     }
   });
- 
+
   // use the first element that is "scrollable"
   function scrollableElement(els) {
     for (var i = 0, argLength = arguments.length; i <argLength; i++) {
@@ -42,7 +42,7 @@ $(document).ready(function() {
       if ($scrollElement.scrollTop()> 0) {
         return el;
       } else {
-        $scrollElement.scrollTop(1);
+        $scrollElement.scrollTop(0); // n0stromo: changed from 1 - didnt work properly in responsive mode
         var isScrollable = $scrollElement.scrollTop()> 0;
         $scrollElement.scrollTop(0);
         if (isScrollable) {
@@ -52,43 +52,43 @@ $(document).ready(function() {
     }
     return [];
   }
- 
+
 });
 
 // subnav
 
 (function ($) {
 
-	$(function(){
+        $(function(){
 
-		// fix sub nav on scroll
-		var $win = $(window),
-				$body = $('body'),
-				$nav = $('.subnav'),
-				navHeight = $('.navbar').first().height(),
-				subnavHeight = $('.subnav').first().height(),
-				subnavTop = $('.subnav').length && $('.subnav').offset().top - navHeight,
-				marginTop = parseInt($body.css('margin-top'), 10);
-				isFixed = 0;
+                // fix sub nav on scroll
+                var $win = $(window),
+                                $body = $('body'),
+                                $nav = $('.subnav'),
+                                navHeight = $('.navbar').first().height(),
+                                subnavHeight = $('.subnav').first().height(),
+                                subnavTop = $('.subnav').length && $('.subnav').offset().top - navHeight,
+                                marginTop = parseInt($body.css('margin-top'), 10);
+                                isFixed = 0;
 
-		processScroll();
+                processScroll();
 
-		$win.on('scroll', processScroll);
+                $win.on('scroll', processScroll);
 
-		function processScroll() {
-			var i, scrollTop = $win.scrollTop();
+                function processScroll() {
+                        var i, scrollTop = $win.scrollTop();
 
-			if (scrollTop >= subnavTop && !isFixed) {
-				isFixed = 1;
-				$nav.addClass('subnav-fixed');
-				$body.css('margin-top', marginTop + subnavHeight + 'px');
-			} else if (scrollTop <= subnavTop && isFixed) {
-				isFixed = 0;
-				$nav.removeClass('subnav-fixed');
-				$body.css('margin-top', marginTop + 'px');
-			}
-		}
+                        if (scrollTop >= subnavTop && !isFixed) {
+                                isFixed = 1;
+                                $nav.addClass('subnav-fixed');
+                                $body.css('margin-top', marginTop + subnavHeight + 'px');
+                        } else if (scrollTop <= subnavTop && isFixed) {
+                                isFixed = 0;
+                                $nav.removeClass('subnav-fixed');
+                                $body.css('margin-top', marginTop + 'px');
+                        }
+                }
 
-	});
+        });
 
 })(window.jQuery);

@@ -1,35 +1,21 @@
-<h2>Sign Up</h2>
-<hr>
-
-<%= form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
-
-<%= render 'shared/error_messages'%>
-
-<div class="control-group">
-  <%= f.label :email , :class => 'control-label' %>
-  <div class="controls">
-    <%= f.text_field :email, :class => 'text_field' %>
+<% provide(:title, 'Rejestracja') %>
+<div class="row-fluid">
+  <div class="span4 offset4 well">
+    <%= form_for(@user, :html => {:class => ""}) do |f| %>
+      <fieldset>
+        <legend>
+          Panel rejestracji
+        </legend>
+          <%= f.label :email, "Login (e-mail)", class: 'control-label'%>
+          <%= f.text_field :email, class: 'span12'%>
+          <%= f.label :password, "Hasło", class: 'control-label' %>
+          <%= f.password_field :password, class: 'span12' %>
+          <%= f.label :password_confirmation, "Powtórz hasło", class: 'control-label' %>
+          <%= f.password_field :password_confirmation, class: 'span12' %>
+          <%= f.submit "Utwórz konto", class: 'btn btn-primary' %>
+          <%= link_to "Anuluj", root_url, class: 'btn btn-submit' %>
+      </fieldset>
+    <% end %>
   </div>
 </div>
-
-<div class="control-group">
-  <%= f.label :password , :class => 'control-label' %>
-  <div class="controls">
-    <%= f.password_field :password, :class => 'password_field' %>
-  </div>
-</div>
-
-<div class="control-group">
-  <%= f.label :password_confirmation , :class => 'control-label' %>
-  <div class="controls">
-    <%= f.password_field :password_confirmation, :class => 'password_field' %>
-  </div>
-</div>
-
-<div class="form-actions">
-  <%= f.submit "Create my account", :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")), root_url, :class => 'btn' %>
-</div>
-
-<% end %>
 

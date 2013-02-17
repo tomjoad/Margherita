@@ -1,4 +1,3 @@
-
 <!-- Cart by the products list view -->
 
 <% if there_is_something_in_cart? %>
@@ -43,15 +42,21 @@
             <%= item.variant.size %>
           </td>
           <td class="price-variant">
-            <b><</b> <%= item.quantity %> <b>></b>
+            <%= link_to({ :controller => "line_items", :action => "update", :id => item.variant.id, :operation => "subtract" }, { :class => "icon-link"} ) do %>
+              <i class="icon-chevron-left"></i>
+            <% end %>
+            <%= item.quantity %>
+            <%= link_to({ :controller => "line_items", :action => "update", :id => item.variant.id, :operation => "add" }, { :class => "icon-link" }) do %>
+              <i class="icon-chevron-right"></i>
+            <% end %>
           </td>
           <td class="price-variant">
             <%= "%.2f" % item.total_price %>
           </td>
           <td class="price-variant">
-            <button class="btn btn-link">
+            <%= link_to({ :controller => "line_items", :action => "destroy", :id => item.variant.id }, { :class => "btn btn-link" }) do %>
               <i class="icon-remove"></i>
-            </button>
+            <% end %>
           </td>
         </tr>
       <% end %>
@@ -101,17 +106,17 @@
 
 <div class="well">
   <% if there_is_something_in_cart? %>
-    <%= link_to(products_path(:id => "pizza"), { :class => "btn btn-submit" }) do %>
-      <i class="icon-chevron-left icon-white"></i> Wróć do zakupów
-    <% end %>
     <%= link_to(new_order_path, { :class => "btn btn-primary" }) do %>
       Przejdź dalej <i class="icon-ok icon-white"></i><!-- NAJPIERW KURWA ZALOGUJ, nie? -->
+    <% end %>
+    <%= link_to(products_path(:id => "pizza"), { :class => "btn btn-submit" }) do %>
+      Wróć do menu <i class="icon-book icon-white"></i>
     <% end %>
     <%= link_to(cart_path, { :method => "delete", :class => "btn btn-danger pull-right" }) do %>
       <i class="icon-trash"></i>
     <% end %>
   <% else %>
-    <%= link_to(:back, { :class => "btn btn-primary" }) do %>
+    <%= link_to(products_path(:id => "pizza"), { :class => "btn btn-primary" }) do %>
       Wróć do zakupów <i class="icon-chevron-left icon-white"></i>
     <% end %>
   <% end %>
