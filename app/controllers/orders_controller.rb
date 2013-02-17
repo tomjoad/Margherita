@@ -25,6 +25,7 @@ class OrdersController < ApplicationController
     @line_items = LineItem.all(session[:cart])
     @order = Order.new(session[:order_params])
     @user = current_user
+    session[:checkout] = nil
   end
 
   def create
@@ -38,7 +39,7 @@ class OrdersController < ApplicationController
         session[:checkout] = nil
       else
         session[:checkout] = true
-        redirect_to new_order_path
+        redirect_to orders_path
       end
     #else
     #   redirect_to 'new'
