@@ -1,11 +1,19 @@
 Margherita::Application.routes.draw do
   get "services/contact"
-
   get "services/contact_us"
-
   get "services/catering"
-
   get "services/reservations"
+
+  match "/signup", to: "users#new"
+  match "/signin", to: "sessions#new"
+  match "/signout", to: "sessions#destroy", :via => :delete
+
+  match "line_item/:id" => 'line_items#update'
+  match "line_items/:id" => 'line_items#destroy'
+
+  get "home/index"
+  get "home/help"
+  get "home/about"
 
   root :to => "home#index"
 
@@ -13,7 +21,12 @@ Margherita::Application.routes.draw do
   resources :line_items, only: [:index]
   resources :products
 
-  resources :orders, only: [:index, :new, :create, :update]
+  resources :orders, only: [:index, :new, :create, :update] do
+    collection do
+      post 'checkout'
+      get 'confirmation'
+    end
+  end
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
@@ -28,16 +41,5 @@ Margherita::Application.routes.draw do
     resources :orders
     resources :categories
   end
-
-  match "/signup", to: "users#new"
-  match "/signin", to: "sessions#new"
-  match "/signout", to: "sessions#destroy", :via => :delete
-
-  match "line_item/:id" => 'line_items#update'
-  match "line_items/:id" => 'line_items#destroy'
-
-  get "home/index"
-  get "home/help"
-  get "home/about"
 
 end

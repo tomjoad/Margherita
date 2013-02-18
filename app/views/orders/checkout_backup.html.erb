@@ -1,0 +1,25 @@
+<div class="row-fluid">
+  <div class="span3 hidden-phone">
+    <%= render "orders/steps", :step => 3 %>
+  </div>
+  <%= form_for(@order, :url => {:action => "create"},
+           :html => {:class => "form-horizontal"}) do |f| %>
+    <dt>Adres dostawy:</dt>
+    <dd>
+      <%= @order.try(:name) %>&nbsp<%= @order.try(:last_name) %></br>
+      ul. <%= @order.try(:street) %>&nbsp<%= @order.try(:home_number) %></br>
+      <%#= @order.try(:zip_code) %><!-- &nbsp --><%#= @order.try(:city) %><!-- </br></br> -->
+    </dd>
+    <dt>Telefon kontaktowy:</dt>
+    <dd>
+      <%= @order.try(:phone) %></br></br>
+    </dd>
+
+    <div class="well">
+      <%= f.submit %>
+      <!-- </button> -->
+      <%= link_to "back to cart", new_cart_path %>
+    </div>
+</div>
+<% end %>
+

@@ -1,18 +1,22 @@
 <%# session[:checkout] = true %>
 <div class="row-fluid">
-  <div class="span3 hidden-phone">
-    <%= render "orders/steps", :step => 2%>
-  </div>
+  <%#if session[:checkout] %>
+    <!-- <div class="span3 hidden-phone"> -->
+      <%#= render "orders/steps", :step => 3%>
+    <!-- </div> -->
+  <%# else %>
+    <div class="span3 hidden-phone">
+      <%= render "orders/steps", :step => 2 %>
+    </div>
+  <%# end %>
   <div class="span9">
-    <%= form_for(@order, :url => { :action => "create" },
+    <%= form_for(@order, :url => { :action => "checkout" },
              :html => {:class => "form-horizontal"}) do |f| %>
-
-      <% if session[:checkout] %>
-        <%= render "orders/checkout", :f => f %>
-      <% else %>
+      <%#if session[:checkout] %>
+        <%#= render "orders/checkout", :f => f %>
+      <%# else %>
         <%= render "orders/transport_data", :f => f %>
-      <% end %>
-
+      <%# end %>
     <% end %>
   </div>
 </div>

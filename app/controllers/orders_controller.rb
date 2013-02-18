@@ -22,30 +22,40 @@ class OrdersController < ApplicationController
   def new
     session[:order_params] ||= {}
     @cart = find_cart
-    @line_items = LineItem.all(session[:cart])
-    @order = Order.new(session[:order_params])
+    # @line_items = LineItem.all(session[:cart])
+    @order = Order.new
     @user = current_user
     # session[:checkout] = nil
   end
 
-  def create
+  def checkout
     session[:order_params] = params[:order]
+    redirect_to confirmation_orders_path
+  end
+
+  def confirmation
+    @order = Order.new(session[:order_params])
+  end
+
+  def create
+    # session[:order_params] = params[:order]
     @order = Order.new(params[:order])
     @order.cart = session[:cart]
     # if @order.valid?
-    if session[:checkout]
-      if @order.save
-        session[:checkout] = nil
-        flash[:notice] = 'Your order is pending'
-        redirect_to orders_path(:filter => @order.state)
-      end
+    # if session[:checkout]
+    if @order.save
+      # session[:checkout] = nil
+      session[:order_params] = nil
+      flash[:notice] = 'Your order is pending'
+      redirect_to orders_path(:filter => @order.state)
+      # end
 
     else
-      session[:checkout] = true
+      # session[:checkout] = true
       redirect_to new_order_path
     end
-    #else
-    #   redirect_to 'new'
+    # else
+    # redirect_to 'new'
     # end
   end
 
