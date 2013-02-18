@@ -8,17 +8,14 @@ class Order < ActiveRecord::Base
   LOWER_DELIVERY_COST = 5.0
   HIGHER_DELIVERY_COST = 10.0
 
-  ### validates :cart, :presence => true
-  # validates :state, :presence => true
-  # validates :user_id, :presence => true
-  # # ??? why isn`t working!?
-  # # validates :user and validates :user_id isn`t the same!
-  # # how it works?
-  # validates :last_name, :presence => true
-  # validates :city, :presence => true
-  # validates :street, :presence => true
-  # validates :phone, :presence => true
-  # validates :home_number, :presence => true
+  validates :cart, :presence => true
+  validates :state, :presence => true
+  validates :user, :presence => true
+  validates :last_name, :presence => true
+  validates :city, :presence => true
+  validates :street, :presence => true
+  validates :phone, :presence => true
+  validates :home_number, :presence => true
   # validates :distance, :presence => true
 
   attr_accessible :state, :total_price, :user_id, :name, :last_name, :city, :zip_code, :street, :phone, :home_number, :distance
@@ -27,9 +24,7 @@ class Order < ActiveRecord::Base
 
   scope :for_account, where(:state => [:in_delivery, :pending])
   scope :history, where(:state => [:finished, :cancelled])
-  # should be in more
   scope :pending, where(:state => [:pending])
-  # scope :cancelled, where(:state => [:cancelled])
   scope :finished, where(:state => 'finished')
   scope :in_delivery, where(:state => 'in_delivery')
   scope :delivered, where(:state => 'delivered')
@@ -42,17 +37,6 @@ class Order < ActiveRecord::Base
       orders = current_user.orders.for_account
     end
   end
-
-  # Previous version of for_seller:
-  # orders = case filter
-  # when 'pending' then Order.pending
-  # when 'cancelled' then Order.cancelled
-  # when 'in_delivery' then Order.in_delivery
-  # when 'finished' then Order.finished
-  # else Order.all
-  # end
-  # Now it`s shorter this way, but probably should
-  # handle NoMethoError.
 
   def self.for_seller(filter)
     begin
