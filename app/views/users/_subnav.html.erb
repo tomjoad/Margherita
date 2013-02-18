@@ -1,3 +1,9 @@
 <!-- Subnav partial for users controller -->
 
-<hr>
+<% if params[:action] == "edit" %>
+  <ul class="breadcrumb">
+    <li>Edytuj swoje dane profilowe</li>
+  </ul>
+<% else %>
+  <hr>
+<% end %>
