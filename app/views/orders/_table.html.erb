@@ -1,7 +1,14 @@
 <% @orders.reverse_each do |order| %>
   <div style="background-color: transparent; margin-bottom: 50px">
-    <blockquote style="position: relative; background-color: rgba(255,255,255,0.2)">
-      <h3>Zamówienie nr <%= order.id %>   <sup><span class="label label-info"><%= order.state.gsub('_', ' ') %></span></sup></h3>
+    <div style="position: relative; background-color: rgba(255,255,255,0.2)">
+      <h3>
+        <sup>
+          <span class="label label-info">
+            <%= order.state.gsub('_', ' ') %>
+          </span>
+        </sup>
+        Zamówienie nr <%= order.id %>
+      </h3>
       <% if user_is_admin_or_seller? %>
         <span style="position: absolute; top: 5px; right:5px;">
           <% case order.state %>
@@ -31,7 +38,7 @@
       <% end %>
 <% end %>
 
-</blockquote>
+</div>
 <dl class="dl-horizontal">
   <dt>Utworzono:</dt>
   <dd>
