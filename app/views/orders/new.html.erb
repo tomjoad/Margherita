@@ -5,6 +5,7 @@
   <div class="span9">
     <%= form_for(@order, :url => { :action => "checkout" },
              :html => {:class => "form-horizontal"}) do |f| %>
+        <%= render "shared/error_messages", :object => @order %>
         <%= render "orders/transport_data", :f => f %>
     <% end %>
   </div>
