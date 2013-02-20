@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
   def new
     session[:order_params] ||= {}
     @cart = find_cart
-    @order = Order.new(session[:order_params])
+    @order = Order.new
     @user = current_user
   end
 
