@@ -1,6 +1,10 @@
 <!-- Subnav partial for orders controller -->
 
-<% if params[:action] == "new" or params[:action] =="confirmation" %>
+<%
+  if params[:action] == "new" or
+      params[:action] =="confirmation" or
+      params[:action] == "checkout"
+    %>
   <div class="row">
     <div class="span3">
       <ul class="breadcrumb breadcrumb-darker">
