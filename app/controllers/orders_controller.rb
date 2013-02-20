@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class OrdersController < ApplicationController
   respond_to :html
   before_filter :signed_in_user
@@ -29,7 +28,7 @@ class OrdersController < ApplicationController
     if @order.valid?
       redirect_to confirmation_orders_path
     else
-      redirect_to new_order_path
+      render :action => 'new'
     end
   end
 
@@ -42,6 +41,7 @@ class OrdersController < ApplicationController
     set_order_user_and_cart
     if @order.save
       session[:order_params] = nil
+      session[:cart] = nil
       flash[:notice] = 'Your order is pending'
       redirect_to orders_path(:filter => @order.state)
     else
@@ -62,5 +62,6 @@ class OrdersController < ApplicationController
   def set_order_user_and_cart
     @order.cart = session[:cart]
     @order.user = current_user
+    @user = current_user
   end
 end
