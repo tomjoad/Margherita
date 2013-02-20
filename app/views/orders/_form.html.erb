@@ -1,61 +1,70 @@
-<%= form_for @order, html: {class: 'well form-inline', style: 'margin: auto; width:345px'} do |f| %>
-
-<% if @order.errors.any? %>
-  <div id="error_explanation">
-    <div id="alert alert-error">
-      The form contains <%= pluralize( @order.errors.count, "error")%>
+<div class="well">
+  <fieldset>
+    <legend>
+      Adres Dostawy
+    </legend>
+    <div class="control-group hidden">
+      <%= f.label :city, "Kod pocztowy",  class: 'control-label' %>
+      <div class="controls">
+        <%= f.select(:city, User::ZIP_CODES, {selected: @user.zip_code}, {class: ''}) %>
+      </div>
     </div>
-    <ul>
-      <% @order.errors.full_messages.each do |msg| %>
-        <li>* <%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+    <div class="control-group">
+      <%= f.label :city, "Miejscowość",  class: 'control-label' %>
+      <div class="controls">
+        <%= f.select(:city, User::CITIES, {selected: @user.city}, {class: 'span6'}) %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :street, "Ulica i numer",  class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :street, value: @user.street, placeholder: 'Ulica', class: 'span6' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :home_number, "Numer domu",  class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :home_number, value: @user.home_number, placeholder: 'Nr', class: 'span3' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :distance, "Odległość", class: 'control-label' %>
+      <div class="controls">
+        <%= f.select :distance, User::DISTANCES, {selected: @user.distance}, {class: 'span2'} %>
+      </div>
+    </div>
+  </fieldset>
 
+  <fieldset>
+    <legend style="margin:0">
+      Dane kontaktowe
+    </legend>
+    <div class="control-group">
+      <%= f.label :name, "Imię",  class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :name, value: @user.name, placeholder: 'Imię', class: 'span6' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :last_name, "Nazwisko",  class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :last_name, value: @user.last_name, placeholder: 'Nazwisko', class: 'span6' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :phone, "Numer telefonu",  class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :phone, value: @user.phone, placeholder: 'Numer telefonu', class: 'span4' %>
+      </div>
+    </div>
+  </fieldset>
+</div>
 
-<h2 class="center" style="text-transform: uppercase">Shipping details</h2>
-
-<%= f.hidden_field :user_id, :value => current_user.id %>
-<%= f.hidden_field :total_price, :value => @cart.price %>
-
-
-<p>
-  <h5>Name:</h5>
-  <%= f.text_field :name, value: @user.name, class: 'span2', placeholder: 'First name' %>
-  <%= f.text_field :last_name, value: @user.last_name, class: 'span2', placeholder: 'Last name' %>
-</p>
-<p>
-  <h5>Address:</h5>
-  <%= f.text_field :street, value: @user.street, class: 'span2', placeholder: 'Street' %>
-  <%= f.text_field :home_number, value: @user.home_number, class: 'span2', placeholder: 'House no.' %>
-</p>
-<p>
-  <%= f.select :city, User::CITIES, {selected: @user.city}, {class: 'span2'} %>
-  <%= f.select :zip_code, User::ZIP_CODES, {selected: @user.zip_code}, {class: 'span2'} %>
-</p>
-<p>
-  <h5>Phone no:</h5>
-  <%= f.text_field :phone, value: @user.phone, class: 'span2', placeholder: 'Phone no.' %>
-</p>
-<p>
-  <h5>Delivery distance:</h5>
-  <%= f.select :distance, User::DISTANCES, {selected: @user.distance}, {class: 'span2'} %>
-</p>
-
-<button style="margin-top:20px"
-        class="btn btn-large btn-block btn-primary"
-        type="submit">
-  Create Order
-</button>
-
-<% end %>
-
-<ul class="pager">
-  <li class="previous">
-    <%= link_to "&larr; Back to Cart".html_safe, new_cart_path %>
-  </li>
-  <li class="next">
-    <%= link_to "Summary &rarr;".html_safe, "#" %>
-  </li>
-</ul>
+<div class="well">
+  <button type="submit" class="btn btn-primary">
+    Przejdź dalej <i class="icon-ok icon-white"></i>
+  </button>
+  <a href="<%= url_for new_cart_path %>" class="btn btn-submit">
+    Wróć do koszyka <i class="icon-shopping-cart icon-white"></i>
+  </a>
+</div>

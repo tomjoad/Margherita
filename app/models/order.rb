@@ -16,7 +16,7 @@ class Order < ActiveRecord::Base
   validates :street, :presence => true
   validates :phone, :presence => true
   validates :home_number, :presence => true
-  # validates :distance, :presence => true
+  validates :distance, :presence => true
 
   attr_accessible :state, :total_price, :user_id, :name, :last_name, :city, :zip_code, :street, :phone, :home_number, :distance
 
