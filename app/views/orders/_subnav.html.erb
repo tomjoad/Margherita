@@ -1,5 +1,6 @@
 <!-- Subnav partial for orders controller -->
 
+<!-- Subnav for order process info -->
 <%
   if params[:action] == "new" or
       params[:action] =="confirmation" or
@@ -33,10 +34,40 @@
     </div>
   </div>
 
+  <!-- Subnav for filtering orders by status -->
 <% elsif params[:action] == "index" %>
-  <% if user_is_admin_or_seller? %>
-    <%= render 'state_filters_for_admin' %>
-  <% elsif current_user.role.customer? %>
-    <%= render 'state_filters_for_customer' %>
-  <% end %>
+  <% pf = params[:filter] %>
+  <div class="subnav">
+    <ul class="nav nav-pills">
+
+      <li class="<%= pf == "all" ? "active" : "" %>">
+        <a href="<%= pf == "all" ? "#" : url_for(orders_path(:filter => "all")) %>">
+          <i class="icon-th-list"></i> Wszystkie
+        </a>
+      </li>
+      <li class="<%= pf == "pending" ? "active" : "" %>">
+        <a href="<%= pf == "pending" ? "#" : url_for(orders_path(:filter => "pending")) %>">
+          <i class="icon-refresh"></i> Oczekujące
+        </a>
+      </li>
+      <li class="<%= pf == "in_delivery" ? "active" : "" %>">
+        <a href="<%= pf == "in_delivery" ? "#" : url_for(orders_path(:filter => "in_delivery")) %>">
+          <i class="icon-gift"></i> W trakcie dostawy
+        </a>
+      </li>
+      <li class="<%= pf == "finished" ? "active" : "" %>">
+        <a href="<%= pf == "finished" ? "#" : url_for(orders_path(:filter => "finished")) %>">
+          <i class="icon-ok"></i> Ukończone
+        </a>
+      </li>
+      <% if user_is_admin_or_seller? %>
+        <li class="<%= pf == "cancelled" ? "active" : "" %>">
+          <a href="<%= pf == "cancelled" ? "#" : url_for(orders_path(:filter => "cancelled")) %>">
+            <i class="icon-trash"></i> Anulowane
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
 <% end %>

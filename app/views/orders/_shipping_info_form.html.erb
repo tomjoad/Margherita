@@ -1,4 +1,29 @@
 <div class="well">
+
+  <fieldset>
+    <legend style="margin:0">
+      Dane kontaktowe
+    </legend>
+    <div class="control-group">
+      <%= f.label :name, "Imię",  class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :name, value: @user.name, placeholder: 'Imię', class: 'span6' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :last_name, "Nazwisko",  class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :last_name, value: @user.last_name, placeholder: 'Nazwisko', class: 'span6' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :phone, "Numer telefonu",  class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :phone, value: @user.phone, placeholder: 'Numer telefonu', class: 'span4' %>
+      </div>
+    </div>
+  </fieldset>
+
   <fieldset>
     <legend>
       Adres Dostawy
@@ -35,29 +60,6 @@
     </div>
   </fieldset>
 
-  <fieldset>
-    <legend style="margin:0">
-      Dane kontaktowe
-    </legend>
-    <div class="control-group">
-      <%= f.label :name, "Imię",  class: 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :name, value: @user.name, placeholder: 'Imię', class: 'span6' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :last_name, "Nazwisko",  class: 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :last_name, value: @user.last_name, placeholder: 'Nazwisko', class: 'span6' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :phone, "Numer telefonu",  class: 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :phone, value: @user.phone, placeholder: 'Numer telefonu', class: 'span4' %>
-      </div>
-    </div>
-  </fieldset>
 </div>
 
 <div class="well">
