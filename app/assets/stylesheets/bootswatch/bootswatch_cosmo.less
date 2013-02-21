@@ -60,6 +60,19 @@ a.text-info:hover    { color: darken(@purple, 10%); }
 .text-success        { color: @green; }
 a.text-success:hover { color: darken(@green, 10%); }
 
+// HIGHLIGHTING
+//------------------------------------------------------
+
+.hl {
+    &-light { background-color: @grayLighter; color: @textColor; }
+    &-strong { background-color: @grayDark; color: @white; }
+    &-success { background-color: @green; color: @white;}
+    &-warning { background-color: @orange; color: @white;}
+    &-danger { background-color: @red; color: @white;}
+    &-info { background-color: @purple; color: @white;}
+}
+
+
 // SCAFFOLDING
 // -----------------------------------------------------
 

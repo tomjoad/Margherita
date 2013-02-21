@@ -38,86 +38,92 @@
     <% end %>
     </div>
 <% end %>
-
 </div>
-<div class="row-fluid">
-  <dl class="dl-horizontal">
-    <dt>Utworzono:</dt>
-    <dd>
-      <% d = order.created_at.localtime %>
-      <i class="icon icon-calendar"></i><%= d.strftime("%d.%m.%Y") %>
-      <i class="icon icon-time"></i><%= d.strftime("%H:%M:%S") %>
-    </dd>
-    <br>
-    <% if user_is_admin_or_seller? %>
-      <dt>Użytkownik:</dt>
-      <dd>
-        <%= order.user.email %>
-      </dd>
-      <br>
-    <% end %>
-    <dt>Adres dostawy:</dt>
-    <dd>
-      <address>
-        <%= order.name + " " + order.last_name %><br>
-        <%= order.street + " " + order.home_number %><br>
-        00-000 <%= order.city %>
-      </address>
-    </dd>
-    <dt>Telefon:</dt>
-    <dd>
-      <%= order.phone %>
-    </dd>
-    <br>
-    <dt>Produkty:</dt>
-    <dd>
 
-      <table class="table table-hover table-condensed">
-        <tr>
+<dl class="dl-horizontal">
+  <dt>Utworzono:</dt>
+  <dd>
+    <% d = order.created_at.localtime %>
+    <i class="icon icon-calendar"></i><%= d.strftime("%d.%m.%Y") %>
+    <i class="icon icon-time"></i><%= d.strftime("%H:%M:%S") %>
+  </dd>
+  <br>
+  <% if user_is_admin_or_seller? %>
+    <dt>Użytkownik:</dt>
+    <dd>
+      <%= order.user.email %>
+    </dd>
+    <br>
+  <% end %>
+  <dt>Adres dostawy:</dt>
+  <dd>
+    <address>
+      <%= order.name + " " + order.last_name %><br>
+      <%= order.street + " " + order.home_number %><br>
+      00-000 <%= order.city %>
+    </address>
+  </dd>
+  <dt>Telefon:</dt>
+  <dd>
+    <%= order.phone %>
+  </dd>
+  <br>
+  <dt>Produkty:</dt>
+  <dd>
+
+    <table class="table table-condensed">
+      <thead>
+        <tr class="hl-strong">
           <th>Kategoria</th>
-          <th style="text-align: center">Nr</th>
+          <th class="text-center">Nr</th>
           <th>Nazwa</th>
-          <th style="text-align: center">Opcja</th>
-          <th style="text-align: center">Ilość</th>
-          <th style="text-align: center">Cena</th>
+          <th>Opcja</th>
+          <th class="text-center">Ilość</th>
+          <th class="text-right">Cena</th>
         </tr>
-
+      </thead>
+      <tbody>
         <% i = 1 %>
         <% order.categories.each do |category| %>
           <tr>
-            <td colspan="6" style="background-color: rgba(255,255,255,0.2)">
-              <%= category.titleize %>
-            </td>
+            <th colspan="6" class="hl-light">
+              <%= category.titleize %>:
+            </th>
           </tr>
 
           <% order.uniq_and_sorted_variants.each do |variant| %>
             <% if variant.category.name == category %>
               <tr>
                 <td></td>
-                <td style="text-align: center"><%= i %></td>
+                <td class="text-center"><%= i %></td>
                 <td><%= variant.name %></td>
-                <td style="text-align: center"><%= variant.size %></td>
-                <td style="text-align: center"><%= order.variants.count(variant) %></td>
-                <td style="text-align: center"><%= order.variant_total_price(variant) %> zł</td>
+                <td><%= variant.size %></td>
+                <td class="text-center"><%= order.variants.count(variant) %></td>
+                <td class="text-right"><%= order.variant_total_price(variant) %> zł</td>
               </tr>
               <% i += 1 %>
             <% end %>
           <% end %>
         <% end %>
-        <tr>
-          <th colspan="5" style="text-align: right">Suma:</th>
-          <th><%= order.products_price %></th>
+
+        <tr class="hl-light">
+          <th colspan="5">Suma za produkty:</th>
+          <th class="text-right"><%= order.products_price %></th>
         </tr>
-      </table>
-    </dd>
-    </br>
-    <dt>Koszt dostawy:</dt>
-    <dd><%= order.delivery_cost %></dd>
-    </br>
-    <dt>Całkowity koszt:</dt>
-    <dd><%#= order.formated_total_price %> zł</dd>
-  </dl>
-</div>
+        <tr class="hl-light">
+          <th colspan="5">Dostawa:</th>
+          <th class="text-right"><%= order.delivery_cost %></th>
+        </tr>
+      </tbody>
+      <thead>
+        <tr class="hl-strong">
+          <th colspan="5">Suma całkowita:</th>
+          <th class="text-right"><%= order.total_price %></th>
+        </tr>
+      </thead>
+    </table>
+</dl>
+
 <hr>
 <% end %>
 
