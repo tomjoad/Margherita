@@ -1,7 +1,1 @@
-<% if user_is_admin_or_seller? %>
-  <%= render 'state_filters_for_admin' %>
-<% elsif current_user.role.customer? %>
-  <%= render 'state_filters_for_customer' %>
-<% end %>
-
 <%= render 'table' %>

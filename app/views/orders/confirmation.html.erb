@@ -4,16 +4,20 @@
   </div>
   <div class="span9">
     <%= form_for(@order, :url => {:action => "create"}) do |f| %>
+      <% session[:cart].each do |variant_id| %>
+        <%= Variant.find_by_id(variant_id).name %><br>
+      <% end %>
+
       <dl class="dl-horizontal">
         <dt>Adres dostawy:</dt>
         <dd>
-          <%= @order.try(:name) %>&nbsp<%= @order.try(:last_name) %></br>
-          <%= @order.try(:street) %>&nbsp<%= @order.try(:home_number) %></br>
-          <%= @order.try(:zip_code) %>&nbsp<%= @order.try(:city) %>
+          <%= @order.try(:name) %>&nbsp;<%= @order.try(:last_name) %><br>
+          <%= @order.try(:street) %>&nbsp;<%= @order.try(:home_number) %><br>
+          <%= @order.try(:zip_code) %>&nbsp;<%= @order.try(:city) %>
         </dd>
         <dt>Telefon kontaktowy:</dt>
         <dd>
-          <%= @order.try(:phone) %></br></br>
+          <%= @order.try(:phone) %><br><br>
         </dd>
       </dl>
       <%= render 'orders/hidden_fields_for_order_confirmation', :f => f %>

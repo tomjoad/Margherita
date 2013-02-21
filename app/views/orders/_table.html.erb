@@ -1,16 +1,18 @@
 <% @orders.reverse_each do |order| %>
-  <div style="background-color: transparent; margin-bottom: 50px">
-    <div style="position: relative; background-color: rgba(255,255,255,0.2)">
-      <h3>
-        <sup>
-          <span class="label label-info">
-            <%= order.state.gsub('_', ' ') %>
-          </span>
-        </sup>
+  <div class="row-fluid">
+    <div class="span7">
+      <span class="label label-info" style="position: absolute">
+        <%= order.state.gsub('_', ' ') %>
+      </span>
+      <h3 style="margin: 0 0 70px 0;
+                 padding-left: 90px;
+                 line-height: 1;">
         Zamówienie nr <%= order.id %>
       </h3>
-      <% if user_is_admin_or_seller? %>
-        <span style="position: absolute; top: 5px; right:5px;">
+    </div>
+    <% if user_is_admin_or_seller? %>
+      <div class="span5">
+        <div class="btn-group pull-right">
           <% case order.state %>
           <% when 'pending' %>
           <%= link_to 'Move to "In Delivery"', order_path(order, :operation => "accept"),
@@ -34,78 +36,80 @@
           <%= link_to 'Restore Order', order_path(order, :operation => "restore"),
               :method => :put,
               :class => "btn btn-warning" %>
-        </span>
-      <% end %>
+    <% end %>
+    </div>
+    </div>
 <% end %>
-
 </div>
-<dl class="dl-horizontal">
-  <dt>Utworzono:</dt>
-  <dd>
-    <% d = order.created_at.localtime %>
-    <i class="icon icon-calendar"></i><%= d.strftime("%d.%m.%Y") %>
-    <i class="icon icon-time"></i><%= d.strftime("%H:%M:%S") %>
-  </dd>
-    </br>
-  <dt>Adres dostawy:</dt>
-  <dd>
-    <strong><%= order.name + " " + order.last_name %></strong></br>
-    ul. <%= order.street + " " + order.home_number %></br>
-    <%#= order.zip_code + " " + order.city %>
-  </dd>
-    </br>
-  <dt>Telefon:</dt>
-  <dd>
-    <%= order.phone %>
-  </dd>
-    </br>
-  <dt>Produkty:</dt>
-  <dd style="margin-right: 160px;">
 
-    <table class="table table-hover table-condensed">
-      <tr>
-        <th>Kategoria</th>
-        <th style="text-align: center">Nr</th>
-        <th>Nazwa</th>
-        <th style="text-align: center">Opcja</th>
-        <th style="text-align: center">Ilość</th>
-        <th style="text-align: center">Cena</th>
-      </tr>
+<div class="row-fluid">
+  <dl class="dl-horizontal">
+    <dt>Utworzono:</dt>
+    <dd>
+      <% d = order.created_at.localtime %>
+      <i class="icon icon-calendar"></i><%= d.strftime("%d.%m.%Y") %>
+      <i class="icon icon-time"></i><%= d.strftime("%H:%M:%S") %>
+    </dd>
+    </br>
+    <dt>Adres dostawy:</dt>
+    <dd>
+      <%= order.name + " " + order.last_name %><br>
+      <%= order.street + " " + order.home_number %><br>
+      <%= order.city %>
+    </dd>
+    </br>
+    <dt>Telefon:</dt>
+    <dd>
+      <%= order.phone %>
+    </dd>
+    </br>
+    <dt>Produkty:</dt>
+    <dd>
 
-      <% i = 1 %>
-      <% order.categories.each do |category| %>
+      <table class="table table-hover table-condensed">
         <tr>
-          <td colspan="6" style="background-color: rgba(255,255,255,0.2)">
-            <%= category.titleize %>
-          </td>
+          <th>Kategoria</th>
+          <th style="text-align: center">Nr</th>
+          <th>Nazwa</th>
+          <th style="text-align: center">Opcja</th>
+          <th style="text-align: center">Ilość</th>
+          <th style="text-align: center">Cena</th>
         </tr>
 
-        <% order.uniq_and_sorted_variants.each do |variant| %>
-          <% if variant.category.name == category %>
-            <tr>
-              <td></td>
-              <td style="text-align: center"><%= i %></td>
-              <td><%= variant.name %></td>
-              <td style="text-align: center"><%= variant.size %></td>
-              <td style="text-align: center"><%= order.variants.count(variant) %></td>
-              <td style="text-align: center"><%= order.variant_total_price(variant) %> zł</td>
-            </tr>
-            <% i += 1 %>
+        <% i = 1 %>
+        <% order.categories.each do |category| %>
+          <tr>
+            <td colspan="6" style="background-color: rgba(255,255,255,0.2)">
+              <%= category.titleize %>
+            </td>
+          </tr>
+
+          <% order.uniq_and_sorted_variants.each do |variant| %>
+            <% if variant.category.name == category %>
+              <tr>
+                <td></td>
+                <td style="text-align: center"><%= i %></td>
+                <td><%= variant.name %></td>
+                <td style="text-align: center"><%= variant.size %></td>
+                <td style="text-align: center"><%= order.variants.count(variant) %></td>
+                <td style="text-align: center"><%= order.variant_total_price(variant) %> zł</td>
+              </tr>
+              <% i += 1 %>
+            <% end %>
           <% end %>
         <% end %>
-      <% end %>
-      <tr>
-        <th colspan="5" style="text-align: right">Suma:</th>
-        <th><%= order.products_price %></th>
-      </tr>
-    </table>
-  </dd>
+        <tr>
+          <th colspan="5" style="text-align: right">Suma:</th>
+          <th><%= order.products_price %></th>
+        </tr>
+      </table>
+    </dd>
     </br>
-  <dt>Koszt dostawy:</dt>
-  <dd><%= order.delivery_cost %></dd>
+    <dt>Koszt dostawy:</dt>
+    <dd><%= order.delivery_cost %></dd>
     </br>
-  <dt>Całkowity koszt:</dt>
-  <dd><%#= order.formated_total_price %> zł</dd>
-</dl>
+    <dt>Całkowity koszt:</dt>
+    <dd><%#= order.formated_total_price %> zł</dd>
+  </dl>
 </div>
 <% end %>

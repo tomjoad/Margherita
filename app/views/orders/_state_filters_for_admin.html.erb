@@ -1,62 +1,32 @@
-<% states = Order::STATES.split(' ') %>
-<% states_titles = states.collect {|t| t.gsub('_', ' ').titleize} %>
+<% pf = params[:filter] %>
 
-<ul class="breadcrumb">
+<div class="subnav">
+  <ul class="nav nav-pills">
 
-  <% if current_page?(orders_path(filter: 'all')) %>
-    <li class="active"><i class="icon icon-th-list"></i>
-      All
-      <span class="divider">/</span>
+    <li class="<%= pf == "all" ? "active" : "" %>">
+      <a href="<%= pf == "all" ? "#" : url_for(orders_path(:filter => "all")) %>">
+        <i class="icon-th-list"></i> Wszystkie
+      </a>
     </li>
-  <% else %>
-    <li><i class="icon icon-th-list"></i>
-      <%= link_to "All", orders_path(filter: 'all') %>
-      <span class="divider">/</span>
+    <li class="<%= pf == "pending" ? "active" : "" %>">
+      <a href="<%= pf == "pending" ? "#" : url_for(orders_path(:filter => "pending")) %>">
+        <i class="icon-refresh"></i> Oczekujące
+      </a>
     </li>
-  <% end %>
-
-  <% if current_page?(orders_path(filter: states[0])) %>
-    <li class="active"><i class="icon icon-refresh"></i>
-      <%= states_titles[0] %>
-      <span class="divider">/</span>
+    <li class="<%= pf == "in_delivery" ? "active" : "" %>">
+      <a href="<%= pf == "in_delivery" ? "#" : url_for(orders_path(:filter => "in_delivery")) %>">
+        <i class="icon-gift"></i> W trakcie dostawy
+      </a>
     </li>
-  <% else %>
-    <li><i class="icon icon-refresh"></i>
-      <%= link_to states_titles[0], orders_path(filter: states[0]) %>
-      <span class="divider">/</span>
+    <li class="<%= pf == "finished" ? "active" : "" %>">
+      <a href="<%= pf == "finished" ? "#" : url_for(orders_path(:filter => "finished")) %>">
+        <i class="icon-ok"></i> Ukończone
+      </a>
     </li>
-  <% end %>
-
-  <% if current_page?(orders_path(filter: states[1])) %>
-    <li class="active"><i class="icon icon-gift"></i>
-      <%= states_titles[1] %>
-      <span class="divider">/</span>
+    <li class="<%= pf == "cancelled" ? "active" : "" %>">
+      <a href="<%= pf == "cancelled" ? "#" : url_for(orders_path(:filter => "cancelled")) %>">
+        <i class="icon-trash"></i> Anulowane
+      </a>
     </li>
-  <% else %>
-    <li><i class="icon icon-gift"></i>
-      <%= link_to states_titles[1], orders_path(filter: states[1]) %>
-      <span class="divider">/</span>
-    </li>
-  <% end %>
-
-  <% if current_page?(orders_path(filter: states[2])) %>
-    <li class="active"><i class="icon icon-ok"></i>
-      <%= states_titles[2] %>
-    </li>
-  <% else %>
-    <li><i class="icon icon-ok"></i>
-      <%= link_to states_titles[2], orders_path(filter: states[2]) %>
-    </li>
-  <% end %>
-
-  <% if current_page?(orders_path(filter: states[3])) %>
-    <li class="active pull-right"><i class="icon icon-trash"></i>
-      <%= states_titles[3] %>
-    </li>
-  <% else %>
-    <li class="pull-right"><i class="icon icon-trash"></i>
-      <%= link_to states_titles[3], orders_path(filter: states[3]) %>
-    </li>
-  <% end %>
-
-</ul>
+  </ul>
+</div>
