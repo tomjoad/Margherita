@@ -30,21 +30,21 @@ class Order < ActiveRecord::Base
   scope :delivered, where(:state => 'delivered')
   scope :cancelled, where(:state => 'cancelled')
 
-  def self.for_customer(current_user, history)
-    if history == 'true'
-      orders = current_user.orders.history
-    else
-      orders = current_user.orders.for_account
-    end
-  end
+  # def self.for_customer(current_user, history)
+  #   if history == 'true'
+  #     orders = current_user.orders.history
+  #   else
+  #     orders = current_user.orders.for_account
+  #   end
+  # end
 
-  def self.for_seller(filter)
-    begin
-      return Order.send filter.to_sym
-    rescue NoMethodError
-      return Order.all
-    end
-  end
+  # def self.for_seller(filter)
+  #   begin
+  #     return Order.send filter.to_sym
+  #   rescue NoMethodError
+  #     return Order.all
+  #   end
+  # end
 
   state_machine :state, :initial => :pending do
     event :accept do

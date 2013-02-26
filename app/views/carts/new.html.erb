@@ -3,6 +3,10 @@
     <%= render "orders/progress_steps_help", :step => 1 %>
   </div>
   <div class="span9">
-    <%= render 'line_items/for_large_cart'%>
+    <% if there_is_something_in_cart? %>
+      <%= render 'cart_loaded'%>
+    <% else %>
+      <%= render 'cart_empty'%>
+    <% end %>
   </div>
 </div>

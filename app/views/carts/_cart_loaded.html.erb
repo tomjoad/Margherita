@@ -1,0 +1,13 @@
+<%= render 'line_items/table_large'%>
+
+<div class="well">
+  <%= link_to(new_order_path, { :class => "btn btn-primary" }) do %>
+    Przejdź dalej <i class="icon-ok icon-white"></i>
+  <% end %>
+  <%= link_to(products_path(:id => "pizza"), { :class => "btn btn-submit" }) do %>
+    Wróć do menu <i class="icon-book icon-white"></i>
+  <% end %>
+  <%= link_to(cart_path, { :method => "delete", :class => "btn btn-danger pull-right" }) do %>
+    <i class="icon-trash"></i>
+  <% end %>
+</div>

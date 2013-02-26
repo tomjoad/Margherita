@@ -1,0 +1,18 @@
+<!-- partial for empty large cart -->
+
+<legend>
+  <div class="alert alert-danger">
+    Twój koszyk jest pusty!
+  </div>
+</legend>
+<div class="well">
+  <p>
+    <strong>Nie wiesz co dodać?</strong><br>
+    Tu może być jakieś zdanie zachęcające do zakupów. Takie sranie w banie a la IKEA. Lorem ipsum dolor sit amet.
+  </p>
+</div>
+<div class="well">
+  <%= link_to(products_path(:id => "pizza"), { :class => "btn btn-primary" }) do %>
+    <i class="icon-chevron-left icon-white"></i> Przejdź do zakupów
+  <% end %>
+</div>

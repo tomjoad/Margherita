@@ -8,10 +8,17 @@ class OrdersController < ApplicationController
 
   def index
     if user_is_admin_or_seller?
-      @orders = Order.for_seller(params[:filter])
+      @orders = Order.send params[:filter]
+    elsif current_user
+      @orders = current_user.orders.send params[:filter]
     else
-      @orders = Order.for_customer(current_user, params[:history])
+      flash[:notice] = 'No orders available'
     end
+    # if user_is_admin_or_seller?
+    #   @orders = Order.for_seller(params[:filter])
+    # else
+    #   @orders = Order.for_customer(current_user, params[:filter])
+    # end
   end
 
   def new
@@ -34,6 +41,7 @@ class OrdersController < ApplicationController
 
   def confirmation
     @order = Order.new(session[:order_params])
+    @line_items = LineItem.all(session[:cart])
   end
 
   def create

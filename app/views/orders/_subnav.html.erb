@@ -60,13 +60,11 @@
           <i class="icon-ok"></i> Ukończone
         </a>
       </li>
-      <% if user_is_admin_or_seller? %>
-        <li class="<%= pf == "cancelled" ? "active" : "" %>">
-          <a href="<%= pf == "cancelled" ? "#" : url_for(orders_path(:filter => "cancelled")) %>">
-            <i class="icon-trash"></i> Anulowane
-          </a>
-        </li>
-      <% end %>
+      <li class="<%= pf == "cancelled" ? "active" : "" %>">
+        <a href="<%= pf == "cancelled" ? "#" : url_for(orders_path(:filter => "cancelled")) %>">
+          <i class="icon-trash"></i> Anulowane
+        </a>
+      </li>
     </ul>
   </div>
 

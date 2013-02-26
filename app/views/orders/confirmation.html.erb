@@ -4,9 +4,8 @@
   </div>
   <div class="span9">
     <%= form_for(@order, :url => {:action => "create"}) do |f| %>
-      <% session[:cart].each do |variant_id| %>
-        <%= Variant.find_by_id(variant_id).name %><br>
-      <% end %>
+
+      <%= render 'line_items/table_large' %>
 
       <dl class="dl-horizontal">
         <dt>Adres dostawy:</dt>
