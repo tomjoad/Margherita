@@ -42,6 +42,7 @@ class OrdersController < ApplicationController
   def confirmation
     @order = Order.new(session[:order_params])
     @line_items = LineItem.all(session[:cart])
+    @cart = find_cart
   end
 
   def create
