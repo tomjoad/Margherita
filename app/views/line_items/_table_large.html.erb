@@ -18,9 +18,9 @@
       <th class="price-variant">
         Cena<sup class="muted">[zł]</sup>
       </th>
-      <th class="price-variant">
-
-      </th>
+      <% unless params[:action] == "confirmation" %>
+        <th class="price-variant"></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -41,22 +41,28 @@
           <%= item.variant.size %>
         </td>
         <td class="price-variant">
-          <%= link_to({ :controller => "line_items", :action => "update", :id => item.variant.id, :operation => "subtract" }, { :class => "icon-link"} ) do %>
-            <i class="icon-chevron-left"></i>
-          <% end %>
-          <%= item.quantity %>
-          <%= link_to({ :controller => "line_items", :action => "update", :id => item.variant.id, :operation => "add" }, { :class => "icon-link" }) do %>
-            <i class="icon-chevron-right"></i>
+          <% if params[:action] == "confirmation" %>
+            <%= item.quantity %>
+          <% else %>
+            <%= link_to({ :controller => "line_items", :action => "update", :id => item.variant.id, :operation => "subtract" }, { :class => "icon-link"} ) do %>
+              <i class="icon-chevron-left"></i>
+            <% end %>
+            <%= item.quantity %>
+            <%= link_to({ :controller => "line_items", :action => "update", :id => item.variant.id, :operation => "add" }, { :class => "icon-link" }) do %>
+              <i class="icon-chevron-right"></i>
+            <% end %>
           <% end %>
         </td>
         <td class="price-variant">
           <%= "%.2f" % item.total_price %>
         </td>
-        <td class="price-variant">
-          <%= link_to({ :controller => "line_items", :action => "destroy", :id => item.variant.id }, { :class => "btn btn-link" }) do %>
-            <i class="icon-remove"></i>
-          <% end %>
-        </td>
+        <% unless params[:action] == "confirmation" %>
+          <td class="price-variant">
+            <%= link_to({ :controller => "line_items", :action => "destroy", :id => item.variant.id }, { :class => "btn btn-link" }) do %>
+              <i class="icon-remove"></i>
+            <% end %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
     <tr class="delivery-info">
@@ -71,7 +77,9 @@
       <th class="price-variant">
         0,00
       </th>
-      <td class="price-variant">-</td>
+      <% unless params[:action] == "confirmation" %>
+        <td class="price-variant">-</td>
+      <% end %>
     </tr>
     <tr class="total-price-info">
       <td class="id-icon">
@@ -85,7 +93,9 @@
       <th class="price-variant">
         <%= "%.2f" % @cart.price %>
       </th>
-      <td class="price-variant">-</td>
+      <% unless params[:action] == "confirmation" %>
+        <td class="price-variant">-</td>
+      <% end %>
     </tr>
   </tbody>
 </table>

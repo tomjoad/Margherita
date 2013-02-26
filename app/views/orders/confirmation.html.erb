@@ -4,26 +4,29 @@
   </div>
   <div class="span9">
     <%= form_for(@order, :url => {:action => "create"}) do |f| %>
-
-      <%= render 'line_items/table_large' %>
-
-      <dl class="dl-horizontal">
-        <dt>Adres dostawy:</dt>
-        <dd>
-          <%= @order.try(:name) %>&nbsp;<%= @order.try(:last_name) %><br>
-          <%= @order.try(:street) %>&nbsp;<%= @order.try(:home_number) %><br>
-          <%= @order.try(:zip_code) %>&nbsp;<%= @order.try(:city) %>
-        </dd>
-        <dt>Telefon kontaktowy:</dt>
-        <dd>
-          <%= @order.try(:phone) %><br><br>
-        </dd>
-      </dl>
+      <div class="well">
+        <legend>
+          Adres dostawy
+        </legend>
+        <address style="text-align:center">
+          <strong><%= @order.name %>&nbsp;<%= @order.last_name %></strong><br>
+          <%= @order.street %>&nbsp;<%= @order.home_number %><br>
+          <%#= @order.zip_code %>00-000&nbsp;<%= @order.city %><br><br>
+          <abbr title="Telefon">Tel:</abbr> <%= @order.phone %>
+        </address>
+      </div>
+      <div class="well">
+        <legend>
+          Twoje zakupy:
+        </legend>
+        <%= render 'line_items/table_large' %>
+      </div>
       <%= render 'orders/hidden_fields_for_order_confirmation', :f => f %>
       <div class="well">
-        <%= f.submit "Potwierdź i utwórz", class: 'btn btn-success' %>
-        <%= link_to "Wróć", new_order_path, class: 'btn btn-submit' %>
+        <%= f.submit "Potwierdź i utwórz zamówienie!", class: 'btn btn-success' %>
+        <%= link_to "Wstecz", new_order_path, class: 'btn btn-submit' %>
       </div>
+    <% end %>
   </div>
-  <% end %>
+</div>
 
