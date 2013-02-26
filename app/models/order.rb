@@ -7,6 +7,7 @@ class Order < ActiveRecord::Base
   PRICE_LIMIT_SWITCH = 23.0
   LOWER_DELIVERY_COST = 5.0
   HIGHER_DELIVERY_COST = 10.0
+  MINIMUM_DELIVERY_COST = 0.0
 
   validates :cart, :presence => true
   validates :state, :presence => true
@@ -18,7 +19,7 @@ class Order < ActiveRecord::Base
   validates :home_number, :presence => true
   validates :distance, :presence => true
 
-  attr_accessible :state, :total_price, :user_id, :name, :last_name, :city, :zip_code, :street, :phone, :home_number, :distance
+  attr_accessible :state, :total_price, :user_id, :name, :last_name, :city, :zip_code, :street, :phone, :home_number, :distance, :products_price, :delivery_cost, :total_price
 
   serialize :cart
 
@@ -29,22 +30,6 @@ class Order < ActiveRecord::Base
   scope :in_delivery, where(:state => 'in_delivery')
   scope :delivered, where(:state => 'delivered')
   scope :cancelled, where(:state => 'cancelled')
-
-  # def self.for_customer(current_user, history)
-  #   if history == 'true'
-  #     orders = current_user.orders.history
-  #   else
-  #     orders = current_user.orders.for_account
-  #   end
-  # end
-
-  # def self.for_seller(filter)
-  #   begin
-  #     return Order.send filter.to_sym
-  #   rescue NoMethodError
-  #     return Order.all
-  #   end
-  # end
 
   state_machine :state, :initial => :pending do
     event :accept do
@@ -62,6 +47,17 @@ class Order < ActiveRecord::Base
     event :restore do
       transition :cancelled => :pending
     end
+  end
+
+  def self.fixed_new(params, cart)
+    products_price = cart.price
+    distance = params[:distance]
+    delivery_cost = Order.calculate_delivery_cost(products_price, distance)
+    total_price = products_price + delivery_cost
+    params = params.merge({:products_price => products_price,
+                            :delivery_cost => delivery_cost,
+                            :total_price => total_price})
+    Order.new(params)
   end
 
   def variants
@@ -93,16 +89,18 @@ class Order < ActiveRecord::Base
     variants_uniq.sort_by! { |variant| variant.product.id }
   end
 
-  def calculate_delivery_cost
-    if self.distance == SHORT_DISTANCE
-      if self.products_price <= PRICE_LIMIT_SWITCH
-        self.delivery_cost = LOWER_DELIVERY_COST
-      end
-    elsif self.distance == LONG_DISTANCE
-      if self.products_price <= PRICE_LIMIT_SWITCH
-        self.delivery_cost = HIGHER_DELIVERY_COST
+  def self.calculate_delivery_cost(price, distance)
+    if distance == SHORT_DISTANCE
+      if price <= PRICE_LIMIT_SWITCH
+        LOWER_DELIVERY_COST
       else
-        self.delivery_cost = LOWER_DELIVERY_COST
+        MINIMUM_DELIVERY_COST
+      end
+    elsif distance == LONG_DISTANCE
+      if price <= PRICE_LIMIT_SWITCH
+        HIGHER_DELIVERY_COST
+      else
+        LOWER_DELIVERY_COST
       end
     else
     end

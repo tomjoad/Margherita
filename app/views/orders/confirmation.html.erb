@@ -13,6 +13,12 @@
           <%= @order.street %>&nbsp;<%= @order.home_number %><br>
           <%#= @order.zip_code %>00-000&nbsp;<%= @order.city %><br><br>
           <abbr title="Telefon">Tel:</abbr> <%= @order.phone %>
+          <p>
+            nie wiem gdzie to dać.
+            total_price = <%= @order.total_price %>
+            delivery_cost = <%= @order.delivery_cost %>
+            products_price = <%= @order.products_price %>
+          </p>
         </address>
       </div>
       <div class="well">
