@@ -49,15 +49,36 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def self.fixed_new(params, cart)
-    products_price = cart.price
-    distance = params[:distance]
-    delivery_cost = Order.calculate_delivery_cost(products_price, distance)
-    total_price = products_price + delivery_cost
-    params = params.merge({:products_price => products_price,
-                            :delivery_cost => delivery_cost,
-                            :total_price => total_price})
-    Order.new(params)
+  class << self
+
+    def calculate_delivery_cost(price, distance)
+      if distance == SHORT_DISTANCE
+        if price <= PRICE_LIMIT_SWITCH
+          LOWER_DELIVERY_COST
+        else
+          MINIMUM_DELIVERY_COST
+        end
+      elsif distance == LONG_DISTANCE
+        if price <= PRICE_LIMIT_SWITCH
+          HIGHER_DELIVERY_COST
+        else
+          LOWER_DELIVERY_COST
+        end
+      else
+      end
+    end
+
+    def fixed_new(params, cart)
+      products_price = cart.price
+      distance = params[:distance]
+      delivery_cost = Order.calculate_delivery_cost(products_price, distance)
+      total_price = products_price + delivery_cost
+      params = params.merge({:products_price => products_price,
+                              :delivery_cost => delivery_cost,
+                              :total_price => total_price})
+      Order.new(params)
+    end
+
   end
 
   def variants
@@ -89,21 +110,5 @@ class Order < ActiveRecord::Base
     variants_uniq.sort_by! { |variant| variant.product.id }
   end
 
-  def self.calculate_delivery_cost(price, distance)
-    if distance == SHORT_DISTANCE
-      if price <= PRICE_LIMIT_SWITCH
-        LOWER_DELIVERY_COST
-      else
-        MINIMUM_DELIVERY_COST
-      end
-    elsif distance == LONG_DISTANCE
-      if price <= PRICE_LIMIT_SWITCH
-        HIGHER_DELIVERY_COST
-      else
-        LOWER_DELIVERY_COST
-      end
-    else
-    end
-  end
 
 end

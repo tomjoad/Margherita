@@ -17,7 +17,14 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out
+    clear_sessions
     redirect_to root_url
   end
 
+  private
+
+  def clear_sessions
+    session[:cart] = nil
+    session[:order_params] = nil
+  end
 end
