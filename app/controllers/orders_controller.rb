@@ -7,13 +7,7 @@ class OrdersController < ApplicationController
   include ApplicationHelper
 
   def index
-    if user_is_admin_or_seller?
-      @orders = Order.send params[:filter]
-    elsif current_user
-      @orders = current_user.orders.send params[:filter]
-    else
-      flash[:notice] = 'No orders available'
-    end
+    @orders = Order.for_particular_users(current_user, params[:filter])
   end
 
   def new
@@ -44,8 +38,7 @@ class OrdersController < ApplicationController
     @order = Order.new(params[:order])
     set_order_user_and_cart
     if @order.save
-      session[:order_params] = nil
-      session[:cart] = nil
+      clear_order_and_cart
       flash[:notice] = 'Your order is pending'
       redirect_to orders_path(:filter => @order.state)
     else
@@ -68,4 +61,5 @@ class OrdersController < ApplicationController
     @order.user = current_user
     @user = current_user
   end
+
 end

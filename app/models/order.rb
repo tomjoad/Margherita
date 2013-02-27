@@ -71,12 +71,20 @@ class Order < ActiveRecord::Base
     def fixed_new(params, cart)
       products_price = cart.price
       distance = params[:distance]
-      delivery_cost = Order.calculate_delivery_cost(products_price, distance)
+      delivery_cost = calculate_delivery_cost(products_price, distance)
       total_price = products_price + delivery_cost
       params = params.merge({:products_price => products_price,
                               :delivery_cost => delivery_cost,
                               :total_price => total_price})
       Order.new(params)
+    end
+
+    def for_particular_users(user, params)
+      if (user.role == 'admin') || (user.role == 'seller')
+        Order.send params
+      else
+        user.orders.send params
+      end
     end
 
   end
@@ -109,6 +117,5 @@ class Order < ActiveRecord::Base
     variants_uniq = self.variants.uniq
     variants_uniq.sort_by! { |variant| variant.product.id }
   end
-
 
 end
