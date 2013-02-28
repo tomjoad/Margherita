@@ -1,13 +1,14 @@
+# -*- coding: utf-8 -*-
 class Order < ActiveRecord::Base
   belongs_to :user
 
   STATES = %[ pending in_delivery finished cancelled ]
   SHORT_DISTANCE = "0-6"
   LONG_DISTANCE = "6-8"
-  PRICE_LIMIT_SWITCH = 23.0
-  LOWER_DELIVERY_COST = 5.0
-  HIGHER_DELIVERY_COST = 10.0
-  MINIMUM_DELIVERY_COST = 0.0
+  PRICE_LOW_LIMIT_SWITCH = 23.0
+  PRICE_HIGH_LIMIT_SWITCH = 30.0
+  FREE_DELIVERY = 0.0
+  COLLECTION_IN_PERSON = 1.0
 
   validates :cart, :presence => true
   validates :state, :presence => true
@@ -51,20 +52,15 @@ class Order < ActiveRecord::Base
 
   class << self
 
+    # jeżeli nie będzie ceny dowozu to funkcja mogłaby
+    # zwracać tylko true / false?
+    # np. @order.free_delivery? zamiast calculate_delivery_cost...
+
     def calculate_delivery_cost(price, distance)
-      if distance == SHORT_DISTANCE
-        if price <= PRICE_LIMIT_SWITCH
-          LOWER_DELIVERY_COST
-        else
-          MINIMUM_DELIVERY_COST
-        end
-      elsif distance == LONG_DISTANCE
-        if price <= PRICE_LIMIT_SWITCH
-          HIGHER_DELIVERY_COST
-        else
-          LOWER_DELIVERY_COST
-        end
+      if ((distance == SHORT_DISTANCE and price > PRICE_LOW_LIMIT_SWITCH) or (distance == LONG_DISTANCE and price > PRICE_HIGH_LIMIT_SWITCH))
+        FREE_DELIVERY           # true
       else
+        COLLECTION_IN_PERSON    # false
       end
     end
 
