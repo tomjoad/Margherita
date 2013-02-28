@@ -62,4 +62,9 @@ class OrdersController < ApplicationController
     @user = current_user
   end
 
+  def clear_order_and_cart
+    session[:cart] = nil
+    session[:order_params] = nil
+  end
+
 end
