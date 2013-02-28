@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
   include CartHelper
   include SessionsHelper
   include ApplicationHelper
+  include OrdersHelper
 
   def index
     @orders = Order.for_particular_users(current_user, params[:filter])
@@ -60,11 +61,6 @@ class OrdersController < ApplicationController
     @order.cart = session[:cart]
     @order.user = current_user
     @user = current_user
-  end
-
-  def clear_order_and_cart
-    session[:cart] = nil
-    session[:order_params] = nil
   end
 
 end

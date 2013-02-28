@@ -3,10 +3,12 @@ class Order < ActiveRecord::Base
   belongs_to :user
 
   STATES = %[ pending in_delivery finished cancelled ]
-  SHORT_DISTANCE = "0-6"
-  LONG_DISTANCE = "6-8"
+  NO_DISTANCE = 'on the spot'
+  SHORT_DISTANCE = '0-6'
+  LONG_DISTANCE = '6-8'
   PRICE_LOW_LIMIT_SWITCH = 23.0
   PRICE_HIGH_LIMIT_SWITCH = 30.0
+  DELIVERY_COST = 6.0
   FREE_DELIVERY = 0.0
   COLLECTION_IN_PERSON = 1.0
 
@@ -52,15 +54,28 @@ class Order < ActiveRecord::Base
 
   class << self
 
-    # jeżeli nie będzie ceny dowozu to funkcja mogłaby
-    # zwracać tylko true / false?
-    # np. @order.free_delivery? zamiast calculate_delivery_cost...
+    def all_distances
+      [NO_DISTANCE, SHORT_DISTANCE, LONG_DISTANCE]
+    end
 
     def calculate_delivery_cost(price, distance)
-      if ((distance == SHORT_DISTANCE and price > PRICE_LOW_LIMIT_SWITCH) or (distance == LONG_DISTANCE and price > PRICE_HIGH_LIMIT_SWITCH))
-        FREE_DELIVERY           # true
+      delivery_cost = case distance
+      when NO_DISTANCE then
+        FREE_DELIVERY
+      when SHORT_DISTANCE then
+        if price > PRICE_LOW_LIMIT_SWITCH
+          FREE_DELIVERY
+        else
+          DELIVERY_COST
+        end
+      when LONG_DISTANCE then
+        if price > PRICE_HIGH_LIMIT_SWITCH
+          FREE_DELIVERY
+        else
+          DELIVERY_COST
+        end
       else
-        COLLECTION_IN_PERSON    # false
+        FREE_DELIVERY
       end
     end
 
@@ -83,6 +98,18 @@ class Order < ActiveRecord::Base
       end
     end
 
+  end
+
+  def free_delivery?
+    self.delivery_cost == FREE_DELIVERY
+  end
+
+  def no_delivery?
+    self.distance == NO_DISTANCE
+  end
+
+  def free_delivery_with_distance?
+    self.free_delivery? && !self.no_delivery?
   end
 
   def variants

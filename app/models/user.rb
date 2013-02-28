@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   EMAIL_REGEXP = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   CITIES = ["Bujaków", "Ornontowice", "Kąty", "Chudów", "Pelców", "Stara Huta", "Orzesze"]
   ZIP_CODES = %w[01-123 02-123 02-123]
-  DISTANCES = %w[0-6 6-8]
+  DISTANCES = Order.all_distances
 
   validates :email,
   presence: true,
