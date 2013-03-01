@@ -11,7 +11,7 @@ module OrdersHelper
     elsif order.free_delivery_with_distance?
       'order free delivery!'
     else
-      'delivery cost: #{order.delivery_cost}'
+      "delivery cost: #{order.delivery_cost}"
     end
   end
 
