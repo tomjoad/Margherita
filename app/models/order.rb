@@ -21,8 +21,12 @@ class Order < ActiveRecord::Base
   validates :phone, :presence => true
   validates :home_number, :presence => true
   validates :distance, :presence => true
+  # validate :products_cost_must_be_more_than_high_switch_if_delivery_true
 
-  attr_accessible :state, :total_price, :user_id, :name, :last_name, :city, :zip_code, :street, :phone, :home_number, :distance, :products_price, :delivery_cost, :total_price
+  attr_accessible :state, :total_price,
+  :user_id, :name, :last_name, :city,
+  :zip_code, :street, :phone, :home_number,
+  :distance, :products_price, :delivery, :total_price
 
   serialize :cart
 
@@ -54,39 +58,34 @@ class Order < ActiveRecord::Base
 
   class << self
 
+    def possible_distances(total_price)
+      if total_price < PRICE_LOW_LIMIT_SWITCH
+        [NO_DISTANCE]
+      elsif total_price > PRICE_HIGH_LIMIT_SWITCH
+        all_distances
+      else
+        [NO_DISTANCE, SHORT_DISTANCE]
+      end
+    end
+
     def all_distances
       [NO_DISTANCE, SHORT_DISTANCE, LONG_DISTANCE]
     end
 
-    def calculate_delivery_cost(price, distance)
-      delivery_cost = case distance
-      when NO_DISTANCE then
-        FREE_DELIVERY
-      when SHORT_DISTANCE then
-        if price > PRICE_LOW_LIMIT_SWITCH
-          FREE_DELIVERY
-        else
-          DELIVERY_COST
-        end
-      when LONG_DISTANCE then
-        if price > PRICE_HIGH_LIMIT_SWITCH
-          FREE_DELIVERY
-        else
-          DELIVERY_COST
-        end
+    def delivery?(price, distance)
+      if ((distance == SHORT_DISTANCE and price > PRICE_LOW_LIMIT_SWITCH) or (distance == LONG_DISTANCE and price > PRICE_HIGH_LIMIT_SWITCH))
+        true
       else
-        FREE_DELIVERY
+        false
       end
     end
 
     def fixed_new(params, cart)
       products_price = cart.price
       distance = params[:distance]
-      delivery_cost = calculate_delivery_cost(products_price, distance)
-      total_price = products_price + delivery_cost
+      delivery = delivery?(products_price, distance)
       params = params.merge({:products_price => products_price,
-                              :delivery_cost => delivery_cost,
-                              :total_price => total_price})
+                              :delivery => delivery})
       Order.new(params)
     end
 
@@ -98,6 +97,12 @@ class Order < ActiveRecord::Base
       end
     end
 
+  end
+
+  def products_cost_must_be_more_than_high_switch_if_delivery_true
+    unless ( products_price > PRICE_HIGH_LIMIT_SWITCH ) && delivery
+      errors.add(:delivery, 'Should be "at the spot" or products price more than "#{PRICE_HIGH_LIMIT_SWITCH}"')
+    end
   end
 
   def free_delivery?
@@ -133,7 +138,7 @@ class Order < ActiveRecord::Base
   end
 
   def formated_total_price
-    "%.2f" % self.total_price
+    "%.2f" % self.products_price
   end
 
   def uniq_and_sorted_variants

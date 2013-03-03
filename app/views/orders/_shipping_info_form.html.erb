@@ -55,12 +55,13 @@
     <div class="control-group">
       <%= f.label :distance, "Odległość", class: 'control-label' %>
       <div class="controls">
-        <%= f.select :distance, User::DISTANCES, {selected: @user.distance}, {class: 'span2'} %>
+        <%= f.select :distance, Order.possible_distances(@cart.price), {class: 'span2'} %>
       </div>
     </div>
   </fieldset>
 
 </div>
+<%= f.hidden_field :products_price, :value => @cart.price %>
 
 <div class="well">
   <button type="submit" class="btn btn-primary">

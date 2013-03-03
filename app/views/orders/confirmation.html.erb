@@ -15,9 +15,8 @@
           <abbr title="Telefon">Tel:</abbr> <%= @order.phone %>
           <p>
             <!-- type of delivery is helper method in helpers/orders_helper.rb -->
-            <%= type_of_delivery(@order) %><br />
+            delivery: <%= @order.delivery %><br />
             products price: <%= @order.products_price %><br />
-            order total_price:  <%= @order.total_price %>
           </p>
         </address>
       </div>
