@@ -13,4 +13,8 @@ class Variant < ActiveRecord::Base
   #   self.price.blank?
   # end
 
+  def format_category_name
+    self.category.name.downcase.delete(' ')
+  end
+
 end
