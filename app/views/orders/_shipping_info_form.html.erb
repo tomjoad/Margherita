@@ -19,7 +19,7 @@
     <div class="control-group">
       <%= f.label :phone, "Numer telefonu",  class: 'control-label' %>
       <div class="controls">
-        <%= f.text_field :phone, value: @user.phone, placeholder: 'Numer telefonu', class: 'span4' %>
+        <%= f.text_field :phone, value: @user.phone, placeholder: 'Numer telefonu', class: 'span6' %>
       </div>
     </div>
   </fieldset>
@@ -30,7 +30,7 @@
     <div class="control-group">
       <%= f.label :distance, "Dostępne opcje", class: 'control-label' %>
       <div class="controls">
-        <%= f.select :distance, Order.possible_distances(@cart.price), {class: 'span2'} %>
+        <%= f.select(:distance, Order.possible_distances(@cart.price), {}, {class: 'span6'}) %>
       </div>
     </div>
   </fieldset>
@@ -51,7 +51,7 @@
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :street, "Ulica i numer",  class: 'control-label' %>
+      <%= f.label :street, "Ulica",  class: 'control-label' %>
       <div class="controls">
         <%= f.text_field :street, value: @user.street, placeholder: 'Ulica', class: 'span6' %>
       </div>
