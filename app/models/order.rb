@@ -3,9 +3,9 @@ class Order < ActiveRecord::Base
   belongs_to :user
 
   STATES = %[ pending in_delivery finished cancelled ]
-  NO_DISTANCE = 'on the spot'
-  SHORT_DISTANCE = '0-6'
-  LONG_DISTANCE = '6-8'
+  NO_DISTANCE = 'Odbiór osobisty'
+  SHORT_DISTANCE = 'Darmowa dostawa'
+  LONG_DISTANCE = 'Darmowa dostawa' # wystarczy tylko jeden 'darmowy dowoz', nie?
   PRICE_LOW_LIMIT_SWITCH = 23.0
   PRICE_HIGH_LIMIT_SWITCH = 30.0
   DELIVERY_COST = 6.0
