@@ -29,16 +29,7 @@
               <% display_in_order(product.variants, Product::SIZES).each do |variant| %>
                 <td class="price-variant">
                   <% if variant %>
-                    <a class=""
-                       href="<%= url_for :controller => 'line_items',
-                             :action => 'update',
-                             :id => variant.id,
-                             :operation => 'add',
-                             :menu => true,
-                             :method => 'get' %>">
-                      <%= '%.2f' % variant.price %><br>
-                      <small class="muted"><%= variant.size %></small>
-                    </a>
+                    <%= render "products/link_to_variant", :variant => variant %>
                   <% else %>
                     <span class="muted">-</span>
                   <% end %>

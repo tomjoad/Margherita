@@ -17,4 +17,8 @@ class Variant < ActiveRecord::Base
     self.category.name.downcase.delete(' ')
   end
 
+  def formated_price
+    '%.2f' % self.price
+  end
+
 end

@@ -1,0 +1,7 @@
+<%= link_to combined_price_and_desc(variant), :controller => 'line_items',
+         :action => 'update',
+         :id => variant.id,
+         :operation => 'add',
+         :menu => true,
+         :method => 'post',
+         :remote => true %>

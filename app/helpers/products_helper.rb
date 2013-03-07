@@ -26,4 +26,10 @@ module ProductsHelper
     return arr
   end
 
+  # string for product link name
+
+  def combined_price_and_desc(variant)
+    "#{variant.formated_price}<br><small class='muted'>#{variant.size}</small>".html_safe
+  end
+
 end
