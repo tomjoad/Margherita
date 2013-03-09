@@ -8,11 +8,10 @@
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
   <!-- BODY -->
-  <body data-spy="scroll" data-target="#nav-affix-left" data-offset="102" onload="initialize()">
+  <body data-spy="scroll" data-target="#nav-affix-left" data-offset="102">
     <!-- NAVBAR -->
     <%= render 'layouts/navbar_fixed_top' %>
     <div id="wrap">
@@ -32,5 +31,6 @@
     </div>
     <!-- FOOTER -->
     <%= render 'layouts/footer' %>
+    <%= javascript_include_tag "application" %>
   </body>
 </html>

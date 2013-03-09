@@ -1,40 +1,45 @@
+// combo scipt
+var mapTop;
+var mapBottom;
 var rendererOptions = {
-    draggable: true
-};
+    preserveViewport: true
+}
 var directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
 var directionsService = new google.maps.DirectionsService();
-var map;
-var kuznia = new google.maps.LatLng(50.186425, 18.80099);
+var geocoder;
+var marker = new google.maps.Marker();
+var origin = new google.maps.LatLng(50.186428, 18.801008);
+var toAddressLanLng
+
+window.onload = initialize();
+document.getElementById("btn").onclick = function(){codeAddress()};
 
 function initialize() {
+    geocoder = new google.maps.Geocoder();
     var mapOptions = {
-        zoom: 16,
-        mapTypeId: google.maps.MapTypeId.HYBRID,
-        center: kuznia,
+        zoom: 18,
+        center: origin,
+        mapTypeId: google.maps.MapTypeId.HYBRID
     }
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
     directionsDisplay.setMap(map);
 
-    google.maps.event.addListener(directionsDisplay, 'directions_changed', function() {
-        computeTotalDistance(directionsDisplay.directions);
-    });
-
-    calcRoute();
+    codeAddress();
 }
 
 function calcRoute() {
-    var city = document.getElementById("order_city").value;
-    var street = document.getElementById("order_street").value;
-    var homeNumber = document.getElementById("order_home_number").value;
-    var deliveryTarget = "Polska, Śląsk, " + city + ", " + street + " " + homeNumber
     var request = {
-        origin: kuznia,
-        destination: deliveryTarget,
+        origin: origin,
+        destination: toAddressLatLng,
         travelMode: google.maps.TravelMode.DRIVING
     };
     directionsService.route(request, function(response, status) {
         if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
+            computeTotalDistance(directionsDisplay.directions)
+        } else {
+            alert("Routing was unsuccesfull for the following reason: " + status);
         }
     });
 }
@@ -46,5 +51,38 @@ function computeTotalDistance(result) {
     total += myroute.legs[i].distance.value;
   }
   total = total / 1000.
-  document.getElementById("total").innerHTML = "Dystans = " + total + "km";
+  document.getElementById("order_accurate_distance").value = total + " km";
+}
+
+function codeAddress() {
+    var city = document.getElementById("order_city").value;
+    var street = document.getElementById("order_street").value;
+    var homeNumber = document.getElementById("order_home_number").value;
+    var address = city + ", " + street + " " + homeNumber + ", Śląsk, Polska";
+    geocoder.geocode( { 'address': address}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            map.setCenter(results[0].geometry.location);
+            marker.setMap(null);
+            marker = new google.maps.Marker({
+                draggable: true,
+                map: map,
+                position: results[0].geometry.location,
+                title: "dokładne miejsce dostawy"
+            });
+            getMarkerLocation();
+            google.maps.event.addListener(marker, "dragend", function() {
+                getMarkerLocation()
+            });
+        } else {
+            alert("Geocode was not successful for the following reason: " + status);
+        }
+    });
+}
+
+function getMarkerLocation() {
+    var lat = marker.getPosition().lat();
+    var lng = marker.getPosition().lng();
+    toAddressLatLng = marker.getPosition();
+    document.getElementById("order_geolocation").value = lat + ", " + lng;
+    calcRoute();
 }

@@ -57,34 +57,47 @@
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :home_number, "Numer domu",  class: 'control-label' %>
+      <%= f.label :home_number, "Numer domu / mieszk.",  class: 'control-label' %>
       <div class="controls">
         <%= f.text_field :home_number, value: @user.home_number, placeholder: 'Nr', class: 'span6' %>
       </div>
     </div>
     <div class="control-group">
       <div class="controls">
-        <a class="btn btn-success" onclick="calcRoute()">
-          Sprawdź odległość na mapie
+        <a id="btn" class="btn btn-success">
+          Odszukaj na mapie
         </a>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label "geolocation", "Dokładna geolokacja",  class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field "geolocation", value: "", placeholder: 'dł. i szer. geograficzna', class: 'span6', disabled: "" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label "accurate_distance", "Odległość od restauracji",  class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field "accurate_distance", value: "", placeholder: '0,0 km', class: 'span6', disabled: "" %>
       </div>
     </div>
   </fieldset>
 
-</div>
-
 <%#= f.hidden_field :products_price, :value => @cart.price %>
-
-<div class="well">
-  <p id="total"></p>
+  <div class="well hl-warning">
+    Użyj pomarańczowego markera na mapie aby <strong>dokładnie</strong> zaznaczyć miejsce dostawy.
+    Na przykład, jeżeli twój dom znajduje się pod podanym adresem a marker wskazuje podwórko sąsiada
+    po prostu przeciągnij go na swoje :)<br><br>
+    Pamiętaj aby podany wyżej adres zgadzał się ze wskazaniem pomarańczowego markera! Dziękujemy!
+  </div>
   <div id="map_canvas" style="height: 400px; width: 100%"></div>
 </div>
 
 <div class="well">
-  <button type="submit" class="btn btn-primary">
-    Przejdź dalej <i class="icon-ok icon-white"></i>
-  </button>
   <a href="<%= url_for new_cart_path %>" class="btn btn-submit">
     Wróć do koszyka <i class="icon-shopping-cart icon-white"></i>
   </a>
+  <button type="submit" class="btn btn-primary pull-right">
+    Przejdź dalej <i class="icon-ok icon-white"></i>
+  </button>
 </div>
