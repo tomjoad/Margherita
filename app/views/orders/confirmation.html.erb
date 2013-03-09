@@ -13,11 +13,6 @@
           <%= @order.street %>&nbsp;<%= @order.home_number %><br>
           <%#= @order.zip_code %>00-000&nbsp;<%= @order.city %><br><br>
           <abbr title="Telefon">Tel:</abbr> <%= @order.phone %>
-          <p>
-            <!-- type of delivery is helper method in helpers/orders_helper.rb -->
-            delivery: <%= @order.delivery %><br />
-            products price: <%= @order.products_price %><br />
-          </p>
         </address>
       </div>
       <div class="well">
@@ -28,8 +23,10 @@
       </div>
       <%= render 'orders/hidden_fields_for_order_confirmation', :f => f %>
       <div class="well">
-        <%= f.submit "Potwierdź i utwórz zamówienie!", class: 'btn btn-success' %>
-        <%= link_to "Wstecz", new_order_path, class: 'btn btn-submit' %>
+        <%= link_to(new_order_path, { class: 'btn btn-submit' }) do %>
+          <i class="icon-chevron-left icon-white"></i> Popraw adres
+        <% end %>
+        <%= f.submit "Utwórz zamówienie!", class: 'btn btn-success pull-right' %>
       </div>
     <% end %>
   </div>

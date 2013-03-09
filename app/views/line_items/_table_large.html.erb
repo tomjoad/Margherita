@@ -16,7 +16,7 @@
         Ilość
       </th>
       <th class="price-variant">
-        Cena<sup class="muted">[zł]</sup>
+        Suma
       </th>
       <% unless params[:action] == "confirmation" %>
         <th class="price-variant"></th>
@@ -69,16 +69,21 @@
       <td class="id-icon">
         <i class="icon-info-sign"></i>
       </td>
-      <th class="middle">
-        Kosz dostawy
-      </th>
-      <td class="price-variant">-</td>
-      <td class="price-variant">-</td>
-      <th class="price-variant">
-        0,00
-      </th>
-      <% unless params[:action] == "confirmation" %>
-        <td class="price-variant">-</td>
+      <% if params[:action] == "confirmation" %>
+        <th class="middle">
+          Wybrany rodzaj dostawy
+        </th>
+        <td class="middle" colspan="3">
+          <%= type_of_delivery(@order) %>
+      <% else %>
+        <th class="middle">
+          Dostępne rodzaje dostawy
+        </th>
+        <td class="middle" colspan="4">
+          <% Order.possible_distances(@cart.price).each do |delivery| %>
+            * <%= delivery %><br>
+          <% end %>
+        </td>
       <% end %>
     </tr>
     <tr class="total-price-info">
@@ -90,11 +95,15 @@
       </th>
       <td class="price-variant">-</td>
       <td class="price-variant">-</td>
-      <th class="price-variant">
-        <%= "%.2f" % @cart.price %>
-      </th>
       <% unless params[:action] == "confirmation" %>
+        <th class="price-variant">
+          <%= "%.2f" % @cart.price %>
+        </th>
         <td class="price-variant">-</td>
+      <% else %>
+        <th class="price-variant">
+          <%= "%.2f" % @order.products_price %>
+        </th>
       <% end %>
     </tr>
   </tbody>

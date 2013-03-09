@@ -1,29 +1,6 @@
 <div class="well">
 
   <fieldset>
-    <legend style="margin:0">
-      Dane kontaktowe
-    </legend>
-    <div class="control-group">
-      <%= f.label :name, "Imię",  class: 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :name, value: @user.name, placeholder: 'Imię', class: 'span6' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :last_name, "Nazwisko",  class: 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :last_name, value: @user.last_name, placeholder: 'Nazwisko', class: 'span6' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :phone, "Numer telefonu",  class: 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :phone, value: @user.phone, placeholder: 'Numer telefonu', class: 'span6' %>
-      </div>
-    </div>
-  </fieldset>
-  <fieldset>
     <legend style="margin:0;">
       Rodzaj dostawy
     </legend>
@@ -34,6 +11,10 @@
       </div>
     </div>
   </fieldset>
+
+</div>
+<div class="well">
+
   <fieldset>
     <legend>
       Adres dostawy
@@ -63,13 +44,6 @@
       </div>
     </div>
     <div class="control-group">
-      <div class="controls">
-        <a id="btn" class="btn btn-success">
-          Odszukaj na mapie
-        </a>
-      </div>
-    </div>
-    <div class="control-group">
       <%= f.label "geolocation", "Dokładna geolokacja",  class: 'control-label' %>
       <div class="controls">
         <%= f.text_field "geolocation", value: "", placeholder: 'dł. i szer. geograficzna', class: 'span6', disabled: "" %>
@@ -79,6 +53,13 @@
       <%= f.label "accurate_distance", "Odległość od restauracji",  class: 'control-label' %>
       <div class="controls">
         <%= f.text_field "accurate_distance", value: "", placeholder: '0,0 km', class: 'span6', disabled: "" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <a id="btn" class="btn btn-success">
+          Odszukaj na mapie
+        </a>
       </div>
     </div>
   </fieldset>
@@ -91,13 +72,42 @@
     Pamiętaj aby podany wyżej adres zgadzał się ze wskazaniem pomarańczowego markera! Dziękujemy!
   </div>
   <div id="map_canvas" style="height: 400px; width: 100%"></div>
-</div>
 
+</div>
 <div class="well">
+
+  <fieldset>
+    <legend style="margin:0">
+      Dane kontaktowe
+    </legend>
+    <div class="control-group">
+      <%= f.label :name, "Imię",  class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :name, value: @user.name, placeholder: 'Imię', class: 'span6' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :last_name, "Nazwisko",  class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :last_name, value: @user.last_name, placeholder: 'Nazwisko', class: 'span6' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :phone, "Numer telefonu",  class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :phone, value: @user.phone, placeholder: 'Numer telefonu', class: 'span6' %>
+      </div>
+    </div>
+  </fieldset>
+
+</div>
+<div class="well">
+
   <a href="<%= url_for new_cart_path %>" class="btn btn-submit">
-    Wróć do koszyka <i class="icon-shopping-cart icon-white"></i>
+     <i class="icon-chevron-left icon-white"></i> Popraw zawartość koszyka
   </a>
   <button type="submit" class="btn btn-primary pull-right">
-    Przejdź dalej <i class="icon-ok icon-white"></i>
+    Wyświetl podsumowanie <i class="icon-chevron-right icon-white"></i>
   </button>
+
 </div>
