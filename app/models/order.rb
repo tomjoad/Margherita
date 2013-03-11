@@ -4,8 +4,8 @@ class Order < ActiveRecord::Base
 
   STATES = %[ pending in_delivery finished cancelled ]
   NO_DISTANCE = 'Collection in person'
-  SHORT_DISTANCE = 'Free up to 6km'
-  LONG_DISTANCE = 'Free up to 9km'
+  SHORT_DISTANCE = 'Free delivery up to 6km'
+  LONG_DISTANCE = 'Free delivery up to 9km'
   PRICE_LOW_LIMIT_SWITCH = 23.0
   PRICE_HIGH_LIMIT_SWITCH = 30.0
   DELIVERY_COST = 6.0

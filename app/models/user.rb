@@ -11,7 +11,15 @@ class User < ActiveRecord::Base
 
   ROLES = %w[admin seller customer]
   EMAIL_REGEXP = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  CITIES = ["Bujaków", "Ornontowice", "Kąty", "Chudów", "Pelców", "Stara Huta", "Orzesze"]
+  CITIES = ["Bujaków, Mikołów",
+            "Kąty, Mikołów",
+            "Paniowy, Gierałtowice",
+            "Mokre, Mikołów",
+            "Ornontowice",
+            "Orzesze",
+            "Chudów, Gierałtowice",
+            "Paniówki, Mikołów",
+            "Dębieńsko, Czerwionka-Leszczyny"]
   ZIP_CODES = %w[01-123 02-123 02-123]
   DISTANCES = Order.all_distances
 

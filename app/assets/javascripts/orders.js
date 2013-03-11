@@ -7,6 +7,10 @@ var rendererOptions = {
 var directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
 var directionsService = new google.maps.DirectionsService();
 var geocoder;
+var bounds = new google.maps.LatLngBounds(
+    new google.maps.LatLng(50.258839,18.667831),
+    new google.maps.LatLng(50.099881,18.917427)
+);
 var marker = new google.maps.Marker();
 var origin = new google.maps.LatLng(50.186428, 18.801008);
 var toAddressLanLng
@@ -22,7 +26,7 @@ function initialize() {
         mapTypeId: google.maps.MapTypeId.HYBRID
     }
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-
+    map.fitBounds(bounds);
     directionsDisplay.setMap(map);
 
     codeAddress();
@@ -59,14 +63,28 @@ function codeAddress() {
     var street = document.getElementById("order_street").value;
     var homeNumber = document.getElementById("order_home_number").value;
     var address = city + ", " + street + " " + homeNumber + ", Śląsk, Polska";
-    geocoder.geocode( { 'address': address}, function(results, status) {
+    geocoder.geocode({
+        'address': address,
+        'bounds': bounds // doesnt work. google bug.
+    }, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
-            map.setCenter(results[0].geometry.location);
+            var i = 0;
+            var end = results.length;
+            console.log(results);
+            while (results[i].formatted_address.indexOf(city) == -1
+                   && results[i].formatted_address.indexOf(street) == -1
+                   && i<results.length-1)
+            {
+                i++;
+                console.log(i);
+            }
             marker.setMap(null);
+            map.setCenter(results[i].geometry.location);
+            map.setZoom(17);
             marker = new google.maps.Marker({
                 draggable: true,
                 map: map,
-                position: results[0].geometry.location,
+                position: results[i].geometry.location,
                 title: "dokładne miejsce dostawy"
             });
             getMarkerLocation();
