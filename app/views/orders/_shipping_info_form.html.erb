@@ -61,12 +61,6 @@
       </div>
       <div class="span5">
         <%#= f.hidden_field :products_price, :value => @cart.price %>
-        <div class="well hl-warning">
-          <legend style="margin:0">Mapa wskazuje błędny adres?</legend>
-          <strong>Nic nie szkodzi!</strong></br>
-          Wystarczy że przeciągniesz pomarańczowy marker nad poprawne miejsce dostawy (twój dom, mieszkanie itp.).
-          <strong>Pamiętaj</strong> aby podany przez Ciebie adres zgadzał się ze wskazaniem pomarańczowego markera - dzięki temu nasz kierowca dojedzie na pewno na czas!
-        </div>
       </div>
     </div>
     <a id="btn" class="btn btn-large btn-block btn-success">
@@ -76,13 +70,16 @@
 
 </div>
 <div class="well">
-
-  <!-- <legend style="margin:0">Sprawdź podany adres</legend> -->
-  <!-- <p> -->
-  <!--   Pomarańczowy marker nie wskazuje prawidłowo podanego wyżej adresu? -->
-  <!--   Przesuń go na właściwe miejsce i kontynuuj zakupy! -->
-  <!-- </p> -->
   <div id="map_canvas" style="height: 400px; width: 100%"></div>
+  <div class="well hl-warning" style="margin:0;">
+    <legend style="margin:0">Mapa wskazuje błędny adres?</legend>
+    <strong>Nic nie szkodzi!</strong></br>
+    Wystarczy że przeciągniesz pomarańczowy marker nad
+    poprawne miejsce dostawy (twój dom, mieszkanie itp.).
+    <strong>Pamiętaj</strong> aby podany przez Ciebie adres
+    zgadzał się ze wskazaniem pomarańczowego markera -
+    dzięki temu nasz kierowca dojedzie na pewno na czas!
+  </div>
 
 </div>
 <div class="well">
