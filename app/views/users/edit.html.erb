@@ -49,8 +49,7 @@
     <div class="row-fluid">
       <div class="span12 well">
         <%= f.submit "Zapisz zmiany", :class => 'btn btn-primary' %>
-        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            user_path(current_user), :class => 'btn' %> <!-- CO TO JEST? -->
+        <%= link_to "Anuluj", user_path, class: "btn btn-submit" %>
       </div>
     </div>
   </div>

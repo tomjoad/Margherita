@@ -7,10 +7,6 @@ var rendererOptions = {
 var directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
 var directionsService = new google.maps.DirectionsService();
 var geocoder;
-var bounds = new google.maps.LatLngBounds(
-    new google.maps.LatLng(50.258839,18.667831),
-    new google.maps.LatLng(50.099881,18.917427)
-);
 var marker = new google.maps.Marker();
 var origin = new google.maps.LatLng(50.186428, 18.801008);
 var toAddressLanLng;
@@ -19,7 +15,6 @@ var toAddressLanLng;
 window.onload = initialize();
 
 function initialize() {
-    document.getElementById("btn").onclick = function(){codeAddress()};
     geocoder = new google.maps.Geocoder();
     var mapOptions = {
         zoom: 19,
@@ -27,12 +22,12 @@ function initialize() {
         mapTypeId: google.maps.MapTypeId.HYBRID
     }
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-    // map.fitBounds(bounds);
     directionsDisplay.setMap(map);
 
-
-
+    document.getElementById("btn").onclick = function(){codeAddress()};
 }
+
+// Google Maps functions
 
 function calcRoute() {
     var request = {
@@ -56,8 +51,9 @@ function computeTotalDistance(result) {
     for (i = 0; i < myroute.legs.length; i++) {
         total += myroute.legs[i].distance.value;
     }
-    total = total / 1000.
-        document.getElementById("order_accurate_distance").value = total + " km";
+    total = total / 1000.;
+    document.getElementById("order_computed_distance").value = total + " km";
+    document.getElementById("computed_distance").innerHTML = total + " km";
 }
 
 function codeAddress() {
@@ -65,11 +61,10 @@ function codeAddress() {
     var street = document.getElementById("order_street").value;
     var homeNumber = document.getElementById("order_home_number").value;
     var address = city + ", " + street + " " + homeNumber + ", Śląsk, Polska";
+    document.getElementById("address_info").innerHTML = address;
     geocoder.geocode({
         'address': address,
-        'bounds': bounds // doesnt work. google bug.
     }, function(results, status) {
-        // document.getElementById("geocoder_result").innerHTML = results[0].formatted_address;
         if (status == google.maps.GeocoderStatus.OK) {
             marker.setMap(null);
             map.setCenter(results[0].geometry.location);
@@ -97,3 +92,5 @@ function getMarkerLocation() {
     document.getElementById("order_geolocation").value = lat + ", " + lng;
     calcRoute();
 }
+
+// End of Google Maps functions

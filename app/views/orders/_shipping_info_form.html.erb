@@ -13,67 +13,70 @@
   </fieldset>
 
 </div>
-<div id="delivery_address" class="well">
+<div class="well">
 
   <fieldset>
     <legend>
       Podaj adres dostawy
     </legend>
-    <div class="row-fluid">
-      <div class="span7">
-        <div class="control-group hidden">
-          <%= f.label :zip_code, "Kod pocztowy",  class: 'control-label' %>
-          <div class="controls">
-            <%= f.select(:zip_code, User::ZIP_CODES, {selected: @user.zip_code}, {class: ''}) %>
-          </div>
-        </div>
-        <div class="control-group">
-          <%= f.label :city, "Miejscowość",  class: 'control-label' %>
-          <div class="controls">
-            <%= f.select(:city, User::CITIES.sort, {selected: @user.city}, {class: 'span12'}) %>
-          </div>
-        </div>
-        <div class="control-group">
-          <%= f.label :street, "Ulica",  class: 'control-label' %>
-          <div class="controls">
-            <%= f.text_field :street, value: @user.street, placeholder: 'Ulica', class: 'span12' %>
-          </div>
-        </div>
-        <div class="control-group">
-          <%= f.label :home_number, "Numer domu / mieszk.",  class: 'control-label' %>
-          <div class="controls">
-            <%= f.text_field :home_number, value: @user.home_number, placeholder: 'Nr', class: 'span12' %>
-          </div>
-        </div>
-        <div class="control-group hidden">
-          <%= f.label "geolocation", "Dokładna geolokacja",  class: 'control-label' %>
-          <div class="controls">
-            <%= f.text_field "geolocation", value: "", placeholder: 'dł. i szer. geograficzna', class: 'span12', disabled: "" %>
-          </div>
-        </div>
-        <div class="control-group">
-          <%= f.label "accurate_distance", "Odległość",  class: 'control-label' %>
-          <div class="controls">
-            <%= f.text_field "accurate_distance", value: "", placeholder: '0,0 km', class: 'span12', disabled: "" %>
-            <p class="help-block">Aby obliczyć odległość wyszukaj swój adres na mapie</p>
-          </div>
-        </div>
-      </div>
-      <div class="span5">
-        <%#= f.hidden_field :products_price, :value => @cart.price %>
+    <div class="control-group hidden">
+      <%= f.label :zip_code, "Kod pocztowy",  class: 'control-label' %>
+      <div class="controls">
+        <%= f.select(:zip_code, User::ZIP_CODES, {selected: @user.zip_code}, {class: ''}) %>
       </div>
     </div>
-    <a id="btn" class="btn btn-large btn-block btn-success">
-      Kliknij, aby wyszukać adres i obliczyć odległość.
-    </a>
+    <div class="control-group">
+      <%= f.label :city, "Miejscowość",  class: 'control-label' %>
+      <div class="controls">
+        <%= f.select(:city, User::CITIES.sort, {selected: @user.city}, {class: 'span6'}) %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :street, "Ulica",  class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :street, value: @user.street, placeholder: 'Ulica', class: 'span6' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :home_number, "Numer domu / mieszk.",  class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :home_number, value: @user.home_number, placeholder: 'Nr', class: 'span6' %>
+      </div>
+    </div>
+    <div class="control-group hidden">
+      <%= f.label "geolocation", "Dokładna geolokacja",  class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field "geolocation", value: "", placeholder: 'dł. i szer. geograficzna', class: 'span6', disabled: "" %>
+      </div>
+    </div>
+    <div class="control-group hidden">
+      <%= f.label "computed_distance", "Odległość",  class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field "computed_distance", value: "", placeholder: '0,0 km', class: 'span6', disabled: "" %>
+      </div>
+    </div>
+    <%#= f.hidden_field :products_price, :value => @cart.price %>
   </fieldset>
 
 </div>
+
 <div class="well">
+  <a id="btn" class="btn btn-large btn-block btn-success" href="#map_container">
+    Kliknij, aby wyszukać adres i obliczyć odległość.
+  </a>
+</div>
+
+<div id="map_container" class="well">
+  <dl id="delivery_info" class="dl-horizontal well alert-info" style="margin:0">
+    <dt>Szukany adres:</dt>
+    <dd id="address_info">?</dd>
+    <dt>Obliczona odległość:</dt>
+    <dd id="computed_distance">?</dd>
+  </dl>
   <div id="map_canvas" style="height: 400px; width: 100%"></div>
   <div class="well hl-warning" style="margin:0;">
     <legend style="margin:0">Mapa wskazuje błędny adres?</legend>
-    <strong>Nic nie szkodzi!</strong></br>
+    <strong>Nic nie szkodzi!</strong><br>
     Wystarczy że przeciągniesz pomarańczowy marker nad
     poprawne miejsce dostawy (twój dom, mieszkanie itp.).
     <strong>Pamiętaj</strong> aby podany przez Ciebie adres

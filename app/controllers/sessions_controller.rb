@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       sign_in user
       redirect_back_or(root_url)
     else
-      flash[:error] = "Nieprawidłowy email / hasło"
+      flash[:error] = "Wrong email / password"
       redirect_to signin_path
     end
   end
