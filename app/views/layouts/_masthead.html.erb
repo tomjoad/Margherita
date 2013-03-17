@@ -7,12 +7,26 @@
   <% end %>
 
   <div class="row-fluid">
-    <div class="span8">
-      <h1>Kuźnia<small> cafe&nbsp;&&nbsp;pizza</small></h1>
+    <div class="span7">
+      <h1 id="shop-title">Kuźnia<small> cafe&nbsp;&&nbsp;pizza</small></h1>
       <!-- <p class="lead">restauracja rodzinna</p> -->
     </div>
-    <div class="span4">
+    <div class="span5 header-nav">
+      <ul>
+        <li id="basket">
+          <%= link_to "TWÓJ KOSZYK", new_cart_path %><br>
+          <strong>
+            7 produktów<br>
+            47,50 zł
+          </strong>
+        </li>
+        <% unless current_user or current_page?(signup_path) %>
+          <li id="register">
+            <%= link_to "Zerejestruj się!", signup_path, class: "btn btn-success" %>
+          </li>
+        <% end %>
+      </ul>
     </div>
   </div>
-  <%= render params[:controller] + "/subnav" %>
+    <%= render params[:controller] + "/subnav" %>
 </header>

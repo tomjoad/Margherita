@@ -1,0 +1,51 @@
+// BACKGROUND+FONT COLOR SWATCHES
+//------------------------------------------------------
+
+.bg {
+    &-light { background-color: whiteSmoke; color: @textColor; }
+    &-medium { background-color: @grayLighter; color: @textColor; }
+    &-strong { background-color: @grayDark; color: @white; }
+    &-success { background-color: @green; color: @white;}
+    &-warning { background-color: @orange; color: @white;}
+    &-danger { background-color: @red; color: @white;}
+    &-info { background-color: @purple; color: @white;}
+}
+
+.well {
+    &-bordered { border: 1px solid whiteSmoke; }
+    &-white { background-color: transparent; }
+}
+
+.header-nav {
+    ul {
+        list-style-type: none;
+        margin: 0;
+        width: 100%;
+        li {
+            float: right;
+            height: 60px;
+        }
+        li#register {
+            background-image: url("/assets/user.png");
+            background-repeat: no-repeat;
+            background-size: auto 60px;
+            padding-left: 60px;
+            text-align: right;
+        }
+        li#basket {
+            background-image: url("/assets/basket.png");
+            background-repeat: no-repeat;
+            background-size: auto 60px;
+            padding-left: 60px;
+            margin-left: 20px;
+            text-align: right;
+        }
+    }
+}
+// #shop-title {
+//     background-image: url("/assets/shop.png");
+//     background-repeat: no-repeat;
+//     background-size: auto 60px;
+//     padding-left: 60px;
+//     height: 60px;
+// }
