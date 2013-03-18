@@ -5,7 +5,7 @@ module ProductsHelper
 
   # if for example, there are only 2 variants of product, let`s take
   # small, and big only, no medium size, it is making correct array
-  # like: [variant_small, nill, variant_big] (just for displaying in
+  # like: [variant_small, nil, variant_big] (just for displaying in
   # products index
   # variants -> variants of product options -> sizes
   # possibilities

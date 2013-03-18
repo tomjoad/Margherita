@@ -1,1 +1,27 @@
-admin products path
+<h3>Products</h3>
+
+<table class="table table-condensed table-hover">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Fixed No.</th>
+      <th>Product Name</th>
+      <th>Category Name</th>
+      <th style="text-align: right">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.sort.each do |product| %>
+      <tr>
+        <td><%= product.id %></td>
+        <td><%= product.fixed_number %></td>
+        <td><%= product.name %></td>
+        <td><%= product.category.name %></td>
+        <td style="text-align: right">
+          <button class="btn btn-warning">Edit</button>
+          <button class="btn btn-submit">Show</button>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

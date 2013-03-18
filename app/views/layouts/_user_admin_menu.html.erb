@@ -7,11 +7,11 @@
       <li><%= link_to "Users", admin_users_path %></li>
       <li><%= link_to "Categories", admin_categories_path %></li>
       <li><%= link_to "Orders", orders_path(filter: 'pending') %></li>
-      <li><%= link_to "Products", products_path %></li>
+      <li><%= link_to "Products", admin_products_path %></li>
       <li><%= link_to "New Product", new_product_path %></li>
       <li><%= link_to "New Category", new_category_path %></li>
       <li>
-        <%= button_to "Wyloguj się", signout_path, method: "delete", class: "btn btn-block btn-danger" %>
+        <%= button_to "Sign Out", signout_path, method: "delete", class: "btn btn-block btn-danger" %>
       </li>
     </ul>
   </li>

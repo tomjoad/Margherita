@@ -42,12 +42,8 @@
 
     <li class="<%= current_page?(new_order_path) ? "active" : ""%>" >
       <%= link_to new_cart_path do %>
-        <i class="icon-shopping-cart icon-white"></i>&nbsp;
-        <% if @cart.try(:price) %>
-          Koszyk [ <%= "%.2f" % @cart.price %><sup> zł</sup> ]
-        <% else %>
-          Koszyk [ 0,00<sup> zł</sup> ]
-        <% end %>
+        <i class="icon-shopping-cart icon-white"></i>
+        Koszyk
       <% end %>
     </li>
 </ul>

@@ -3,7 +3,7 @@
   <div class="span12">
     <ul class="breadcrumb">
       <li style="width: 100%">
-        <i class="icon-shopping-cart"></i> Koszyk
+        <i class="icon-list"></i> Shopping List
       </li>
     </ul>
   </div>
@@ -12,7 +12,7 @@
   <div id="small-cart" class="span12 cart-small">
     <%= render 'line_items/items_in_small_cart' %>
   </div>
-<div class="clearfix">
+<div class="clearfix hidden">
   <% if there_is_something_in_cart? %>
     <%= link_to "Kontynuuj", new_cart_path, class: 'btn btn-large btn-primary btn-block' %>
   <% else %>
