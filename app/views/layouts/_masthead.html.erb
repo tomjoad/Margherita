@@ -14,15 +14,17 @@
     <div class="span5 header-nav">
       <ul>
         <li id="basket">
-          <%= link_to "TWÓJ KOSZYK", new_cart_path %><br>
-          <strong>
-            7 produktów<br>
-            47,50 zł
-          </strong>
+          <%= link_to "Your Basket", new_cart_path, class: "btn btn-success"%><br>
+            <p style="text-align: right; line-height: 1; margin-top: 3px;">
+              <small>7 products<br>44,50 zł</small>
+            </p>
         </li>
         <% unless current_user or current_page?(signup_path) %>
           <li id="register">
-            <%= link_to "Zerejestruj się!", signup_path, class: "btn btn-success" %>
+            <%= link_to "Create account!", signup_path, class: "btn btn-success" %>
+            <p style="text-align: center; line-height: 1; margin-top: 3px;">
+              <small>Checkout our super-fast<br>online ordering!</small>
+            </p>
           </li>
         <% end %>
       </ul>
