@@ -26,7 +26,7 @@
                 <%= product.name %><br>
                 <small class="muted"><%= product.description %></small>
               </td>
-              <% display_in_order(product.variants, Product::SIZES).each do |variant| %>
+              <% product.variants.each do |variant| %>
                 <td class="price-variant">
                   <% if variant %>
                     <%= render "products/link_to_variant", :variant => variant %>

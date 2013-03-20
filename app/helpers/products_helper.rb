@@ -10,8 +10,8 @@ module ProductsHelper
   # variants -> variants of product options -> sizes
   # possibilities
 
-  def display_in_order(variants, options)
-    arr = Array.new(options.size)
+  def display_in_order(variants)
+    arr = []
 
     variants.each do |variant|
       if variant.size == options[0]

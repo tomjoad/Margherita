@@ -19,6 +19,12 @@ FRYTKI_VAR = [
   {:price => 20.0, :size => "małe"},
   {:price => 12.0, :size => "duże"} ]
 
+CIABATA_VAR = [
+{:price => 12, :size => "normalna"}]
+
+HAMBURGER_VAR = [
+{:price => 4, :size => ""}]
+
 Category.create(CATEGORIES)
 
 # Product.create(:name => "Frytki", :description => "desc", :category => Category.find_by_name("Dodatki"), :fixed_number => 22 )
@@ -28,4 +34,12 @@ end
 
 Variant.create(FRYTKI_VAR) do |variant|
   variant.product = Product.find_by_name("Frytki")
+end
+
+Variant.create(CIABATA_VAR) do |variant|
+  variant.product = Product.find_by_name("Ciabatta")
+end
+
+Variant.create(HAMBURGER_VAR) do |variant|
+  variant.product = Product.find_by_name("Hamburger")
 end
