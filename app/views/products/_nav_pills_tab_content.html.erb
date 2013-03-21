@@ -26,19 +26,11 @@
                 <%= product.name %><br>
                 <small class="muted"><%= product.description %></small>
               </td>
-              <% product.variants.each do |variant| %>
-                <td class="price-variant">
-                  <% if variant %>
-                    <%= render "products/link_to_variant", :variant => variant %>
-                  <% else %>
-                    <span class="muted">-</span>
-                  <% end %>
-                </td>
-              <% end %>
+              <%= render "products/link_to_variant", :variants => product.variants %>
             </tr>
           <% end %>
         </tbody>
       </table>
     </div>
-    <% end %>
+  <% end %>
 </div>

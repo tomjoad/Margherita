@@ -1,7 +1,17 @@
-<%= link_to combined_price_and_desc(variant), :controller => 'line_items',
-         :action => 'update',
-         :id => variant.id,
-         :operation => 'add',
-         :menu => true,
-         :method => 'post',
-         :remote => true %>
+<% (3 - variants.count).times do %>
+  <td class="price-variant">
+    <span class="muted">-</span>
+  </td>
+<% end %>
+<% variants.each do |variant| %>
+  <td class="price-variant">
+    <%= link_to combined_price_and_desc(variant), :controller => 'line_items',
+        :action => 'update',
+        :id => variant.id,
+        :operation => 'add',
+        :menu => true,
+        :method => 'post',
+        :remote => true %>
+  </td>
+<% end %>
+
