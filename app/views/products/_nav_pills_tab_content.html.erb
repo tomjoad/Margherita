@@ -1,10 +1,13 @@
 <div class="tab-content">
   <% @categories.each do |category| %>
     <div class="tab-pane well <%= params[:id] == category.name.downcase.delete(' ') ? "active" : "" %>"
+         style="position: relative"
          id="<%= category.name.downcase.delete(' ') %>">
-      <h3>
+      <img class="pull-right"
+           style="height:40px; position: absolute; top: 21px; right: 18px"
+           src='<%= asset_path "icon-menu-shdw.png" %>'>
+      <h3 style="margin-top:10px">
         <%= category.name %>
-        <img class="pull-right" style="height:40px" src='<%= asset_path "icon-menu-shdw.png" %>'>
       </h3>
       <table class="table table-striped table-products">
         <!-- <thead> <\!-- Table header -\-> -->
