@@ -1,106 +1,142 @@
 # -*- coding: utf-8 -*-
-CATEGORIES = [
-  { name: "Pizza" },
-  { name: "Spaghetti" },
-  { name: "Fast Food" },
-  { name: "Sałatki" },
-  { name: "Sosy"},
-  { name: "Naleśniki" },
-  { name: "Napoje i soki"},
-  { name: "Zupy" },
-  { name: "Zestawy obiadowe" } ]
 
-PIZZA = [
-         { name: "Margherita", description: "klasyczna Margherita bez dodatków", :fixed_number => 1 },
-         { name: "Studencka", description: "z pieczarkami", :fixed_number => 2 },
-         { name: "Toska", description: "z pieczarkami i szynką", :fixed_number => 3 },
-         { name: "Hawajka", description: "z ananasem i szynką", :fixed_number => 4 },
-         { name: "Brokułka", description: "z brokułami, pomidorem i szynką", :fixed_number => 5 },
-         { name: "Do-Re-Mi-Salami", description: "z salami, pieczarkami i cebulą", :fixed_number => 6 },
-         { name: "Morska Bryza", description: "z tuńczykiem, pomidorem i papryką", :fixed_number => 7 },
-         { name: "Jajcarska", description: "z jajkiem, serem feta, brokułami, kaparami i papryką", :fixed_number =>8 },
-         { name: "Kowala", description: "z boczkiem, papryką, szynką, cebulą i czosnkiem", :fixed_number => 9 },
-         { name: "Jarska", description: "z cebulą, kukurydzą, pomidorem, papryką i brokułami", :fixed_number => 10 },
-         { name: "Bartolomeo", description: "z oliwkami, salami, szynką i kukurydzą", :fixed_number => 11 },
-         { name: "Kaparina", description: "z serami feta i camembert, kaparami, brokułami i papryką", :fixed_number => 12 },
-         { name: "Cztery Sery", description: "z serami feta, camembert i gouda oraz papryką", :fixed_number => 13 },
-         { name: "Pirat Krzyś", description: "z kalmarami, ośmiorniczkami, małżami i krewetkami", :fixed_number => 14 },
-         { name: "Rumcajs", description: "z kabanosem, kiełbasą, boczkiem, ogórkiem i cebulą", :fixed_number => 15 },
-         { name: "Los Kurczakos", description: "z kurczakiem, papryką, kukurydzą, cebulą i cebulką konserwową", :fixed_number => 16 },
-         { name: "Szpinka", description: "ze szpinakiem, czosnkiem, szynką i serem feta", :fixed_number => 17 },
-         { name: "Czochol", description: "z podwójnym czosnkiem, kabanosem, boczkiem, pieczarkami i cebulą", :fixed_number => 18 },
-         { name: "Grecka", description: "z pomidorem, oliwkami, serem feta i cebulą", :fixed_number => 19 },
-         { name: "Pepperoni", description: "z salami oraz pikantnymi papryczkami pepperoni", :fixed_number => 20 }]
+ARRAY = [
+  ["Pizza", [
+      ['Margherita', 'klasyczna Margherita bez dodatków', 1, [ [10.5, '24cm'], [13.5, '32cm'] ] ],
+      ['Studencka', 'z pieczarkami', 2, [ [11.5, '24cm'], [16.0, '32cm'] ] ],
+      ['Toska', 'z pieczarkami i szynką', 3, [ [11.5, '24cm'], [16.0, '32cm'] ] ],
+      ['Hawajska', 'z ananasem i szynką', 4, [ [11.5, '24cm'], [16.0, '32cm'] ] ],
+      ['Brokułka', 'z brokułami, pomidorem i szynką', 5, [ [11.5, '24cm'], [16.0, '32cm'] ] ],
+      ['Do-Re-Mi_Salami', 'z salami, pieczarkami i cebulą', 6, [ [11.5, '24cm'], [16.0, '32cm'] ] ],
+      ['Morska Bryza', 'z tuńczykiem, pomidorem i papryką', 7, [ [11.5, '24cm'], [16.0, '32cm'] ] ],
+      ['Jajcarska', 'z jajkiem, serem feta, brokułami, kaparami i papryką', 8, [ [11.5, '24cm'], [16.0, '32cm'] ] ],
+      ['Kowala', 'z boczkiem, papryką, szynką, cebulą i czosnkiem', 9, [ [11.5, '24cm'], [16.0, '32cm'] ] ],
+      ['Jarska', 'z cebulą, kukurydzą, pomidorem, papryką i brokułami', 10, [ [11.5, '24cm'], [16.0, '32cm'] ] ],
+      ['Bartolomeo', 'z oliwkami, salami, szynką i kukurydzą', 11, [ [11.5, '24cm'], [16.0, '32cm'] ] ],
+      ['Kaparina', 'z serami feta i camembert, kaparami, brokułami i papryką', 12, [ [11.5, '24cm'], [16.0, '32cm'] ] ],
+      ['Cztery sery', 'z serami feta, camembert i gouda oraz papryką', 13, [ [11.5, '24cm'], [16.0, '32cm'] ] ],
+      ['Pirat Krzyś', 'z kalmarami, ośmiorniczkami, małżami i krewetkami', 14, [ [11.5, '24cm'], [16.0, '32cm'] ] ],
+      ['Rumcajs', 'z kabanosem, kiełbasą, boczkiem, ogórkiem i cebulą', 15, [ [11.5, '24cm'], [16.0, '32cm'] ] ],
+      ['Los Kurczakos', 'z kurczakiem, papryką, kukurydzą, cebulą i cebulką konserwową', 16, [ [11.5, '24cm'], [16.0, '32cm'] ] ],
+      ['Szpinka', 'ze szpinakiem, czosnkiem, szynką i serem feta', 17, [ [11.5, '24cm'], [16.0, '32cm'] ] ],
+      ['Czochol', 'z podwójnym czosnkiem, kabanosem, boczkiem, pieczarkami i cebulą', 18, [ [11.5, '24cm'], [16.0, '32cm'] ] ],
+      ['Grecka', 'z pomidorem, oliwkami, serem feta i cebulą', 19, [ [11.5, '24cm'], [16.0, '32cm'] ] ],
+      ['Pepperoni', 'z salami oraz pikantnymi papryczkami pepperoni', 19, [ [11.5, '24cm'], [16.0, '32cm'] ] ],
+    ]
+  ],
+  ["Spaghetti", [
+      ['gowniane', 'klasyczna bez dodatków', 5, [ [21, 'z cebulą'] ] ],
+      ['mniej gowniane', 'z pieczarkami', 6, [ [11.0, 'z majonewzem'] ] ],
+      ['w ogole nie gowniane', 'z pieczarkami', 7, [ [32.0, 'z kitem'] ] ]
+    ]
+  ]
+]
 
-MARGHERITA_VAR = [{ :price => 10.5, :size => "24cm" },
-                  { :price => 13.5, :size => "32cm" }]
-STUDENCKA_VAR = [{ :price => 11.5, :size => "24cm" },
-                 { :price => 16.0, :size => "32cm" }]
-TOSKA_VAR = [{ :price => 13.0, :size => "24cm" },
-             { :price => 17.5, :size => "32cm" }]
-HAWAJKA_VAR = [{ :price => 13.5, :size => "24cm" },
-               { :price => 19.5, :size => "32cm" }]
-BROKULKA_VAR = [{ :price => 13.5, :size => "24cm" },
-                { :price => 18.5, :size => "32cm" }]
-DOREMISALAMI_VAR = [{ :price => 14.5, :size => "24cm" },
-                    { :price => 19.5, :size => "32cm" }]
+calc_arr = []
 
-
-FAST_FOOD = [
-  { name: "Ciabatta", description: "mięso drobiowe, sałatki, cebulka prażona i sosy", :fixed_number => 22 },
-  { name: "Hamburger", description: "desc", :fixed_number => 33},
-  { name: "Frytki", description: "desc", :fixed_number => 44} ]
-
-FRYTKI_VAR = [
-  {:price => 20.0, :size => "małe"},
-  {:price => 12.0, :size => "duże"} ]
-
-CIABATA_VAR = [
-{:price => 12, :size => "normalna"}]
-
-HAMBURGER_VAR = [
-{:price => 4, :size => ""}]
-
-Category.create(CATEGORIES)
-
-# PIZZA ---------------------------->
-Product.create(PIZZA) do |product|
-  product.category = Category.find_by_name("Pizza")
+ARRAY.each do |element|
+  m_arr = []
+  element[1].each do |member|
+    var_arr = []
+    member[3].each do |variant|
+      var_arr << { :price => variant[0], :size => variant[1] }
+    end
+    m_arr << { :member => {
+        :name => member[0],
+        :description => member[1],
+        :fixed_number => member[2],
+        :variants_attributes => var_arr } }
+  end
+  calc_arr << { element[0] => m_arr }
 end
 
-Variant.create(MARGHERITA_VAR) do |variant|
-  variant.product = Product.find_by_name("Margherita")
-end
-Variant.create(STUDENCKA_VAR) do |variant|
-  variant.product = Product.find_by_name("Studencka")
-end
-Variant.create(TOSKA_VAR) do |variant|
-  variant.product = Product.find_by_name("Toska")
-end
-Variant.create(HAWAJKA_VAR) do |variant|
-  variant.product = Product.find_by_name("Hawajka")
-end
-Variant.create(BROKULKA_VAR) do |variant|
-  variant.product = Product.find_by_name("Brokułka")
-end
-Variant.create(DOREMISALAMI_VAR) do |variant|
-  variant.product = Product.find_by_name("Do-Re-Mi-Salami")
-end
-# END OF PIZZA---------------------.
-
-# Product.create(:name => "Frytki", :description => "desc", :category => Category.find_by_name("Dodatki"), :fixed_number => 22 )
-Product.create(FAST_FOOD) do |product|
-  product.category = Category.find_by_name("Fast Food")
+calc_arr.each do |category|
+  name = category.keys.first
+  Category.create(:name => name)
+  category[name].each do |product|
+    Product.create(product[:member]) do |member|
+      member.category = Category.find_by_name(name)
+    end
+  end
 end
 
-Variant.create(FRYTKI_VAR) do |variant|
-  variant.product = Product.find_by_name("Frytki")
-end
+# CATEGORIES = [
+#   { name: "Pizza" },
+#   { name: "Spaghetti" },
+#   { name: "Fast Food" },
+#   { name: "Sałatki" },
+#   { name: "Sosy" },
+#   { name: "Naleśniki" },
+#   { name: "Napoje i soki" },
+#   { name: "Zupy" },
+#   { name: "Zestawy obiadowe" } ]
 
-Variant.create(CIABATA_VAR) do |variant|
-  variant.product = Product.find_by_name("Ciabatta")
-end
+# PRODUCTS = [
+#   { "Pizza" => [
+#       { :member => {
+#           :name => 'Margherita',
+#           :description => 'klasuczna Margherita bez dodatków',
+#           :fixed_number => 1,
+#           :variants_attributes => [
+#             { :price => 10.5, :size => '24cm' },
+#             { :price => 13.5, :size => '32cm' }
+#           ]
+#         }},
+#       { :member => {
+#           :name => 'Studencka',
+#           :description => 'z pieczarkami',
+#           :fixed_number => 2,
+#           :variants_attributes => [
+#             { :price => 11.5, :size => '24cm' },
+#             { :price => 16.0, :size => '32cm' }
+#           ]
+#         }},
+#       { :member => {
+#           :name => 'Toska',
+#           :description => 'z pieczarkami i szynką',
+#           :fixed_number => 3,
+#           :variants_attributes => [
+#             { :price => 13.5, :size => '24cm' },
+#             { :price => 16, :size => '32cm' }
+#           ]
+#         }}
+#     ]
+#   },
+#   { "Spaghetti" => [
+#       { :member => {
+#           :name => 'bol',
+#           :description => 'z jajkiem',
+#           :fixed_number => 189,
+#           :variants_attributes => [
+#             { :price => 13.5, :size => '' }
+#           ]
+#         }}
+#     ]},
 
-Variant.create(HAMBURGER_VAR) do |variant|
-  variant.product = Product.find_by_name("Hamburger")
-end
+#   { "Fast Food" => [
+#     ] },
+#   { "Sałatki" => [
+#     ] },
+#   { "Sosy" => [
+#     ] },
+#   { "Naleśniki" => [
+#     ] },
+#   { "Napoje i sosy" => [
+#     ] },
+#   { "Zupy" => [
+#     ] },
+#   { "Zestawy obiadowe" => [
+#     ] }
+# ]
+
+
+# PIZZA.each do |pizza|
+#   Product.create(pizza[:member]) do |product|
+#     product.category = Category.find_by_name("Pizza")
+#   end
+# end
+
+# Product.create(PIZZA) do |product|
+#   product.category = Product.find_by_name("Pizza")
+
+# end
