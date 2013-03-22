@@ -1,21 +1,25 @@
 <div class="tab-content">
   <% @categories.each do |category| %>
-    <div class="tab-pane <%= params[:id] == category.name.downcase.delete(' ') ? "active" : "" %>"
+    <div class="tab-pane well <%= params[:id] == category.name.downcase.delete(' ') ? "active" : "" %>"
          id="<%= category.name.downcase.delete(' ') %>">
+      <h3>
+        <%= category.name %>
+        <img class="pull-right" style="height:40px" src='<%= asset_path "icon-menu-shdw.png" %>'>
+      </h3>
       <table class="table table-striped table-products">
-        <thead> <!-- Table header -->
-          <tr>
-            <th class="id">
-              Id
-            </th>
-            <th class="name">
-              <%= category.name.capitalize %>
-            </th>
-            <th colspan="3" class="price">
-              Cena
-            </th>
-          </tr>
-        </thead>
+        <!-- <thead> <\!-- Table header -\-> -->
+        <!--   <tr> -->
+        <!--     <th class="id"> -->
+        <!--       Id -->
+        <!--     </th> -->
+        <!--     <th class="name"> -->
+        <!--       <%= category.name.capitalize %> -->
+        <!--     </th> -->
+        <!--     <th colspan="3" class="price"> -->
+        <!--       Cena -->
+        <!--     </th> -->
+        <!--   </tr> -->
+        <!-- </thead> -->
         <tbody> <!-- Table body -->
           <% category.products.each do |product| %>
             <tr>
@@ -23,8 +27,8 @@
                 <%= product.fixed_number %>
               </td>
               <td class="name">
-                <%= product.name %><br>
-                <small class="muted"><%= product.description %></small>
+                <span style="color:#007fff"><%= product.name %></span><br>
+                <small class=""><%= product.description %></small>
               </td>
               <%= render "products/link_to_variant", :variants => product.variants %>
             </tr>

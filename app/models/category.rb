@@ -6,7 +6,7 @@ class Category < ActiveRecord::Base
   validates :name, :presence => true
 
   def self.manual_order
-    [ 'Pizza', 'Dania Obiadowe', 'Spaghetti', 'Naleśniki', 'Fast Food', 'Sałatki', 'Zupy', 'Sosy', 'Dodatki' ]
+    [ 'Pizza', 'Zestawy Obiadowe', 'Spaghetti', 'Naleśniki', 'Fast Food', 'Sałatki', 'Zupy', 'Sosy', 'Napoje i soki' ]
   end
 
 end
