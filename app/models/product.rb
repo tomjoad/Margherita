@@ -11,7 +11,7 @@ class Product < ActiveRecord::Base
   SIZES = %w[small medium big]
 
   validates :name, :presence => true
-  validates_presence_of :fixed_number
+  validates :fixed_number, :presence => true, :uniqueness => true
 
   def sizes
     arr = []

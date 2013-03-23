@@ -9,4 +9,12 @@ class Category < ActiveRecord::Base
     [ 'Pizza', 'Zestawy Obiadowe', 'Spaghetti', 'Naleśniki', 'Fast Food', 'Sałatki', 'Zupy', 'Sosy', 'Napoje i soki' ]
   end
 
+  def generate_fixed_number
+    arr = []
+    self.products.each do |product|
+      arr << product.fixed_number.to_i
+    end
+    arr.sort.last
+  end
+
 end

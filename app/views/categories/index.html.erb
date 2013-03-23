@@ -25,6 +25,7 @@
         <% end %>
       </div>
     </li>
+    <%= link_to "New product", :controller => 'products', :action => 'new', :category_id => category.id %>
   <% end %>
 </ul>
 </div>

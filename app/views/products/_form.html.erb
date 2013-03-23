@@ -8,7 +8,8 @@
   <div class="control-group">
     <%= f.label :category_id, :class => 'control-label' %>
     <div class="controls">
-      <%= collection_select(:product, :category_id, @categories, :id, :name) %>
+      <%= @product.category.name %>
+      <%= f.hidden_field :category_id , :value => @product.category.id %>
     </div>
   </div>
 
@@ -22,7 +23,7 @@
   <div class="control-group">
     <%= f.label :fixed_number, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :fixed_number, :class => 'text_field' %>
+      <%= f.text_field :fixed_number, :value => @product.category.generate_fixed_number, :class => 'text_field' %>
     </div>
   </div>
 
