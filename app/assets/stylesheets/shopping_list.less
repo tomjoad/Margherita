@@ -1,0 +1,56 @@
+// stylesheet for shopping list
+
+.shopping-list {
+    .well;
+    margin-bottom: 0;
+    background-color: rgb(250,250,250);
+    #header {
+        border-bottom: 1px solid @gray;
+        padding-bottom: 10px;
+        margin-bottom: 0;
+    }
+    ul.list-items {
+        margin-left: 0;
+        list-style: none;
+        li.item {
+            margin: 10px 0;
+            .column-one {
+                width: 75%;
+                float: left;
+                .item-quantity {
+                    width: 12px;
+                    float: left;
+                }
+                .item-name, .item-category {
+                    padding-left: 12px;
+                }
+            }
+            .column-two {
+                width: 25%;
+                float: left;
+                .item-remove, .item-price {
+                    float: right;
+                    button {
+                        padding: 0;
+                    }
+                }
+            }
+        }
+        li.summary {
+            padding: 18px 0 10px 0;
+            border-top: 1px solid @gray;
+            .column-one {
+                width: 70%;
+                float: left;
+            }
+            .column-two {
+                width: 30%;
+                float: left;
+            }
+        }
+        li.empty {
+            text-align: left;
+            padding-top: 15px;
+        }
+    }
+}
