@@ -10,11 +10,15 @@ class Category < ActiveRecord::Base
   end
 
   def generate_fixed_number
+    self.fixed_numbers.sort.last + 1
+  end
+
+  def fixed_numbers
     arr = []
     self.products.each do |product|
       arr << product.fixed_number.to_i
     end
-    arr.sort.last
+    arr
   end
 
 end
