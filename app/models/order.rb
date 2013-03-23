@@ -11,6 +11,7 @@ class Order < ActiveRecord::Base
   DELIVERY_COST = 6.0
   FREE_DELIVERY = 0.0
   COLLECTION_IN_PERSON = 1.0
+  ORDERING_HOURS = ("11:30".."21:30")
 
   validates :cart, :presence => true
   validates :state, :presence => true
@@ -21,6 +22,7 @@ class Order < ActiveRecord::Base
   validates :phone, :presence => true
   validates :home_number, :presence => true
   validates :distance, :presence => true
+  validate :order_created_in_opening_hours
   # validate :products_cost_must_be_more_than_high_switch_if_delivery_true
 
   attr_accessible :state, :total_price,
@@ -102,6 +104,12 @@ class Order < ActiveRecord::Base
   def products_cost_must_be_more_than_high_switch_if_delivery_true
     unless ( products_price > PRICE_HIGH_LIMIT_SWITCH ) && delivery
       errors.add(:delivery, 'Should be "at the spot" or products price more than "#{PRICE_HIGH_LIMIT_SWITCH}"')
+    end
+  end
+
+  def order_created_in_opening_hours
+    unless ORDERING_HOURS.include?(Time.now.strftime("%H:%M"))
+      errors[:base] << 'It is to late or to early to order food.'
     end
   end
 

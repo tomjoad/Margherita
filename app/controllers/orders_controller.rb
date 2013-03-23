@@ -21,6 +21,7 @@ class OrdersController < ApplicationController
   def checkout
     session[:order_params] = params[:order]
     @order = Order.new(params[:order])
+    @cart = find_cart
     set_order_user_and_cart
     if @order.valid?
       redirect_to confirmation_orders_path
