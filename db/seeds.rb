@@ -21,7 +21,7 @@ ARRAY = [
                     ['Szpinka', 'ze szpinakiem, czosnkiem, szynką i serem feta', 17, [ [13.5, '24cm'], [19.5, '32cm'] ] ],
                     ['Czochol', 'z podwójnym czosnkiem, kabanosem, boczkiem, pieczarkami i cebulą', 18, [ [14.5, '24cm'], [20.5, '32cm'] ] ],
                     ['Grecka', 'z pomidorem, oliwkami, serem feta i cebulą', 19, [ [13.5, '24cm'], [19.5, '32cm'] ] ],
-                    ['Pepperoni', 'z salami oraz pikantnymi papryczkami pepperoni', 19, [ [15.0, '24cm'], [21.0, '32cm'] ] ]
+                    ['Pepperoni', 'z salami oraz pikantnymi papryczkami pepperoni', 20, [ [15.0, '24cm'], [21.0, '32cm'] ] ]
                    ]
          ],
          ["Zestawy Obiadowe", [

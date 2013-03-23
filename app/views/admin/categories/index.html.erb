@@ -1,23 +1,28 @@
-<h3>Categories</h3>
+<h3>Manage Products</h3>
 
-<table class="table table-condensed table-hover">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Id</th>
-      <th>Category Name</th>
-      <th>Products #</th>
-      <th style="text-align: right">Actions</th>
+      <th>Category</th>
+      <th>Products</th>
     </tr>
   </thead>
   <tbody>
-    <% @categories.sort.each do |c| %>
+    <% @categories.sort.each do |category| %>
       <tr>
-        <td><%= c.id %></td>
-        <td><%= c.name %></td>
-        <td><%= c.products.count %></td>
-        <td style="text-align: right">
-          <button class="btn btn-warning">Edit</button>
-          <button class="btn btn-submit">Show</button>
+        <td><%= category.id %></td>
+        <td style="width:150px; text-align: left"><strong><%= category.name %></strong></td>
+        <td>
+          <% category.products.each do |product| %>
+            <%= link_to product.name, product %>,&nbsp;
+          <% end %>
+        </td>
+        <td>
+          <%= link_to( "Add product", new_product_path(:category_id => category.id), :class => "btn btn-success" ) %>
+        </td>
+        <td colspan="3">
+          <%= link_to( "Edit category", edit_category_path(category), :class => "btn btn-warning" ) %>
         </td>
       </tr>
     <% end %>
