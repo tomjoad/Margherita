@@ -7,8 +7,7 @@
   </div>
 
   <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                categories_path, :class => 'btn' %>
+    <%= f.submit( "Update & Save", :class => 'btn btn-primary' ) %>
+    <%= link_to( "Cancel", admin_categories_path, :class => 'btn') %>
   </div>
 <% end %>

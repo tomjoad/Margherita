@@ -6,7 +6,7 @@
       <th>Id</th>
       <th>Login/e-mail</th>
       <th>Role</th>
-      <th style="text-align: right">Actions</th>
+      <th>Address</th>
     </tr>
   </thead>
   <tbody>
@@ -15,6 +15,13 @@
         <td><%= user.id %></td>
         <td><%= link_to user.email, admin_user_path(user) %></td>
         <td><%= user.role %></td>
+        <td>
+          <% if user.street && user.home_number && user.zip_code && user.city %>
+            <%= user.street + " " + user.home_number + ", " + user.zip_code + " " + user.city %>
+          <% else %>
+            (no address)
+          <% end %>
+        </td>
         <td style="text-align: right">
           <%= link_to 'Edit', edit_admin_user_path(user), class: 'btn btn-warning' %>
           <%= link_to 'Show', admin_user_path(user), class: 'btn btn-submit' %>

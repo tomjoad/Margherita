@@ -1,22 +1,22 @@
-<% provide(:title, "Twój profil") %>
+<% provide(:title, "Your profile") %>
 <div class="row-fluid">
   <div class="span4 offset4 well" style="position: relative">
     <legend>
-      Twój profil
+      Your profile
     </legend>
     <table class="table">
       <tbody>
         <tr>
-          <td>Utworzono:</td>
+          <th>Created:</th>
           <% t = @user.created_at.localtime %>
           <td><%= t.strftime("%d.%m.%Y") %></td>
         </tr>
         <tr>
-          <td>E-mail:</td>
+          <th>E-mail:</th>
           <td><%= @user.email %></td>
         </tr>
         <tr>
-          <td>Adres dostawy:</td>
+          <th>Address:</th>
           <td>
             <%= @user.try {|u| "#{u.name} #{u.last_name}"} %><br>
             <%= @user.try {|u| "#{u.street} #{u.home_number}"} %><br>
@@ -24,11 +24,12 @@
           </td>
         </tr>
         <tr>
-          <td>Telefon:</td>
+          <th>Phone:</th>
           <td><%= @user.phone %></td>
         </tr>
       </tbody>
     </table>
-    <%= link_to "Edytuj dane", edit_user_path(current_user), class: 'btn btn-block btn-warning pull-right' %>
+    <%= link_to "Edit profile", edit_user_path(current_user), class: 'btn btn-warning' %>
+    <%= link_to "Cancel", root_url, class: 'btn btn-submit' %>
   </div>
 </div>

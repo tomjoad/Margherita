@@ -1,31 +1,32 @@
-<h3>Manage Products</h3>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Category</th>
-      <th>Products</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @categories.sort.each do |category| %>
-      <tr>
-        <td><%= category.id %></td>
-        <td style="width:150px; text-align: left"><strong><%= category.name %></strong></td>
-        <td>
-          <% category.products.each do |product| %>
-            <%= link_to product.name, product %>,&nbsp;
-          <% end %>
-        </td>
-        <td>
-          <%= link_to( "Add product", new_product_path(:category_id => category.id), :class => "btn btn-success" ) %>
-        </td>
-        <td colspan="3">
-          <%= link_to( "Edit category", edit_category_path(category), :class => "btn btn-warning" ) %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= link_to( "Add category", new_category_path, :class => "btn btn-success btn-block btn-large" ) %>
+<div class="row">
+  <div class="span6 offset3 well">
+    <legend>Manage Products</legend>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Category</th>
+          <th>Products</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @categories.sort.each do |category| %>
+          <tr>
+            <td><%= category.id %></td>
+            <th>
+              <%= link_to category.name, category %>
+            </th>
+            <td>
+              <%= category.products.count %>
+              <!-- <%# category.products.each do |product| %> -->
+              <!--   <%#= link_to product.name, product %>,&nbsp; -->
+              <!-- <%# end %> -->
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= link_to "Cancel", root_url, :class => "btn btn-submit" %>
+    <%= link_to "Add category", new_category_path, :class => "btn btn-success pull-right" %>
+  </div>
+</div>

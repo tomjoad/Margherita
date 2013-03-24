@@ -1,7 +1,5 @@
 <div class="shopping-list">
-  <h3 id="header">
-    Shopping list
-  </h3>
+  <h3 id="header">Shopping list</h3>
   <ul class="list-items">
     <% if there_is_something_in_cart? %>
       <% c = [] %>
@@ -72,16 +70,16 @@
 </li>
     <% else %>
       <li class="empty">
-        <p>Twój koszyk jest pusty!</p>
+        <p>There's nothing here! :(</p>
       </li>
     <% end %>
   </ul>
 </div>
 <div class="clearfix">
   <% if there_is_something_in_cart? %>
-    <%= link_to "Kontynuuj", new_cart_path, class: 'btn btn-large btn-primary btn-block' %>
+    <%= link_to "Continue", new_cart_path, class: 'btn btn-large btn-success btn-block' %>
   <% else %>
-    <button class="btn btn-primary btn-block disabled">Continue</button>
+    <button class="btn btn-inverse btn-block disabled">Can't continue...</button>
   <% end %>
 </div>
 </div>

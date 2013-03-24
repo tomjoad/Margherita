@@ -1,31 +1,65 @@
-<%- model_class = @product.class -%>
-<h1><%=t '.title', :default => model_class.model_name.human %></h1>
+<div class="row">
+  <div class="span6 offset3 well">
+    <legend>
+      "<%= @product.name %>"
+      <small class="pull-right">[in <%= @product.category.name %> ]</small>
+    </legend>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Created at</th>
+          <th>Last updated</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @product.id %></td>
+          <% created_at = @product.created_at.localtime %>
+          <% updated_at = @product.updated_at.localtime %>
+          <td><%= created_at.strftime("%d.%m.%Y") %></td>
+          <td><%= updated_at.strftime("%d.%m.%Y") %></td>
+        </tr>
+      </tbody>
+    </table>
+    <legend>Description</legend>
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <td>
+            <% if @product.description == "" %>
+              (no description)
+            <% else %>
+              <%= @product.description %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <legend>Variants</legend>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Size</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% i = 1 %>
+        <% @product.variants.each do |variant| %>
+          <tr>
+            <td><%= i %></td>
+            <td><%= variant.size %></td>
+            <td><%= variant.price %></td>
+          </tr>
+          <% i += 1 %>
+        <% end %>
+      </tbody>
+    </table>
+    <%= link_to "Back", category_path(@product.category), :class => "btn btn-submit" %>
+    <%= link_to "Edit", edit_product_path(@product), :class => "btn btn-warning" %>
+    <%= link_to( "Delete", product_path(@product), { :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' } ) %>
 
-<p>
-  <strong><%= model_class.human_attribute_name(:name) %>:</strong><br>
-  <%= @product.name %>
-</p>
-<p>
-  <strong><%= model_class.human_attribute_name(:price) %>:</strong><br>
-  <%#@product.price %>
-</p>
-<p>
-  <strong><%= model_class.human_attribute_name(:category_id) %>:</strong><br>
-  <%= @product.category.name %>
-</p>
-<p>
-  <strong><%= model_class.human_attribute_name(:description) %>:</strong><br>
-  <%= @product.description %>
-</p>
-
-<div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              category_products_path(@product.category), :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_product_path(@product), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              product_path(@product),
-              :method => 'delete',
-              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-              :class => 'btn btn-danger' %>
+  </div>
 </div>

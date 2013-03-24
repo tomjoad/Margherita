@@ -1,4 +1,18 @@
-<%- model_class = @category.class -%>
-<h1><%=t '.title', :default => t('helpers.titles.edit', :model => model_class.model_name.human,
-                                 :default => "Edit #{model_class.model_name.human}") %></h1>
-<%= render :partial => 'form' %>
+<% provide(:title, ("Edit category: " + @category.name)) %>
+
+<h2>Edit category: <%= @category.name %></h2>
+<hr>
+<%= form_for @category, :html => { :class => 'form-horizontal' } do |f| %>
+
+<div class="control-group">
+  <%= f.label :name, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :name, :class => 'text_field' %>
+  </div>
+</div>
+<div class="form-actions">
+  <%= f.submit "Update & Save", :class => 'btn btn-primary' %>
+  <%= link_to "Cancel", admin_categories_path, :class => 'btn' %>
+</div>
+
+<% end %>
