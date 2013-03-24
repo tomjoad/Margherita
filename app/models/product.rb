@@ -2,6 +2,7 @@ class Product < ActiveRecord::Base
   has_many :variants
   belongs_to :category
 
+  # attr_accessible :variants_attributes, :fixed_number, :category_id, :name, :description
   accepts_nested_attributes_for :variants,
   :allow_destroy => true,
   # :reject_if => proc { |attributes| attributes['price'].blank? }

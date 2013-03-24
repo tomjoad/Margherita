@@ -4,5 +4,6 @@ module FormHelper
     (3 - product.variants.count).times { product.variants.build }
     product
   end
+
 end
 

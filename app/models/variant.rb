@@ -2,7 +2,7 @@ class Variant < ActiveRecord::Base
   belongs_to :product
   has_one :category, :through => :product
 
-  attr_accessible :price, :size
+  # attr_accessible :price, :size
 
   # validates :size, :presence => true
   # validates :price, :presence => true

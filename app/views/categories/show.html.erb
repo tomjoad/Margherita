@@ -34,7 +34,7 @@
         <% @category.products.each do |product| %>
           <tr>
             <td><%= i %></td>
-            <th><%= link_to product.name, product %></th>
+            <th><%= link_to product.name, category_product_path(@category, product) %></th>
           </tr>
           <% i += 1 %>
         <% end %>
@@ -43,6 +43,6 @@
     <%= link_to "Back", admin_categories_path, :class => "btn btn-submit" %>
     <%= link_to "Edit", edit_category_path(@category), :class => "btn btn-warning" %>
     <%= link_to( "Delete", category_path(@category), { :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' } ) %>
-    <%= link_to "Add product", new_product_path, :class => "btn btn-success pull-right" %>
+    <%= link_to "Add product", :controller => 'products', :action => 'new', :category_id => 1%>
   </div>
 </div>

@@ -32,7 +32,7 @@ Margherita::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :categories do
-    resources :products, :only => [:index, :show]
+    resources :products
   end
 
   namespace :admin do

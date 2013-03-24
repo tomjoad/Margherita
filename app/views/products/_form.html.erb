@@ -1,4 +1,4 @@
-<%= form_for( setup_for(@product), :html => { :class => "form-horizontal" } ) do |f| %>
+<%= form_for( [ @category, setup_for(@product) ], :html => { :class => "form-horizontal" } ) do |f| %>
 
   <div class="row-fluid">
     <div class="span6 offset3 well">
@@ -7,8 +7,7 @@
       <div class="control-group">
         <%= f.label :category_id, :class => 'control-label' %>
         <div class="controls">
-          <input disabled class="input-text span12" type="text" value="<%= @product.category.name %>">
-          <%= f.hidden_field :category_id , :value => @product.category.id %>
+          <input disabled class="input-text span12" type="text" value="<%= @category.name %>">
         </div>
       </div>
 
@@ -22,7 +21,7 @@
       <div class="control-group">
         <%= f.label :fixed_number, :class => 'control-label' %>
         <div class="controls">
-          <%= f.text_field :fixed_number, :value => @product.category.generate_fixed_number, :class => 'input-text span12' %>
+          <%= f.text_field :fixed_number, :value => @category.generate_fixed_number, :class => 'input-text span12' %>
         </div>
       </div>
 
@@ -57,7 +56,7 @@
 
       <% end %>
 
-      <%= link_to "Cancel", product_path(@product), :class => 'btn' %>
+      <%= link_to "Cancel", category_product_path(@category, @product), :class => 'btn' %>
       <%= f.submit "Update & Save", :class => 'btn btn-primary pull-right' %>
 
     </div>

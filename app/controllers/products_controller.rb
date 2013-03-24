@@ -27,17 +27,18 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
+    category_and_product
   end
 
   def edit
-    @product = Product.find(params[:id])
+    category_and_product
   end
 
   def update
-    @product = Product.find(params[:id])
+    category_and_product
+    session[:product_params_test] = params[:product]
     if @product.update_attributes(params[:product])
-      redirect_to @product
+      redirect_to category_product_path(@category, @product)
     else
       render :action => "edit"
     end
@@ -59,6 +60,12 @@ class ProductsController < ApplicationController
     (parent.try(:products) || Product).scoped
   end
 
+  private
+
+  def category_and_product
+    @category = Category.find(params[:category_id])
+    @product = Product.find(params[:id])
+  end
 
   # def user_is_admin_or_seller
   #   redirect_to root_url
