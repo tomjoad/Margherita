@@ -5,7 +5,7 @@
       <% anchor = category.downcase.delete(' ') %>
       <li class="<%= params[:id] == anchor ? 'active' : '' %>">
         <%=
-           link_to_if(params[:controller] == 'products', category, '#' + anchor, { :'data-toggle' => 'tab' }) do
+           link_to_if(params[:controller] == 'products' && params[:action] == "index", category, '#' + anchor, { :'data-toggle' => 'tab' }) do
              link_to(category, { controller: 'products', action: 'index', id: anchor })
            end
            %>

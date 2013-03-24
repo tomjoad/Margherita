@@ -1,9 +1,3 @@
-<% @product.errors.full_messages.each do |msg| %>
-  <li>
-    <%= msg %>
-  </li>
-<% end %>
-
 <%= form_for( setup_for(@product), :html => { :class => "form-horizontal" } ) do |f| %>
 
   <div class="row-fluid">
@@ -44,16 +38,10 @@
       <%= f.fields_for :variants do |ff| %>
 
         <div class="control-group">
-          <%= ff.label :size, :class => 'control-label' %>
-          <div class="controls">
-            <%= ff.text_field :size, :class => 'input-text span12' %>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <%= ff.label :price, :class => 'control-label' %>
-          <div class="controls">
-            <%= ff.text_field :price, :class => 'input-text span12' %>
+          <%= ff.label :size, "Size & price", :class => 'control-label' %>
+          <div class="controls controls-row">
+            <%= ff.text_field :size, :placeholder => :size, :class => 'input-text span6' %>
+            <%= ff.text_field :price, :placeholder => :price, :class => 'input-text span6' %>
           </div>
         </div>
 
