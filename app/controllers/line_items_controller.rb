@@ -15,8 +15,8 @@ class LineItemsController < ApplicationController
     @cart = find_cart
     @cart.update_line_item(params[:operation], params[:id])
     @variant = Variant.find(params[:id])
-    @line_items = LineItem.all(session[:cart])
     session[:cart] = @cart.items
+    @line_items = LineItem.all(session[:cart])
     if params[:menu]
       respond_to do |format|
         format.html { redirect_to products_path(:id => @variant.format_category_name)}
