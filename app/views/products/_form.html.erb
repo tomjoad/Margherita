@@ -1,65 +1,78 @@
 <% @product.errors.full_messages.each do |msg| %>
-<li>
-  <%= msg %>
-</li>
+  <li>
+    <%= msg %>
+  </li>
 <% end %>
-<%= form_for setup_for(@product), :html => { :class => 'form-horizontal' } do |f| %>
 
-  <div class="control-group">
-    <%= f.label :category_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= @product.category.name %>
-      <%= f.hidden_field :category_id , :value => @product.category.id %>
-    </div>
-  </div>
+<%= form_for( setup_for(@product), :html => { :class => "form-horizontal" } ) do |f| %>
 
-  <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
-    </div>
-  </div>
+  <div class="row-fluid">
+    <div class="span6 offset3 well">
 
-  <div class="control-group">
-    <%= f.label :fixed_number, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :fixed_number, :value => @product.category.generate_fixed_number, :class => 'text_field' %>
-    </div>
-  </div>
-
-  <h3>Variants</h3>
-  <%= f.fields_for :variants do |ff| %>
-    <div class="control-group">
-      <%= ff.label :size, :class => 'control-label' %>
-      <div class="controls">
-        <%= ff.text_field :size, :class => 'text_field' %>
+      <legend>Edit product</legend>
+      <div class="control-group">
+        <%= f.label :category_id, :class => 'control-label' %>
+        <div class="controls">
+          <input disabled class="input-text span12" type="text" value="<%= @product.category.name %>">
+          <%= f.hidden_field :category_id , :value => @product.category.id %>
+        </div>
       </div>
-    </div>
 
-    <div class="control-group">
-      <%= ff.label :price, :class => 'control-label' %>
-      <div class="controls">
-        <%= ff.text_field :price, :class => 'text_field' %>
+      <div class="control-group">
+        <%= f.label :name, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :name, :class => 'input-text span12' %>
+        </div>
       </div>
-    </div>
 
-      <% if ff.object.persisted? %>
-        <%= ff.check_box :_destroy %>
-        <%= ff.label :_destroy, 'Destroy' %>
+      <div class="control-group">
+        <%= f.label :fixed_number, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :fixed_number, :value => @product.category.generate_fixed_number, :class => 'input-text span12' %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :description, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_area :description, :rows => 5, :class => "span12" %>
+        </div>
+      </div>
+
+      <legend>Edit variants</legend>
+
+      <%= f.fields_for :variants do |ff| %>
+
+        <div class="control-group">
+          <%= ff.label :size, :class => 'control-label' %>
+          <div class="controls">
+            <%= ff.text_field :size, :class => 'input-text span12' %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= ff.label :price, :class => 'control-label' %>
+          <div class="controls">
+            <%= ff.text_field :price, :class => 'input-text span12' %>
+          </div>
+        </div>
+
+        <% if ff.object.persisted? %>
+          <div class="control-group">
+            <div class="controls">
+              <%= ff.label( :_destroy, 'Destroy', :class => 'checkbox' ) do %>
+                <%= ff.check_box :_destroy %> Destroy
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
       <% end %>
-  <% end %>
 
-  <div class="control-group">
-    <%= f.label :description, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :description, :rows => 5 %>
+      <%= link_to "Cancel", product_path(@product), :class => 'btn' %>
+      <%= f.submit "Update & Save", :class => 'btn btn-primary pull-right' %>
+
     </div>
-  </div>
-
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                products_path, :class => 'btn' %>
   </div>
 
 <% end %>
