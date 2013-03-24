@@ -1,31 +1,31 @@
-<div class="row" style="margin: 60px 0 30px 0">
-<ul class="category-grid">
-  <% i = 0 %>
-  <% @categories.each do |category| %>
-    <li>
-      <img class="img-rounded" src="<%= asset_path "kebab.jpg" %>">
-      <div class="caption">
-        <h3>
+<h3>Manage Products</h3>
 
-          <%= category.name %>
-
-        </h3>
-        <p>
-          Category description. Lorem ipsum dolor sit amet,
-          consectetur adipisicing elit...
-          <%= link_to "(read more)", category_path(category) %>
-        </p>
-        <%= link_to category_products_path(category) do %>
-          <span class="products-count label label-info bottom-left-fixed">
-            <b><%= category.products.count %> products</b>
-          </span>
-          <div class="btn btn-success bottom-right-fixed">
-            View Products
-          </div>
-        <% end %>
-      </div>
-    </li>
-    <%= link_to "New product", :controller => 'products', :action => 'new', :category_id => category.id %>
-  <% end %>
-</ul>
-</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Category</th>
+      <th>Products</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @categories.sort.each do |category| %>
+      <tr>
+        <td><%= category.id %></td>
+        <td style="width:150px; text-align: left"><strong><%= category.name %></strong></td>
+        <td>
+          <% category.products.each do |product| %>
+            <%= link_to product.name, product %>,&nbsp;
+          <% end %>
+        </td>
+        <td>
+          <%= link_to( "Add product", new_product_path(:category_id => category.id), :class => "btn btn-success" ) %>
+        </td>
+        <td colspan="3">
+          <%= link_to( "Edit category", edit_category_path(category), :class => "btn btn-warning" ) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to( "Add category", new_category_path, :class => "btn btn-success btn-block btn-large" ) %>

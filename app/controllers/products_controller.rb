@@ -65,13 +65,4 @@ class ProductsController < ApplicationController
   #   # current_user.role.seller? || current_user.role.admin?
   # end
 
-  private
-
-  def has_rights
-    unless user_is_admin_or_seller?
-      flash[:notice] = 'No permission!'
-      redirect_to root_url
-    end
-  end
-
 end

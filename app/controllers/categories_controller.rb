@@ -1,4 +1,7 @@
 class CategoriesController < ApplicationController
+  before_filter :has_rights
+
+  include ApplicationHelper
 
   def index
     @categories = Category.all
