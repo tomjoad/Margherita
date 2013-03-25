@@ -1,9 +1,5 @@
 <%= form_for( [ @category, setup_for(@product) ], :html => { :class => "form-horizontal" } ) do |f| %>
 
-  <div class="row-fluid">
-    <div class="span6 offset3 well">
-
-      <legend>Edit product</legend>
       <div class="control-group">
         <%= f.label :category_id, :class => 'control-label' %>
         <div class="controls">
@@ -32,8 +28,6 @@
         </div>
       </div>
 
-      <legend>Edit variants</legend>
-
       <%= f.fields_for :variants do |ff| %>
 
         <div class="control-group">
@@ -55,11 +49,9 @@
         <% end %>
 
       <% end %>
-      <hr>
-      <%= link_to "Cancel", category_path(@category), :class => 'btn' %>
-      <%= f.submit "Save product", :class => 'btn btn-primary pull-right' %>
 
-    </div>
-  </div>
+      <hr>
+      <%= link_to "Cancel", :back, :class => 'btn' %>
+      <%= f.submit "Apply & Save", :class => 'btn btn-primary pull-right' %>
 
 <% end %>

@@ -38,7 +38,7 @@ class ProductsController < ApplicationController
     category_and_product
     session[:product_params_test] = params[:product]
     if @product.update_attributes(params[:product])
-      redirect_to category_product_path(@category, @product)
+      redirect_to category_product_path(@category)
     else
       render :action => "edit"
     end

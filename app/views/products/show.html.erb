@@ -1,20 +1,22 @@
 <div class="row">
   <div class="span6 offset3 well">
-    <legend>
-      "<%= @product.name %>"
-      <small class="pull-right">[in <%= @product.category.name %> ]</small>
-    </legend>
+    <h2>Show Product</h2>
+    <hr>
     <table class="table table-striped">
       <thead>
         <tr>
           <th>Id</th>
-          <th>Created at</th>
-          <th>Last updated</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Created</th>
+          <th>Updated</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><%= @product.id %></td>
+          <td><%= @product.name %></td>
+          <td><%= @product.category.name %></td>
           <% created_at = @product.created_at.localtime %>
           <% updated_at = @product.updated_at.localtime %>
           <td><%= created_at.strftime("%d.%m.%Y") %></td>
@@ -22,8 +24,11 @@
         </tr>
       </tbody>
     </table>
-    <legend>Description</legend>
     <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Description</th>
+        </tr>
       <tbody>
         <tr>
           <td>
@@ -36,11 +41,11 @@
         </tr>
       </tbody>
     </table>
-    <legend>Variants</legend>
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>#</th>
+          <th></th>
+          <th>Id</th>
           <th>Size</th>
           <th>Price</th>
         </tr>
@@ -49,19 +54,22 @@
         <% i = 1 %>
         <% @product.variants.each do |variant| %>
           <tr>
-            <td><%= i %></td>
+            <th>Variant #<%= i %></th>
+            <td><%= variant.id %></td>
             <td><%= variant.size %></td>
-            <td><%= variant.price %></td>
+            <td><%= variant.formatted_price %></td>
           </tr>
           <% i += 1 %>
         <% end %>
       </tbody>
     </table>
+    <hr>
     <%= link_to "Back", category_path(@product.category), :class => "btn btn-submit" %>
     <%= link_to "Edit", edit_category_product_path(@category, @product), :class => "btn btn-warning" %>
     <%= link_to( "Delete", product_path(@product), { :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' } ) %>
-    debug 1: <%= session[:product_params_test] %>
-    debyg 2: <%= params %>
   </div>
-
+</div>
+<div class="well">
+  debug 1: <%= session[:product_params_test] %><br><br>
+  debug 2: <%= params %>
 </div>

@@ -1,19 +1,20 @@
 <div class="row">
   <div class="span6 offset3 well">
-    <legend>
-      "<%= @category.name %>"
-    </legend>
+    <h2>Show Category</h2>
+    <hr>
     <table class="table table-striped">
       <thead>
         <tr>
           <th>Id</th>
-          <th>Created at</th>
-          <th>Last updated</th>
+          <th>Name</th>
+          <th>Created</th>
+          <th>Updated</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><%= @category.id %></td>
+          <td><%= @category.name %></td>
           <% created_at = @category.created_at.localtime %>
           <% updated_at = @category.updated_at.localtime %>
           <td><%= created_at.strftime("%d.%m.%Y") %></td>
@@ -26,7 +27,7 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>Product</th>
+          <th>Products</th>
         </tr>
       </thead>
       <tbody>
@@ -40,6 +41,7 @@
         <% end %>
       </tbody>
     </table>
+    <hr>
     <%= link_to "Back", admin_categories_path, :class => "btn btn-submit" %>
     <%= link_to "Edit", edit_category_path(@category), :class => "btn btn-warning" %>
     <%= link_to( "Delete", admin_category_path(@category), { :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' } ) %>
