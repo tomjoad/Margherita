@@ -5,7 +5,7 @@ class Category < ActiveRecord::Base
 
   validates :name, :presence => true
 
-  def self.manual_order
+  def self.manual_order         # HAS TO BE DONE SOME OTHER WAY. THIS IS UGLY.
     [ 'Pizza', 'Zestawy Obiadowe', 'Spaghetti', 'Naleśniki', 'Fast Food', 'Sałatki', 'Zupy', 'Sosy', 'Napoje i soki' ]
   end
 
@@ -19,6 +19,10 @@ class Category < ActiveRecord::Base
       arr << product.fixed_number.to_i
     end
     arr
+  end
+
+  def anchor_name
+    self.name.downcase.delete(' ')
   end
 
 end

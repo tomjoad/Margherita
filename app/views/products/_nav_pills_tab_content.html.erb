@@ -1,8 +1,8 @@
 <div class="tab-content">
   <% @categories.each do |category| %>
-    <div class="tab-pane well <%= params[:id] == category.name.downcase.delete(' ') ? "active" : "" %>"
+    <div class="tab-pane well <%= params[:id] == category.anchor_name ? "active" : "" %>"
          style="position: relative"
-         id="<%= category.name.downcase.delete(' ') %>">
+         id="<%= category.anchor_name %>">
       <img class="pull-right"
            style="height:40px; position: absolute; top: 21px; right: 18px"
            src='<%= asset_path "icon-menu-shdw.png" %>'>
@@ -10,20 +10,7 @@
        <%= category.name %>
       </h3>
       <table class="table table-striped table-products">
-        <!-- <thead> <\!-- Table header -\-> -->
-        <!--   <tr> -->
-        <!--     <th class="id"> -->
-        <!--       Id -->
-        <!--     </th> -->
-        <!--     <th class="name"> -->
-        <!--       <%= category.name.capitalize %> -->
-        <!--     </th> -->
-        <!--     <th colspan="3" class="price"> -->
-        <!--       Cena -->
-        <!--     </th> -->
-        <!--   </tr> -->
-        <!-- </thead> -->
-        <tbody> <!-- Table body -->
+        <tbody>
           <% category.products.each do |product| %>
             <tr>
               <td class="id">

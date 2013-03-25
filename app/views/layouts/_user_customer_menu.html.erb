@@ -4,6 +4,7 @@
       <i class="icon-user icon-white"></i> <%= current_user.email %> <i class="caret"></i>
     </a>
     <ul class="dropdown-menu">
+      <li class="nav-header">User Menu</li>
       <li><%= link_to "View Orders", orders_path(filter: 'all') %></li>
       <li><%= link_to "View/Edit Profile", user_path(current_user) %></li>
       <li>

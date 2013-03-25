@@ -13,11 +13,11 @@ class Variant < ActiveRecord::Base
   #   self.price.blank?
   # end
 
-  def format_category_name
+  def format_category_name      # WHY IS IT IN HERE?
     self.category.name.downcase.delete(' ')
   end
 
-  def formated_price
+  def formatted_price
     '%.2f' % self.price
   end
 

@@ -1,12 +1,12 @@
 <!-- NAV-PILLS-STYLED SUBNAV CATEGORIES LIST-->
 <div class="subnav">
   <ul class="nav nav-pills">
-    <% categories.each do |category| %>
-      <% anchor = category.downcase.delete(' ') %>
+    <% @categories.sort.each do |category| %> <!-- Manual order should to be possible -->
+      <% anchor = category.anchor_name %>
       <li class="<%= params[:id] == anchor ? 'active' : '' %>">
         <%=
-           link_to_if(params[:controller] == 'products' && params[:action] == "index", category, '#' + anchor, { :'data-toggle' => 'tab' }) do
-             link_to(category, { controller: 'products', action: 'index', id: anchor })
+           link_to_if(params[:controller] == 'products' && params[:action] == "index", category.name, '#' + anchor, { :'data-toggle' => 'tab' }) do
+             link_to(category.name, { controller: 'products', action: 'index', id: anchor })
            end
            %>
       </li>
