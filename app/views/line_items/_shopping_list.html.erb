@@ -6,7 +6,7 @@
       <% @line_items.each do |item| %>
         <% c << item.product.category.name %>
       <% end %>
-      <% c.uniq!  %>
+      <% c.uniq! %>
       <% c.each do |cat_name| %>
         <% @line_items.each do |item| %>
           <% if item.product.category.name == cat_name %>
@@ -22,9 +22,9 @@
                 </div>
                 <div class="column-two">
                   <div class="item-remove">
-                    <%= link_to({:controller => "line_items", :action => "destroy", :id => item.variant.id, :cart => "small"}, {:class => "icon-link"}) do %>
-        <i class="icon-remove"></i>
-      <% end %>
+                    <%= link_to( "&times;".html_safe,
+                                 {:controller => "line_items", :action => "destroy", :id => item.variant.id, :cart => "small"},
+                                 {:class => "close"} ) %>
 </div>
 </div>
 </div>
@@ -42,6 +42,7 @@
 <% end %>
 <% end %>
 <% end %>
+
 <li class="summary">
   <div class="row-fluid">
     <div class="column-one">
@@ -73,7 +74,7 @@
         <p>There's nothing here! :(</p>
       </li>
     <% end %>
-  </ul>
+</ul>
 </div>
 <div class="clearfix">
   <% if there_is_something_in_cart? %>
