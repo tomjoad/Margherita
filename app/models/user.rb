@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
-  before_save :set_role
+  before_create :set_role
 
   ROLES = %w[admin seller customer]
   EMAIL_REGEXP = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
