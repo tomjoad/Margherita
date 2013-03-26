@@ -22,9 +22,18 @@
                 </div>
                 <div class="column-two">
                   <div class="item-remove">
-                    <%= link_to( "&times;".html_safe,
-                                 {:controller => "line_items", :action => "destroy", :id => item.variant.id, :cart => "small"},
-                                 {:class => "close"} ) %>
+                    <%=
+                       link_to(
+                                "&times;".html_safe,
+                                {
+                                  :controller => "line_items",
+                                  :action => "destroy",
+                                  :id => item.variant.id,
+                                  :cart => "small"
+                                },
+                                {:class => "close"}
+                                )
+                       %>
 </div>
 </div>
 </div>

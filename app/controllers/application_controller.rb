@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :get_categories
 
   def get_categories
-    @categories = Category.all.sort_by {|c| c.name}
+    @categories = Category.all
   end
 
   private

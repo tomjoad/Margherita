@@ -1,18 +1,8 @@
-<% provide(:title, ("Edit category: " + @category.name)) %>
-
-<h2>Edit category: <%= @category.name %></h2>
-<hr>
-<%= form_for @category, :html => { :class => 'form-horizontal' } do |f| %>
-
-<div class="control-group">
-  <%= f.label :name, :class => 'control-label' %>
-  <div class="controls">
-    <%= f.text_field :name, :class => 'text_field' %>
+<% provide(:title, ("Edit Category: " + @category.name)) %>
+<div class="row-fluid">
+  <div class="span6 offset3 well">
+    <h2>Edit Category</h2>
+    <hr>
+    <%= render :partial => 'form' %>
   </div>
 </div>
-<div class="form-actions">
-  <%= f.submit "Update & Save", :class => 'btn btn-primary' %>
-  <%= link_to "Cancel", admin_categories_path, :class => 'btn' %>
-</div>
-
-<% end %>

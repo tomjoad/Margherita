@@ -2,12 +2,12 @@
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
+      <%= f.text_field :name, :class => 'input-text span12' %>
     </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.submit( "Update & Save", :class => 'btn btn-primary' ) %>
+  <hr>
+    <%= f.submit( "Apply & Save", :class => 'btn btn-primary' ) %>
     <%= link_to( "Cancel", admin_categories_path, :class => 'btn') %>
-  </div>
+
 <% end %>
