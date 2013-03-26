@@ -2,12 +2,10 @@ class Product < ActiveRecord::Base
   has_many :variants
   belongs_to :category
 
-  # attr_accessible :variants_attributes, :fixed_number, :category_id, :name, :description
   accepts_nested_attributes_for :variants,
+  # todo - destroying variants when text_field is empty
   :allow_destroy => true,
-  # :reject_if => proc { |attributes| attributes['price'].blank? }
-  # :limit => 3
-  :reject_if => :price_is_blank
+  :reject_if => proc { |attributes| attributes['price'].blank? }
 
   SIZES = %w[small medium big]
 
@@ -27,14 +25,6 @@ class Product < ActiveRecord::Base
       arr.push(variant.size)
     end
     arr
-  end
-
-  def price_is_blank(attributed)
-    if !(attributed['id'].nil?)
-      return true
-    else
-      attributed['price'].blank?
-    end
   end
 
 end

@@ -11,7 +11,7 @@ class Order < ActiveRecord::Base
   DELIVERY_COST = 6.0
   FREE_DELIVERY = 0.0
   COLLECTION_IN_PERSON = 1.0
-  ORDERING_HOURS = ("11:30".."21:30")
+  ORDERING_HOURS = ("11:00".."21:30")
 
   validates :cart, :presence => true
   validates :state, :presence => true
@@ -28,7 +28,8 @@ class Order < ActiveRecord::Base
   attr_accessible :state, :total_price,
   :user_id, :name, :last_name, :city,
   :zip_code, :street, :phone, :home_number,
-  :distance, :products_price, :delivery, :total_price
+  :distance, :products_price, :delivery, :total_price,
+  :delivery_time
 
   serialize :cart
 

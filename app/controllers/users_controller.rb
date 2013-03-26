@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:notice] = "You have changed your profile details!"
-      sign_in @user
+      # sign_in @user
       redirect_to @user
     else
       render "edit"

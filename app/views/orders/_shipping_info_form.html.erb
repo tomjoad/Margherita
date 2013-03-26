@@ -10,6 +10,13 @@
         <%= f.select(:distance, Order.possible_distances(@cart.price), {}, {class: 'span6'}) %>
       </div>
     </div>
+        <div class="control-group">
+      <%= f.label :delivery_time, "Dostępne opcje", class: 'control-label' %>
+      <div class="controls">
+        <%= f.time_select(:delivery_time, {minute_step: 30, class: 'span6'}) %>
+      </div>
+    </div>
+
   </fieldset>
 
 </div>
