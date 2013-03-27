@@ -1,13 +1,14 @@
 <%= form_for @category, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'input-text span12' %>
-    </div>
+<%= render "shared/error_messages", :object => @category %>
+<div class="control-group">
+  <%= f.label :name, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :name, :class => 'input-text span12' %>
   </div>
+</div>
 
-  <hr>
-    <%= f.submit( "Apply & Save", :class => 'btn btn-primary' ) %>
-    <%= link_to( "Cancel", admin_categories_path, :class => 'btn') %>
+<hr>
+<%= f.submit( "Apply & Save", :class => 'btn btn-primary' ) %>
+<%= link_to( "Cancel", admin_categories_path, :class => 'btn') %>
 
 <% end %>
