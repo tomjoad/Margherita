@@ -1,1 +1,32 @@
 <!-- categories/index.html -->
+<div class="row">
+  <div class="span6 offset3 well">
+    <h2>Manage Products</h2>
+    <hr>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Category</th>
+          <th>Products</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @categories.sort.each do |category| %>
+          <tr>
+            <td><%= category.id %></td>
+            <th>
+              <%= link_to category.name, category %>
+            </th>
+            <td>
+              <%= category.products.count %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <hr>
+    <%= link_to "Cancel", root_url, :class => "btn btn-submit" %>
+    <%= link_to "Add category", new_category_path, :class => "btn btn-success pull-right" %>
+  </div>
+</div>
