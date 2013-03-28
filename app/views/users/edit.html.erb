@@ -7,12 +7,15 @@
           <legend>
             Dane logowania
           </legend>
+          <p>Do zmiany danych logowania wymagane jest podanie starego hasła.</p>
           <%= f.label :email, "E-mail", class: 'control-label' %>
           <%= f.text_field :email, placeholder: 'E-mail', class: 'span12' %>
+          <%= f.label :current_password, "Obecne hasło" %>
+          <%= f.password_field :current_password, placeholder: 'Obecne hasło' %>
           <%= f.label :password, "Nowe hasło", class: 'control-label' %>
           <%= f.password_field :password, placeholder: 'Nowe hasło', class: 'span12' %>
-          <%= f.label :password_confirmation, "Powtórz hasło", class: 'control-label' %>
-          <%= f.password_field :password_confirmation, placeholder: 'Potwierdź hasło', class: 'span12' %>
+          <%= f.label :password_confirmation, "Powtórz nowe hasło", class: 'control-label' %>
+          <%= f.password_field :password_confirmation, placeholder: 'Potwierdź nowe hasło', class: 'span12' %>
           <span class="help-block alert hidden">MOŻNA ZMIENIĆ HASŁO BEZ PODANIA STAREGO?</span>
         </fieldset>
       </div>

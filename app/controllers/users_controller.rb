@@ -9,16 +9,20 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
+    @user = current_user
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update_attributes(params[:user])
+    # @user = User.find(params[:id])
+    @user = current_user
+    # just for debugging
+    session[:user_params] = params[:user]
+    if @user.update_attributes_with_password_control(params[:user])
       flash[:notice] = "You have changed your profile details!"
       # sign_in @user
       redirect_to @user
@@ -28,6 +32,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    # registration
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
@@ -41,6 +46,7 @@ class UsersController < ApplicationController
   private
 
   def correct_user
+    # ?
     @user = User.find(params[:id])
     redirect_to root_url, notice: "Wrong user" unless current_user?(@user)
   end
