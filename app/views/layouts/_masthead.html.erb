@@ -16,10 +16,9 @@
           <%= link_to "View Basket", new_cart_path, class: "btn btn-success"%><br>
             <p style="text-align: right; line-height: 1; margin-top: 3px;">
               <% if there_is_something_in_cart? %>
-                <small>
-                  <%= @line_items.count %> products<br>
-                  <%= "%.2f" % @cart.price %> zł
-                </small>
+                <div id="cart-info">
+                  <%= render "line_items/cart_info" %>
+                </div>
               <% end %>
             </p>
         </li>

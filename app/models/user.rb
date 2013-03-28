@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
 
   validates :password, length: { minimum: 6 }, :on => :create
   validates :password_confirmation, presence: true, :on => :create
-  # validates :role, presence: true
+  validates :role, presence: true
 
   def role
     ActiveSupport::StringInquirer.new(self[:role]) if self[:role]
@@ -49,10 +49,10 @@ class User < ActiveRecord::Base
         self.update_attributes(params)
       end
     else
-      # can change 'soft' attributes
       save_without_params(%w[email password password_confirmation], params)
     end
   end
+
 
   # def assign_attributes(values, options = {})
   #   sanitize_for_mass_assignment(values, options[:as]).each do |k, v|
@@ -72,19 +72,14 @@ class User < ActiveRecord::Base
     end
   end
 
-  # def user_is_admin
-  #   self.role = "admin"
-  # end
-
   def create_remember_token
     self.remember_token = SecureRandom.urlsafe_base64
   end
 
-  private
-
   def save_without_params(removed_params, params)
     removed_params.each { |el| params.delete(el) }
     params.each { |k,v| self.send "#{k}=", v }
+    # don`t know if save method is the best solution
     self.save
   end
 

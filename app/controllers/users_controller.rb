@@ -9,7 +9,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    # @user = User.find(params[:id])
     @user = current_user
   end
 
@@ -18,14 +17,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    # @user = User.find(params[:id])
     @user = current_user
-    # just for debugging
-    session[:user_params] = params[:user]
     if @user.update_attributes_with_password_control(params[:user])
       flash[:notice] = "You have changed your profile details!"
-      # sign_in @user
-      redirect_to @user
+      render "show"
     else
       render "edit"
     end
