@@ -1,8 +1,8 @@
 <p style="text-align: right; line-height: 1; margin-top: 3px;">
   <% if there_is_something_in_cart? %>
     <small>
-      <%= "%.2f" % @cart.price %> zł<br />
-      <%= @line_items.count %> products
+      <%= "%.2f" % cart_price %> zł<br />
+      <%= line_items_count %> products
     </small>
   <% end %>
 </p>

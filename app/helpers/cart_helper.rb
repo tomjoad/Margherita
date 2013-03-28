@@ -8,4 +8,16 @@ module CartHelper
     !session[:cart].try(:empty?).nil? && !session[:cart].try(:empty?)
   end
 
+  def there_are_instances?(cart, line_items)
+    !(cart.nil? || line_items.nil?)
+  end
+
+  def cart_price
+    Cart.new(session[:cart]).price
+  end
+
+  def line_items_count
+    LineItem.all(session[:cart]).count
+  end
+
 end
