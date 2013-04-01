@@ -17,12 +17,13 @@ class Order < ActiveRecord::Base
   validates :state, :presence => true
   validates :user, :presence => true
   validates :last_name, :presence => true
-  validates :city, :presence => true
-  validates :street, :presence => true
+  # validates :city, :presence => true
+  # validates :street, :presence => true
   validates :phone, :presence => true
-  validates :home_number, :presence => true
+  # validates :home_number, :presence => true
   validates :distance, :presence => true
   validate :order_created_in_opening_hours
+  validate :there_must_be_address_info_if_delivery
   # validate :products_cost_must_be_more_than_high_switch_if_delivery_true
 
   attr_accessible :state, :total_price,
@@ -110,21 +111,29 @@ class Order < ActiveRecord::Base
 
   def order_created_in_opening_hours
     unless ORDERING_HOURS.include?(Time.now.strftime("%H:%M"))
-      errors[:base] << 'It is to late or to early to order food.'
+      errors[:base] << 'It is too late or to early to order food.'
     end
   end
 
-  def free_delivery?
-    self.delivery_cost == FREE_DELIVERY
+  def there_must_be_address_info_if_delivery
+    if distance == LONG_DISTANCE
+      if city.empty? || home_number.empty? || street.empty?
+        errors[:base] << 'Full address has to be spacified'
+      end
+    end
   end
+
+  # def free_delivery?
+  #   self.delivery == FREE_DELIVERY
+  # end
 
   def no_delivery?
     self.distance == NO_DISTANCE
   end
 
-  def free_delivery_with_distance?
-    self.free_delivery? && !self.no_delivery?
-  end
+  # def free_delivery_with_distance?
+  #   self.free_delivery? && self.delivery
+  # end
 
   def variants
     variants = []

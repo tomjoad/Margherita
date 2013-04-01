@@ -6,5 +6,10 @@ module FormHelper
     product
   end
 
+  def hide_address(order)
+    if (order.distance == Order::NO_DISTANCE) || (order.distance.nil?)
+      %&style="display: none;"&.html_safe
+    end
+  end
 end
 

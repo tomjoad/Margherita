@@ -8,11 +8,13 @@ module OrdersHelper
   def type_of_delivery(order)
     if order.no_delivery?
       'collection in person'
-    elsif order.free_delivery_with_distance?
-      'free delivery!'
     else
-      "delivery cost: #{order.delivery_cost}"
+      #order.free_delivery_with_distance?
+      'free delivery!'
     end
+    # else
+    #   "delivery cost: #{Order::DELIVERY_COST}"
+    # end
   end
 
 end
