@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
 
   validates :password, length: { minimum: 6 }, :on => :create
   validates :password_confirmation, presence: true, :on => :create
-  validates :role, presence: true
+  # validates :role, presence: true
 
   def role
     ActiveSupport::StringInquirer.new(self[:role]) if self[:role]

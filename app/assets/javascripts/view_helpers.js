@@ -7,8 +7,22 @@ YUI().use('node', function(Y) {
 
     var showMap = function(e) {
         e.preventDefault();
-        Y.one('#order-map').show();
+        var map = Y.one('#order-map');
+        console.log(map.style)
+        if (map.getStyle('display') == 'none') {
+            map.show();
+            this.setHTML('Ukryj mapę');
+        } else {
+            map.hide();
+            this.setHTML('Pokaż mapę');
+        }
+
     };
+
+    // var debug = function(e) {
+    //     var map = Y.one('#order-map');
+    //     console.log(map.getStyle('display'));
+    // };
 
     var hideMap = function(e) {
         Y.one('#order-map').hide();
