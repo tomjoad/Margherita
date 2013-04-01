@@ -12,7 +12,6 @@ gem 'state_machine'
 gem 'will_paginate', '3.0.3'
 gem 'paperclip', '~> 3.0'
 gem 'i18n'
-gem 'yui-rails'
 
 group :production do
   gem 'pg'
