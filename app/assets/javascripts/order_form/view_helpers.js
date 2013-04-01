@@ -1,6 +1,17 @@
 YUI().use('node', function(Y) {
 
+    var address = Y.one('#address-field');
+    var map = Y.one('#order-map');
     var showMaps = Y.one("#show-map");
+
+    Y.on('load', function(e) {
+        if (address) {
+            address.hide();
+        };
+        if (map) {
+            map.hide();
+        };
+    });
 
     var handleMap = function(e) {
         e.preventDefault();
@@ -14,7 +25,6 @@ YUI().use('node', function(Y) {
         }
     };
 
-    // if only one option then address field always hidden
     var handleAddress = function(e) {
         var value = this.get('selectedIndex');
         var address = Y.one('#address-field');
@@ -25,10 +35,8 @@ YUI().use('node', function(Y) {
         };
     };
 
-    // checking for element existence
     if (Y.one('#new_order')) {
         Y.one('#show-map').on("click", handleMap);
         Y.one('#order_distance').on('change', handleAddress);
     };
-
 });
