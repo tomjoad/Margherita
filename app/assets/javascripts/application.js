@@ -11,8 +11,9 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require ./vendor/yui/yui-base
-//= require_tree ./vendor/bootstrap
-//= require jquery
-//= require jquery_ujs
+//= require ./vendor/bootstrap/bootstrap-datepicker
+//= require ./vendor/bootstrap/bootstrap-timepicker
+//= require ./vendor/jquery
+//= require twitter/bootstrap
 //= require_self
 //= require margherita
