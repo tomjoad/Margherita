@@ -1,5 +1,38 @@
-<%= render 'line_items/table_large'%>
-
+<div class="well">
+  <h3>Available Promotions</h3>
+  <div class="row-fluid">
+    <div class="span6">
+      <hr>
+      <p class="lead">"10 Logos Pizza"</p>
+      <p>
+        Promotion description.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat.
+      </p>
+      <label class="checkbox">
+        <input type="checkbox"><strong>I've collected 10 logos!</strong>
+      </label>
+    </div>
+    <div class="span6">
+      <hr>
+      <p class="lead">"Drink for a Penny"</p>
+      <p>
+        Promotion description.
+        Lorem ipsum dolor sit amet.<br> Consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis.<br> Nostrud exercitation.
+      </p>
+      <a class="btn btn-success btn-block">Check Out Your Promo-Prices!</a>
+    </div>
+  </div>
+</div>
+<div class="well">
+  <h3>Edit Products in Basket</h3>
+  <hr>
+  <%= render 'line_items/table_large'%>
+</div>
 <div class="well">
   <%= link_to(products_path(:id => "pizza"), { :class => "btn btn-submit" }) do %>
      <i class="icon-chevron-left icon-white"></i> Wróć do menu

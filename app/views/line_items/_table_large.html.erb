@@ -4,22 +4,22 @@
   <thead>
     <tr>
       <th class="id">
-        Lp
+        #
       </th>
       <th class="name">
-        Nazwa
+        Product
       </th>
       <th class="price-variant">
-        Rozmiar
+        Size
       </th>
       <th class="price-variant">
-        Ilość
+        Q-ty
       </th>
       <th class="price-variant">
-        Suma
+        Price
       </th>
       <% unless params[:action] == "confirmation" %>
-        <th class="price-variant"></th>
+        <th class="price-variant">Rem.</th>
       <% end %>
     </tr>
   </thead>
@@ -71,13 +71,13 @@
       </td>
       <% if params[:action] == "confirmation" %>
         <th class="middle">
-          Wybrany rodzaj dostawy
+          Chosen delivery option
         </th>
         <td class="middle" colspan="3">
           <%= type_of_delivery(@order) %>
       <% else %>
         <th class="middle">
-          Dostępne rodzaje dostawy
+          Available delivery options
         </th>
         <td class="middle" colspan="4">
           <% Order.possible_distances(@cart.price).each do |delivery| %>
@@ -91,7 +91,7 @@
         <i class="icon-info-sign"></i>
       </td>
       <th class="middle">
-        Kosz całkowity
+        Total price
       </th>
       <td class="price-variant">-</td>
       <td class="price-variant">-</td>
