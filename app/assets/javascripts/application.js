@@ -36,9 +36,9 @@
 //= require ./vendor/yui/pluginhost-base-min
 //= require ./vendor/yui/pluginhost-config-min
 //= require ./vendor/yui/selector-native-min
+//= require ./views/order_view
+//= require ./views/map_view
 //= require twitter/bootstrap
 //= require jquery
 //= require jquery_ujs
 //= require_self
-//= require margherita
-
