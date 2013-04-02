@@ -13,6 +13,7 @@
 //= require ./vendor/yui/yui-base
 //= require ./vendor/bootstrap/bootstrap-datepicker
 //= require ./vendor/bootstrap/bootstrap-timepicker
+//= require ./vendor/jquery
 //= require twitter/bootstrap
 //= require jquery
 //= require jquery_ujs
