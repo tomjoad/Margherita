@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails'
 gem 'rake'
+gem 'jquery-rails'
 gem 'bootstrap-sass', '2.0.0'
 gem 'less-rails-bootstrap'
 gem 'therubyracer'
