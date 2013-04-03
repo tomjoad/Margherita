@@ -16,8 +16,8 @@
               <td class="id">
                 <%= product.fixed_number %>
               </td>
-              <td class="name">
-                <span style="color:#007fff"><%= product.name %></span><br>
+              <td>
+                <span class="product-name"><%= product.name %></span><br>
                 <small class=""><%= product.description %></small>
               </td>
               <%= render "products/link_to_variant", :variants => product.variants %>

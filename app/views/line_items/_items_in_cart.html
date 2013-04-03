@@ -65,29 +65,8 @@
         <% end %>
       </tr>
     <% end %>
-    <tr class="delivery-info">
-      <td class="id-icon">
-        <i class="icon-info-sign"></i>
-      </td>
-      <% if params[:action] == "confirmation" %>
-        <th class="middle">
-          Chosen delivery option
-        </th>
-        <td class="middle" colspan="3">
-          <%= type_of_delivery(@order) %>
-      <% else %>
-        <th class="middle">
-          Available delivery options
-        </th>
-        <td class="middle" colspan="4">
-          <% Order.possible_distances(@cart.price).each do |delivery| %>
-            * <%= delivery %><br>
-          <% end %>
-        </td>
-      <% end %>
-    </tr>
     <tr class="total-price-info">
-      <td class="id-icon">
+      <td class="middle">
         <i class="icon-info-sign"></i>
       </td>
       <th class="middle">
@@ -104,6 +83,27 @@
         <th class="price-variant">
           <%= "%.2f" % @order.products_price %>
         </th>
+      <% end %>
+    </tr>
+    <tr>
+      <td class="middle">
+        <i class="icon-info-sign"></i>
+      </td>
+      <% if params[:action] == "confirmation" %>
+        <th class="middle">
+          Chosen delivery option
+        </th>
+        <td class="middle" colspan="3">
+          <%= type_of_delivery(@order) %>
+      <% else %>
+        <th class="middle">
+          Available delivery options
+        </th>
+        <td class="middle" colspan="4">
+          <% Order.possible_distances(@cart.price).each do |delivery| %>
+            <li><%= delivery %></li>
+          <% end %>
+        </td>
       <% end %>
     </tr>
   </tbody>

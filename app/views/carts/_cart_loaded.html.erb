@@ -1,7 +1,7 @@
 <div class="well">
-  <h3>Available Promotions</h3>
+  <h3>Check Available Promotions</h3>
   <div class="row-fluid">
-    <div class="span6">
+    <div class="span4">
       <hr>
       <p class="lead">"10 Logos Pizza"</p>
       <p>
@@ -15,7 +15,7 @@
         <input type="checkbox"><strong>I've collected 10 logos!</strong>
       </label>
     </div>
-    <div class="span6">
+    <div class="span4">
       <hr>
       <p class="lead">"Drink for a Penny"</p>
       <p>
@@ -26,21 +26,37 @@
       </p>
       <a class="btn btn-success btn-block">Check Out Your Promo-Prices!</a>
     </div>
+    <div class="span4">
+      <hr>
+      <p class="lead">"Free Delivery"</p>
+      <p>
+        Promotion description.
+        Lorem ipsum dolor sit amet. Consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis.<br><br>
+
+        <i class="icon-ok"></i> <strong>Free Delivery Available!</strong><br><br>
+
+        Check your cart below and continue to next step. There you will choose desired delivery type.
+      </p>
+
+    </div>
   </div>
 </div>
 <div class="well">
-  <h3>Edit Products in Basket</h3>
+  <h3>Edit Products in Basket
+  <%= link_to(cart_path, { :method => "delete", :class => "btn btn-danger pull-right" }) do %>
+    <i class="icon-trash"></i>
+  <% end %>
+  </h3>
   <hr>
-  <%= render 'line_items/table_large'%>
+  <%= render 'line_items/items_in_cart'%>
 </div>
 <div class="well">
   <%= link_to(products_path(:id => "pizza"), { :class => "btn btn-submit" }) do %>
-     <i class="icon-chevron-left icon-white"></i> Wróć do menu
-  <% end %>
-  <%= link_to(cart_path, { :method => "delete", :class => "btn btn-danger" }) do %>
-    <i class="icon-trash"></i>
+     <i class="icon-chevron-left icon-white"></i> Back to Menu
   <% end %>
   <%= link_to(new_order_path, { :class => "btn btn-primary pull-right" }) do %>
-    Wybierz rodzaj dostawy <i class="icon-chevron-right icon-white"></i>
+    Choose Delivery Option <i class="icon-chevron-right icon-white"></i>
   <% end %>
 </div>
