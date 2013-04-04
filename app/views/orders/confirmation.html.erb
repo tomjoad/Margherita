@@ -5,44 +5,48 @@
         <h3>Order Summary</h3>
         <hr>
 
-      <dl class="dl-horizontal">
-        <dt>Delivery Type:</dt>
-        <dd><%= type_of_delivery(@order).capitalize %></dd>
-        <br>
-        <% if @order.delivery? %>
-          <dt>Delivery Address:</dt>
-          <dd>
-            <address>
-              <%= @order.name + " " + @order.last_name %><br>
-              <%= @order.street + " " + @order.home_number %><br>
-              00-000 <%= @order.city %>
-            </address>
-          </dd>
-        <% else %>
-          <dt>Your Name:</dt>
-          <dd><%= @order.name + " " + @order.last_name %></dd>
+        <dl class="dl-horizontal">
+          <dt>Delivery Type:</dt>
+          <dd><%= type_of_delivery(@order).capitalize %></dd>
           <br>
-        <% end %>
-        <dt>Your Phone No.:</dt>
-        <dd>
-          <%= @order.phone %>
-        </dd>
-        <br>
-        <dt>Ordered Products:</dt>
-        <dd>
-          <%= render 'line_items/items_in_cart' %>
-        </dd>
-      </dl>
-
+          <% if @order.delivery? %>
+            <dt>Delivery Address:</dt>
+            <dd>
+              <address>
+                <%= @order.name + " " + @order.last_name %><br>
+                <%= @order.street + " " + @order.home_number %><br>
+                00-000 <%= @order.city %>
+              </address>
+            </dd>
+          <% else %>
+            <dt>Your Name:</dt>
+            <dd><%= @order.name + " " + @order.last_name %></dd>
+            <br>
+          <% end %>
+          <dt>Your Phone No.:</dt>
+          <dd>
+            <%= @order.phone %>
+          </dd>
+          <br>
+          <dt>Ordered Products:</dt>
+          <dd>
+            <%= render 'line_items/items_in_cart' %>
+          </dd>
+          <dt>Any Comments?</dt>
+          <dd>
+            <%= f.text_area :comment, :class => 'span12', :rows => 5,
+                :placeholder => 'Please watch out for my dog!' %>
+          </dd>
+        </dl>
 
       </div>
       <%= render 'orders/hidden_fields_for_order_confirmation', :f => f %>
-          <div class="well">
-            <%= link_to(new_order_path, { class: 'btn btn-primary' }) do %>
-              <i class="icon-chevron-left icon-white"></i> Go Back to Shipping Info
-            <% end %>
-            <%= f.submit "Confirm & Create Order!", class: 'btn btn-success pull-right' %>
-          </div>
+      <div class="well">
+        <%= link_to(new_order_path, { class: 'btn btn-primary' }) do %>
+          <i class="icon-chevron-left icon-white"></i> Go Back to Shipping Info
+        <% end %>
+        <%= f.submit "Confirm & Create Order!", class: 'btn btn-success pull-right' %>
+      </div>
     <% end %>
   </div>
   <div class="span3 hidden-phone">
