@@ -11,7 +11,7 @@ class Order < ActiveRecord::Base
   DELIVERY_COST = 6.0
   FREE_DELIVERY = 0.0
   COLLECTION_IN_PERSON = 1.0
-  ORDERING_HOURS = ("11:00".."21:30")
+  ORDERING_HOURS = ("00:01".."23:59")
 
   validates :cart, :presence => true
   validates :state, :presence => true

@@ -19,7 +19,16 @@
         <legend>
           Twoje zakupy:
         </legend>
-        <%= render 'line_items/table_large' %>
+        <%= render 'line_items/items_in_cart' %>
+      </div>
+      <div class="well">
+        <legend>
+          Inne
+        </legend>
+        <%= f.label :comment, "Uwagi", class: 'control-label' %>
+        <div class="controls">
+          <%= f.text_area :comment, class: 'span12', placeholder: 'Tutaj wpisz swoje uwagi odnośnie zamówienia' %>
+        </div>
       </div>
       <%= render 'orders/hidden_fields_for_order_confirmation', :f => f %>
       <div class="well">
