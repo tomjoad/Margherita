@@ -4,6 +4,6 @@ class RemoveAddressFromOrders < ActiveRecord::Migration
   end
 
   def down
-    add_column :orders, :address
+    add_column :orders, :address, :string
   end
 end

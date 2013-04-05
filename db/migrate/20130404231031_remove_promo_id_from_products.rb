@@ -4,6 +4,6 @@ class RemovePromoIdFromProducts < ActiveRecord::Migration
   end
 
   def down
-    add_columnt :products, :promo_id
+    add_column :products, :promo_id, :integer
   end
 end
