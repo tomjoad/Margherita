@@ -34,6 +34,11 @@ class OrdersController < ApplicationController
     @cart = find_cart
     @line_items = LineItem.all(session[:cart])
     @order = Order.fixed_new(session[:order_params], @cart)
+    # You can`t go to orders/confirmation without pressing checkout first.
+    if session[:order_params].empty?
+      flash[:notice] = 'step by step please'
+      redirect_to root_url
+    end
   end
 
   def create
