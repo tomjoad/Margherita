@@ -30,7 +30,7 @@ class Order < ActiveRecord::Base
   :user_id, :name, :last_name, :city,
   :zip_code, :street, :phone, :home_number,
   :distance, :products_price, :delivery, :total_price,
-  :delivery_time
+  :delivery_time, :comment
 
   serialize :cart
 
