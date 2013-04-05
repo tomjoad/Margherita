@@ -1,43 +1,58 @@
 <div class="row-fluid">
-  <div class="span3 hidden-phone">
-    <%= render "orders/progress_steps_help", :step => 3 %>
-  </div>
   <div class="span9">
     <%= form_for(@order, :url => {:action => "create"}) do |f| %>
       <div class="well">
-        <legend>
-          Adres dostawy
-        </legend>
-        <address style="text-align:center">
-          <strong><%= @order.name %>&nbsp;<%= @order.last_name %></strong><br>
-          <%= @order.street %>&nbsp;<%= @order.home_number %><br>
-          <%#= @order.zip_code %>00-000&nbsp;<%= @order.city %><br><br>
-          <abbr title="Telefon">Tel:</abbr> <%= @order.phone %>
-        </address>
-      </div>
-      <div class="well">
-        <legend>
-          Twoje zakupy:
-        </legend>
-        <%= render 'line_items/items_in_cart' %>
-      </div>
-      <div class="well">
-        <legend>
-          Inne
-        </legend>
-        <%= f.label :comment, "Uwagi", class: 'control-label' %>
-        <div class="controls">
-          <%= f.text_area :comment, class: 'span12', placeholder: 'Tutaj wpisz swoje uwagi odnośnie zamówienia' %>
-        </div>
+        <h3>Order Summary</h3>
+        <hr>
+
+        <dl class="dl-horizontal">
+          <dt>Delivery Type:</dt>
+          <dd><%= type_of_delivery(@order).capitalize %></dd>
+          <br>
+          <% if @order.delivery? %>
+            <dt>Delivery Address:</dt>
+            <dd>
+              <address>
+                <%= @order.name + " " + @order.last_name %><br>
+                <%= @order.street + " " + @order.home_number %><br>
+                00-000 <%= @order.city %>
+              </address>
+            </dd>
+          <% else %>
+            <dt>Your Name:</dt>
+            <dd><%= @order.name + " " + @order.last_name %></dd>
+            <br>
+          <% end %>
+          <dt>Your Phone No.:</dt>
+          <dd>
+            <%= @order.phone %>
+          </dd>
+          <br>
+          <dt>Ordered Products:</dt>
+          <dd>
+            <%= render 'line_items/items_in_cart' %>
+          </dd>
+          <dt>Any Comments?</dt>
+          <dd>
+            <%= f.text_area :comment, :class => 'span12', :rows => 5,
+                :placeholder => 'Please watch out for my dog!' %>
+          </dd>
+        </dl>
+
       </div>
       <%= render 'orders/hidden_fields_for_order_confirmation', :f => f %>
       <div class="well">
-        <%= link_to(new_order_path, { class: 'btn btn-submit' }) do %>
-          <i class="icon-chevron-left icon-white"></i> Popraw adres
+        <%= link_to(new_order_path, { class: 'btn btn-primary' }) do %>
+          <i class="icon-chevron-left icon-white"></i> Go Back to Shipping Info
         <% end %>
-        <%= f.submit "Utwórz zamówienie!", class: 'btn btn-success pull-right' %>
+        <%= f.submit "Confirm & Create Order!", class: 'btn btn-success pull-right' %>
       </div>
     <% end %>
   </div>
+  <div class="span3 hidden-phone">
+    <%= render "orders/progress_steps_help", :step => 3 %>
+  </div>
+
 </div>
+
 

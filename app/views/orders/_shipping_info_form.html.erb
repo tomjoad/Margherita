@@ -1,16 +1,14 @@
 <div class="well">
 
   <fieldset>
-    <legend style="margin:0;">
-      Wybierz rodzaj dostawy
-    </legend>
+    <h3>Choose Delivery Option</h3>
+    <hr>
     <div class="control-group">
-      <%= f.label :distance, "Dostępne opcje", class: 'control-label' %>
+      <%= f.label :distance, "Available options", class: 'control-label' %>
       <div class="controls">
         <%= f.select(:distance, Order.possible_distances(@cart.price), {}, {class: 'span6'}) %>
       </div>
     </div>
-
   </fieldset>
 
 </div>
@@ -18,31 +16,30 @@
 <div id="address-field" class="well">
 
   <fieldset>
-    <legend>
-      Podaj adres dostawy
-    </legend>
+    <h3>Enter Delivery Address</h3>
+    <hr>
     <div class="control-group hidden">
-      <%= f.label :zip_code, "Kod pocztowy",  class: 'control-label' %>
+      <%= f.label :zip_code, "Zip Code",  class: 'control-label' %>
       <div class="controls">
         <%= f.select(:zip_code, User::ZIP_CODES, {selected: @user.zip_code}, {class: ''}) %>
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :city, "Miejscowość",  class: 'control-label' %>
+      <%= f.label :city, "City",  class: 'control-label' %>
       <div class="controls">
         <%= f.select(:city, User::CITIES.sort, {selected: @user.city}, {class: 'span6'}) %>
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :street, "Ulica",  class: 'control-label' %>
+      <%= f.label :street, "Street",  class: 'control-label' %>
       <div class="controls">
-        <%= f.text_field :street, value: @user.street, placeholder: 'Ulica', class: 'span6' %>
+        <%= f.text_field :street, value: @user.street, placeholder: 'Margherita', class: 'span6' %>
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :home_number, "Numer domu / mieszk.",  class: 'control-label' %>
+      <%= f.label :home_number, "Home No.",  class: 'control-label' %>
       <div class="controls">
-        <%= f.text_field :home_number, value: @user.home_number, placeholder: 'Nr', class: 'span6' %>
+        <%= f.text_field :home_number, value: @user.home_number, placeholder: '23/123', class: 'span6' %>
       </div>
     </div>
 
@@ -95,25 +92,24 @@
 <div class="well">
 
   <fieldset>
-    <legend style="margin:0">
-      Podaj dane kontaktowe
-    </legend>
+    <h3>Enter Required Personal Info</h3>
+    <hr>
     <div class="control-group">
-      <%= f.label :name, "Imię",  class: 'control-label' %>
+      <%= f.label :name, "First Name",  class: 'control-label' %>
       <div class="controls">
-        <%= f.text_field :name, value: @user.name, placeholder: 'Imię', class: 'span6' %>
+        <%= f.text_field :name, value: @user.name, placeholder: 'John', class: 'span6' %>
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :last_name, "Nazwisko",  class: 'control-label' %>
+      <%= f.label :last_name, "Last Name",  class: 'control-label' %>
       <div class="controls">
-        <%= f.text_field :last_name, value: @user.last_name, placeholder: 'Nazwisko', class: 'span6' %>
+        <%= f.text_field :last_name, value: @user.last_name, placeholder: 'Kowalsky', class: 'span6' %>
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :phone, "Numer telefonu",  class: 'control-label' %>
+      <%= f.label :phone, "Phone No.",  class: 'control-label' %>
       <div class="controls">
-        <%= f.text_field :phone, value: @user.phone, placeholder: 'Numer telefonu', class: 'span6' %>
+        <%= f.text_field :phone, value: @user.phone, placeholder: '123456789', class: 'span6' %>
       </div>
     </div>
   </fieldset>
@@ -125,11 +121,11 @@
 
 <div class="well">
 
-  <a href="<%= url_for new_cart_path %>" class="btn btn-submit">
-    <i class="icon-chevron-left icon-white"></i> Popraw zawartość koszyka
+  <a href="<%= url_for new_cart_path %>" class="btn btn-primary">
+    <i class="icon-chevron-left icon-white"></i> Go Back to Basket
   </a>
   <button type="submit" class="btn btn-primary pull-right">
-    Wyświetl podsumowanie <i class="icon-chevron-right icon-white"></i>
+    View Summary <i class="icon-chevron-right icon-white"></i>
   </button>
 
 </div>
