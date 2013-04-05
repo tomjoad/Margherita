@@ -1,4 +1,4 @@
-class AddPromoToVariant < ActiveRecord::Migration
+class AddPromoToVariants < ActiveRecord::Migration
   def change
     add_column :variants, :promo, :boolean
   end
