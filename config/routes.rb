@@ -20,6 +20,7 @@ Margherita::Application.routes.draw do
   resource :cart, only: [:new, :destroy]
   resources :line_items, only: [:index]
   resources :products
+  resources :promos, only: [:index, :new, :show, :create, :destroy]
 
   resources :orders, only: [:index, :new, :create, :update] do
     collection do

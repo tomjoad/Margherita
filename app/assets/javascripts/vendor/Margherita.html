@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <!-- HEAD -->
+  <head>
+    <title>Margherita</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/assets/vendor/jquery.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/bootstrap/bootstrap-datepicker.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/bootstrap/bootstrap-timepicker.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/yui/yui-base-min.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/yui/node-base-min.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/yui/node-core-min.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/yui/loader-rollup-min.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/yui/loader-yui3-min.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/yui/event-base-min.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/yui/dom-core-min.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/yui/selector-min.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/yui/loader-min.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/yui/dom-base-min.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/yui/dom-screen-min.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/yui/dom-style-min.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/yui/event-custom-base-min.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/yui/event-delegate-min.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/yui/features-min.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/yui/node-event-delegate-min.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/yui/node-screen-min.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/yui/node-style-min.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/yui/oop-min.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/yui/pluginhost-base-min.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/yui/pluginhost-config-min.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/yui/node-pluginhost-min.js?body=1" type="text/javascript"></script>
+<script src="/assets/vendor/yui/selector-native-min.js?body=1" type="text/javascript"></script>
+<script src="/assets/views/order_view.js?body=1" type="text/javascript"></script>
+<script src="/assets/views/map_view.js?body=1" type="text/javascript"></script>
+<script src="/assets/twitter/bootstrap/bootstrap-transition.js?body=1" type="text/javascript"></script>
+<script src="/assets/twitter/bootstrap/bootstrap-alert.js?body=1" type="text/javascript"></script>
+<script src="/assets/twitter/bootstrap/bootstrap-modal.js?body=1" type="text/javascript"></script>
+<script src="/assets/twitter/bootstrap/bootstrap-dropdown.js?body=1" type="text/javascript"></script>
+<script src="/assets/twitter/bootstrap/bootstrap-scrollspy.js?body=1" type="text/javascript"></script>
+<script src="/assets/twitter/bootstrap/bootstrap-tab.js?body=1" type="text/javascript"></script>
+<script src="/assets/twitter/bootstrap/bootstrap-tooltip.js?body=1" type="text/javascript"></script>
+<script src="/assets/twitter/bootstrap/bootstrap-popover.js?body=1" type="text/javascript"></script>
+<script src="/assets/twitter/bootstrap/bootstrap-button.js?body=1" type="text/javascript"></script>
+<script src="/assets/twitter/bootstrap/bootstrap-collapse.js?body=1" type="text/javascript"></script>
+<script src="/assets/twitter/bootstrap/bootstrap-carousel.js?body=1" type="text/javascript"></script>
+<script src="/assets/twitter/bootstrap/bootstrap-typeahead.js?body=1" type="text/javascript"></script>
+<script src="/assets/twitter/bootstrap/bootstrap-affix.js?body=1" type="text/javascript"></script>
+<script src="/assets/twitter/bootstrap.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
+<script src="/assets/application.js?body=1" type="text/javascript"></script>
+    <link href="/assets/application.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+<link href="/assets/bootswatch/loader.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+    <meta content="authenticity_token" name="csrf-param" />
+<meta content="/glTL1yj2Y6xmmYlylNlVMvndPYJzu7Tz4md2sw1g58=" name="csrf-token" />
+  </head>
+  <!-- BODY -->
+  <body data-spy="scroll" data-target="#nav-affix-left" data-offset="102">
+    <!-- NAVBAR -->
+    <div class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-target=".navbar-responsive-collapse" data-toggle="collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <div class="nav-collapse collapse navbar-responsive-collapse">
+
+        <ul class="nav">
+
+  <!-- HOME  -->
+
+  <li class="">
+    <a href="http://localhost:3000/"><i class="icon-home icon-white"></i> Główna</a>
+  </li>
+
+  <!-- PRODUCTS -->
+
+  <li class="">
+    <a href="/products?id=pizza">
+      <i class="icon-book icon-white"></i> Menu
+    </a>
+  </li>
+
+  <!-- SERVICES -->
+
+  <li class="">
+    <a href="/services/reservations">
+      <i class="icon-calendar icon-white"></i> Rezerwacje
+    </a>
+  </li>
+  <li class="">
+    <a href="/services/catering">
+      <i class="icon-globe icon-white"></i> Catering
+    </a>
+  </li>
+
+  <!-- ABOUT -->
+
+  <!-- <li class=""> -->
+  <!--   <a href="/home/about"> -->
+  <!--     <i class="icon-info-sign icon-white"></i> Informacje</a> -->
+  <!-- </li> -->
+  <li class="">
+    <a href="/services/contact">
+      <i class="icon-envelope icon-white"></i> Kontakt</a>
+  </li>
+
+  <!-- CART -->
+
+    <li class="" >
+      <a href="/cart/new">
+        <i class="icon-shopping-cart icon-white"></i>
+        Koszyk
+</a>    </li>
+</ul>
+
+
+
+            <ul class="nav pull-right">
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      <i class="icon-user icon-white"></i> lukasz.bibrzycki@gmail.com <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li class="nav-header">Admin Menu</li>
+      <li><a href="/admin/users">Users</a></li>
+      <li><a href="/categories">Products</a></li>
+      <li><a href="/orders?filter=all">Orders</a></li>
+      <li class="divider"></li>
+      <li class="nav-header">User Menu</li>
+      <li><a href="/users/3">View/Edit Profile</a></li>
+      <li>
+        <form action="/signout" class="button_to" method="post"><div><input name="_method" type="hidden" value="delete" /><input class="btn btn-block btn-danger" type="submit" value="Sign Out" /><input name="authenticity_token" type="hidden" value="/glTL1yj2Y6xmmYlylNlVMvndPYJzu7Tz4md2sw1g58=" /></div></form>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div id="wrap">
+      <div class="container">
+        <!-- HEADER -->
+        <div class="content">
+          <!-- Masthead
+     ================================================== -->
+<header class="jumbotron subhead" id="overview">
+  <!-- Error Messages -->
+
+  <div class="row-fluid">
+    <div class="span7">
+      <h1 id='shop-title'>Kuźnia<small> cafe&nbsp;&&nbsp;pizza</small></h1>
+    </div>
+    <div class="span5 header-nav">
+      <ul>
+        <li id="basket">
+          <a href="/cart/new" class="btn btn-success">View Basket</a><br>
+          <div id="cart-info">
+            <p style="text-align: right; line-height: 1; margin-top: 3px;">
+</p>
+
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+    <!-- Subnav partial for promos -->
+<hr>
+
+</header>
+
+          <!-- CONTENT -->
+          show
+
+        </div>
+        <!-- DEBUG  -->
+      </div>
+      <div id="push"></div>
+    </div>
+    <!-- FOOTER -->
+    <!-- footer -->
+<div id="footer">
+  <div class="container">
+    <!-- Made with -->
+    <!-- <a href="https://github.com/twitter/bootstrap", target=_blank>Bootstrap</a> -->
+    <!-- by -->
+    <div class="row-fluid">
+      <div class="span12">
+        <p>
+          &copy; 2013 Margherita by
+          <a href="http://www.pleasedontduet.com", target="_blank">
+            PleaseDontDuet Co.
+          </a>
+        </p>
+      </div>
+
+      <!-- <div class="span6"> -->
+      <!--   <p class="pull-right"> -->
+      <!--     You are: <span style="text-transform:capitalize">admin</span> -->
+      <!--   </p> -->
+      <!-- </div> -->
+    </div>
+  </div>
+</div>
+
+  </body>
+</html>

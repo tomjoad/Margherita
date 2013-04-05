@@ -20,7 +20,7 @@
                 <span class="product-name"><%= product.name %></span><br>
                 <small class=""><%= product.description %></small>
               </td>
-              <%= render "products/link_to_variant", :variants => product.variants %>
+              <%= render "products/link_to_variant", :variants => Variant.without_promo(product.variants) %>
             </tr>
           <% end %>
         </tbody>

@@ -1,0 +1,3 @@
+<% @promos.each do |promo| %>
+  <%= link_to promo.name, promo_path(promo) %> || <%= promo.limit %>
+<% end %>

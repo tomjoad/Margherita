@@ -1,6 +1,7 @@
 class Product < ActiveRecord::Base
   has_many :variants
   belongs_to :category
+  # maybe not necessary
 
   accepts_nested_attributes_for :variants,
   # todo - destroying variants when text_field is empty

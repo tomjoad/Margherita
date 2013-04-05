@@ -1,0 +1,10 @@
+<%= @promo.name %><br />
+<%= @promo.limit %>
+<br />
+----- Current promo products -----
+<br />
+
+---- Add variants to promo ----
+<% @variants.each do |variant| %>
+  <%= variant.name %><%= variant%>
+<% end %>
