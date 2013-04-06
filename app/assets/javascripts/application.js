@@ -13,11 +13,9 @@
 //= require ./vendor/jquery
 //= require ./vendor/bootstrap/bootstrap-datepicker
 //= require ./vendor/bootstrap/bootstrap-timepicker
-//= require ./vendor/jquery
 //= require ./vendor/yui/yui-base-min
 //= require ./views/order_view
 //= require ./views/map_view
 //= require twitter/bootstrap
-//= require jquery
-//= require jquery_ujs
-//= require_self
+
+
