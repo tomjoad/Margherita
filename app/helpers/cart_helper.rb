@@ -17,7 +17,7 @@ module CartHelper
   end
 
   def line_items_count
-    LineItem.all(session[:cart]).count
+    Cart.new(session[:cart]).items.count
   end
 
 end
